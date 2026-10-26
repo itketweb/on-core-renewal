@@ -1,0 +1,130 @@
+/* 서브 페이지 시안 — 상품 묶음(목록·상세·검색) 전용. 공통 부품은 css/sub.css, 토큰은 css/main.css :root.
+   카드(.oc-card)는 회색 바탕 위에 올린다(규칙 4장: 흰 카드 + 회색 섹션) → 목록은 .oc-pg-body--alt 안에 둔다 */
+
+/* 필터·정렬로 숨긴 카드: .oc-card 가 display:flex 라서 hidden 속성만으로는 안 숨는다 */
+.oc-cards .oc-card[hidden]{display:none}
+
+/* 상담 유도 띠 — 회색 바탕 위 흰 상자. 위아래 선으로 두면 바로 아래 도구줄 선과 겹쳐 가로선이 세 줄 연달아 보인다 */
+.oc-pg-body--alt .oc-toolbar .oc-select{background-color:#fff}
+
+/* 목록 머리 아래 안내 */
+.oc-goods-note{margin-top:var(--oc-sp-32);font-size:var(--oc-fs-14);color:var(--oc-ink-3)}
+
+/* ── 상품 상세 ── */
+.oc-gv{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:var(--oc-sp-64);align-items:start}
+.oc-gv-photo{position:sticky;top:calc(var(--oc-hd) + var(--oc-sp-32));aspect-ratio:4/3;border-radius:var(--oc-r-lg);background:var(--oc-img);overflow:hidden}
+.oc-gv-photo img{display:block;width:100%;height:100%;object-fit:contain}
+.oc-gv-brand{display:flex;align-items:center;gap:var(--oc-sp-12)}
+.oc-gv-model{font-size:var(--oc-fs-14);color:var(--oc-ink-3)}
+.oc-gv-info h1{margin-top:var(--oc-sp-8);font-size:var(--oc-fs-32);line-height:1.25} /* 상품명이 가격보다 커야 무엇을 보는지 먼저 읽힌다 */
+.oc-gv-price{margin-top:var(--oc-sp-20);padding:var(--oc-sp-20) 0;border-top:1px solid var(--oc-line);border-bottom:1px solid var(--oc-line)}
+.oc-gv-price b{display:block;font-size:var(--oc-fs-28);font-weight:700;line-height:1.2;letter-spacing:-.02em}
+.oc-gv-price small{display:block;margin-top:var(--oc-sp-4);font-size:var(--oc-fs-14);color:var(--oc-ink-3)}
+.oc-gv .oc-kv{margin-top:var(--oc-sp-24)}
+.oc-gv-act{display:flex;gap:var(--oc-sp-8);margin-top:var(--oc-sp-24)}
+.oc-gv-act .oc-btn{flex:1}
+/* 바로 구매 (가격이 있는 상품만) — 견적 버튼 아래 보조 영역. 빨강은 쓰지 않는다(빨강 = 견적 요청) */
+.oc-gv-buy{margin-top:var(--oc-sp-12);padding:var(--oc-sp-16);border:1px solid var(--oc-line);border-radius:var(--oc-r)}
+.oc-gv-buy-row{display:flex;align-items:center;gap:var(--oc-sp-12);margin-bottom:var(--oc-sp-12)}
+.oc-gv-buy-lb{font-size:var(--oc-fs-14);font-weight:600;color:var(--oc-ink-2)}
+.oc-gv-buy .oc-qty{margin-top:0}
+.oc-gv-buy-total{margin-left:auto;font-size:var(--oc-fs-14);color:var(--oc-ink-3)}
+.oc-gv-buy-total b{margin-left:var(--oc-sp-4);font-size:var(--oc-fs-18);font-weight:700;color:var(--oc-ink)}
+.oc-gv-buy[hidden]{display:none}
+.oc-gv .oc-note{margin-top:var(--oc-sp-24)}
+
+/* 모바일 구매 바 — 768 미만에서 공통 하단 바(.oc-mbar) 대신 보인다. 화면을 내려도 견적 요청이 늘 손 닿는 곳에 있게.
+   고도몰: goods_view 스킨에만 넣는다. 공통 하단 바 숨김은 :has() 로 처리(아이폰 iOS 15.4+), 필요하면 body 에 클래스를 붙이는 방식으로 바꾼다 */
+.oc-gv-bar{display:none}
+
+/* 상세 아래 탭 — 업종별 추천·하위 이동 탭과 같은 가로 밑줄 */
+.oc-gv-tabs{margin-top:var(--oc-sp-80)}
+.oc-gv-tabs [role="tablist"]{display:flex;flex-wrap:wrap;column-gap:var(--oc-sp-24);border-bottom:1px solid var(--oc-line)} /* 가로 스크롤 없음 */
+.oc-gv-tabs [role="tab"]{position:relative;flex:none;padding:var(--oc-sp-16) 0;border:0;background:none;font-size:var(--oc-fs-16);font-weight:700;letter-spacing:-.01em;white-space:nowrap;color:var(--oc-ink-3);transition:color .15s}
+.oc-gv-tabs [role="tab"]:hover,.oc-gv-tabs [aria-selected="true"]{color:var(--oc-ink)}
+.oc-gv-tabs [role="tab"]::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:3px;background:var(--oc-ink);transform:scaleX(0);transform-origin:left;transition:transform .3s var(--oc-ease)}
+.oc-gv-tabs [aria-selected="true"]::after{transform:none}
+.oc-gv-panel{padding-top:var(--oc-sp-32);max-width:54rem}
+.oc-gv-panel[hidden]{display:none}
+.oc-gv-panel h2{margin-bottom:var(--oc-sp-16);font-size:var(--oc-fs-24)}
+.oc-gv-panel p{font-size:var(--oc-fs-16);line-height:1.8;color:var(--oc-ink-2)}
+.oc-gv-panel p+p,.oc-gv-panel .oc-kv+p,.oc-gv-panel p+.oc-steps{margin-top:var(--oc-sp-20)}
+.oc-gv-panel ul.oc-gv-list{margin-top:var(--oc-sp-20);padding-left:var(--oc-sp-20);list-style:disc;color:var(--oc-ink-2);line-height:1.8}
+.oc-gv-panel ul.oc-gv-list li+li{margin-top:var(--oc-sp-8)}
+
+/* ── 검색 ── */
+.oc-gs-form{display:flex;gap:var(--oc-sp-8);max-width:40rem;margin-top:var(--oc-sp-24)}
+.oc-gs-form .oc-input{height:var(--oc-sp-48);padding:0 var(--oc-sp-24);border-radius:999px;flex:1;min-width:0}
+.oc-gs-empty{padding:var(--oc-sp-64) 0;text-align:center}
+.oc-gs-empty[hidden],.oc-gs-result[hidden]{display:none}
+.oc-gs-empty b{display:block;font-size:var(--oc-fs-20)}
+.oc-gs-empty p{margin:var(--oc-sp-8) 0 var(--oc-sp-24);color:var(--oc-ink-3)}
+.oc-gs-empty .oc-chips{justify-content:center}
+.oc-gs-empty .oc-chips a{background:#fff}
+
+/* ── 제품 비교 (compare.html) — 제품이 열, 항목이 행. 표는 화면 폭에 맞춰 줄을 바꾸고 옆으로 밀지 않는다 ── */
+.oc-cmpv-bar{display:flex;align-items:center;justify-content:space-between;gap:var(--oc-sp-16);margin-bottom:var(--oc-sp-16)}
+.oc-cmpv-bar p{font-size:var(--oc-fs-16);color:var(--oc-ink-2)}
+.oc-cmpv-bar .oc-chk{margin-top:0}
+.oc-cmpv{width:100%;table-layout:fixed;border-collapse:collapse;background:#fff;border:1px solid var(--oc-line-2);border-radius:var(--oc-r-lg);overflow:hidden;font-size:var(--oc-fs-14);color:var(--oc-ink-2)}
+.oc-cmpv th,.oc-cmpv td{padding:var(--oc-sp-12) var(--oc-sp-16);border-top:1px solid var(--oc-line-2);text-align:left;vertical-align:top;overflow-wrap:break-word;word-break:keep-all}
+.oc-cmpv thead th{border-top:0;padding-top:var(--oc-sp-20);padding-bottom:var(--oc-sp-20)}
+.oc-cmpv .oc-cmpv-lb{width:var(--oc-sp-112);background:var(--oc-surface);font-size:var(--oc-fs-12);font-weight:600;color:var(--oc-ink-3)}
+.oc-cmpv-sub{display:none} /* 모바일 전용 항목 이름 줄 */
+.oc-cmpv tr.oc-is-diff td{font-weight:700;color:var(--oc-ink)} /* 값이 다른 항목 */
+.oc-is-diffonly [data-same]{display:none}
+.oc-cmpv-goods{position:relative;display:flex;flex-direction:column;gap:var(--oc-sp-4);font-weight:400}
+.oc-cmpv-img{display:block;height:var(--oc-sp-160);margin-bottom:var(--oc-sp-8);border-radius:var(--oc-r);background:var(--oc-img)}
+.oc-cmpv-img img{width:100%;height:100%;object-fit:contain}
+.oc-cmpv-name{font-size:var(--oc-fs-16);font-weight:700;color:var(--oc-ink);line-height:1.4}
+.oc-cmpv-goods small{font-size:var(--oc-fs-12);color:var(--oc-ink-3)}
+.oc-cmpv-del{position:absolute;top:0;right:0;z-index:1;width:var(--oc-sp-32);height:var(--oc-sp-32);border-radius:999px;background:#fff;border:1px solid var(--oc-line);color:var(--oc-ink-3);font-size:var(--oc-fs-18);line-height:1}
+.oc-cmpv td.oc-cmpv-price{font-size:var(--oc-fs-16);color:var(--oc-ink)}
+.oc-cmpv-none{color:var(--oc-ink-3)}
+.oc-cmpv-act .oc-btn{width:100%}
+.oc-cmpv-act .oc-btn + .oc-btn{margin-top:var(--oc-sp-8)}
+.oc-cmpv-act .oc-add.oc-on{background:var(--oc-primary-50);border-color:var(--oc-primary-100);color:var(--oc-primary-600)}
+.oc-cmpv-empty{padding:var(--oc-sp-64) var(--oc-sp-24);text-align:center;background:#fff;border:1px solid var(--oc-line-2);border-radius:var(--oc-r-lg)}
+.oc-cmpv-empty p{font-size:var(--oc-fs-20);font-weight:700;color:var(--oc-ink)}
+.oc-cmpv-empty span{display:block;margin:var(--oc-sp-8) 0 var(--oc-sp-24);color:var(--oc-ink-3)}
+
+/* ── 반응형 ── */
+@media (max-width:1023px){
+  .oc-gv{grid-template-columns:minmax(0,1fr);gap:var(--oc-sp-32)}
+  .oc-gv-photo{position:static}
+  .oc-gv-tabs{margin-top:var(--oc-sp-64)}
+}
+@media (max-width:767px){
+  .oc-gv-info h1{font-size:var(--oc-fs-24)}
+  .oc-gv-price{margin-top:var(--oc-sp-16)}
+  .oc-gv-price b{font-size:var(--oc-fs-24)}
+  .oc-gv-act{display:none} /* 같은 버튼이 아래 구매 바에 늘 떠 있다 */
+  .oc:has(.oc-gv-bar) .oc-mbar{display:none}
+  .oc-gv-bar{display:flex;align-items:center;gap:var(--oc-sp-8);position:fixed;left:0;right:0;bottom:0;min-width:360px;z-index:44;height:calc(var(--oc-sp-64) + var(--oc-safe-b));padding:0 calc(var(--oc-sp-12) + var(--oc-safe-r)) var(--oc-safe-b) calc(var(--oc-sp-8) + var(--oc-safe-l));background:#fff;border-top:1px solid var(--oc-line-2);box-shadow:0 -8px 24px -16px rgba(22,24,29,.2)}
+  .oc-gv-bar-ic{position:relative;display:grid;place-items:center;flex:none;width:var(--oc-sp-40);height:var(--oc-sp-48);color:var(--oc-ink-2)}
+  .oc-gv-bar-ic svg{width:var(--oc-sp-24);height:var(--oc-sp-24)}
+  .oc-gv-bar-ic b.oc-is-zero{display:none} /* 0 개면 배지를 숨긴다 */
+  .oc-gv-bar-ic b{position:absolute;top:var(--oc-sp-4);right:0;min-width:var(--oc-sp-20);height:var(--oc-sp-20);padding:0 var(--oc-sp-4);border-radius:999px;background:var(--oc-ink);color:#fff;font-size:var(--oc-fs-12);display:grid;place-items:center}
+  .oc-gv-bar .oc-btn{flex:1;min-width:0;height:var(--oc-sp-48);padding:0 var(--oc-sp-8)}
+  .oc-gv-bar .oc-add.oc-on{background:var(--oc-primary-50);border-color:var(--oc-primary-100);color:var(--oc-primary-600)}
+  .oc-gv-tabs{margin-top:var(--oc-sp-48)}
+  .oc-gv-tabs [role="tablist"]{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);column-gap:0} /* 탭 3개를 칸 똑같이 */
+  .oc-gv-tabs [role="tab"]{white-space:normal;text-align:center;font-size:var(--oc-fs-14);line-height:1.35}
+  .oc-gv-panel h2{font-size:var(--oc-fs-20)}
+  .oc-gs-form .oc-btn{padding:0 var(--oc-sp-16)}
+  /* 비교 표: 왼쪽 항목 칸을 없애 제품 칸을 넓히고, 항목 이름은 값 줄 위에 한 줄로 */
+  .oc-cmpv .oc-cmpv-lb{display:none}
+  .oc-cmpv{table-layout:auto} /* 고정 배치는 숨긴 첫 칸 몫을 비워 둬 표가 화면 폭을 다 못 쓴다 → 제품 칸 폭을 개수로 나눠 준다 */
+  .oc-cmpv--2 td,.oc-cmpv--2 thead th{width:50%}
+  .oc-cmpv--3 td,.oc-cmpv--3 thead th{width:33.33%}
+  .oc-cmpv--4 td,.oc-cmpv--4 thead th{width:25%}
+  .oc-cmpv-img{height:var(--oc-sp-96)}
+  .oc-cmpv-sub{display:table-row}
+  .oc-cmpv-sub th{padding:var(--oc-sp-8) var(--oc-sp-12) 0;border-top:1px solid var(--oc-line-2);font-size:var(--oc-fs-12);font-weight:600;color:var(--oc-ink-3)}
+  .oc-cmpv-sub + tr td{border-top:0;padding-top:var(--oc-sp-4)}
+  .oc-cmpv th,.oc-cmpv td{padding-left:var(--oc-sp-8);padding-right:var(--oc-sp-8);font-size:var(--oc-fs-14)}
+  .oc-cmpv-act .oc-btn{padding:0 var(--oc-sp-4)}
+  .oc-cmpv-name,.oc-cmpv td.oc-cmpv-price{font-size:var(--oc-fs-14)}
+  .oc-cmpv-del{width:var(--oc-sp-24);height:var(--oc-sp-24);font-size:var(--oc-fs-16)}
+  .oc-cmpv-bar{flex-wrap:wrap}
+}

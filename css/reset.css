@@ -1,0 +1,496 @@
+/* 이 파일은 기획안(Renewal_plan) 시안 전용 복사본이다.
+   원본: github.com/soonupy97/reset-css v1.1.0 (MIT) — 아래 원본 라이선스 주석 유지.
+   변경점: 모든 선택자를 :where(.oc) 안으로 감쌌다 (html·body 규칙은 .oc 로).
+   → 새 디자인 영역(.oc)에만 적용되고, 고도몰 기본 화면(주문·회원·게시판)은 건드리지 않는다.
+   우선순위는 :where 덕분에 원본과 같아 .oc- 클래스로 언제든 덮어쓸 수 있다.
+   실제 스킨에 넣을 때는 별도 요청 후 적용한다. */
+/*! reset.css v1.1.0 | MIT License | github.com/soonupy97/reset-css */
+/* ==========================================================================
+   reset.css — 개발자 자료 통계 기반 범용 CSS 리셋
+   --------------------------------------------------------------------------
+   무엇인가
+   - 널리 쓰이는 CSS 리셋/노멀라이즈 16종의 실제 코드를 규칙 단위로 대조해,
+     "3개 이상 소스가 공통으로 채택한 규칙"만 모은 단일 파일 리셋.
+   - 어떤 프로젝트(정적 퍼블리싱·React/Next·Vue·어드민·마케팅)에든
+     첫 번째 스타일시트로 그대로 넣어도 안전하도록 브랜드·디자인 값은 정하지 않는다.
+   - 파일 하나가 전부다. 의존성·빌드 없음.
+
+   설치 (npm·yarn·pnpm 공통 / 바닐라·React·Vue·Next 등 프레임워크 무관)
+   - 패키지:     npm i @soonupy97/reset-css      또는  yarn add @soonupy97/reset-css
+                 → 진입 JS/CSS 첫 줄에   import "@soonupy97/reset-css";
+                   (CSS 파일에서는          @import "@soonupy97/reset-css";)
+   - CDN(정적 HTML, 설치 없이):
+       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@soonupy97/reset-css@1/reset.css">
+       (GitHub 직결 대안: https://cdn.jsdelivr.net/gh/soonupy97/reset-css@1/reset.css)
+   - 다운로드:   <link rel="stylesheet" href="reset.css">
+   - 캐스케이드 레이어 프로젝트(최하위 레이어로):
+       @import url("@soonupy97/reset-css") layer(reset);
+   - 선택자는 요소 선택자(특이도 0,0,1) 또는 :where()(특이도 0)만 사용하므로
+     프로젝트의 클래스 하나로 언제든 덮어쓸 수 있다.
+
+   원칙 (이 파일이 하지 않는 것)
+   - 폰트 패밀리·글자 크기·색상·배경 등 브랜드/디자인 값을 정하지 않는다.
+   - 포커스 아웃라인을 제거하지 않는다 (접근성).
+   - 다크모드·모션·한글 줄바꿈 같은 취향 규칙은 8절 옵션에 주석으로만 둔다.
+
+   근거 · 수집 방법 (2026-09-10 기준)
+   - 아래 소스의 실제 파일/게시글 코드를 내려받아 규칙 단위로 대조했다.
+     본문(1~7절)은 "실제 확인된 소스 3개 이상"인 규칙만 포함하며,
+     각 규칙 옆 [개수: 소스 목록]에 확인된 소스를 적었다. 3개 미만은 8절 옵션으로 내렸다.
+     (State of CSS 등 설문에는 리셋 항목이 없어, 소스 코드 대조 빈도가 근거다.)
+   - 라이브러리(8): Eric Meyer Reset 2.0 · normalize.css 8.0.1 · modern-normalize 3.0.1 ·
+     sanitize.css 13 · Tailwind Preflight v3/v4(하나로 셈) · destyle.css 4.0.1 ·
+     ress 6.0.0 · Bootstrap Reboot 5.3.8
+   - 개발자 개인 리셋(6): Josh W. Comeau(2026-06 갱신) · Andy Bell(2023) ·
+     Kevin Powell(repo scss + 2023 영상 gist) · Elad Shechter the-new-css-reset 1.11.3 ·
+     Teo(velog, 2022) · yunazzi(velog)
+   - 실서비스(2): 네이버 · 카카오 (Teo 글에 인용된 실제 reset 발췌)
+   - 코드 대조를 마치지 못한 글(Chris Coyier·mayank99·pawelgrzybek·velog @harper 등)은
+     근거 개수에 넣지 않았다.
+   ========================================================================== */
+
+
+/* --------------------------------------------------------------------------
+   1. 박스 모델·여백
+   -------------------------------------------------------------------------- */
+
+/* 모든 요소 border-box
+   [12: Comeau, Bell, Tailwind, sanitize, destyle, modern-normalize, the-new-css-reset, ress, Reboot, Kevin Powell, Teo, yunazzi] */
+:where(.oc) *,
+:where(.oc) ::before,
+:where(.oc) ::after {
+  box-sizing: border-box;
+}
+
+/* 기본 margin/padding 제거.
+   dialog는 UA의 margin:auto(가운데 정렬)가 필요해 제외(Comeau 2025-12).
+   [popover]도 같은 이유로 제외했으나 이 부분은 소스 근거 없이 작성자가 추가한 것.
+   [8: Meyer, Tailwind v4, Kevin Powell, ress, 네이버, 카카오, Teo, yunazzi] */
+:where(.oc) :where(*:not(dialog, [popover])) {
+  margin: 0;
+  padding: 0;
+}
+
+
+/* --------------------------------------------------------------------------
+   2. 문서 루트
+   -------------------------------------------------------------------------- */
+
+.oc {
+  /* 접근성 권장 행간. 폼 컨트롤까지 상속됨
+     [8: Comeau, Bell, Tailwind, sanitize, Kevin Powell, 카카오, Teo, yunazzi] */
+  line-height: 1.5;
+  /* iOS 가로모드 등 글자 자동 확대 방지 (Bell·the-new-css-reset·카카오는 none)
+     [11: normalize, modern-normalize, Tailwind, sanitize, destyle, ress, Reboot, Bell, the-new-css-reset, 카카오, Teo] */
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  /* 모바일 탭 하이라이트 제거  [6: Tailwind, sanitize, destyle, Reboot, Teo, yunazzi] */
+  -webkit-tap-highlight-color: transparent;
+  /* 탭 문자 너비  [6: Tailwind, sanitize, modern-normalize, ress, Teo, yunazzi] */
+  tab-size: 4;
+}
+
+/* 긴 URL·영단어가 레이아웃을 뚫지 않게 (상속됨)  [4: Comeau(p·h1~h6), sanitize(:root), Teo, yunazzi] */
+.oc {
+  overflow-wrap: break-word;
+}
+
+
+/* --------------------------------------------------------------------------
+   3. 텍스트·제목·인라인
+   -------------------------------------------------------------------------- */
+
+/* 제목은 크기·굵기를 상속 — 타이포 스케일은 프로젝트가 정의
+   [6: Tailwind, destyle, Meyer(font:inherit), Kevin Powell·Teo·yunazzi(*{font:inherit}); 네이버는 font-size만] */
+:where(.oc) h1,
+:where(.oc) h2,
+:where(.oc) h3,
+:where(.oc) h4,
+:where(.oc) h5,
+:where(.oc) h6 {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+/* 제목 줄바꿈 균형 (미지원 브라우저는 무시)  [3: Comeau, Bell(h1~h4), Kevin Powell] */
+:where(.oc) h1,
+:where(.oc) h2,
+:where(.oc) h3,
+:where(.oc) h4,
+:where(.oc) h5,
+:where(.oc) h6 {
+  text-wrap: balance;
+}
+
+/* b/strong 굵기 일관화  [7: normalize, modern-normalize, Tailwind, sanitize, destyle, ress, Reboot] */
+:where(.oc) b,
+:where(.oc) strong {
+  font-weight: bolder;
+}
+
+/* address 기울임 제거  [4: Reboot, destyle(inherit), 네이버, 카카오] */
+:where(.oc) address {
+  font-style: normal;
+}
+
+/* abbr 점선 밑줄  [7: normalize, modern-normalize, Tailwind, sanitize, destyle, ress, Reboot] */
+:where(.oc) abbr:where([title]) {
+  text-decoration: underline dotted;
+}
+
+/* 코드 계열: 고정폭 + 1em (브라우저별 monospace 축소 버그 대응)
+   [6: normalize, sanitize, destyle, ress(이중 monospace) / normalize, modern-normalize, Tailwind, sanitize, Reboot(1em)] */
+:where(.oc) code,
+:where(.oc) kbd,
+:where(.oc) samp,
+:where(.oc) pre {
+  font-family: monospace, monospace;
+  font-size: 1em;
+}
+
+/* small  [7: normalize, modern-normalize, Tailwind, sanitize, destyle, ress, Reboot] */
+:where(.oc) small {
+  font-size: 80%;
+}
+
+/* 위·아래 첨자가 행간을 밀지 않게  [7: normalize, modern-normalize, Tailwind, sanitize, destyle, ress, Reboot] */
+:where(.oc) sub,
+:where(.oc) sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+:where(.oc) sub {
+  bottom: -0.25em;
+}
+:where(.oc) sup {
+  top: -0.5em;
+}
+
+/* 구분선: 색은 글자색 상속, 위쪽 1px 실선만  [4: Tailwind, destyle, ress, Reboot] */
+:where(.oc) hr {
+  height: 0;
+  color: inherit;
+  border: 0;
+  border-top: 1px solid;
+}
+
+
+/* --------------------------------------------------------------------------
+   4. 링크·목록·표
+   -------------------------------------------------------------------------- */
+
+/* 링크는 색·밑줄을 상속(초기화) — 링크 스타일은 프로젝트가 정의
+   [5: Tailwind, destyle, 네이버, Teo, yunazzi; 카카오는 색을 #333로 지정] */
+:where(.oc) a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+/* 목록 불릿 제거  [7: Meyer, Tailwind, destyle, the-new-css-reset, 네이버, 카카오, yunazzi]
+   ※ Safari VoiceOver는 list-style:none인 목록의 시맨틱을 제거함.
+      "목록"으로 읽혀야 하는 ul/ol에는 role="list"를 붙일 것. */
+:where(.oc) ol,
+:where(.oc) ul,
+:where(.oc) menu {
+  list-style: none;
+}
+
+/* 표 테두리 병합  [7: Meyer, Tailwind, sanitize, destyle, modern-normalize(border-color), 카카오, Teo] */
+:where(.oc) table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  border-color: inherit;
+  text-indent: 0;
+}
+
+
+/* --------------------------------------------------------------------------
+   5. 미디어·임베드
+   -------------------------------------------------------------------------- */
+
+/* 이미지류는 블록 + 컨테이너 넘침 방지 (인라인일 때의 하단 여백도 함께 제거)
+   [6: Comeau, Bell(img·picture), Tailwind, Kevin Powell, Teo, yunazzi] */
+:where(.oc) img,
+:where(.oc) picture,
+:where(.oc) video,
+:where(.oc) canvas,
+:where(.oc) svg,
+:where(.oc) audio,
+:where(.oc) iframe,
+:where(.oc) embed,
+:where(.oc) object {
+  display: block;
+  max-width: 100%;
+  vertical-align: middle;
+}
+
+/* iframe·img 기본 테두리 제거  [6: normalize, sanitize, ress, Reboot, 네이버, 카카오] */
+:where(.oc) iframe,
+:where(.oc) img {
+  border-style: none;
+}
+
+
+/* --------------------------------------------------------------------------
+   6. 폼 컨트롤
+   -------------------------------------------------------------------------- */
+
+/* 폼 컨트롤은 폰트·색을 부모에서 상속 (Meyer는 폼 요소를 리셋하지 않음. 네이버·카카오는 자체 폰트 지정)
+   [8: Comeau, Bell, Tailwind, ress, destyle, Kevin Powell, Teo, yunazzi] */
+:where(.oc) button,
+:where(.oc) input,
+:where(.oc) select,
+:where(.oc) textarea,
+:where(.oc) optgroup,
+:where(.oc) ::file-selector-button {
+  font: inherit;
+  color: inherit;
+}
+
+/* 폼 컨트롤 테두리·모서리·배경 초기화 — 폼 외형은 프로젝트가 정의
+   [5: Tailwind, destyle, ress, 네이버(button·input), Teo·yunazzi(button)] */
+:where(.oc) button,
+:where(.oc) input,
+:where(.oc) select,
+:where(.oc) textarea {
+  border: 0;
+  border-radius: 0;
+  background-color: transparent;
+}
+
+/* button/select 대문자 변환 방지 (Edge·Firefox)  [5: normalize, Tailwind v3, ress, Reboot, destyle(inherit)] */
+:where(.oc) button,
+:where(.oc) select {
+  text-transform: none;
+}
+
+/* 버튼 외형 통일 (iOS)  [6: normalize, modern-normalize, sanitize, Tailwind, ress, Reboot] */
+:where(.oc) button,
+:where(.oc) input:where([type="button"], [type="reset"], [type="submit"]),
+:where(.oc) ::file-selector-button {
+  appearance: button;
+  -webkit-appearance: button;
+}
+
+/* 버튼 커서  [7: destyle, ress, Tailwind v3, Reboot, 카카오, Teo, yunazzi] */
+:where(.oc) button,
+:where(.oc) input:where([type="button"], [type="reset"], [type="submit"]) {
+  cursor: pointer;
+}
+
+/* 클릭 가능한 요소 커서  [4: Reboot(role·summary), ress(role), Tailwind v3(role), destyle(label[for])] */
+:where(.oc) :where([role="button"], summary, label[for]) {
+  cursor: pointer;
+}
+
+/* 비활성 컨트롤 커서  [4: destyle, ress, Tailwind v3, sanitize(not-allowed)] */
+:where(.oc) :where(:disabled, [aria-disabled="true"]) {
+  cursor: default;
+}
+
+/* textarea  [6: normalize, ress, destyle(overflow) / Tailwind, sanitize, ress, Reboot(resize)] */
+:where(.oc) textarea {
+  overflow: auto;
+  resize: vertical;
+}
+
+/* fieldset/legend  [5: Reboot, destyle, Tailwind v3, 네이버, 카카오] */
+:where(.oc) fieldset {
+  min-width: 0;
+  border: 0;
+}
+:where(.oc) legend {
+  padding: 0;
+}
+
+/* 검색 input: Safari 특수 외형 제거 + 포커스 링 보정
+   [7: normalize, modern-normalize, sanitize, Tailwind v3, ress, destyle(outline-offset), Reboot] */
+:where(.oc) input:where([type="search"]) {
+  -webkit-appearance: textfield;
+  outline-offset: -2px;
+}
+:where(.oc) ::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+/* number input 스핀 버튼 높이 (Chrome)  [7: normalize, modern-normalize, Tailwind, sanitize, destyle, ress, Reboot] */
+:where(.oc) ::-webkit-inner-spin-button,
+:where(.oc) ::-webkit-outer-spin-button {
+  height: auto;
+}
+
+/* Firefox 포커스 링 복구  [3: Tailwind, destyle, ress·normalize는 1px dotted] */
+:where(.oc) :-moz-focusring {
+  outline: auto;
+}
+
+/* progress 정렬  [7: normalize, modern-normalize, Tailwind, sanitize, destyle, ress, Reboot] */
+:where(.oc) progress {
+  vertical-align: baseline;
+}
+
+
+/* --------------------------------------------------------------------------
+   7. 인터랙티브·기타
+   -------------------------------------------------------------------------- */
+
+/* details 마커 유지  [7: normalize, modern-normalize, Tailwind, sanitize, destyle, ress, Reboot] */
+:where(.oc) summary {
+  display: list-item;
+}
+
+/* hidden 속성 존중 (hidden="until-found" 제외)  [5: normalize, Tailwind, ress, Reboot, the-new-css-reset] */
+:where(.oc) [hidden]:where(:not([hidden="until-found"])) {
+  display: none !important;
+}
+
+
+/* ==========================================================================
+   8. 옵션 (기본 미적용 · 필요한 프로젝트에서만 주석 해제)
+   (A) 근거가 3개 미만이라 본문에서 내린 규칙 — [ ] 안은 실제 확인된 소스
+   (B) 브랜드/취향/환경에 따라 갈리는 규칙
+   ========================================================================== */
+
+/* ---------- (A) 근거 1~2개 · 무해한 최신 규칙 ---------- */
+
+/* (A1) 이미지·영상 비율 유지 — HTML width/height 속성이 있을 때 max-width로 줄어들며 찌그러지는 것 방지.
+        근거는 적지만 실무에서 자주 필요  [1: Tailwind]
+img, video {
+  height: auto;
+}
+*/
+
+/* (A2) 문단 줄바꿈 품질  [2: Comeau, Kevin Powell]
+p {
+  text-wrap: pretty;
+}
+*/
+
+/* (A3) 앵커 이동 시 대상이 상단에 딱 붙지 않게  [1: Bell]
+:target {
+  scroll-margin-block: 5ex;
+}
+*/
+
+/* (A4) height:auto 등 키워드 값으로의 전환 허용  [1: Comeau]
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    interpolate-size: allow-keywords;
+  }
+}
+*/
+
+/* (A5) SPA 루트를 새 stacking context로 (z-index 꼬임 방지)  [1: Comeau(#root, #__next)]
+#root, #__next, #app {
+  isolation: isolate;
+}
+*/
+
+/* (A6) 인용부호 제거  [2: Meyer, 카카오]
+blockquote, q {
+  quotes: none;
+}
+blockquote::before, blockquote::after,
+q::before, q::after {
+  content: none;
+}
+*/
+
+/* (A7) 텍스트 계열 input·textarea의 iOS 기본 외형(둥근 모서리·안쪽 그림자) 제거.
+        checkbox·radio·select는 건드리지 않음. 위 (6절) search 규칙과 함께 쓰면 search도 none이 됨
+        [2: 카카오, destyle(폼 전체)]
+input:where([type="text"], [type="email"], [type="password"], [type="search"], [type="tel"],
+  [type="url"], [type="number"], [type="date"], [type="time"], [type="datetime-local"],
+  [type="month"], [type="week"]),
+textarea {
+  appearance: none;
+  -webkit-appearance: none;
+}
+*/
+
+/* (A8) Firefox invalid 빨간 그림자 제거  [1: Tailwind]
+:-moz-ui-invalid {
+  box-shadow: none;
+}
+*/
+
+/* (A9) 화면에서 숨기고 스크린리더에만 노출하는 유틸.
+        리셋 규칙이 아니라 별도 유틸(Bootstrap .visually-hidden, Tailwind .sr-only, 네이버 .blind)이라
+        위 소스 파일 대조에서는 0건. 세 이름 모두 제공
+.blind,
+.sr-only,
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  margin: -1px !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  clip: rect(0 0 0 0) !important;
+  clip-path: inset(50%) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+*/
+
+/* ---------- (B) 브랜드·취향·환경 ---------- */
+
+/* (B1) 기본 폰트 스택 — 프로젝트별로 지정. 예시 두 가지
+   -- 한글 서비스 (Pretendard 웹폰트 사용 시, 없으면 시스템 한글 폰트로 폴백; Pretendard README 권장 스택)
+html {
+  font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui,
+    Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR",
+    "Malgun Gothic", "맑은 고딕", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+    sans-serif;
+}
+   -- 시스템 폰트 (Tailwind / modern-normalize 기본값)
+html {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans",
+    Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+*/
+
+/* (B2) 본문 최소 높이 = 뷰포트 — sticky footer 등  [Bell, Kevin Powell]
+body {
+  min-height: 100vh;
+  min-height: 100svh;
+}
+*/
+
+/* (B3) macOS 폰트 렌더링(글자가 다소 얇아짐)  [Comeau]
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+*/
+
+/* (B4) 한글 단어 단위 줄바꿈 — 퍼블리·리디북스 등 사용, 네이버·다음 포털은 미사용
+:lang(ko) {
+  word-break: keep-all;
+}
+*/
+
+/* (B5) em/i 기울임 제거 — 국내 퍼블리셔 관례(네이버·카카오). 해외 리셋은 유지
+em, i, cite, dfn, var {
+  font-style: normal;
+}
+*/
+
+/* (B6) 다크모드 UA 색상 자동 대응 — 배경·폼 컨트롤 색이 OS 테마를 따라감  [Kevin Powell]
+html {
+  color-scheme: light dark;
+}
+*/
+
+/* (B7) 모션 최소화 사용자 배려 — 모든 애니메이션 즉시 종료  [Kevin Powell(repo) / Bell은 2023판에서 제거]
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+*/

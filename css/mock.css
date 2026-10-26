@@ -1,0 +1,4 @@
+/* 목업 전용 — 고도몰에서는 필요 없는 파일.
+   고도몰은 reset.css 가 body 여백을 이미 0 으로 만든다. 시안에는 reset.css 가 없으므로 그 부분만 대신한다.
+   oncore.css(시안의 main.css)에는 body 규칙을 넣지 않는다 — 모든 페이지에 영향을 주기 때문. */
+body{margin:0}

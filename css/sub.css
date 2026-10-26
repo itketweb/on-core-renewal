@@ -1,0 +1,260 @@
+/* 온코어 서브 페이지 시안 — 공통 부품 (목업 전용, 메인 시안 css/main.css 의 :root 값과 부품을 그대로 쓴다)
+   규칙은 main.css 와 같다: 단위는 rem, 색 코드·px 숫자를 직접 쓰지 않고 --oc-* 만 쓴다(1~3px 선, 999px 알약, %·vw 예외).
+   페이지 하나만 쓰는 모양은 css/sub-<묶음>.css 에 따로 둔다. 이 파일은 공통 부품만 고친다.
+
+   부품 목록
+   페이지 머리  .oc-pg-hd (.oc-bc 경로 표시 + h1 + 설명)       본문 틀  .oc-pg-body · .oc-pg-grid(본문 + 오른쪽 열) · .oc-aside
+   하위 이동    .oc-subnav (알약 칩 링크)                       도구줄   .oc-toolbar (건수 + 정렬)  ·  .oc-filter (선택 칩)
+   게시판       .oc-bl (글 목록) · .oc-pgn (쪽 번호)           글       .oc-art-hd · .oc-art-body · .oc-art-nav
+   양식         .oc-field · .oc-input · .oc-select · .oc-textarea · .oc-check · .oc-form-row
+   표·값        .oc-tbl · .oc-kv                                 안내    .oc-note · .oc-steps · details.oc-faq · .oc-tag
+   상담 유도    .oc-biz-cta (맨 아래 띠) · .oc-biz-cta--top (위쪽 회색 상자) */
+
+/* 헤더 현재 메뉴 */
+.oc-gnb-link[aria-current="page"]{background:var(--oc-surface);color:var(--oc-ink)}
+
+/* ── 페이지 머리 ── */
+.oc-pg-hd{padding:var(--oc-sp-40) 0 var(--oc-sp-40);border-bottom:1px solid var(--oc-line-2)}
+.oc-bc{display:flex;flex-wrap:wrap;align-items:center;gap:var(--oc-sp-8);margin-bottom:var(--oc-sp-16);font-size:var(--oc-fs-14);color:var(--oc-ink-3)}
+.oc-bc li+li::before{content:"›";margin-right:var(--oc-sp-8);color:var(--oc-line)}
+.oc-bc a{display:inline-block;padding:var(--oc-sp-4) var(--oc-sp-8);margin:0 calc(var(--oc-sp-8)*-1)} /* 누르는 면 24px 이상 — '홈'처럼 짧은 글자도 폭이 생기게 좌우 여백을 주고 음수 바깥 여백으로 자리는 그대로 둔다 */
+.oc-bc a:hover{color:var(--oc-ink)}
+.oc-bc [aria-current="page"]{color:var(--oc-ink-2);font-weight:600}
+.oc-pg-hd h1{font-size:clamp(var(--oc-fs-28),3.4vw,var(--oc-fs-40));line-height:1.2}
+.oc-pg-hd--bc{padding:var(--oc-sp-20) 0 0;border-bottom:0} /* 경로 표시만 있는 머리(상품 상세): 큰 빈 띠를 만들지 않는다 */
+.oc-pg-hd--bc .oc-bc{margin-bottom:0}
+.oc-pg-hd p{margin-top:var(--oc-sp-12);max-width:48rem;font-size:var(--oc-fs-18);color:var(--oc-ink-3)}
+.oc-pg-hd .oc-subnav{margin-top:var(--oc-sp-24)}
+
+/* ── 본문 틀 ── */
+.oc-pg-body{padding:var(--oc-sp-48) 0 var(--oc-sec)}
+.oc-pg-body--alt{background:var(--oc-surface)}
+.oc-pg-sec+.oc-pg-sec{margin-top:var(--oc-sp-80)}
+.oc-pg-sec>h2{margin-bottom:var(--oc-sp-24);font-size:clamp(var(--oc-fs-24),2.6vw,var(--oc-fs-32));line-height:1.25}
+.oc-pg-sec>h2+p{margin:calc(var(--oc-sp-12)*-1) 0 var(--oc-sp-24);color:var(--oc-ink-3)}
+.oc-pg-grid{display:grid;grid-template-columns:minmax(0,1fr) 22rem;gap:var(--oc-sp-64);align-items:start}
+.oc-aside{position:sticky;top:calc(var(--oc-hd) + var(--oc-sp-32));padding:var(--oc-sp-24);border:1px solid var(--oc-line);border-radius:var(--oc-r)}
+.oc-aside h3{font-size:var(--oc-fs-18);margin-bottom:var(--oc-sp-12)}
+
+/* ── 하위 이동: 알약 칩 링크 (규칙 9-5 — 탭은 알약. 선택 칩 .oc-filter 와 같은 모양, 선택된 칩만 검정) ──
+   밑줄 탭은 머리 아래 선에 붙어 잘린 듯 보이고, 아래 흰 상자·알약 버튼과 모양이 섞여 PC 에서도 칩으로 통일했다. 가로 스크롤 없이 줄바꿈 */
+.oc-subnav{display:flex;flex-wrap:wrap;gap:var(--oc-sp-8)}
+.oc-subnav a{display:inline-flex;align-items:center;flex:none;height:var(--oc-sp-40);padding:0 var(--oc-sp-20);border:1px solid var(--oc-line);border-radius:999px;background:#fff;font-size:var(--oc-fs-14);font-weight:600;white-space:nowrap;color:var(--oc-ink-2);transition:all .15s}
+@media (hover:hover){.oc-subnav a:hover{border-color:var(--oc-ink-2);color:var(--oc-ink)}}
+.oc-subnav a[aria-current="page"]{background:var(--oc-ink);border-color:var(--oc-ink);color:#fff}
+
+/* ── 도구줄·선택 칩 ── */
+.oc-toolbar{display:flex;align-items:center;justify-content:space-between;gap:var(--oc-sp-16);flex-wrap:wrap;padding-bottom:var(--oc-sp-16);margin-bottom:var(--oc-sp-24);border-bottom:1px solid var(--oc-ink)}
+.oc-toolbar b{font-weight:700}
+.oc-toolbar+.oc-bl{border-top:0} /* 도구줄 아래 선과 겹치지 않게 */
+.oc-toolbar .oc-select{width:auto;min-width:var(--oc-sp-160);height:var(--oc-sp-40);font-size:var(--oc-fs-14)}
+.oc-filter{display:flex;flex-wrap:wrap;gap:var(--oc-sp-8);margin-bottom:var(--oc-sp-24)}
+.oc-filter a,.oc-filter button{height:var(--oc-sp-40);padding:0 var(--oc-sp-20);display:inline-flex;align-items:center;border-radius:999px;border:1px solid var(--oc-line);background:#fff;font-size:var(--oc-fs-14);font-weight:600;color:var(--oc-ink-2);transition:all .15s}
+@media (hover:hover){.oc-filter a:hover,.oc-filter button:hover{border-color:var(--oc-ink-2)}} /* 터치에서는 누른 칩에 진한 테두리가 남아 선택된 것처럼 보인다 */
+.oc-filter a:active,.oc-filter button:active,.oc-subnav a:active{transform:scale(.97)}
+.oc-filter [aria-pressed="true"],.oc-filter [aria-current="page"]{background:var(--oc-ink);border-color:var(--oc-ink);color:#fff}
+/* 모바일에서 칩이 2줄이 되면(sub-biz.js 가 판단) 칩 줄 대신 도구줄의 선택 상자 */
+.oc-filter.oc-is-compact,.oc-fsel{display:none}
+.oc-fsel.oc-is-on{display:inline-block}
+.oc-tag{display:inline-block;padding:var(--oc-sp-4) var(--oc-sp-12);border-radius:999px;background:var(--oc-surface);font-size:var(--oc-fs-12);font-weight:600;color:var(--oc-ink-2)}
+.oc-tag--p{background:var(--oc-primary-50);color:var(--oc-primary-600)}
+
+/* ── 게시판 글 목록: 선과 여백, 상자 없음 ── */
+.oc-bl{border-top:1px solid var(--oc-ink)}
+.oc-bl li{border-bottom:1px solid var(--oc-line)}
+.oc-bl a{display:grid;grid-template-columns:var(--oc-sp-64) minmax(0,1fr) var(--oc-sp-96) var(--oc-sp-80);gap:var(--oc-sp-16);align-items:center;padding:var(--oc-sp-20) 0;transition:background .15s}
+.oc-bl a{position:relative;isolation:isolate}
+.oc-bl a::after{content:"";position:absolute;inset:0 calc(var(--oc-sp-12)*-1);z-index:-1;border-radius:var(--oc-r-sm);background:var(--oc-surface);opacity:0;transition:opacity .2s}
+@media (hover:hover){.oc-bl a:hover::after{opacity:1}} /* 목록 hover 는 행 바탕만(9-3장) */
+.oc-bl-n{text-align:center;font-size:var(--oc-fs-14);color:var(--oc-ink-3)}
+.oc-bl-t{font-size:var(--oc-fs-18);font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;transition:color .15s}
+.oc-bl-t .oc-tag{margin-right:var(--oc-sp-8);vertical-align:middle}
+.oc-bl-d,.oc-bl-v{font-size:var(--oc-fs-14);color:var(--oc-ink-3);text-align:center}
+.oc-bl--pin li{background:var(--oc-surface)}
+.oc-pgn{display:flex;flex-wrap:wrap;justify-content:center;gap:var(--oc-sp-4);margin-top:var(--oc-sp-40)}
+.oc-pgn a,.oc-pgn span{display:grid;place-items:center;min-width:var(--oc-sp-40);height:var(--oc-sp-40);padding:0 var(--oc-sp-8);border-radius:50%;font-size:var(--oc-fs-14);font-weight:600;color:var(--oc-ink-2)}
+@media (hover:hover){.oc-pgn a:hover{background:var(--oc-surface)}}
+.oc-pgn a:active{background:var(--oc-surface)}
+.oc-pgn [aria-current="page"]{background:var(--oc-ink);color:#fff}
+
+/* ── 글 상세 ── */
+.oc-art-hd{padding-bottom:var(--oc-sp-24);border-bottom:1px solid var(--oc-ink)}
+.oc-art-hd h1{margin-top:var(--oc-sp-12);font-size:clamp(var(--oc-fs-24),3vw,var(--oc-fs-32));line-height:1.3}
+.oc-art-meta{display:flex;flex-wrap:wrap;gap:var(--oc-sp-16);margin-top:var(--oc-sp-16);font-size:var(--oc-fs-14);color:var(--oc-ink-3)}
+.oc-art-body{padding:var(--oc-sp-40) 0;font-size:var(--oc-fs-18);line-height:1.8;color:var(--oc-ink-2)}
+.oc-art-body>*+*{margin-top:var(--oc-sp-20)}
+.oc-art-body h2{margin-top:var(--oc-sp-48);font-size:var(--oc-fs-24);color:var(--oc-ink)}
+.oc-art-body h3{margin-top:var(--oc-sp-32);font-size:var(--oc-fs-20);color:var(--oc-ink)}
+.oc-art-body ul{padding-left:var(--oc-sp-20);list-style:disc}
+.oc-art-body ol{padding-left:var(--oc-sp-20);list-style:decimal}
+.oc-art-body li+li{margin-top:var(--oc-sp-8)}
+.oc-art-body img{width:100%;border-radius:var(--oc-r-lg);background:var(--oc-img)}
+.oc-art-body figcaption{margin-top:var(--oc-sp-8);font-size:var(--oc-fs-14);color:var(--oc-ink-3)}
+.oc-art-nav{border-top:1px solid var(--oc-line)}
+.oc-art-nav a{display:grid;grid-template-columns:var(--oc-sp-80) minmax(0,1fr);gap:var(--oc-sp-16);padding:var(--oc-sp-16) 0;border-bottom:1px solid var(--oc-line);font-size:var(--oc-fs-16)}
+.oc-art-nav a span{color:var(--oc-ink-3);font-size:var(--oc-fs-14)}
+.oc-art-nav a{position:relative;isolation:isolate}
+.oc-art-nav a::after{content:"";position:absolute;inset:0 calc(var(--oc-sp-12)*-1);z-index:-1;border-radius:var(--oc-r-sm);background:var(--oc-surface);opacity:0;transition:opacity .2s}
+@media (hover:hover){.oc-art-nav a:hover::after{opacity:1}}
+.oc-art-act{display:flex;justify-content:center;margin-top:var(--oc-sp-40)}
+
+/* ── 양식 ── */
+.oc-field{display:block}
+.oc-field+.oc-field{margin-top:var(--oc-sp-20)}
+.oc-field>label,.oc-field>span.oc-lb{display:block;margin-bottom:var(--oc-sp-8);font-size:var(--oc-fs-14);font-weight:600;color:var(--oc-ink-2)}
+.oc-field .oc-req{color:var(--oc-primary)}
+.oc-field small{display:block;margin-top:var(--oc-sp-8);font-size:var(--oc-fs-12);color:var(--oc-ink-3)}
+.oc-input,.oc-select,.oc-textarea{width:100%;height:var(--oc-sp-48);padding:0 var(--oc-sp-16);border:1px solid var(--oc-line);border-radius:var(--oc-r-sm);background:#fff;font:inherit;font-size:var(--oc-fs-input);color:var(--oc-ink);transition:border-color .15s}
+.oc-input::placeholder,.oc-textarea::placeholder{color:var(--oc-ink-3)}
+@media (hover:hover){.oc-input:hover,.oc-select:hover,.oc-textarea:hover{border-color:var(--oc-ink-3)}}
+/* 초점: 마우스로 눌러도 생기므로 빨간 테두리(:focus-visible) 대신 검정 테두리 + 연한 링 하나로. 이중 테두리를 만들지 않는다 */
+.oc-input:focus,.oc-select:focus,.oc-textarea:focus{outline:none;border-color:var(--oc-ink);box-shadow:0 0 0 3px rgba(22,24,29,.08)}
+.oc-textarea{height:auto;min-height:var(--oc-sp-160);padding:var(--oc-sp-12) var(--oc-sp-16);resize:vertical;line-height:1.6}
+/* 화살표: JS 가 없을 때만 CSS 삼각형. 여러 겹 background 에서 바탕색은 마지막 겹에만 쓸 수 있다(첫 겹에 쓰면 선언 전체가 무시돼 화살표가 사라짐) */
+.oc-select{appearance:none;padding-right:var(--oc-sp-40);background:linear-gradient(45deg,transparent 50%,var(--oc-ink-3) 50%) no-repeat right 1.25rem center/.375rem .375rem,linear-gradient(135deg,var(--oc-ink-3) 50%,transparent 50%) no-repeat right .875rem center/.375rem .375rem,#fff;cursor:pointer}
+
+/* 선택 상자 꾸밈 (main.js '선택 상자'). 모든 기기: .oc-sel 로 감싸 선 화살표 아이콘을 붙인다.
+   마우스 기기(.oc-sel--custom): 원래 select 는 투명하게 그 자리에 두고(폼 전송·필수 검사용) 같은 모양의 버튼 + 사이트 목록을 띄운다 */
+.oc-sel{position:relative;display:block}
+.oc-toolbar .oc-sel{display:inline-block;min-width:var(--oc-sp-160)}
+.oc-sel>.oc-select{width:100%;min-width:0;background-image:none}
+select.oc-select.oc-is-ph{color:var(--oc-ink-3)}
+select.oc-select.oc-is-ph option{color:var(--oc-ink)} /* 펼친 목록의 항목까지 회색이 되지 않게 */
+.oc-sel-ic{position:absolute;top:50%;right:var(--oc-sp-16);width:var(--oc-sp-16);height:var(--oc-sp-16);margin-top:calc(var(--oc-sp-8)*-1);color:var(--oc-ink-3);pointer-events:none;transition:transform .2s var(--oc-ease),color .15s}
+.oc-sel.oc-is-open .oc-sel-ic{transform:rotate(180deg);color:var(--oc-ink)}
+.oc-sel--custom>select{position:absolute;inset:0;opacity:0;pointer-events:none}
+.oc-sel-btn{display:flex;align-items:center;text-align:left;color:var(--oc-ink)}
+.oc-sel-btn span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.oc-sel-btn.oc-is-ph{color:var(--oc-ink-3)}
+.oc-sel.oc-is-open .oc-sel-btn{border-color:var(--oc-ink);box-shadow:0 0 0 3px rgba(22,24,29,.08)}
+.oc-sel.oc-is-invalid .oc-sel-btn{border-color:var(--oc-primary)}
+.oc-sel-list{position:absolute;left:0;top:calc(100% + var(--oc-sp-4));z-index:30;min-width:100%;max-height:18rem;overflow-y:auto;overscroll-behavior:contain;padding:var(--oc-sp-4);border:1px solid var(--oc-line-2);border-radius:var(--oc-sp-12);background:#fff;box-shadow:0 12px 32px -8px rgba(22,24,29,.16);font-size:var(--oc-fs-16);outline:none;animation:drop .18s var(--oc-ease)}
+.oc-sel-list[hidden]{display:none}
+.oc-sel.oc-is-up .oc-sel-list{top:auto;bottom:calc(100% + var(--oc-sp-4))}
+.oc-toolbar .oc-sel-list{left:auto;right:0;font-size:var(--oc-fs-14)}
+.oc-sel-opt{display:flex;align-items:center;justify-content:space-between;gap:var(--oc-sp-12);min-height:var(--oc-sp-40);padding:var(--oc-sp-8) var(--oc-sp-12);border-radius:var(--oc-sp-8);color:var(--oc-ink-2);cursor:pointer;white-space:nowrap}
+.oc-sel-opt.oc-is-active{background:var(--oc-surface);color:var(--oc-ink)}
+.oc-sel-opt[aria-selected="true"]{font-weight:600;color:var(--oc-ink)}
+.oc-sel-opt svg{flex:none;width:var(--oc-sp-16);height:var(--oc-sp-16);opacity:0}
+.oc-sel-opt[aria-selected="true"] svg{opacity:1}
+
+.oc-form-row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--oc-sp-16)}
+.oc-form-row>.oc-field+.oc-field{margin-top:0}
+.oc-field+.oc-form-row,.oc-form-row+.oc-field,.oc-form-row+.oc-form-row{margin-top:var(--oc-sp-20)} /* 줄(양식 행)과 줄 사이 간격 */
+.oc-check{display:flex;align-items:flex-start;gap:var(--oc-sp-8);font-size:var(--oc-fs-14);color:var(--oc-ink-2);cursor:pointer}
+.oc-check input{width:var(--oc-sp-24);height:var(--oc-sp-24);margin-top:0;flex:none;accent-color:var(--oc-ink)}
+.oc-check>span{line-height:var(--oc-sp-24)} /* 글자 첫 줄 높이 = 체크박스 24 → 두 줄이 되어도 첫 줄이 체크박스 가운데에 맞는다 */
+.oc-check a{display:inline-block;padding:var(--oc-sp-4) 0;margin:calc(var(--oc-sp-4) * -1) 0} /* '내용 보기'를 누르다 체크박스가 잘못 눌리지 않게 누르는 면을 넓히되, 음수 바깥 여백으로 줄 높이는 그대로 (안 그러면 글자만 아래로 처짐) */
+/* 파일 첨부칸 (견적 요청서·1:1 문의·제휴 문의 공통): 다른 입력칸과 같은 테두리 상자(높이 48·모서리 8) + 안쪽 작은 알약 버튼(32).
+   버튼을 상자 높이만큼 키우면 둥근 버튼이 각진 상자 모서리와 겹쳐 어색하므로 안쪽에 띄운다 */
+:is(.oc-input,.oc-support-file)[type="file"]{width:100%;min-width:0;height:var(--oc-sp-48);padding:0 var(--oc-sp-8);border:1px solid var(--oc-line);border-radius:var(--oc-r-sm);background:#fff;font-size:var(--oc-fs-14);line-height:calc(var(--oc-sp-48) - 2px);color:var(--oc-ink-3);cursor:pointer}
+:is(.oc-input,.oc-support-file)[type="file"]::file-selector-button{height:var(--oc-sp-32);margin:0 var(--oc-sp-12) 0 0;padding:0 var(--oc-sp-16);border:0;border-radius:999px;background:var(--oc-surface);font:inherit;font-size:var(--oc-fs-14);font-weight:600;line-height:1;color:var(--oc-ink-2);vertical-align:middle;cursor:pointer;transition:background .15s} /* 버튼은 테두리 없이 회색 바탕만 — 바깥 칸 테두리와 선이 겹치지 않게 */
+@media (hover:hover){:is(.oc-input,.oc-support-file)[type="file"]:hover::file-selector-button{background:var(--oc-line-2)}}
+/* ↑ 위 두 줄은 스크립트가 없을 때의 모양. 스크립트가 있으면 main.js '파일 첨부칸'이 아래 업로드 영역(.oc-file)으로 감싼다:
+   점선 상자 + 왼쪽 원형 아이콘 + '파일 선택 또는 여기로 끌어 놓기' + 파일 이름 줄 + 지우기(×). 원래 input 은 상자를 덮는 투명한 층 */
+.oc-file{position:relative;display:flex;align-items:center;gap:var(--oc-sp-12);min-height:var(--oc-sp-64);padding:var(--oc-sp-12) var(--oc-sp-12) var(--oc-sp-12) var(--oc-sp-16);border:1px dashed var(--oc-line);border-radius:var(--oc-r-sm);background:#fff;transition:border-color .15s,background .15s,box-shadow .15s}
+.oc-file input[type="file"]{position:absolute;inset:0;z-index:1;width:100%;height:100%;padding:0;border:0;opacity:0;cursor:pointer}
+.oc-file-ic{flex:none;display:grid;place-items:center;width:var(--oc-sp-40);height:var(--oc-sp-40);border-radius:50%;background:var(--oc-surface);color:var(--oc-ink-2);transition:background .15s,color .15s}
+.oc-file-ic svg{width:var(--oc-sp-20);height:var(--oc-sp-20)}
+.oc-file-ic .oc-ic-doc,.oc-file.oc-has-file .oc-ic-up{display:none}
+.oc-file.oc-has-file .oc-ic-doc{display:block} /* 파일을 고르면 올리기 → 문서(체크) 아이콘 */
+.oc-file-txt{flex:1;min-width:0;font-size:var(--oc-fs-14);line-height:1.45;color:var(--oc-ink-3)}
+.oc-file-txt b{font-weight:600;color:var(--oc-ink)}
+.oc-field .oc-file small{margin-top:calc(var(--oc-sp-4) / 2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap} /* .oc-field small(설명 줄)의 위 여백 8 을 줄인다 */
+.oc-file-del{position:relative;z-index:2;flex:none;display:grid;place-items:center;width:var(--oc-sp-32);height:var(--oc-sp-32);border-radius:50%;color:var(--oc-ink-3)} /* 투명 input 층 위로 올려 눌리게 */
+.oc-file-del svg{width:var(--oc-sp-16);height:var(--oc-sp-16)}
+.oc-file-del:active{background:var(--oc-surface)}
+.oc-file.oc-has-file{border-style:solid}
+.oc-file.oc-has-file .oc-file-ic{background:var(--oc-ink);color:#fff} /* 파일을 고르면 아이콘이 채워져 '들어갔다'가 보인다 */
+.oc-file.oc-has-file small{color:var(--oc-ink-2);font-weight:500}
+.oc-file.oc-is-drag{border-color:var(--oc-ink);background:var(--oc-surface)}
+.oc-file:focus-within{border-color:var(--oc-ink);box-shadow:0 0 0 3px rgba(22,24,29,.08)} /* 입력칸 초점과 같은 모양 */
+.oc-field.oc-is-invalid .oc-file{border-color:var(--oc-primary)}
+@media (hover:hover){
+  .oc-file:hover{border-color:var(--oc-ink-3)}
+  .oc-file:hover .oc-file-ic{background:var(--oc-line-2);color:var(--oc-ink)}
+  .oc-file.oc-has-file:hover .oc-file-ic{background:var(--oc-ink-2);color:#fff}
+  .oc-file-del:hover{background:var(--oc-surface);color:var(--oc-ink)}
+}
+@media (hover:none){.oc-file-drop{display:none}} /* 휴대폰에는 끌어 놓기가 없다 */
+/* 안내 상자 바로 뒤에 양식·내용이 오면 붙지 않게 띄운다 */
+.oc-note+form,.oc-note+.oc-field,.oc-note+.oc-form-row{margin-top:var(--oc-sp-32)}
+/* 양식 오류 (main.js '양식 오류 표시'): 칸 테두리 빨강 + 칸 아래 한 줄. 초점이 있어도 빨강을 유지한다 */
+.oc-field.oc-is-invalid :is(.oc-input,.oc-select,.oc-textarea,.oc-sel-btn){border-color:var(--oc-primary)}
+.oc-field .oc-err{display:block;margin-top:var(--oc-sp-8);font-size:var(--oc-fs-12);font-weight:500;color:var(--oc-primary-600)}
+.oc-check.oc-is-invalid{color:var(--oc-primary-600)}
+.oc-form-act{display:flex;gap:var(--oc-sp-12);margin-top:var(--oc-sp-32)}
+.oc-form-act .oc-btn{min-width:var(--oc-sp-160)}
+
+/* ── 표·값 ── */
+.oc-tbl{width:100%;border-collapse:collapse;border-top:2px solid var(--oc-ink);font-size:var(--oc-fs-16)}
+.oc-tbl th,.oc-tbl td{padding:var(--oc-sp-12) var(--oc-sp-16);border-bottom:1px solid var(--oc-line-2);text-align:left;vertical-align:middle}
+.oc-tbl thead th{background:var(--oc-surface);font-size:var(--oc-fs-14);color:var(--oc-ink-3);font-weight:600}
+.oc-tbl tbody th{width:var(--oc-sp-160);color:var(--oc-ink-3);font-weight:600;background:var(--oc-surface)}
+.oc-tbl small{font-size:var(--oc-fs-12)} /* 브라우저 기본(80%)이면 모바일 14px 표에서 12px 아래로 내려간다 */
+.oc-kv{display:grid;grid-template-columns:var(--oc-sp-128) minmax(0,1fr);border-top:2px solid var(--oc-ink)}
+.oc-kv dt,.oc-kv dd{display:flex;align-items:center;min-height:var(--oc-sp-48);padding:var(--oc-sp-8) 0;border-bottom:1px solid var(--oc-line-2)}
+.oc-kv dt{padding-right:var(--oc-sp-16);color:var(--oc-ink-3);overflow-wrap:anywhere}
+.oc-kv dd{font-weight:600}
+
+/* ── 안내 상자·절차·자주 묻는 질문 ── */
+.oc-note{padding:var(--oc-sp-20) var(--oc-sp-24);border-radius:var(--oc-r);background:var(--oc-surface);font-size:var(--oc-fs-14);color:var(--oc-ink-2)}
+.oc-note b{display:block;margin-bottom:var(--oc-sp-4);color:var(--oc-ink)}
+.oc-steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(var(--oc-sp-160),1fr));counter-reset:oc-step;border-top:2px solid var(--oc-ink)}
+.oc-steps li{counter-increment:oc-step;padding:var(--oc-sp-20) var(--oc-sp-16) var(--oc-sp-20) 0}
+.oc-steps li::before{content:counter(oc-step,decimal-leading-zero);display:block;margin-bottom:var(--oc-sp-8);font-size:var(--oc-fs-14);font-weight:700;letter-spacing:.08em;color:var(--oc-ink-3)}
+.oc-steps b{display:block;font-size:var(--oc-fs-18)}
+.oc-steps p{margin-top:var(--oc-sp-4);font-size:var(--oc-fs-14);color:var(--oc-ink-3)}
+details.oc-faq{border-bottom:1px solid var(--oc-line)}
+details.oc-faq:first-of-type{border-top:1px solid var(--oc-ink)}
+details.oc-faq summary{display:flex;align-items:center;justify-content:space-between;gap:var(--oc-sp-16);padding:var(--oc-sp-20) 0;font-size:var(--oc-fs-18);font-weight:600;cursor:pointer;list-style:none}
+details.oc-faq summary::-webkit-details-marker{display:none}
+details.oc-faq summary::after{content:"+";font-size:var(--oc-fs-24);font-weight:400;line-height:1;color:var(--oc-ink-3);transition:transform .2s var(--oc-ease)}
+details.oc-faq[open] summary::after{transform:rotate(45deg)}
+details.oc-faq>div{padding:0 0 var(--oc-sp-24);color:var(--oc-ink-2);line-height:1.8}
+
+/* ── 상담 유도 띠 (페이지 맨 아래 또는 상단 배너) — 구축사례·가이드·프로모션·견적 조회·상품 목록 공통 ── */
+.oc-biz-cta{display:flex;align-items:center;justify-content:space-between;gap:var(--oc-sp-24);flex-wrap:wrap;margin-top:var(--oc-sp-80);padding:var(--oc-sp-40) 0 0;border-top:2px solid var(--oc-ink)}
+.oc-biz-cta h2{font-size:clamp(var(--oc-fs-24),2.4vw,var(--oc-fs-32));line-height:1.3}
+.oc-biz-cta p{margin-top:var(--oc-sp-8);color:var(--oc-ink-3)}
+.oc-biz-cta-act{display:flex;gap:var(--oc-sp-12);flex-wrap:wrap}
+/* 상단 견적 유도 카드 배너: 견적 조회 등 상단에 바로 배치할 때 */
+.oc-biz-cta--top{margin-top:0;margin-bottom:var(--oc-sp-48);padding:var(--oc-sp-32) var(--oc-sp-40);border-top:0;border-radius:var(--oc-r-lg);background:var(--oc-surface)}
+.oc-biz-cta--top h2{font-size:var(--oc-fs-24)}
+.oc-biz-cta--top p{font-size:var(--oc-fs-16);color:var(--oc-ink-2)}
+
+/* ── 반응형 (기준점 480·768·1024·1280) ── */
+@media (max-width:1023px){
+  .oc-pg-grid{grid-template-columns:minmax(0,1fr);gap:var(--oc-sp-40)}
+  .oc-aside{position:static}
+}
+@media (max-width:767px){
+  .oc-biz-cta{margin-top:var(--oc-sp-48);padding-top:var(--oc-sp-24)}
+  .oc-biz-cta--top{margin-top:0;margin-bottom:var(--oc-sp-32);padding:var(--oc-sp-24) var(--oc-sp-20)}
+  .oc-biz-cta-act{width:100%}
+  .oc-biz-cta-act .oc-btn{flex:1 1 var(--oc-sp-160)}
+  .oc-pg-hd{padding:var(--oc-sp-24) 0}
+  .oc-pg-hd--bc{padding:var(--oc-sp-16) 0 0}
+  .oc-pg-hd p{font-size:var(--oc-fs-16)}
+  .oc-pg-hd .oc-subnav{margin-top:var(--oc-sp-20)}
+  .oc-subnav a{padding:0 var(--oc-sp-16)}
+  .oc-pg-body{padding:var(--oc-sp-32) 0 var(--oc-sp-64)}
+  .oc-toolbar .oc-select{font-size:var(--oc-fs-input)} /* 16px 미만이면 아이폰이 고를 때 화면을 확대한다 */
+  .oc-pg-sec+.oc-pg-sec{margin-top:var(--oc-sp-64)}
+  .oc-bl a{grid-template-columns:minmax(0,1fr) auto;gap:var(--oc-sp-4) var(--oc-sp-16);padding:var(--oc-sp-16) 0}
+  .oc-bl-n,.oc-bl-v{display:none}
+  .oc-bl-t{grid-column:1/-1;font-size:var(--oc-fs-16)}
+  .oc-bl-d{text-align:left}
+  .oc-form-row{grid-template-columns:minmax(0,1fr);gap:var(--oc-sp-20)} /* 한 단으로 쌓이면 칸 사이도 줄 사이(20)와 같게 — 여백과 gap 을 겹쳐 쓰면 36 으로 벌어진다 */
+  .oc-form-act{flex-direction:column}
+  .oc-form-act .oc-btn{width:100%}
+  .oc-art-body{font-size:var(--oc-fs-16)}
+  .oc-kv{grid-template-columns:var(--oc-sp-112) minmax(0,1fr)}
+  .oc-kv dt{font-size:var(--oc-fs-14)} /* '사업자등록번호'(7자)가 한 줄에 들어가게 */
+  /* 경로 표시: 한 줄로 두고 마지막(현재 페이지)만 말줄임 — 긴 글 제목이 둘째 줄로 떨어지면 '›' 로 시작하는 줄이 생긴다 */
+  .oc-bc{flex-wrap:nowrap;white-space:nowrap}
+  .oc-bc li:last-child{min-width:0;overflow:hidden;text-overflow:ellipsis}
+  .oc-tbl th,.oc-tbl td{padding:var(--oc-sp-12) var(--oc-sp-8);font-size:var(--oc-fs-14)}
+  .oc-tbl tbody th{width:var(--oc-sp-96)}
+  details.oc-faq summary{font-size:var(--oc-fs-16)}
+}

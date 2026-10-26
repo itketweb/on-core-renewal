@@ -1,0 +1,764 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<script>/* oc-vp-min */(function(){var m=document.querySelector('meta[name=viewport]');if(!m)return;var d=m.getAttribute('content');function fit(){var s=screen,w=matchMedia('(orientation: landscape)').matches?Math.max(s.width,s.height):Math.min(s.width,s.height);m.setAttribute('content',w<360?'width=360, viewport-fit=cover':d);}fit();addEventListener('orientationchange',function(){setTimeout(fit,100);});})();</script>
+<title>구매 가이드 상세 | 온코어</title>
+<meta name="description" content="서버·워크스테이션·스토리지를 고를 때 자주 묻는 질문을 정리한 구매 가이드입니다.">
+<!-- 목업 전용 페이지: pages-src/guide-view.html 을 _tools/build-pages.js 가 빌드한 결과. 이 파일을 직접 고치지 말고 조각 파일을 고친다 -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+<link rel="stylesheet" href="../css/mock.css">
+<link rel="stylesheet" href="../css/reset.css">
+<link rel="stylesheet" href="../css/main.css">
+<link rel="stylesheet" href="../css/sub.css">
+<link rel="stylesheet" href="../css/sub-biz.css">
+</head>
+<body>
+<div class="oc">
+
+<!-- 시안 검토용 도구 막대 (실제 사이트에는 없음) -->
+<div class="oc-review-bar">
+  <div class="oc-wrap">
+    <a href="../renewal-plan.html" class="oc-rb-back">← 메인 시안</a>
+    <span class="oc-rb-title">온코어 서브 페이지 시안</span>
+    <a href="../index.html" class="oc-rb-note">리뉴얼 기획안</a>
+    <button type="button" class="oc-rb-palette" data-open="oc-palette">컬러 가이드</button>
+  </div>
+</div>
+
+<!-- 상단 고정 묶음: 안내줄 + 헤더 | 고도몰: outline/header/standard.html 전체가 이 묶음. 고정(sticky)은 이 div 대신 바깥 #header_warp 에 건다 -->
+<div class="oc-top" id="oc-top">
+
+<!-- 헤더 | 고도몰: outline/header/standard.html 교체. 로고는 기존 로고 배너(dataBanner) 그대로 -->
+<header class="oc-hd" id="oc-hd">
+  <div class="oc-wrap oc-hd-in">
+    <button type="button" class="oc-hd-burger" aria-label="메뉴 열기" data-open="oc-mnav"><span></span></button>
+    <a href="../renewal-plan.html" class="oc-hd-logo" aria-label="온코어 홈"><img src="../img/oncore-logo.png" alt="온코어(주) ONCORE" width="208" height="66"></a>
+    <nav class="oc-gnb" aria-label="주 메뉴">
+      <div class="oc-gnb-item oc-has-mega">
+        <button type="button" class="oc-gnb-link" aria-expanded="false" aria-controls="oc-mega">제품 <svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 3.5 5 6.5 8 3.5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+      </div>
+      <a class="oc-gnb-link" href="../renewal-plan.html#oc-solutions">업종별 추천</a>
+      <a class="oc-gnb-link" href="cases.html">구축사례</a>
+      <a class="oc-gnb-link" href="promotion.html">프로모션</a>
+      <div class="oc-gnb-item oc-has-drop">
+        <button type="button" class="oc-gnb-link" aria-expanded="false" aria-controls="oc-drop">고객지원 <svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 3.5 5 6.5 8 3.5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="oc-drop" id="oc-drop" hidden>
+          <a href="notice.html">공지사항</a>
+          <a href="guide.html">구매 가이드</a>
+          <a href="inquiry.html">1:1 문의</a>
+          <a href="cs.html">고객센터</a>
+        </div>
+      </div>
+      <a class="oc-gnb-link" href="estimate-list.html">견적 요청</a>
+    </nav>
+    <!-- 고도몰: 프로필 아이콘은 로그인 여부(gd_is_login)로 링크를 바꿔 출력: 비로그인 = 로그인 화면 / 로그인 = 마이페이지 (회원가입은 로그인 화면·모바일 메뉴) -->
+    <div class="oc-hd-act">
+      <button type="button" class="oc-ic-btn" aria-label="검색" data-open="oc-search">
+        <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="m16 16 4.5 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      </button>
+      <a href="login.html" class="oc-ic-btn oc-hide-sm" aria-label="로그인">
+        <!-- 아이콘: Lucide/Feather user (ISC·MIT) — 아래가 열린 일반 프로필 모양, 선 굵기는 돋보기와 같은 1.8 --><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></g></svg>
+      </a>
+      <button type="button" class="oc-qbtn" data-open="oc-quote">
+        <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3.5h7.5L19 8v12.5H7z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M14 3.5V8h5M10 12.5h6M10 16h6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        <span>견적함</span><b class="oc-qcount" data-qcount>0</b>
+      </button>
+    </div>
+  </div>
+
+  <!-- 메가메뉴 | 고도몰: 카테고리 위젯 데이터(@ data / .children)로 출력. 상품 수는 변수가 없어 넣지 않는다.
+       상품 0개인 분류(ASUS AI GPU 서버·ThinkCentre·ExpertBook)는 관리자에서 '노출 안 함' -->
+  <div class="oc-mega" id="oc-mega" hidden>
+    <div class="oc-wrap oc-mega-in">
+      <div class="oc-mega-cols">
+        <div><h4><a href="goods-server.html">서버</a></h4><a href="goods-server-thinksystem.html">Lenovo ThinkSystem</a></div>
+        <div><h4><a href="goods-workstation.html">워크스테이션</a></h4><a href="goods-workstation-thinkstation.html">Lenovo ThinkStation</a><a href="goods-workstation-p2.html">P2</a><a href="goods-workstation-p3.html">P3</a><a href="goods-workstation-p5.html">P5</a></div>
+        <div><h4><a href="goods-desktop.html">데스크탑</a></h4><a href="goods-desktop-expertcenter.html">ASUS ExpertCenter</a></div>
+        <div><h4><a href="goods-notebook.html">노트북</a></h4><a href="goods-notebook-thinkpad.html">Lenovo ThinkPad</a><a href="goods-notebook-x1carbon.html">X1 Carbon</a><a href="goods-notebook-l16.html">L16</a></div>
+        <div><h4><a href="goods-storage.html">스토리지</a></h4><a href="goods-storage-hc.html">HC All-Flash</a></div>
+        <a href="goods-all.html" class="oc-mega-all">전체 제품 보기</a>
+      </div>
+      <!-- 고도몰: 헤더 스킨의 정적 HTML (바꿀 때 디자인 편집) -->
+      <a href="goods-workstation-p5.html" class="oc-mega-tile">
+        <span class="oc-mt-img"><img src="../img/p5.jpg" alt=""></span>
+        <span class="oc-mt-txt"><em>이달의 추천</em><b>ThinkStation P5</b>설계·렌더링 작업용 Xeon 워크스테이션</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- 검색 패널 | 고도몰: proc/_header_search.html (form 이름 keyword, 최근 검색어 recentKeyword, 추천상품 proc/_recom_goods.html 1개) -->
+  <div class="oc-search" id="oc-search" hidden>
+    <div class="oc-wrap">
+      <form class="oc-search-box" role="search" action="search.html" method="get">
+        <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="m16 16 4.5 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        <input type="search" name="q" placeholder="모델명·사양·품번으로 검색" aria-label="검색어">
+        <button type="button" class="oc-search-close" data-close aria-label="검색 닫기">닫기</button>
+      </form>
+      <div class="oc-search-grid">
+        <!-- 고도몰: 최근 검색어 반복 변수 recentKeyword -->
+        <div><h5>최근 검색어</h5><div class="oc-chips"><a href="search.html?q=ThinkStation%20P3">ThinkStation P3</a><a href="search.html?q=SR650%20V4">SR650 V4</a><a href="search.html?q=X1%20%EC%B9%B4%EB%B3%B8">X1 카본</a></div></div>
+        <!-- 고도몰: 헤더 검색 위젯에는 인기 검색어 변수가 없어 스킨에 직접 적는 '추천 검색어'로 둔다 -->
+        <div><h5>추천 검색어</h5><div class="oc-chips"><a href="search.html?q=P5%20%EC%9B%8C%ED%81%AC%EC%8A%A4%ED%85%8C%EC%9D%B4%EC%85%98">P5 워크스테이션</a><a href="search.html?q=RTX%202000%20Ada">RTX 2000 Ada</a><a href="search.html?q=ThinkSystem%20SR250">ThinkSystem SR250</a><a href="search.html?q=All-Flash%20%EC%8A%A4%ED%86%A0%EB%A6%AC%EC%A7%80">All-Flash 스토리지</a><a href="search.html?q=ExpertCenter%20D7">ExpertCenter D7</a></div></div>
+        <!-- 고도몰: 추천상품 위젯은 관리자에서 지정한 1개 상품만 출력 -->
+        <div><h5>추천 상품</h5>
+          <a href="goods-view.html?no=1000000367" class="oc-mini"><img src="../img/p3-sff.jpg" alt=""><span><b>ThinkStation P3 Ultra SFF</b>3,077,000원</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+</div><!-- /.oc-top -->
+
+<main class="oc-sub">
+<!-- 구매 가이드 상세 | 고도몰: 게시판(bdId=story) 보기 스킨. ?no= 로 12건 중 하나를 보여 주는 시안용 전환이다. 고도몰에서는 글 하나 = 페이지 하나 -->
+<div class="oc-pg-hd">
+  <div class="oc-wrap">
+    <ol class="oc-bc" aria-label="현재 위치"><li><a href="../renewal-plan.html">홈</a></li><li><a href="guide.html">구매 가이드</a></li><li aria-current="page" data-view-bc>워크스테이션 GPU, RTX A400과 A1000은 무엇이 다를까</li></ol>
+    <h1 data-view-h1>워크스테이션 GPU, RTX A400과 A1000은 무엇이 다를까</h1>
+    <p data-view-lead>설계·렌더링 용도별로 그래픽카드를 고르는 기준을 정리했습니다. 메모리 용량과 인증 드라이버가 핵심입니다.</p>
+  </div>
+</div>
+
+<div class="oc-pg-body oc-biz-view">
+  <div class="oc-wrap">
+
+    <div class="oc-pg-grid" data-view="13" data-title="사내 sLLM 구축을 위한 Lenovo GPU 서버 아키텍처 가이드" data-lead="클라우드 API 비용 절감과 기업 데이터 보안을 함께 잡는 온프레미스 AI 인프라. ThinkSystem SR675 V3·SR650 V3 기반 구성을 정리했습니다." hidden>
+      <!-- 운영 사이트 board/view.php?bdId=story&sno=11 원문을 줄인 글 -->
+      <article>
+        <div class="oc-art-meta"><span class="oc-tag">서버</span><span>2026-10-07</span></div>
+        <div class="oc-art-body">
+          <p>사내 문서 검색(RAG)이나 업무용 챗봇처럼 기업 안에서 쓰는 소형 언어 모델(sLLM)은 클라우드로 시작하기 쉽지만, 사용량이 늘수록 비용과 보안 부담이 커집니다. Lenovo ThinkSystem 서버로 자체 인프라를 꾸릴 때의 득실과 모델별 구성을 정리했습니다.</p>
+          <h2>클라우드와 자체 서버 비교</h2>
+          <div class="oc-biz-tbl-wrap"><table class="oc-tbl"><thead><tr><th scope="col">항목</th><th scope="col">퍼블릭 클라우드</th><th scope="col">Lenovo ThinkSystem 자체 서버</th></tr></thead><tbody><tr><th scope="row">초기 비용</th><td>장비 도입비가 없어 시험(POC)에 유리</td><td>서버 구매 비용이 든다</td></tr><tr><th scope="row">장기 비용</th><td>토큰·인스턴스 비용이 사용량에 따라 크게 늘어난다</td><td>고정 비용. 도입 10~14개월 무렵 클라우드 누적 비용을 넘어선다</td></tr><tr><th scope="row">보안</th><td>기밀 데이터를 외부로 보내 보안 감사 부담이 생긴다</td><td>내부 폐쇄망으로 운영해 사내 지식재산을 지킨다</td></tr><tr><th scope="row">운영</th><td>네트워크 지연과 서비스 종속(Lock-in)이 생긴다</td><td>자산으로 남고 3~5년 교체 주기를 직접 관리한다</td></tr></tbody></table></div>
+          <p>온코어 기준으로 퍼블릭 클라우드 인스턴스를 2년 유지하는 것과 비교하면 자체 서버 구축 시 총비용(TCO)을 약 62% 줄일 수 있습니다.</p>
+          <h2>처리량 비교</h2>
+          <p>온코어 엔지니어링 랩 테스트 기준 (Llama-3-70B 4-bit 양자화 작업)</p>
+          <ul><li>ThinkSystem SR675 V3 (NVIDIA L40S ×4) — 처리량 94%</li><li>ThinkSystem SR650 V3 (NVIDIA L4 ×4) — 처리량 72%, 가벼운 RAG에 적합</li><li>일반 2U 제온 서버 (CPU 추론) — 처리량 18%, 병목이 심함</li></ul>
+          <h2>ThinkSystem이 sLLM에 맞는 이유</h2>
+          <ol><li><b>GPU 확장</b> — SR675 V3는 모듈을 바꿔 단일 폭·이중 폭 GPU를 최대 8개까지 넣을 수 있어 처음 비용을 맞추기 쉽습니다.</li><li><b>PCIe 5.0·DDR5</b> — 큰 모델의 가중치를 불러오고 긴 문맥을 처리할 때 지연을 줄입니다.</li><li><b>냉각·전원</b> — GPU를 가득 돌려도 성능이 떨어지지 않게 설계했고, 전원 이중화를 기본으로 제공합니다.</li><li><b>XClarity 관리</b> — 웹과 모바일 앱으로 상태 확인, 펌웨어 업데이트, 장애 예측 알림을 지원합니다.</li></ol>
+          <h2>우리 회사에는 어떤 모델이 맞을까</h2>
+          <ul><li><b>7B~13B 경량 모델 학습과 사내 문서 검색(RAG)이 중심이라면</b> — ThinkSystem SR650 V3 (NVIDIA L4 2~4개 또는 L40S 2개)</li><li><b>70B급 오픈소스 LLM을 서비스하고 동시 사용자가 많다면</b> — ThinkSystem SR675 V3 (NVIDIA L40S 4~8개 또는 H100 NVL)</li></ul>
+          <p>AI 서버는 GPU 사양만 보고 고르기 쉽지만, 실제 장애는 PCIe 대역폭 부족, 전원 용량 부족, 발열 제어 실패에서 생깁니다. 서버 단위로 검증된 구성을 고르는 것이 안전합니다. — 온코어 인프라 솔루션 기술팀</p>
+          <h2>정하기 어렵다면</h2>
+          <p>예산과 쓰려는 모델 크기만 알려 주세요. 담당자가 맞는 구성과 견적서를 보내 드립니다.</p>
+        </div>
+        <h2 class="oc-biz-h2">관련 제품</h2>
+        <div class="oc-display" data-goods="1000000073,1000000072"></div>
+        <div class="oc-art-nav">
+          <a href="guide.html"><span>이전 글</span><b>이전 글이 없습니다</b></a>
+          <a href="guide-view.html?no=14"><span>다음 글</span><b>책상 위 공간이냐, 넉넉한 확장성이냐? ASUS ExpertCenter D7 비교</b></a>
+        </div>
+        <div class="oc-art-act"><a href="guide.html" class="oc-btn oc-btn-o">목록으로</a></div>
+      </article>
+      <aside class="oc-aside" aria-label="글 정보와 관련 글">
+        <h3>글 정보</h3>
+        <dl class="oc-kv"><dt>분류</dt><dd>서버</dd><dt>작성일</dt><dd>2026-10-07</dd><dt>읽는 시간</dt><dd>약 5분</dd></dl>
+        <div class="oc-biz-related">
+          <h4>관련 글</h4>
+          <a href="guide-view.html?no=14"><em>데스크탑</em><b>책상 위 공간이냐, 넉넉한 확장성이냐? ASUS ExpertCenter D7 비교</b></a>
+          <a href="guide-view.html?no=15"><em>워크스테이션</em><b>[현장 스케치] Lenovo 파트너 행사 후기 — ThinkStation P4와 AI Express</b></a>
+          <a href="guide-view.html?no=1"><em>워크스테이션</em><b>워크스테이션 GPU, RTX A400과 A1000은 무엇이 다를까</b></a>
+        </div>
+        <div class="oc-biz-side-act">
+          <a href="https://www.on-core.co.kr/dbk/dbk_estimate_form.php?ptype=e" target="_blank" rel="noopener" class="oc-btn oc-btn-d oc-btn-block">견적 요청하기</a>
+        </div>
+      </aside>
+    </div>
+
+    <div class="oc-pg-grid" data-view="14" data-title="책상 위 공간이냐, 넉넉한 확장성이냐? ASUS ExpertCenter D7 비교" data-lead="Core Ultra 5·DDR5 32GB를 갖춘 15L 미니타워와 9L 슬림(SFF)의 핵심 차이를 정리했습니다." hidden>
+      <!-- 운영 사이트 board/view.php?bdId=story&sno=10 원문을 줄인 글 -->
+      <article>
+        <div class="oc-art-meta"><span class="oc-tag">데스크탑</span><span>2026-09-23</span></div>
+        <div class="oc-art-body">
+          <p>ASUS ExpertCenter D7은 같은 성능을 두 가지 크기로 고를 수 있는 비즈니스 데스크탑입니다. 세 모델 모두 Intel Core Ultra 5 225(10코어), NVMe 512GB SSD, DDR5 32GB(16GB×2 듀얼채널)를 기본으로 갖췄고, 미국 국방성 MIL-STD 충격·발열 시험을 통과했습니다.</p>
+          <h2>15L 미니타워와 9L 슬림 비교</h2>
+          <div class="oc-biz-tbl-wrap"><table class="oc-tbl"><thead><tr><th scope="col">항목</th><th scope="col">15L 미니타워 (D700MF)</th><th scope="col">9L 슬림 (D700SF)</th></tr></thead><tbody><tr><th scope="row">본체 부피</th><td>15L</td><td>9L</td></tr><tr><th scope="row">파워</th><td>500W</td><td>330W</td></tr><tr><th scope="row">기본 메모리</th><td>32GB (16GB×2)</td><td>32GB (16GB×2)</td></tr><tr><th scope="row">놓는 곳</th><td>책상 아래·받침대</td><td>책상 위·모니터 옆 (눕혀 받침대로도)</td></tr><tr><th scope="row">장점</th><td>내부 쿨링, 나중에 부품 늘리기</td><td>책상 공간 약 50% 절약</td></tr></tbody></table></div>
+          <h2>사기 전에 따져 볼 네 가지</h2>
+          <ol><li><b>설치 공간</b> — 책상 위(9L 슬림)인지, 책상 아래(15L 미니타워)인지</li><li><b>운영체제</b> — 바로 쓰는 Windows 11 Pro인지, 기존 라이선스를 쓰는 FreeDOS인지</li><li><b>파워·확장성</b> — 여유 있는 500W인지, 전기를 덜 쓰는 330W인지</li><li><b>메모리</b> — 전 모델 32GB 듀얼채널이라 일반 사무용(16GB)보다 여러 작업을 함께 하기 좋습니다</li></ol>
+          <h2>이런 환경에 맞습니다</h2>
+          <ul><li><b>15L 미니타워</b> — 큰 엑셀·데이터 집계, 오래 켜 두는 업무. 책상 아래에 두어 발열 걱정 없이 씁니다.</li><li><b>9L 슬림</b> — 좁은 파티션 책상, 안내·상담 데스크. 모니터 옆에 세우거나 눕혀 둘 수 있습니다.</li></ul>
+          <p>설치 공간과 운영체제 라이선스 두 가지만 정하면 맞는 모델을 고를 수 있습니다.</p>
+        </div>
+        <h2 class="oc-biz-h2">관련 제품</h2>
+        <div class="oc-display" data-goods="1000000057,1000000049,1000000054"></div>
+        <div class="oc-art-nav">
+          <a href="guide-view.html?no=13"><span>이전 글</span><b>사내 sLLM 구축을 위한 Lenovo GPU 서버 아키텍처 가이드</b></a>
+          <a href="guide-view.html?no=15"><span>다음 글</span><b>[현장 스케치] Lenovo 파트너 행사 후기 — ThinkStation P4와 AI Express</b></a>
+        </div>
+        <div class="oc-art-act"><a href="guide.html" class="oc-btn oc-btn-o">목록으로</a></div>
+      </article>
+      <aside class="oc-aside" aria-label="글 정보와 관련 글">
+        <h3>글 정보</h3>
+        <dl class="oc-kv"><dt>분류</dt><dd>데스크탑</dd><dt>작성일</dt><dd>2026-09-23</dd><dt>읽는 시간</dt><dd>약 4분</dd></dl>
+        <div class="oc-biz-related">
+          <h4>관련 글</h4>
+          <a href="guide-view.html?no=13"><em>서버</em><b>사내 sLLM 구축을 위한 Lenovo GPU 서버 아키텍처 가이드</b></a>
+          <a href="guide-view.html?no=15"><em>워크스테이션</em><b>[현장 스케치] Lenovo 파트너 행사 후기 — ThinkStation P4와 AI Express</b></a>
+          <a href="guide-view.html?no=1"><em>워크스테이션</em><b>워크스테이션 GPU, RTX A400과 A1000은 무엇이 다를까</b></a>
+        </div>
+        <div class="oc-biz-side-act">
+          <a href="https://www.on-core.co.kr/dbk/dbk_estimate_form.php?ptype=e" target="_blank" rel="noopener" class="oc-btn oc-btn-d oc-btn-block">견적 요청하기</a>
+        </div>
+      </aside>
+    </div>
+
+    <div class="oc-pg-grid" data-view="15" data-title="[현장 스케치] Lenovo 파트너 행사 후기 — ThinkStation P4와 AI Express" data-lead="Lenovo 360 Evolve '26에서 발표된 수랭식 ThinkStation P4와 납기 30일 단축 프로그램을 전해 드립니다." hidden>
+      <!-- 운영 사이트 board/view.php?bdId=story&sno=9 원문을 줄인 글 -->
+      <article>
+        <div class="oc-art-meta"><span class="oc-tag">워크스테이션</span><span>2026-09-14</span></div>
+        <div class="oc-art-body">
+          <p>2026년 9월 1일 몬드리안 서울 이태원에서 열린 레노버 코리아 파트너 콘퍼런스 'Lenovo 360 Evolve ’26' 에 온코어가 다녀왔습니다. 기업 고객의 큰 고민이던 긴 납기를 줄이는 공급 프로그램과, 수랭 냉각을 갖춘 새 AMD 워크스테이션이 함께 공개됐습니다.</p>
+          <h2>AI Express — 납기 30일 이내</h2>
+          <p>레노버 본사가 재고를 미리 확보해, 2026년 10월 1일부터 워크스테이션·GPU 장비의 납기를 최대 30일 이내로 줄이는 프로그램입니다.</p>
+          <ul><li><b>납기 30일 이내</b> — 본사 재고 확보로 장비 수급 기간을 크게 줄입니다.</li><li><b>빠른 견적</b> — 소규모 프로젝트부터 큰 건까지 빠른 승인으로 경쟁력 있는 가격을 냅니다.</li><li><b>서비스 묶음</b> — 메모리 증설, 방문 유지보수까지 한 번에 제공합니다.</li></ul>
+          <h2>새 워크스테이션 ThinkStation P4</h2>
+          <ul><li>AMD Ryzen PRO 9000(Zen5) 기반, 최대 16코어 32스레드</li><li>일체형 밀폐 수랭 — 냉각수를 넣거나 관리할 필요가 없고, 공랭보다 약 23% 높은 CPU 전력을 소음 적게 처리합니다.</li><li>최대 144MB 3D V-Cache — 데이터 과학 최대 21%, 유체 해석(CFD) 19%, AI 학습 15% 성능 향상</li><li>작은 본체에도 RTX 6000 Ada급 그래픽카드를 넣을 수 있습니다.</li></ul>
+          <h2>자주 묻는 질문</h2>
+          <h3>P4는 P3의 후속 모델인가요?</h3>
+          <p>아닙니다. 인텔 중심 라인업과 별도로 AMD 고성능 플랫폼을 위해 새로 만든 모델로, 수랭 냉각과 대용량 캐시로 AI 연산·시뮬레이션에 맞췄습니다.</p>
+          <h3>수랭이면 누수나 관리 부담은 없나요?</h3>
+          <p>완전 밀폐형 일체 모듈이라 냉각수를 넣거나 바꿀 일이 없습니다. 문제가 생기면 레노버 공식 서비스 센터에서 모듈째 점검·교체합니다.</p>
+          <h3>AI Express 견적 상담은 언제부터 되나요?</h3>
+          <p>2026년 10월 1일부터입니다. GPU 프로젝트는 최대 30일 이내 납기와 맞춤 견적을 받을 수 있습니다.</p>
+          <h2>온코어 추천 라인업</h2>
+          <ul><li><b>ThinkStation P2·P3</b> — AutoCAD·Revit, 2D/3D 설계. 가격 대비 성능과 작은 크기</li><li><b>ThinkStation P4</b> — AI 학습, 유체 해석, 고부하 렌더링 (신제품 상담)</li><li><b>ThinkStation P5</b> — Xeon W·멀티 GPU, 대형 시뮬레이션과 상시 가동</li></ul>
+        </div>
+        <h2 class="oc-biz-h2">관련 제품</h2>
+        <div class="oc-display" data-goods="1000000365,1000000367,1000000710"></div>
+        <div class="oc-art-nav">
+          <a href="guide-view.html?no=14"><span>이전 글</span><b>책상 위 공간이냐, 넉넉한 확장성이냐? ASUS ExpertCenter D7 비교</b></a>
+          <a href="guide-view.html?no=1"><span>다음 글</span><b>워크스테이션 GPU, RTX A400과 A1000은 무엇이 다를까</b></a>
+        </div>
+        <div class="oc-art-act"><a href="guide.html" class="oc-btn oc-btn-o">목록으로</a></div>
+      </article>
+      <aside class="oc-aside" aria-label="글 정보와 관련 글">
+        <h3>글 정보</h3>
+        <dl class="oc-kv"><dt>분류</dt><dd>워크스테이션</dd><dt>작성일</dt><dd>2026-09-14</dd><dt>읽는 시간</dt><dd>약 4분</dd></dl>
+        <div class="oc-biz-related">
+          <h4>관련 글</h4>
+          <a href="guide-view.html?no=13"><em>서버</em><b>사내 sLLM 구축을 위한 Lenovo GPU 서버 아키텍처 가이드</b></a>
+          <a href="guide-view.html?no=14"><em>데스크탑</em><b>책상 위 공간이냐, 넉넉한 확장성이냐? ASUS ExpertCenter D7 비교</b></a>
+          <a href="guide-view.html?no=1"><em>워크스테이션</em><b>워크스테이션 GPU, RTX A400과 A1000은 무엇이 다를까</b></a>
+        </div>
+        <div class="oc-biz-side-act">
+          <a href="https://www.on-core.co.kr/dbk/dbk_estimate_form.php?ptype=e" target="_blank" rel="noopener" class="oc-btn oc-btn-d oc-btn-block">견적 요청하기</a>
+        </div>
+      </aside>
+    </div>
+
+    <div class="oc-pg-grid" data-view="1" data-title="워크스테이션 GPU, RTX A400과 A1000은 무엇이 다를까" data-lead="설계·렌더링 용도별로 그래픽카드를 고르는 기준을 정리했습니다. 메모리 용량과 인증 드라이버가 핵심입니다.">
+      <article>
+        <div class="oc-art-meta"><span class="oc-tag">워크스테이션</span><span>2026-10-08</span></div>
+        <div class="oc-art-body">
+          <p>그래픽카드 선택에서 가장 먼저 볼 것은 '내 작업이 GPU 메모리를 얼마나 쓰는가'입니다. 같은 RTX A 시리즈라도 메모리 용량에 따라 다룰 수 있는 모델 크기가 달라집니다.</p>
+          <h2>한눈에 비교</h2>
+          <div class="oc-biz-tbl-wrap"><table class="oc-tbl"><thead><tr><th scope="col">항목</th><th scope="col">RTX A400</th><th scope="col">RTX A1000</th></tr></thead><tbody><tr><th scope="row">GPU 메모리</th><td>4GB</td><td>8GB</td></tr><tr><th scope="row">권장 작업</th><td>2D 도면·간단한 3D 모델</td><td>중간 규모 BIM·3D 모델링</td></tr><tr><th scope="row">인증 드라이버</th><td>지원</td><td>지원</td></tr><tr><th scope="row">선택 기준</th><td>기본 그래픽 성능이 필요할 때</td><td>모델이 커서 메모리 여유가 필요할 때</td></tr></tbody></table></div>
+          <p>※ 수치는 제조사 공개 사양을 기준으로 한 일반 비교이며, 구매 전 최신 사양을 확인해 주세요.</p>
+          <h2>이럴 때는 이쪽</h2>
+          <ul><li>2D CAD와 문서 작업이 중심이라면 RTX A400으로 충분한 경우가 많습니다.</li><li>건물 전체 모델처럼 파일이 크거나 렌더링을 자주 돌린다면 메모리가 큰 RTX A1000이 안정적입니다.</li><li>사용하는 프로그램이 인증 드라이버를 요구하는지 먼저 확인하세요.</li></ul>
+          <h2>정하기 어렵다면</h2>
+          <p>사용 프로그램과 대표 파일 크기를 알려 주시면 담당자가 맞는 구성을 제안합니다.</p>
+        </div>
+        <div class="oc-art-nav">
+          <a href="guide-view.html?no=15"><span>이전 글</span><b>[현장 스케치] Lenovo 파트너 행사 후기 — ThinkStation P4와 AI Express</b></a>
+          <a href="guide-view.html?no=2"><span>다음 글</span><b>1U와 2U 랙 서버, 우리 회사에는 어느 쪽이 맞을까</b></a>
+        </div>
+        <div class="oc-art-act"><a href="guide.html" class="oc-btn oc-btn-o">목록으로</a></div>
+      </article>
+      <aside class="oc-aside" aria-label="글 정보와 관련 글">
+        <h3>글 정보</h3>
+        <dl class="oc-kv"><dt>분류</dt><dd>워크스테이션</dd><dt>작성일</dt><dd>2026-10-08</dd><dt>읽는 시간</dt><dd>약 3분</dd></dl>
+        <div class="oc-biz-related">
+          <h4>관련 글</h4>
+          <a href="guide-view.html?no=2"><em>서버</em><b>1U와 2U 랙 서버, 우리 회사에는 어느 쪽이 맞을까</b></a>
+          <a href="guide-view.html?no=3"><em>스토리지</em><b>NAS와 SAN, 처음 도입할 때 알아 둘 것</b></a>
+          <a href="guide-view.html?no=4"><em>노트북</em><b>업무용 노트북, CPU와 메모리 중 어디에 예산을 쓸까</b></a>
+        </div>
+        <div class="oc-biz-side-act">
+          <a href="https://www.on-core.co.kr/dbk/dbk_estimate_form.php?ptype=e" target="_blank" rel="noopener" class="oc-btn oc-btn-d oc-btn-block">견적 요청하기</a>
+        </div>
+      </aside>
+    </div>
+
+    <div class="oc-pg-grid" data-view="2" data-title="1U와 2U 랙 서버, 우리 회사에는 어느 쪽이 맞을까" data-lead="확장성·소음·전력으로 비교한 선택 가이드입니다. 디스크를 많이 쓴다면 2U가 유리합니다." hidden>
+      <article>
+        <div class="oc-art-meta"><span class="oc-tag">서버</span><span>2026-09-29</span></div>
+        <div class="oc-art-body">
+          <p>랙 서버는 높이(U)에 따라 담을 수 있는 디스크와 확장 카드 수가 달라집니다. 같은 랙 공간에서 무엇을 더 중요하게 보느냐에 따라 선택이 갈립니다.</p>
+          <h2>한눈에 비교</h2>
+          <div class="oc-biz-tbl-wrap"><table class="oc-tbl"><thead><tr><th scope="col">항목</th><th scope="col">1U 랙 서버</th><th scope="col">2U 랙 서버</th></tr></thead><tbody><tr><th scope="row">랙 공간</th><td>적게 차지</td><td>두 배 차지</td></tr><tr><th scope="row">디스크 베이</th><td>상대적으로 적음</td><td>상대적으로 많음</td></tr><tr><th scope="row">확장 슬롯·GPU</th><td>제한적</td><td>여유 있음</td></tr><tr><th scope="row">소음·발열</th><td>작은 팬이라 소음이 큰 편</td><td>큰 팬이라 상대적으로 조용</td></tr><tr><th scope="row">적합한 용도</th><td>웹·업무 서버, 공간이 좁은 환경</td><td>데이터 서버, GPU·대용량 디스크가 필요한 환경</td></tr></tbody></table></div>
+          <h2>선택 기준</h2>
+          <ul><li>앞으로 디스크를 늘릴 계획이라면 2U를 권합니다.</li><li>랙 공간이 부족하고 용도가 단순하다면 1U가 효율적입니다.</li><li>사무실 안에 둔다면 소음도 함께 고려하세요.</li></ul>
+          <p>※ 일반적인 비교이며 모델마다 사양이 다릅니다. 정확한 구성은 견적 상담에서 확인해 드립니다.</p>
+        </div>
+        <div class="oc-art-nav">
+          <a href="guide-view.html?no=1"><span>이전 글</span><b>워크스테이션 GPU, RTX A400과 A1000은 무엇이 다를까</b></a>
+          <a href="guide-view.html?no=3"><span>다음 글</span><b>NAS와 SAN, 처음 도입할 때 알아 둘 것</b></a>
+        </div>
+        <div class="oc-art-act"><a href="guide.html" class="oc-btn oc-btn-o">목록으로</a></div>
+      </article>
+      <aside class="oc-aside" aria-label="글 정보와 관련 글">
+        <h3>글 정보</h3>
+        <dl class="oc-kv"><dt>분류</dt><dd>서버</dd><dt>작성일</dt><dd>2026-09-29</dd><dt>읽는 시간</dt><dd>약 3분</dd></dl>
+        <div class="oc-biz-related">
+          <h4>관련 글</h4>
+          <a href="guide-view.html?no=1"><em>워크스테이션</em><b>워크스테이션 GPU, RTX A400과 A1000은 무엇이 다를까</b></a>
+          <a href="guide-view.html?no=3"><em>스토리지</em><b>NAS와 SAN, 처음 도입할 때 알아 둘 것</b></a>
+          <a href="guide-view.html?no=4"><em>노트북</em><b>업무용 노트북, CPU와 메모리 중 어디에 예산을 쓸까</b></a>
+        </div>
+        <div class="oc-biz-side-act">
+          <a href="https://www.on-core.co.kr/dbk/dbk_estimate_form.php?ptype=e" target="_blank" rel="noopener" class="oc-btn oc-btn-d oc-btn-block">견적 요청하기</a>
+        </div>
+      </aside>
+    </div>
+
+    <div class="oc-pg-grid" data-view="3" data-title="NAS와 SAN, 처음 도입할 때 알아 둘 것" data-lead="파일 공유와 가상화 환경에서의 차이를 정리했습니다. 두 방식을 함께 쓰는 통합형도 있습니다." hidden>
+      <article>
+        <div class="oc-art-meta"><span class="oc-tag">스토리지</span><span>2026-09-15</span></div>
+        <div class="oc-art-body">
+          <p>스토리지를 처음 도입할 때 가장 많이 헷갈리는 것이 NAS와 SAN의 차이입니다. 데이터를 '파일'로 주고받느냐, '블록'으로 주고받느냐가 핵심입니다.</p>
+          <h2>한눈에 비교</h2>
+          <div class="oc-biz-tbl-wrap"><table class="oc-tbl"><thead><tr><th scope="col">항목</th><th scope="col">NAS</th><th scope="col">SAN</th></tr></thead><tbody><tr><th scope="row">접근 방식</th><td>파일 단위로 공유</td><td>블록 단위로 연결</td></tr><tr><th scope="row">주요 용도</th><td>여러 사용자의 파일 공유</td><td>가상화·데이터베이스</td></tr><tr><th scope="row">연결</th><td>일반 이더넷</td><td>iSCSI·FC 등 전용 구성</td></tr><tr><th scope="row">관리</th><td>비교적 쉬움</td><td>설계·설정이 더 필요</td></tr></tbody></table></div>
+          <h2>통합형이라면</h2>
+          <p>파일 공유와 가상화를 함께 쓴다면 SAN + NAS를 모두 지원하는 통합형 스토리지를 고려할 수 있습니다. 온코어 HC All-Flash 시리즈가 이에 해당합니다.</p>
+          <h2>도입 전에 정리할 것</h2>
+          <ul><li>현재 데이터 양과 1년 뒤 예상 증가량</li><li>동시에 접속하는 사용자 수</li><li>백업·스냅샷이 필요한 데이터 범위</li></ul>
+        </div>
+        <div class="oc-art-nav">
+          <a href="guide-view.html?no=2"><span>이전 글</span><b>1U와 2U 랙 서버, 우리 회사에는 어느 쪽이 맞을까</b></a>
+          <a href="guide-view.html?no=4"><span>다음 글</span><b>업무용 노트북, CPU와 메모리 중 어디에 예산을 쓸까</b></a>
+        </div>
+        <div class="oc-art-act"><a href="guide.html" class="oc-btn oc-btn-o">목록으로</a></div>
+      </article>
+      <aside class="oc-aside" aria-label="글 정보와 관련 글">
+        <h3>글 정보</h3>
+        <dl class="oc-kv"><dt>분류</dt><dd>스토리지</dd><dt>작성일</dt><dd>2026-09-15</dd><dt>읽는 시간</dt><dd>약 3분</dd></dl>
+        <div class="oc-biz-related">
+          <h4>관련 글</h4>
+          <a href="guide-view.html?no=1"><em>워크스테이션</em><b>워크스테이션 GPU, RTX A400과 A1000은 무엇이 다를까</b></a>
+          <a href="guide-view.html?no=2"><em>서버</em><b>1U와 2U 랙 서버, 우리 회사에는 어느 쪽이 맞을까</b></a>
+          <a href="guide-view.html?no=4"><em>노트북</em><b>업무용 노트북, CPU와 메모리 중 어디에 예산을 쓸까</b></a>
+        </div>
+        <div class="oc-biz-side-act">
+          <a href="https://www.on-core.co.kr/dbk/dbk_estimate_form.php?ptype=e" target="_blank" rel="noopener" class="oc-btn oc-btn-d oc-btn-block">견적 요청하기</a>
+        </div>
+      </aside>
+    </div>
+
+    <div class="oc-pg-grid" data-view="4" data-title="업무용 노트북, CPU와 메모리 중 어디에 예산을 쓸까" data-lead="문서·화상회의 중심인지 설계·개발 중심인지에 따라 우선순위가 달라집니다." hidden>
+      <article>
+        <div class="oc-art-meta"><span class="oc-tag">노트북</span><span>2026-08-27</span></div>
+        <div class="oc-art-body">
+          <p>노트북은 나중에 부품을 바꾸기 어려워 처음 사양을 정할 때 우선순위가 중요합니다.</p>
+          <h2>업무별 우선순위</h2>
+          <div class="oc-biz-tbl-wrap"><table class="oc-tbl"><thead><tr><th scope="col">업무</th><th scope="col">먼저 볼 것</th><th scope="col">다음으로 볼 것</th></tr></thead><tbody><tr><th scope="row">문서·화상회의</th><td>메모리 16GB 이상</td><td>무게·배터리</td></tr><tr><th scope="row">설계·개발</th><td>CPU 성능, 메모리 32GB</td><td>화면 크기·포트</td></tr><tr><th scope="row">출장이 잦은 업무</th><td>무게·배터리</td><td>화면 밝기·보안 기능</td></tr></tbody></table></div>
+          <ul><li>메모리는 부족하면 체감이 가장 크게 떨어집니다.</li><li>저장 장치는 용량보다 속도(NVMe)와 여유 공간을 보세요.</li><li>운영체제는 사내 라이선스가 있으면 미포함으로 구매할 수 있습니다.</li></ul>
+        </div>
+        <div class="oc-art-nav">
+          <a href="guide-view.html?no=3"><span>이전 글</span><b>NAS와 SAN, 처음 도입할 때 알아 둘 것</b></a>
+          <a href="guide-view.html?no=5"><span>다음 글</span><b>사무용 PC, 운영체제 포함 vs 미포함 어느 쪽이 유리할까</b></a>
+        </div>
+        <div class="oc-art-act"><a href="guide.html" class="oc-btn oc-btn-o">목록으로</a></div>
+      </article>
+      <aside class="oc-aside" aria-label="글 정보와 관련 글">
+        <h3>글 정보</h3>
+        <dl class="oc-kv"><dt>분류</dt><dd>노트북</dd><dt>작성일</dt><dd>2026-08-27</dd><dt>읽는 시간</dt><dd>약 2분</dd></dl>
+        <div class="oc-biz-related">
+          <h4>관련 글</h4>
+          <a href="guide-view.html?no=1"><em>워크스테이션</em><b>워크스테이션 GPU, RTX A400과 A1000은 무엇이 다를까</b></a>
+          <a href="guide-view.html?no=2"><em>서버</em><b>1U와 2U 랙 서버, 우리 회사에는 어느 쪽이 맞을까</b></a>
+          <a href="guide-view.html?no=3"><em>스토리지</em><b>NAS와 SAN, 처음 도입할 때 알아 둘 것</b></a>
+        </div>
+        <div class="oc-biz-side-act">
+          <a href="https://www.on-core.co.kr/dbk/dbk_estimate_form.php?ptype=e" target="_blank" rel="noopener" class="oc-btn oc-btn-d oc-btn-block">견적 요청하기</a>
+        </div>
+      </aside>
+    </div>
+
+    <div class="oc-pg-grid" data-view="5" data-title="사무용 PC, 운영체제 포함 vs 미포함 어느 쪽이 유리할까" data-lead="기존 라이선스가 있는지에 따라 총비용이 달라집니다." hidden>
+      <article>
+        <div class="oc-art-meta"><span class="oc-tag">데스크탑</span><span>2026-08-12</span></div>
+        <div class="oc-art-body">
+          <p>PC를 여러 대 도입할 때는 운영체제를 포함할지 정하는 것이 비용에 영향을 줍니다.</p>
+          <h2>비교</h2>
+          <div class="oc-biz-tbl-wrap"><table class="oc-tbl"><thead><tr><th scope="col">항목</th><th scope="col">운영체제 포함</th><th scope="col">운영체제 미포함</th></tr></thead><tbody><tr><th scope="row">장점</th><td>받자마자 사용 가능</td><td>기존 라이선스·볼륨 라이선스 활용</td></tr><tr><th scope="row">주의</th><td>라이선스 종류 확인 필요</td><td>설치 작업이 필요</td></tr><tr><th scope="row">적합한 경우</th><td>소규모·빠른 도입</td><td>수량이 많거나 이미지 배포를 하는 경우</td></tr></tbody></table></div>
+          <p>수량과 사내 라이선스 현황을 알려 주시면 유리한 쪽을 안내해 드립니다.</p>
+        </div>
+        <div class="oc-art-nav">
+          <a href="guide-view.html?no=4"><span>이전 글</span><b>업무용 노트북, CPU와 메모리 중 어디에 예산을 쓸까</b></a>
+          <a href="guide-view.html?no=6"><span>다음 글</span><b>견적 요청 전에 정리해 두면 좋은 다섯 가지</b></a>
+        </div>
+        <div class="oc-art-act"><a href="guide.html" class="oc-btn oc-btn-o">목록으로</a></div>
+      </article>
+      <aside class="oc-aside" aria-label="글 정보와 관련 글">
+        <h3>글 정보</h3>
+        <dl class="oc-kv"><dt>분류</dt><dd>데스크탑</dd><dt>작성일</dt><dd>2026-08-12</dd><dt>읽는 시간</dt><dd>약 2분</dd></dl>
+        <div class="oc-biz-related">
+          <h4>관련 글</h4>
+          <a href="guide-view.html?no=1"><em>워크스테이션</em><b>워크스테이션 GPU, RTX A400과 A1000은 무엇이 다를까</b></a>
+          <a href="guide-view.html?no=2"><em>서버</em><b>1U와 2U 랙 서버, 우리 회사에는 어느 쪽이 맞을까</b></a>
+          <a href="guide-view.html?no=3"><em>스토리지</em><b>NAS와 SAN, 처음 도입할 때 알아 둘 것</b></a>
+        </div>
+        <div class="oc-biz-side-act">
+          <a href="https://www.on-core.co.kr/dbk/dbk_estimate_form.php?ptype=e" target="_blank" rel="noopener" class="oc-btn oc-btn-d oc-btn-block">견적 요청하기</a>
+        </div>
+      </aside>
+    </div>
+
+    <div class="oc-pg-grid" data-view="6" data-title="견적 요청 전에 정리해 두면 좋은 다섯 가지" data-lead="아래 내용만 정리해 보내 주시면 견적이 훨씬 빨라집니다." hidden>
+      <article>
+        <div class="oc-art-meta"><span class="oc-tag">견적</span><span>2026-07-30</span></div>
+        <div class="oc-art-body">
+          <p>모델명을 몰라도 견적을 요청할 수 있습니다. 다만 아래 다섯 가지를 알려 주시면 맞는 구성을 더 빠르게 제안할 수 있습니다.</p>
+          <ol><li>어떤 업무에 쓰는지(프로그램·용도)</li><li>사용 인원과 필요한 수량</li><li>희망 예산 범위</li><li>납품 희망 시기와 설치 장소</li><li>기존 장비·라이선스 현황</li></ol>
+          <p>견적 요청서는 기존 견적 폼에서 작성하고, 접수 후에는 '견적 요청' 메뉴에서 진행 상태를 확인할 수 있습니다.</p>
+        </div>
+        <div class="oc-art-nav">
+          <a href="guide-view.html?no=5"><span>이전 글</span><b>사무용 PC, 운영체제 포함 vs 미포함 어느 쪽이 유리할까</b></a>
+          <a href="guide-view.html?no=7"><span>다음 글</span><b>서버 메모리, 처음에 얼마나 넣어야 할까</b></a>
+        </div>
+        <div class="oc-art-act"><a href="guide.html" class="oc-btn oc-btn-o">목록으로</a></div>
+      </article>
+      <aside class="oc-aside" aria-label="글 정보와 관련 글">
+        <h3>글 정보</h3>
+        <dl class="oc-kv"><dt>분류</dt><dd>견적</dd><dt>작성일</dt><dd>2026-07-30</dd><dt>읽는 시간</dt><dd>약 2분</dd></dl>
+        <div class="oc-biz-related">
+          <h4>관련 글</h4>
+          <a href="guide-view.html?no=1"><em>워크스테이션</em><b>워크스테이션 GPU, RTX A400과 A1000은 무엇이 다를까</b></a>
+          <a href="guide-view.html?no=2"><em>서버</em><b>1U와 2U 랙 서버, 우리 회사에는 어느 쪽이 맞을까</b></a>
+          <a href="guide-view.html?no=3"><em>스토리지</em><b>NAS와 SAN, 처음 도입할 때 알아 둘 것</b></a>
+        </div>
+        <div class="oc-biz-side-act">
+          <a href="https://www.on-core.co.kr/dbk/dbk_estimate_form.php?ptype=e" target="_blank" rel="noopener" class="oc-btn oc-btn-d oc-btn-block">견적 요청하기</a>
+        </div>
+      </aside>
+    </div>
+
+    <div class="oc-pg-grid" data-view="7" data-title="서버 메모리, 처음에 얼마나 넣어야 할까" data-lead="가상화·데이터베이스·파일 서버 용도별로 처음 구성할 메모리와 나중에 늘리는 방법을 정리했습니다." hidden>
+      <article>
+        <div class="oc-art-meta"><span class="oc-tag">서버</span><span>2026-07-16</span></div>
+        <div class="oc-art-body">
+          <p>서버 메모리는 처음부터 최대로 채우기보다, 지금 돌릴 업무에 맞춰 넣고 나중에 늘릴 자리를 남겨 두는 편이 비용 면에서 유리한 경우가 많습니다.</p>
+          <h2>용도별로 보는 기준</h2>
+          <ul><li>파일·업무 서버: 동시에 쓰는 인원과 프로그램 수를 기준으로 잡습니다. 대개 메모리보다 디스크 구성이 더 중요합니다.</li><li>가상화: 띄울 가상 서버 수 × 가상 서버마다 줄 메모리에, 관리용 여유분을 더해 계산합니다.</li><li>데이터베이스: 자주 읽는 데이터가 메모리에 올라갈수록 빨라지므로 다른 용도보다 넉넉하게 잡습니다.</li></ul>
+          <h2>나중에 늘릴 때</h2>
+          <p>같은 용량이라도 슬롯을 적게 쓰는 구성으로 맞추면 빈 슬롯이 남아 증설이 쉽습니다. 증설할 때는 기존 메모리와 같은 규격으로 맞춰야 하므로, 처음 구성한 모델을 기록해 두세요.</p>
+          <h2>정하기 어렵다면</h2>
+          <p>서버에서 돌릴 프로그램과 사용 인원을 알려 주시면 담당자가 처음 용량과 증설 계획을 함께 제안합니다.</p>
+        </div>
+        <div class="oc-art-nav">
+          <a href="guide-view.html?no=6"><span>이전 글</span><b>견적 요청 전에 정리해 두면 좋은 다섯 가지</b></a>
+          <a href="guide-view.html?no=8"><span>다음 글</span><b>타워형과 초소형 워크스테이션, 성능 차이는 얼마나 날까</b></a>
+        </div>
+        <div class="oc-art-act"><a href="guide.html" class="oc-btn oc-btn-o">목록으로</a></div>
+      </article>
+      <aside class="oc-aside" aria-label="글 정보와 관련 글">
+        <h3>글 정보</h3>
+        <dl class="oc-kv"><dt>분류</dt><dd>서버</dd><dt>작성일</dt><dd>2026-07-16</dd><dt>읽는 시간</dt><dd>약 3분</dd></dl>
+        <div class="oc-biz-related">
+          <h4>관련 글</h4>
+          <a href="guide-view.html?no=2"><em>서버</em><b>1U와 2U 랙 서버, 우리 회사에는 어느 쪽이 맞을까</b></a>
+          <a href="guide-view.html?no=6"><em>견적</em><b>견적 요청 전에 정리해 두면 좋은 다섯 가지</b></a>
+          <a href="guide-view.html?no=3"><em>스토리지</em><b>NAS와 SAN, 처음 도입할 때 알아 둘 것</b></a>
+        </div>
+        <div class="oc-biz-side-act">
+          <a href="https://www.on-core.co.kr/dbk/dbk_estimate_form.php?ptype=e" target="_blank" rel="noopener" class="oc-btn oc-btn-d oc-btn-block">견적 요청하기</a>
+        </div>
+      </aside>
+    </div>
+
+    <div class="oc-pg-grid" data-view="8" data-title="타워형과 초소형 워크스테이션, 성능 차이는 얼마나 날까" data-lead="같은 세대라도 크기에 따라 넣을 수 있는 그래픽카드와 냉각이 다릅니다. 작업별로 고르는 기준입니다." hidden>
+      <article>
+        <div class="oc-art-meta"><span class="oc-tag">워크스테이션</span><span>2026-07-02</span></div>
+        <div class="oc-art-body">
+          <p>초소형 워크스테이션도 같은 세대의 CPU를 쓰지만, 본체가 작은 만큼 넣을 수 있는 그래픽카드 크기와 열을 식히는 능력에 한계가 있습니다.</p>
+          <h2>한눈에 비교</h2>
+          <div class="oc-biz-tbl-wrap"><table class="oc-tbl"><thead><tr><th scope="col">항목</th><th scope="col">초소형</th><th scope="col">타워형</th></tr></thead><tbody><tr><th scope="row">설치 공간</th><td>모니터 뒤·책상 위</td><td>책상 아래</td></tr><tr><th scope="row">그래픽카드</th><td>작은 크기 위주</td><td>고성능 카드까지</td></tr><tr><th scope="row">확장</th><td>제한적</td><td>메모리·디스크·카드 추가 쉬움</td></tr><tr><th scope="row">오래 돌리는 작업</th><td>열 때문에 속도가 떨어질 수 있음</td><td>유리</td></tr></tbody></table></div>
+          <p>※ 일반적인 비교이며, 모델마다 넣을 수 있는 부품이 다르니 구매 전 사양을 확인해 주세요.</p>
+          <h2>이럴 때는 이쪽</h2>
+          <ul><li>2D 설계·모델링처럼 짧게 계산하는 작업이 중심이고 공간이 좁다면 초소형이 잘 맞습니다.</li><li>렌더링·시뮬레이션처럼 몇 시간씩 계산하는 작업이라면 타워형을 권합니다.</li></ul>
+        </div>
+        <div class="oc-art-nav">
+          <a href="guide-view.html?no=7"><span>이전 글</span><b>서버 메모리, 처음에 얼마나 넣어야 할까</b></a>
+          <a href="guide-view.html?no=9"><span>다음 글</span><b>백업, 같은 장비 안에 두면 안 되는 이유</b></a>
+        </div>
+        <div class="oc-art-act"><a href="guide.html" class="oc-btn oc-btn-o">목록으로</a></div>
+      </article>
+      <aside class="oc-aside" aria-label="글 정보와 관련 글">
+        <h3>글 정보</h3>
+        <dl class="oc-kv"><dt>분류</dt><dd>워크스테이션</dd><dt>작성일</dt><dd>2026-07-02</dd><dt>읽는 시간</dt><dd>약 3분</dd></dl>
+        <div class="oc-biz-related">
+          <h4>관련 글</h4>
+          <a href="guide-view.html?no=1"><em>워크스테이션</em><b>워크스테이션 GPU, RTX A400과 A1000은 무엇이 다를까</b></a>
+          <a href="guide-view.html?no=7"><em>서버</em><b>서버 메모리, 처음에 얼마나 넣어야 할까</b></a>
+          <a href="guide-view.html?no=6"><em>견적</em><b>견적 요청 전에 정리해 두면 좋은 다섯 가지</b></a>
+        </div>
+        <div class="oc-biz-side-act">
+          <a href="https://www.on-core.co.kr/dbk/dbk_estimate_form.php?ptype=e" target="_blank" rel="noopener" class="oc-btn oc-btn-d oc-btn-block">견적 요청하기</a>
+        </div>
+      </aside>
+    </div>
+
+    <div class="oc-pg-grid" data-view="9" data-title="백업, 같은 장비 안에 두면 안 되는 이유" data-lead="원본과 백업을 한곳에 두면 장애나 랜섬웨어에 함께 잃을 수 있습니다. 3-2-1 원칙으로 정리했습니다." hidden>
+      <article>
+        <div class="oc-art-meta"><span class="oc-tag">스토리지</span><span>2026-06-18</span></div>
+        <div class="oc-art-body">
+          <p>스토리지 안에서 디스크를 이중으로 묶어 두는 것(RAID)은 디스크 고장에 대비하는 방법일 뿐, 백업이 아닙니다. 실수로 지운 파일이나 랜섬웨어에 감염된 파일은 묶인 디스크 모두에 똑같이 반영됩니다.</p>
+          <h2>3-2-1 원칙</h2>
+          <ol><li>데이터는 원본을 포함해 3벌을 둡니다.</li><li>그중 2벌은 서로 다른 장비(또는 매체)에 둡니다.</li><li>1벌은 다른 장소(외부·클라우드)에 둡니다.</li></ol>
+          <h2>작은 사무실이라면</h2>
+          <p>공유 스토리지 + 별도 백업 장비 한 대로 시작하고, 중요한 자료만 주기적으로 외부에 보관하는 것만으로도 위험을 크게 줄일 수 있습니다.</p>
+        </div>
+        <div class="oc-art-nav">
+          <a href="guide-view.html?no=8"><span>이전 글</span><b>타워형과 초소형 워크스테이션, 성능 차이는 얼마나 날까</b></a>
+          <a href="guide-view.html?no=10"><span>다음 글</span><b>업무용 노트북 화면 크기, 14인치와 16인치 중 무엇을 고를까</b></a>
+        </div>
+        <div class="oc-art-act"><a href="guide.html" class="oc-btn oc-btn-o">목록으로</a></div>
+      </article>
+      <aside class="oc-aside" aria-label="글 정보와 관련 글">
+        <h3>글 정보</h3>
+        <dl class="oc-kv"><dt>분류</dt><dd>스토리지</dd><dt>작성일</dt><dd>2026-06-18</dd><dt>읽는 시간</dt><dd>약 2분</dd></dl>
+        <div class="oc-biz-related">
+          <h4>관련 글</h4>
+          <a href="guide-view.html?no=3"><em>스토리지</em><b>NAS와 SAN, 처음 도입할 때 알아 둘 것</b></a>
+          <a href="guide-view.html?no=7"><em>서버</em><b>서버 메모리, 처음에 얼마나 넣어야 할까</b></a>
+          <a href="guide-view.html?no=6"><em>견적</em><b>견적 요청 전에 정리해 두면 좋은 다섯 가지</b></a>
+        </div>
+        <div class="oc-biz-side-act">
+          <a href="https://www.on-core.co.kr/dbk/dbk_estimate_form.php?ptype=e" target="_blank" rel="noopener" class="oc-btn oc-btn-d oc-btn-block">견적 요청하기</a>
+        </div>
+      </aside>
+    </div>
+
+    <div class="oc-pg-grid" data-view="10" data-title="업무용 노트북 화면 크기, 14인치와 16인치 중 무엇을 고를까" data-lead="들고 다니는 시간과 한 화면에 띄우는 창 개수를 기준으로 고르면 쉽습니다." hidden>
+      <article>
+        <div class="oc-art-meta"><span class="oc-tag">노트북</span><span>2026-06-04</span></div>
+        <div class="oc-art-body">
+          <p>화면 크기는 성능보다 일하는 방식에 더 큰 영향을 줍니다. 외근이 잦은지, 자리에서 여러 창을 띄워 일하는지를 먼저 보세요.</p>
+          <h2>이럴 때는 이쪽</h2>
+          <ul><li>출장·외근이 잦고 매일 들고 다닌다면 가벼운 14인치가 편합니다.</li><li>자리에서 엑셀·설계 도면처럼 넓은 화면이 필요한 작업이 많다면 16인치가 낫습니다. 숫자 키패드가 있는 모델도 많습니다.</li><li>사무실에서는 외부 모니터를 연결해 쓴다면 14인치로도 충분합니다.</li></ul>
+          <h2>함께 볼 것</h2>
+          <p>같은 크기라도 무게와 배터리 시간이 모델마다 다릅니다. 하루 중 전원 없이 쓰는 시간을 알려 주시면 맞는 모델을 추려 드립니다.</p>
+        </div>
+        <div class="oc-art-nav">
+          <a href="guide-view.html?no=9"><span>이전 글</span><b>백업, 같은 장비 안에 두면 안 되는 이유</b></a>
+          <a href="guide-view.html?no=11"><span>다음 글</span><b>사무용 PC 교체 주기, 언제 바꾸는 게 좋을까</b></a>
+        </div>
+        <div class="oc-art-act"><a href="guide.html" class="oc-btn oc-btn-o">목록으로</a></div>
+      </article>
+      <aside class="oc-aside" aria-label="글 정보와 관련 글">
+        <h3>글 정보</h3>
+        <dl class="oc-kv"><dt>분류</dt><dd>노트북</dd><dt>작성일</dt><dd>2026-06-04</dd><dt>읽는 시간</dt><dd>약 2분</dd></dl>
+        <div class="oc-biz-related">
+          <h4>관련 글</h4>
+          <a href="guide-view.html?no=4"><em>노트북</em><b>업무용 노트북, CPU와 메모리 중 어디에 예산을 쓸까</b></a>
+          <a href="guide-view.html?no=11"><em>데스크탑</em><b>사무용 PC 교체 주기, 언제 바꾸는 게 좋을까</b></a>
+          <a href="guide-view.html?no=6"><em>견적</em><b>견적 요청 전에 정리해 두면 좋은 다섯 가지</b></a>
+        </div>
+        <div class="oc-biz-side-act">
+          <a href="https://www.on-core.co.kr/dbk/dbk_estimate_form.php?ptype=e" target="_blank" rel="noopener" class="oc-btn oc-btn-d oc-btn-block">견적 요청하기</a>
+        </div>
+      </aside>
+    </div>
+
+    <div class="oc-pg-grid" data-view="11" data-title="사무용 PC 교체 주기, 언제 바꾸는 게 좋을까" data-lead="느려졌다는 체감보다 보증 기간·운영체제 지원·부품 수급을 기준으로 판단하는 방법입니다." hidden>
+      <article>
+        <div class="oc-art-meta"><span class="oc-tag">데스크탑</span><span>2026-05-21</span></div>
+        <div class="oc-art-body">
+          <p>사무용 PC는 고장 나기 전까지 쓰는 경우가 많지만, 한꺼번에 고장 나기 시작하면 업무 공백과 비용이 커집니다. 아래 세 가지를 기준으로 미리 계획하세요.</p>
+          <h2>판단 기준</h2>
+          <ul><li>보증 기간: 무상 수리 기간이 끝나면 수리 비용과 시간이 늘어납니다.</li><li>운영체제 지원: 보안 업데이트가 끝나는 운영체제는 계속 쓰기 어렵습니다.</li><li>부품 수급: 오래된 모델은 같은 부품을 구하기 어려워집니다.</li></ul>
+          <h2>나눠서 바꾸기</h2>
+          <p>한 번에 전체를 바꾸기 어렵다면 부서별·연도별로 나눠 교체하되, 같은 모델로 이어가면 관리가 쉬워집니다.</p>
+        </div>
+        <div class="oc-art-nav">
+          <a href="guide-view.html?no=10"><span>이전 글</span><b>업무용 노트북 화면 크기, 14인치와 16인치 중 무엇을 고를까</b></a>
+          <a href="guide-view.html?no=12"><span>다음 글</span><b>세금계산서·납품 서류, 견적 단계에서 미리 챙길 것</b></a>
+        </div>
+        <div class="oc-art-act"><a href="guide.html" class="oc-btn oc-btn-o">목록으로</a></div>
+      </article>
+      <aside class="oc-aside" aria-label="글 정보와 관련 글">
+        <h3>글 정보</h3>
+        <dl class="oc-kv"><dt>분류</dt><dd>데스크탑</dd><dt>작성일</dt><dd>2026-05-21</dd><dt>읽는 시간</dt><dd>약 2분</dd></dl>
+        <div class="oc-biz-related">
+          <h4>관련 글</h4>
+          <a href="guide-view.html?no=5"><em>데스크탑</em><b>사무용 PC, 운영체제 포함 vs 미포함 어느 쪽이 유리할까</b></a>
+          <a href="guide-view.html?no=10"><em>노트북</em><b>업무용 노트북 화면 크기, 14인치와 16인치 중 무엇을 고를까</b></a>
+          <a href="guide-view.html?no=12"><em>견적</em><b>세금계산서·납품 서류, 견적 단계에서 미리 챙길 것</b></a>
+        </div>
+        <div class="oc-biz-side-act">
+          <a href="https://www.on-core.co.kr/dbk/dbk_estimate_form.php?ptype=e" target="_blank" rel="noopener" class="oc-btn oc-btn-d oc-btn-block">견적 요청하기</a>
+        </div>
+      </aside>
+    </div>
+
+    <div class="oc-pg-grid" data-view="12" data-title="세금계산서·납품 서류, 견적 단계에서 미리 챙길 것" data-lead="기업·기관 구매에 필요한 서류를 견적 요청 때 함께 알려 주시면 납품이 빨라집니다." hidden>
+      <article>
+        <div class="oc-art-meta"><span class="oc-tag">견적</span><span>2026-05-07</span></div>
+        <div class="oc-art-body">
+          <p>구매 결재에 필요한 서류는 회사·기관마다 다릅니다. 견적 요청서에 함께 적어 주시면 견적서와 같이 준비해 드립니다.</p>
+          <h2>자주 요청하시는 서류</h2>
+          <ul><li>견적서(결재용 양식이 따로 있다면 함께 보내 주세요)</li><li>세금계산서 발행 정보(사업자등록증, 담당자 이메일)</li><li>거래명세서·납품확인서</li><li>제품 사양서</li></ul>
+          <h2>함께 알려 주시면 좋은 것</h2>
+          <p>납품 받을 주소와 받는 분, 설치가 필요한지, 결제 방식과 예정일을 알려 주시면 일정을 맞추기 쉽습니다.</p>
+        </div>
+        <div class="oc-art-nav">
+          <a href="guide-view.html?no=11"><span>이전 글</span><b>사무용 PC 교체 주기, 언제 바꾸는 게 좋을까</b></a>
+          <a href="guide.html"><span>다음 글</span><b>다음 글이 없습니다</b></a>
+        </div>
+        <div class="oc-art-act"><a href="guide.html" class="oc-btn oc-btn-o">목록으로</a></div>
+      </article>
+      <aside class="oc-aside" aria-label="글 정보와 관련 글">
+        <h3>글 정보</h3>
+        <dl class="oc-kv"><dt>분류</dt><dd>견적</dd><dt>작성일</dt><dd>2026-05-07</dd><dt>읽는 시간</dt><dd>약 2분</dd></dl>
+        <div class="oc-biz-related">
+          <h4>관련 글</h4>
+          <a href="guide-view.html?no=6"><em>견적</em><b>견적 요청 전에 정리해 두면 좋은 다섯 가지</b></a>
+          <a href="guide-view.html?no=11"><em>데스크탑</em><b>사무용 PC 교체 주기, 언제 바꾸는 게 좋을까</b></a>
+          <a href="guide-view.html?no=7"><em>서버</em><b>서버 메모리, 처음에 얼마나 넣어야 할까</b></a>
+        </div>
+        <div class="oc-biz-side-act">
+          <a href="https://www.on-core.co.kr/dbk/dbk_estimate_form.php?ptype=e" target="_blank" rel="noopener" class="oc-btn oc-btn-d oc-btn-block">견적 요청하기</a>
+        </div>
+      </aside>
+    </div>
+
+    <div class="oc-biz-cta">
+      <div><h2>고르기 어렵다면 담당자에게 물어보세요.</h2><p>용도와 예산을 알려 주시면 맞는 구성을 직접 안내합니다.</p></div>
+      <div class="oc-biz-cta-act">
+        <a href="https://www.on-core.co.kr/dbk/dbk_estimate_form.php?ptype=e" target="_blank" rel="noopener" class="oc-btn oc-btn-p">견적 요청하기</a>
+        <a href="guide.html" class="oc-btn oc-btn-o">가이드 목록</a>
+      </div>
+    </div>
+  </div>
+</div>
+</main>
+
+<!-- 푸터 | 고도몰: outline/footer/standard.html 교체. 회사 정보는 gMall.companyNm gMall.ceoNm gMall.address gMall.businessNo gMall.onlineOrderSerial gMall.privateNm gMall.phone -->
+<footer class="oc-ft">
+  <div class="oc-wrap">
+    <div class="oc-ft-top">
+      <img src="../img/oncore-logo.png" alt="온코어(주)" width="156" height="50">
+      <nav aria-label="푸터 메뉴"><a href="company.html">회사소개</a><a href="terms.html">이용약관</a><a href="privacy.html"><b>개인정보처리방침</b></a><a href="usage.html">이용안내</a><a href="cs.html">고객센터</a><a href="partnership.html">광고·제휴 문의</a></nav>
+    </div>
+    <div class="oc-ft-grid">
+      <div class="oc-ft-info">
+        <p><b>온코어(주)</b> · 대표 우명구 · 서울특별시 영등포구 63로 32(여의도동) 211호</p>
+        <p>사업자등록번호 689-87-03887 <a href="https://www.ftc.go.kr/www/cop/bbs/selectBoardList.do?key=201&amp;bbsId=BBSMSTR_000000002320&amp;bbsTyCode=BBST01" target="_blank" rel="noopener">사업자정보 확인</a> · 통신판매업신고 2026-0919 · 개인정보관리자 우명구</p>
+        <p>호스팅 제공 엔에이치엔커머스(주)</p>
+        <p class="oc-copy">© 2026 ONCORE Co., Ltd. All rights reserved.</p>
+      </div>
+      <div class="oc-ft-cs">
+        <h5>기업 구매 상담</h5>
+        <a href="tel:02-6949-1518" class="oc-tel">02-6949-1518</a>
+        <p>평일 09:00–18:00 (점심 12:00–13:00)</p>
+        <p>주말·공휴일 휴무</p>
+        <p><a href="mailto:oncore@on-core.co.kr">oncore@on-core.co.kr</a></p>
+      </div>
+      <div class="oc-ft-cs">
+        <h5>취급 브랜드</h5>
+        <div class="oc-ft-badges"><span class="oc-lenovo">Lenovo</span><span class="oc-asus">ASUS</span></div>
+        <p>기업용 서버·워크스테이션·PC 공급</p>
+        <!-- 운영 사이트 푸터 SNS 와 같은 주소. 고도몰: 관리자 > 기본설정 의 SNS 주소를 쓰면 그 값으로 -->
+        <h5>공식 채널</h5>
+        <p class="oc-ft-sns"><a href="https://blog.naver.com/on-core" target="_blank" rel="noopener">네이버 블로그</a><a href="https://www.instagram.com/oncore_official" target="_blank" rel="noopener">인스타그램</a><a href="https://www.facebook.com/Oncore.Meta" target="_blank" rel="noopener">페이스북</a><a href="https://smartstore.naver.com/on-core" target="_blank" rel="noopener">스마트스토어</a></p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- 모바일 하단 고정 바 | 채팅 상담은 사이트에 이미 있는 채널톡을 연다 (ChannelIO('showMessenger')) -->
+<nav class="oc-mbar" aria-label="빠른 메뉴">
+  <a href="tel:02-6949-1518"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 3.5h3l1.5 4-2 1.5a11 11 0 0 0 6 6l1.5-2 4 1.5v3a2 2 0 0 1-2 2A16 16 0 0 1 4.5 5.5a2 2 0 0 1 2-2z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>전화 상담</a>
+  <button type="button" data-open="oc-quote" class="oc-mbar-q"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3.5h7.5L19 8v12.5H7z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M14 3.5V8h5M10 12.5h6M10 16h6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>견적 요청 <b data-qcount>0</b></button>
+  <button type="button" data-channel><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 6.5a3 3 0 0 1 3-3h9a3 3 0 0 1 3 3v7a3 3 0 0 1-3 3H11l-4.5 4v-4h0a2 2 0 0 1-2-2z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>채팅 상담</button>
+</nav>
+
+<!-- 비교 바 | 고도몰에는 상품 비교 기능이 없어 스킨 JS + 브라우저 저장으로 만든다(견적함과 같은 방식). PC(768 이상) 전용.
+     '비교하기'는 비교 화면으로 이동 — 고도몰: 추가 페이지 main/html.php?htmid=goods/compare.html -->
+<div class="oc-cmp" id="oc-cmp" hidden>
+  <div class="oc-wrap oc-cmp-in">
+    <div class="oc-cmp-list" id="oc-cmpList"></div>
+    <div class="oc-cmp-act"><span id="oc-cmpCount">0/4</span><button type="button" class="oc-btn oc-btn-sm oc-btn-o" data-cmp-clear>비우기</button><a href="compare.html" class="oc-btn oc-btn-sm oc-btn-d" data-cmp-go>비교하기</a></div>
+  </div>
+</div>
+
+<!-- 견적함 | 스킨 JS + 브라우저 저장. '견적 요청서 작성'은 기존 dbk 견적 폼으로 이동하면서
+     담은 제품을 goodsNm·spec 주소값으로 넘긴다 → 폼의 '내용' 칸에 자동 입력 (dbk_estimate_form.html 의 기존 기능, 서버 수정 없음) -->
+<div class="oc-scrim" id="oc-scrim" hidden></div>
+<aside class="oc-drawer" id="oc-quote" aria-label="견적함" hidden>
+  <div class="oc-dr-hd"><h3>견적함 <b data-qcount>0</b></h3><button type="button" class="oc-ic-btn" data-close aria-label="닫기"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button></div>
+  <div class="oc-dr-body">
+    <ul class="oc-qlist" id="oc-qlist"></ul>
+    <div class="oc-qempty" id="oc-qempty">
+      <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M14 7h15l9 9v25H14z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M29 7v9h9M20 25h12M20 31h12" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
+      <b>아직 담은 제품이 없습니다.</b>
+      <p>모델을 정하지 않았다면 바로 견적 요청서를 써도 됩니다. 용도와 예산만 적어 주세요.</p>
+    </div>
+    <div class="oc-dr-note">
+      <b>다음 화면에서 이렇게 진행됩니다</b>
+      <ol><li>견적 요청서에 담당자·업체명·연락처·이메일·견적 비밀번호를 적습니다.</li><li>담은 제품과 수량은 '내용' 칸에 자동으로 들어갑니다.</li><li>접수되면 담당자가 배정되고 문자로 알려 드립니다.</li></ol>
+    </div>
+  </div>
+  <div class="oc-dr-ft">
+    <a class="oc-btn oc-btn-p oc-btn-block" id="oc-qsubmit" href="https://www.on-core.co.kr/dbk/dbk_estimate_form.php?ptype=e" target="_blank" rel="noopener">견적 요청서 작성</a>
+    <button type="button" class="oc-btn oc-btn-o oc-btn-block" data-qclear>견적함 비우기</button>
+  </div>
+</aside>
+
+<!-- 모바일 메뉴 | 고도몰: 카테고리 위젯 데이터 (상품 수 없음) -->
+<aside class="oc-drawer oc-drawer-l" id="oc-mnav" aria-label="전체 메뉴" hidden>
+  <div class="oc-dr-hd"><img src="../img/oncore-logo.png" alt="온코어" width="120" height="38"><button type="button" class="oc-ic-btn" data-close aria-label="닫기"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button></div>
+  <div class="oc-dr-body oc-mnav">
+    <!-- 메뉴는 접지 않고 2열 칸으로 펼쳐 한 화면에 담는다 (홀수 마지막 칸은 전체 폭). 로그인·회원가입은 맨 아래 버튼 -->
+    <h5>제품</h5>
+    <div class="oc-mnav-grid"><a href="goods-all.html">전체 제품</a><a href="goods-server.html">서버</a><a href="goods-workstation.html">워크스테이션</a><a href="goods-desktop.html">데스크탑</a><a href="goods-notebook.html">노트북</a><a href="goods-storage.html">스토리지</a></div>
+    <h5>기업 구매</h5>
+    <div class="oc-mnav-grid"><a href="../renewal-plan.html#oc-solutions">업종별 추천</a><a href="cases.html">구축사례</a><a href="guide.html">구매 가이드</a><a href="promotion.html">프로모션</a><a href="estimate-list.html">견적 요청</a></div>
+    <h5>고객지원</h5>
+    <div class="oc-mnav-grid"><a href="notice.html">공지사항</a><a href="inquiry.html">1:1 문의</a><a href="cs.html">고객센터</a></div>
+    <div class="oc-mnav-act"><a href="login.html" class="oc-btn oc-btn-o">로그인</a><a href="join.html" class="oc-btn oc-btn-d">회원가입</a></div>
+  </div>
+</aside>
+
+<!-- 컬러 가이드 (검토용) -->
+<aside class="oc-drawer oc-palette" id="oc-palette" aria-label="컬러 가이드" hidden>
+  <div class="oc-dr-hd"><h3>컬러 가이드</h3><button type="button" class="oc-ic-btn" data-close aria-label="닫기"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button></div>
+  <div class="oc-dr-body">
+    <div class="oc-pal-logo"><img src="../img/oncore-logo.png" alt="온코어 로고" width="208" height="66"><p>v0.3부터 주력 상품인 Lenovo 의 빨강을 Primary 로 씁니다. 온코어 로고는 원본 색 그대로 두고, 화면의 강조색만 빨강으로 바꿨습니다.</p></div>
+    <h4>Primary · Lenovo Red</h4>
+    <div class="oc-pal">
+      <div><i class="oc-sw-primary"></i><b>Primary</b><code>#E1251B</code><span>주 버튼('견적 요청')·선택 상태·강조. 흰 글자 대비 4.7:1 (AA)</span></div>
+      <div><i class="oc-sw-primary-600"></i><b>Primary Hover</b><code>#BE1E15</code><span>눌렀을 때·마우스 올렸을 때</span></div>
+      <div><i class="oc-sw-primary-50"></i><b>Primary Soft</b><code>#FDECEB</code><span>선택된 버튼·배지 배경</span></div>
+    </div>
+    <h4>Dark · 무채색</h4>
+    <div class="oc-pal">
+      <div><i class="oc-sw-dark"></i><b>Dark</b><code>#16181D</code><span>마무리 영역·토스트. 빨강과 함께 쓰는 유일한 어두운 면</span></div>
+      <div><i class="oc-sw-ink"></i><b>Ink</b><code>#16181D</code><span>본문·제목</span></div>
+      <div><i class="oc-sw-ink-3"></i><b>Ink 3</b><code>#6B6F78</code><span>보조 글자</span></div>
+      <div><i class="oc-sw-img"></i><b>Image</b><code>#F4F4F4</code><span>상품 사진·배너 배경과 동일</span></div>
+    </div>
+    <p class="oc-pal-why"><b>규칙은 두 가지</b> ① 빨강은 '누르는 곳'과 '지금 선택된 것'에만 씁니다. 큰 면을 빨강으로 칠하지 않습니다. ② 나머지는 무채색입니다. 색이 하나라 새 영역을 만들 때도 고민할 것이 없습니다.</p>
+    <h4>제조사 라벨</h4>
+    <div class="oc-pal">
+      <div><i class="oc-sw-lenovo"></i><b>Lenovo</b><code>#E1251B</code><span>Primary 와 같은 색</span></div>
+      <div><i class="oc-sw-asus"></i><b>ASUS</b><code>#00539B</code><span>상품 카드의 브랜드 라벨에만</span></div>
+    </div>
+  </div>
+</aside>
+
+<div class="oc-toast" id="oc-toast" role="status" aria-live="polite"></div>
+
+</div><!-- /.oc -->
+
+<script>window.OC_ROOT = '../'; window.OC_VIEW = 'goods-view.html';</script>
+<script src="../js/mock-goods.js"></script>
+<script src="../js/sub-biz.js"></script>
+<script src="../js/main.js"></script>
+</body>
+</html>
