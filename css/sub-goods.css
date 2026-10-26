@@ -12,7 +12,7 @@
 
 /* ── 상품 상세 ── */
 .oc-gv{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:var(--oc-sp-64);align-items:start}
-.oc-gv-photo{position:sticky;top:calc(var(--oc-hd) + var(--oc-sp-32));aspect-ratio:4/3;border-radius:var(--oc-r-lg);background:var(--oc-img);overflow:hidden}
+.oc-gv-photo{position:sticky;top:calc(var(--oc-stick) + var(--oc-hd) + var(--oc-sp-32));aspect-ratio:4/3;border-radius:var(--oc-r-lg);background:var(--oc-img);overflow:hidden}
 .oc-gv-photo img{display:block;width:100%;height:100%;object-fit:contain}
 .oc-gv-brand{display:flex;align-items:center;gap:var(--oc-sp-12)}
 .oc-gv-model{font-size:var(--oc-fs-14);color:var(--oc-ink-3)}

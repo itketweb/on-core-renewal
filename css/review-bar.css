@@ -1,0 +1,48 @@
+/* 시안 검토용 도구 막대 — 목업 전용(고도몰에 올리지 않음)
+   기획안(index) · 완성 계획(project-plan) · 메인 시안(renewal-plan) · 서브 페이지(pages/) 가 모두 같은 막대를 쓴다.
+   - 화면 맨 위에 늘 고정. 높이는 --oc-rb 하나로 정하고, 그 아래 고정 요소는 이 높이만큼 내려 붙인다
+     (메인 시안: main.css 의 --oc-stick, 기획안: plan.css 의 --hd)
+   - 기획안은 main.css 를 쓰지 않으므로 글자·여백은 px, 색은 이 파일 맨 위에만 둔다
+   - 사이트 디자인으로 보이지 않게 사이트에 없는 색(남보라)만 쓴다. 브랜드 빨강·사이트 검정(--oc-dark)·회색은 쓰지 않음
+   - 마크업: <div class="oc-review-bar"><div class="oc-rb-in"> 제목 · .oc-rb-nav(지금 문서는 aria-current). 컬러 가이드는 기획안 디자인 장(#s4)에 있음
+   - 접기: js/review-bar.js 가 접기(.oc-rb-fold)·펼치기(.oc-rb-open) 버튼을 붙이고 html.oc-rb-off 를 건다.
+     접히면 막대는 얇은 선(--oc-rb 6px)만 남고, 그 높이만큼 아래 고정 요소도 함께 올라간다 */
+:root{--oc-rb:48px;--oc-rb-bg:#2A1F5C;--oc-rb-line:#4A3A9C;--oc-rb-fg:#CFC7FF;--oc-rb-tag:#B9A8FF;--oc-rb-tag-ink:#1E1645}
+:root.oc-rb-off{--oc-rb:6px}
+:root:has(.oc-review-bar){--oc-stick:var(--oc-rb)}
+:root.oc-embed{--oc-stick:0px} /* 기획안 미리보기(iframe) 안에서는 막대를 숨기므로 */
+
+.oc-review-bar{position:sticky;top:0;z-index:42;height:var(--oc-rb);background:var(--oc-rb-bg);border-bottom:1px solid var(--oc-rb-line);box-sizing:border-box;color:var(--oc-rb-fg);font-size:14px;line-height:1.4}
+.oc-embed .oc-review-bar{display:none}
+.oc-rb-in{display:flex;align-items:center;gap:12px;height:100%;max-width:1280px;margin:0 auto;padding:0 24px}
+/* '시안 검토' 꼬리표: 이 막대가 사이트가 아니라 검토 도구임을 표시 (모든 폭에서 보임) */
+.oc-rb-in::before{content:"시안 검토";flex:none;padding:2px 8px;border-radius:4px;background:var(--oc-rb-tag);color:var(--oc-rb-tag-ink);font-size:11px;font-weight:700;letter-spacing:.02em;white-space:nowrap}
+.oc-rb-title{flex:none;color:#fff;font-weight:600;white-space:nowrap}
+.oc-rb-title em{font-style:normal;color:var(--oc-rb-fg);margin-left:4px;font-weight:500}
+/* 문서 이동: 제안서(index) · 실행 계획(project-plan) · 디자인 시안(renewal-plan) — 사이트의 알약 메뉴와 다르게 네모 탭 */
+.oc-rb-nav{display:flex;gap:2px;margin-left:auto}
+.oc-rb-nav a{display:inline-flex;align-items:center;gap:.3em;height:32px;padding:0 12px;border-radius:4px;color:var(--oc-rb-fg);font-weight:500;text-decoration:none;white-space:nowrap;transition:background .15s,color .15s}
+.oc-rb-nav a:hover{background:rgba(255,255,255,.08);color:#fff}
+.oc-rb-nav a[aria-current="page"]{background:var(--oc-rb-line);color:#fff;font-weight:700}
+/* 접기 버튼 (막대 오른쪽 끝) */
+.oc-rb-fold{flex:none;display:inline-flex;align-items:center;gap:4px;height:32px;padding:0 10px;border:1px solid var(--oc-rb-line);border-radius:4px;background:none;color:var(--oc-rb-fg);font:inherit;font-size:12px;font-weight:600;cursor:pointer}
+.oc-rb-fold:hover{border-color:var(--oc-rb-tag);color:#fff}
+/* 접힌 상태: 얇은 선 + 화면 오른쪽 모서리에 아래로 늘어진 '펼치기' 꼬리표.
+   사이트 헤더 오른쪽 끝(견적함 버튼)을 덮지 않도록 콘텐츠 밖 모서리에 두고, 화살표만 보인다(글자는 aria-label 로). 1280 은 바깥 여백이 없어 글자를 넣으면 버튼과 겹침 */
+.oc-rb-open{display:none;position:absolute;top:100%;right:0;align-items:center;gap:4px;height:20px;padding:0 6px 2px;border:0;border-radius:0 0 0 6px;background:var(--oc-rb-bg);color:var(--oc-rb-fg);font:inherit;font-size:11px;font-weight:600;line-height:1;cursor:pointer}
+.oc-rb-open:hover{color:#fff}
+.oc-rb-open span{display:none}
+.oc-rb-off .oc-review-bar{border-bottom:0}
+.oc-rb-off .oc-rb-in{display:none}
+.oc-rb-off .oc-rb-open{display:inline-flex}
+@media (max-width:767px){
+  .oc-rb-in{gap:6px;padding:0 12px}
+  .oc-rb-in::before{content:"검토"}
+  .oc-rb-title,.oc-rb-fold span{display:none}
+  .oc-rb-nav{margin-left:0}
+  .oc-rb-nav a{padding:0 7px}
+  .oc-rb-fold{margin-left:auto;padding:0 8px}
+  .oc-rb-open{height:10px;padding:0 8px 1px} /* 사이트 모바일 헤더 검색 버튼(위에서 17px부터)과 겹치지 않게 1px 띄움 */
+  .oc-rb-open svg{width:10px;height:10px}
+}
+@media print{.oc-review-bar{display:none}}

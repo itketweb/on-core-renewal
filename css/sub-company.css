@@ -54,7 +54,7 @@
 .oc-company-tblwrap .oc-tbl tbody th{width:auto;background:none;color:var(--oc-ink);font-weight:600}
 
 /* ── 이용안내: 앵커 섹션 ── */
-.oc-company-guide .oc-pg-sec{scroll-margin-top:calc(var(--oc-hd) + var(--oc-sp-48))}
+.oc-company-guide .oc-pg-sec{scroll-margin-top:calc(var(--oc-stick) + var(--oc-hd) + var(--oc-sp-48))}
 .oc-company-guide .oc-note{margin-bottom:var(--oc-sp-48)}
 .oc-company-guide .oc-pg-sec>ol+p{margin-top:var(--oc-sp-24)}
 .oc-company-lines{border-top:2px solid var(--oc-ink)}

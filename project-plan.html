@@ -4,411 +4,252 @@
 <meta name="robots" content="noindex, nofollow">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>온코어 리뉴얼 완성 계획 (~11/13)</title>
+<title>온코어 리뉴얼 실행 계획</title>
 <!-- 완성 계획서 | 기획안(index.html)과 같은 스타일(css/plan.css) + 계획서 전용 부품(css/plan-schedule.css). 내용을 바꾸면 '작성·수정' 날짜도 고친다 -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
 <link rel="stylesheet" href="css/plan.css">
 <link rel="stylesheet" href="css/plan-schedule.css">
+<link rel="stylesheet" href="css/review-bar.css">
+<script src="js/review-bar.js"></script><!-- 목업 전용: 검토 막대 접기 (그리기 전에 접힘 상태 적용) -->
 </head>
 <body>
 
-<header class="top">
-  <div class="wrap top-in">
-    <a class="top-brand" href="#top">온코어 리뉴얼<em>완성 계획 ~11/13</em></a>
-    <nav class="toc" aria-label="목차">
-      <a href="#p1">개요</a>
-      <a href="#p2">현황</a>
-      <a href="#p3">일정</a>
-      <a href="#w1">1주차</a>
-      <a href="#w2">2주차</a>
-      <a href="#w3">3주차</a>
-      <a href="#p4">요청</a>
-      <a href="#p5">결정</a>
-      <a href="#p6">남은 결정</a>
-      <a href="#p7">체크리스트</a>
-      <a href="#p8">리스크</a>
+<!-- 시안 검토용 도구 막대 — 메인 시안·서브 페이지와 같은 막대(css/review-bar.css), 화면 위에 늘 고정. 지금 문서는 aria-current -->
+<div class="oc-review-bar">
+  <div class="oc-rb-in">
+    <span class="oc-rb-title">온코어 리뉴얼 <em>실행 계획</em></span>
+    <nav class="oc-rb-nav" aria-label="문서">
+      <a href="index.html">제안서</a>
+      <a href="project-plan.html" aria-current="page">실행 계획</a>
+      <a href="renewal-plan.html">디자인 시안</a>
     </nav>
-    <a class="btn btn-d btn-sm" href="index.html">← 기획안으로</a>
   </div>
   <i class="progress" aria-hidden="true"></i>
-</header>
+</div>
+
+<!-- 장 이동: 1280 미만 상단 바 아래 칩 / 1280 이상 화면 오른쪽 목차 (기획안 index.html 과 같은 부품) -->
+<nav class="anchor-nav" aria-label="목차">
+  <a href="#p1">목표</a>
+  <a href="#p2">일정</a>
+  <a href="#pf">작업 방식</a>
+  <a href="#p3">의사결정</a>
+  <a href="#p4">리스크</a>
+</nav>
 
 <main id="top">
 
-<div class="hero"><div class="wrap">
-  <p class="kicker">온코어 리뉴얼 완성 계획</p>
-  <h1>11월 13일까지,<br><span>오픈할 수 있는 상태</span>로.</h1>
-  <p class="hero-sub">시안을 확정하고, 고도몰 테스트 스킨에 적용해 검수까지 마칩니다. 운영 반영(오픈)은 검수 결과를 보고 따로 정합니다.</p>
-  <div class="hero-cta">
-    <a class="btn btn-p" href="renewal-plan.html" target="_blank" rel="noopener">메인 시안 열기
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-    <a class="btn btn-ghost" href="#p3">일정 바로 보기</a>
+<!-- 컨펌하는 사람이 이 페이지만 보고 판단할 수 있게: 목표 · 일정 · 결정(선택지·확정 사항) · 리스크·오픈 당일 확인. 다른 문서로 안내하지 않는다 -->
+<!-- 첫 화면: 제안서의 어두운 히어로와 구분되는 밝은 일정 요약. 고정 문서 — 진행 현황(완료·진행 중 수, 오늘 위치 등)처럼 계속 고쳐야 하는 내용은 넣지 않는다 -->
+<div class="phero"><div class="wrap phero-in">
+  <div>
+    <p class="ch-eb">온코어 리뉴얼 · 실행 계획</p>
+    <h1>11월 13일까지,<br><span>오픈할 수 있는 상태</span>로.</h1>
+    <p class="phero-sub">시안을 확정하고, 고도몰 테스트 스킨에 적용해 검수까지 마칩니다. 운영 반영(오픈)은 검수 결과를 보고 따로 정합니다.</p>
+    <div class="hero-cta">
+      <a class="btn btn-d" href="#p3">결정 사항 보기</a>
+      <a class="btn btn-o" href="renewal-plan.html" target="_blank" rel="noopener">디자인 시안 보기</a>
+    </div>
+    <p class="phero-meta"><span>작성<b>2026-10-26 (월)</b></span><span>목표일<b>2026-11-13 (금)</b></span></p>
   </div>
-  <div class="hero-meta">
-    <span>작성<b>2026-10-26 (월)</b></span>
-    <span>마감<b>2026-11-13 (금)</b></span>
-    <span>남은 기간<b>영업일 14일 · 3주</b></span>
-    <span>근거<b>PROJECT-RULES.md · feedback-v0.3.md</b></span>
-  </div>
+
+  <aside class="pboard" aria-label="일정 요약">
+    <div class="pboard-top">
+      <div>
+        <p class="pboard-lb">계획 일정</p>
+        <p class="pboard-ttl">3주 · 관문 3개</p>
+      </div>
+      <span class="chip dark">목표일 11/13</span>
+    </div>
+    <ol class="pgates">
+      <li><b>1주차 금</b>시안 확정</li>
+      <li><b>2주차 금</b>고도몰 적용</li>
+      <li><b>3주차 금</b>검수 · 완성</li>
+    </ol>
+    <p class="pboard-note">계획 기준입니다. 진행에 따라 앞당겨지거나 늦어질 수 있습니다.</p>
+  </aside>
 </div></div>
 
-<!-- 1. 개요 -->
+<!-- 1. 목표 -->
 <section id="p1" class="sec sec-alt"><div class="wrap">
   <div class="ch">
-    <p class="ch-eb">01 개요</p>
+    <p class="ch-eb">01 목표 · 범위</p>
     <h2>3주 안에 시안 확정 → 고도몰 적용 → 검수</h2>
-    <p class="lead">메인 1개와 서브 40개 화면은 이미 만들어져 있습니다. 남은 일은 컨펌, 실제 콘텐츠 교체, 고도몰 스킨 적용과 검수입니다.</p>
+    <p class="lead">기준은 디자인 시안(메인 1 + 서브 40개 화면)입니다.</p>
   </div>
 
-  <div class="grid g3">
-    <div class="card"><span class="chip dark">범위</span><h4>시안 확정 · 스킨 적용 · 데이터 정리 · 검수</h4><p>메인 1 + 서브 40 화면을 고도몰 PC 스킨 <code>chefs_choice</code> 하나로 PC·휴대폰 모두에 적용하고, 상품 짧은 설명·게시판·배너·진열을 정리합니다.</p></div>
-    <div class="card"><span class="chip">범위 밖</span><h4>이번에 하지 않는 것</h4><p>장바구니·주문서·주문 완료·마이페이지 리뉴얼(고도몰 기본 화면 유지), 상품 신규 등록, 견적 시스템(dbk) 개발.</p></div>
-    <div class="card"><span class="chip">작업 위치</span><h4>스킨 저장소 하나에서</h4><p>저장소 <code>itketweb/on-core.co.kr</code>(비공개) — 시안은 <code>renewal/</code>(서버에 반영 안 됨), 스킨은 <code>skin/front/chefs_choice/</code>. 브랜치 <code>feat/renewal-mockup</code>. NAS 폴더는 열람용 사본.</p></div>
-  </div>
-
-  <h3 class="sub-h">완성의 정의 <small>11/13에 다섯 가지를 모두 만족</small></h3>
+  <h3 class="sub-h sub-h-first">완성의 정의 <small>11/13에 다섯 가지를 모두 만족</small></h3>
   <ol class="dod">
-    <li><b>시안 최종 컨펌</b>11/12 최종 컨펌에서 확정</li>
-    <li><b>테스트 스킨 = 시안</b>테스트 스킨 화면이 시안과 같음</li>
-    <li><b>폭 6종 점검 통과</b>360 · 480 · 768 · 1024 · 1280 · 1440</li>
-    <li><b>실제로 접수됨</b>견적 요청 · 바로 구매 · 회원가입 · 1:1 문의</li>
-    <li><b>되돌리기 준비</b>이전 릴리즈로 바로 되돌릴 수 있음</li>
+    <li><b>시안 확정</b>3주차 최종 컨펌 통과</li>
+    <li><b>시안대로 적용</b>테스트 스킨 화면이 시안과 일치</li>
+    <li><b>모든 화면 크기 점검</b>휴대폰 360 ~ PC 1280px, 5개 폭 이상 없음</li>
+    <li><b>주요 기능 정상 접수</b>견적 요청 · 바로 구매 · 회원가입 · 1:1 문의</li>
+    <li><b>즉시 복구 가능</b>문제 시 이전 버전으로 바로 되돌림</li>
   </ol>
 
-  <div class="note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16.5v.5"/></svg><p><b>반영 흐름</b> — 시안: <code>pages-src/</code>·<code>renewal-plan.html</code> 수정 → <code>node - &lt; _tools/build-pages.js</code> 빌드 → 화면 확인 → 커밋. 스킨: <code>skin/</code> 수정 → PR → main 에 merge = <b>테스트 스킨 자동 반영</b> → 확인 → 릴리즈(<code>YY.M.D</code>) = <b>운영 스킨 반영</b>. 자세한 절차는 저장소 <code>README.md</code>.</p></div>
+  <p class="note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg><span><b>이번에 하지 않는 것</b> — 장바구니·주문서·마이페이지 리뉴얼(고도몰 기본 화면 유지), 상품 신규 등록, 견적 시스템(dbk) 개발.</span></p>
 </div></section>
 
-<!-- 2. 현황 -->
+<!-- 2. 일정 -->
 <section id="p2" class="sec"><div class="wrap">
   <div class="ch">
-    <p class="ch-eb">02 현재 진행 현황 · 2026-10-26</p>
-    <h2>화면은 거의 다 됐고, 남은 건 적용과 콘텐츠</h2>
+    <p class="ch-eb">02 일정</p>
+    <h2>매주 금요일, 관문 하나씩</h2>
+    <p class="lead">관문(금)까지 정해지지 않은 항목은 권장안으로 진행하고, 시안 동결 뒤에는 문구·이미지만 고칩니다.</p>
   </div>
-  <table class="pt">
-    <thead><tr><th>영역</th><th>범위</th><th>상태</th><th>남은 일</th></tr></thead>
+
+  <!-- 일정: 주차별 칸 3개. 칸마다 위에서 아래로 핵심 → 함께 진행 → 금요일 관문. 빨강은 마지막 관문만 -->
+  <ol class="pw">
+    <li class="pw-col">
+      <p class="pw-no"><b>1</b>1주차</p>
+      <h4>시안 확정</h4>
+      <p class="pw-lb">핵심</p>
+      <ul class="pw-list"><li>1차 컨펌 <small>전체 화면 · 수요일</small></li><li>피드백 반영</li></ul>
+      <p class="pw-lb">함께 진행</p>
+      <ul class="pw-list soft"><li>사전 확인 <small>견적 화면(dbk)·사용 중 스킨·테스트 스킨</small></li><li>콘텐츠 준비 시작 <small>실제 사례·글, 상품 짧은 설명</small></li><li>사이트 문구 검수 (주요 화면) <small>메인·상품·견적·회원 먼저, 수정 요청</small></li><li>배너 제작 시작 <small>이수진 주임</small></li></ul>
+      <p class="pw-gate"><span>금요일 관문</span><b>시안 동결</b></p>
+    </li>
+    <li class="pw-col">
+      <p class="pw-no"><b>2</b>2주차</p>
+      <h4>고도몰 적용</h4>
+      <p class="pw-lb">핵심</p>
+      <ul class="pw-list"><li>테스트 스킨 준비 <small>주초</small></li><li>공통 → 메인 → 상품 → 게시판·견적·회원 적용</li></ul>
+      <p class="pw-lb">함께 진행</p>
+      <ul class="pw-list soft"><li>사이트 문구 검수 (나머지 화면) <small>회사소개·고객지원·약관 등</small></li><li>콘텐츠 준비 마무리 <small>상품 짧은 설명 약 158개</small></li><li>배너 6세트 완성 <small>PC·모바일 12장</small></li></ul>
+      <p class="pw-gate"><span>금요일 관문</span><b>2차 컨펌</b></p>
+    </li>
+    <li class="pw-col">
+      <p class="pw-no"><b>3</b>3주차</p>
+      <h4>검수 · 오픈 준비</h4>
+      <p class="pw-lb">핵심</p>
+      <ul class="pw-list"><li>화면·기능 검수 <small>폭 5종 · 실기기 · 견적·구매·회원</small></li><li>수정 반영</li></ul>
+      <p class="pw-lb">함께 진행</p>
+      <ul class="pw-list soft"><li>실제 콘텐츠 입력 <small>배너 · 구축사례 · 공지</small></li></ul>
+      <p class="pw-gate goal"><span>금요일 관문</span><b>최종 컨펌 · 완성</b></p>
+    </li>
+  </ol>
+
+</div></section>
+
+<!-- 3. 디자인 작업 방식 (피그마) -->
+<section id="pf" class="sec sec-alt"><div class="wrap">
+  <div class="ch">
+    <p class="ch-eb">03 디자인 작업 방식</p>
+    <h2>배너·이미지 원본은 피그마 한 곳에서 관리합니다</h2>
+    <p class="lead">배너 교체는 오픈 뒤에도 계속되므로, '파일을 주고받는 일'을 '원본 하나를 고치는 일'로 바꿉니다. 링크 하나로 함께 보고 고치며, 공통 요소는 한 번만 고치면 12장에 모두 반영됩니다. 사진 보정 등 지금 쓰는 프로그램은 그대로 씁니다.</p>
+  </div>
+
+
+  <h3 class="sub-h sub-h-first">배너 제작 요청 <small>규격 PC 2464×960 · 모바일 720×900, JPG (PC 300KB · 모바일 150KB 이하)</small></h3>
+  <ul class="bn-sum">
+    <li><span class="bn-sum-lb">오픈 전 · 2주차까지</span><b>12장</b><span>메인 히어로 6세트 (PC 6 + 모바일 6)</span></li>
+    <li><span class="bn-sum-lb">오픈 후 · 매달 (예상, 운영하며 조정)</span><b>2~4장</b><span>신제품·프로모션 때 히어로 1~2세트 교체</span></li>
+    <li><span class="bn-sum-lb">주고받기</span><b>링크 1개</b><span>요청·시안·코멘트·확정본을 한 원본에서</span></li>
+  </ul>
+  <p class="bn-note">완성이 늦어져도 지금의 임시 배너가 규격에 맞아 그대로 오픈할 수 있고, 실제 배너는 완성되는 대로 교체합니다.</p>
+
+  <h3 class="sub-h">작업 순서 · 주고받는 방법 <small>같은 원본을 링크로 함께 보며 진행합니다</small></h3>
+  <table class="pt pt-num">
+    <thead><tr><th>#</th><th>단계</th><th>언제</th><th>누가</th><th>무엇을</th></tr></thead>
     <tbody>
-      <tr><td>메인 시안</td><td data-label="범위"><code>renewal-plan.html</code> — 히어로·신뢰 줄·제품 유형·업종별 추천·많이 찾는 제품·구축사례·가이드·마무리</td><td data-label="상태"><span class="chip ok">완료</span></td><td data-label="남은 일">히어로 배너 6장이 자리 표시용 → 실제 배너로 교체</td></tr>
-      <tr><td>서브 40개 화면</td><td data-label="범위">상품(목록 16·상세·검색·비교), 기업 구매(구축사례·프로모션·가이드), 견적(요청·조회·비밀번호·상세), 고객지원, 회원, 회사·약관</td><td data-label="상태"><span class="chip ok">완료</span></td><td data-label="남은 일">컨펌 수정 반영</td></tr>
-      <tr><td>반응형</td><td data-label="범위">최소 폭 360, 기준점 768·1024·1280 + 보조 480, 41개 화면 자동 점검 가로 넘침 0</td><td data-label="상태"><span class="chip ok">완료</span></td><td data-label="남은 일">실제 휴대폰 확인</td></tr>
-      <tr><td>운영 사이트 내용 반영</td><td data-label="범위">게시판 글 3·프로모션 3·공지 1, 푸터 SNS·점심시간, 견적 상태명, 상품코드, 스토리지 4종</td><td data-label="상태"><span class="chip ok">완료</span></td><td data-label="남은 일">담당자 문구 검토</td></tr>
-      <tr><td>시안용 글</td><td data-label="범위">구축사례 7 · 구매 가이드 12 · 공지 12건은 직접 쓴 글</td><td data-label="상태"><span class="chip warn">진행 중</span></td><td data-label="남은 일">실제 글로 교체하거나 오픈 때 뺌</td></tr>
-      <tr><td>약관·개인정보처리방침</td><td data-label="범위">시안 문구</td><td data-label="상태"><span class="chip warn">진행 중</span></td><td data-label="남은 일">운영 사이트 원문으로 교체·확인</td></tr>
-      <tr><td>반영 자동화</td><td data-label="범위">push → 테스트 스킨, 릴리즈 → 운영 스킨 (GitHub Actions + SFTP)</td><td data-label="상태"><span class="chip warn">진행 중</span></td><td data-label="남은 일"><b>테스트 스킨 사본이 아직 없음</b>, <code>site.conf</code> 의 <code>TEST_*</code>·<code>LIVE_*</code> 비어 있음, 사용 중 스킨 관리자 확인 전</td></tr>
-      <tr><td>고도몰 스킨 적용</td><td data-label="범위"><code>skin/front/chefs_choice/</code> 의 header·footer·main·goods·board·member, <code>oncore.css</code>·<code>oncore.js</code></td><td data-label="상태"><span class="chip">미착수</span></td><td data-label="남은 일">전부</td></tr>
-      <tr><td>고도몰 데이터 준비</td><td data-label="범위">짧은 설명 사양 4줄·모델번호(상품 약 158개), <code>case</code> 게시판, 말머리, 배너 그룹, 메인 진열 6개, FAQ</td><td data-label="상태"><span class="chip">미착수</span></td><td data-label="남은 일">전부</td></tr>
-      <tr><td>견적 모듈(dbk) 확인</td><td data-label="범위">견적 화면 스킨 위치·수정 범위, 견적함 값(goodsNm·spec) 넘김. 서버 PHP 사본 <code>DbkEstimate.php</code>(Teams 알림·문자)는 저장소에 있음</td><td data-label="상태"><span class="chip">미착수</span></td><td data-label="남은 일">화면 스킨 위치 확인, 필요하면 개발사 문의</td></tr>
-      <tr><td>실제 배너 제작</td><td data-label="범위">PC 2464×960 · 모바일 720×900, 글자 최소 크기 규칙</td><td data-label="상태"><span class="chip">미착수</span></td><td data-label="남은 일">제작 주체·일정 결정</td></tr>
+      <tr><td>1</td><td data-label="단계">제작 요청</td><td data-label="언제" class="nw">1주차</td><td data-label="누가">권순우 대리</td><td data-label="무엇을">배너 주제·제품 사진·연결할 상품 페이지 전달</td></tr>
+      <tr><td>2</td><td data-label="단계">문구 검수</td><td data-label="언제" class="nw">1~2주차</td><td data-label="누가">김지선 대리 · 송승한 팀장</td><td data-label="무엇을">사이트 내 문구를 검수해 수정 요청</td></tr>
+      <tr><td>3</td><td data-label="단계">배너 제작 · 피드백</td><td data-label="언제" class="nw">1~2주차</td><td data-label="누가">이수진 주임</td><td data-label="무엇을">시안을 링크로 공유하고, 코멘트를 받아 원본에서 수정</td></tr>
+      <tr><td>4</td><td data-label="단계">완성 · 등록</td><td data-label="언제" class="nw">2~3주차</td><td data-label="누가">이수진 주임</td><td data-label="무엇을">확정본 12장을 내보내 고도몰 배너에 등록</td></tr>
+      <tr><td>5</td><td data-label="단계">오픈 후 교체</td><td data-label="언제" class="nw">필요할 때</td><td data-label="누가">요청 권순우 대리 · 제작 이수진 주임</td><td data-label="무엇을">같은 틀에서 문구·사진만 바꿔 다시 제작</td></tr>
     </tbody>
   </table>
+
+  <h3 class="sub-h">관리 규칙</h3>
+  <div class="grid g4 rule-cards">
+    <div class="card"><span class="rc-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/></svg></span><h4>원본</h4><p>원본 파일 하나를 함께 씀, 이름 앞에 [요청]·[확정]</p></div>
+    <div class="card"><span class="rc-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M16 4.5a3.5 3.5 0 0 1 0 7"/><path d="M18.5 14a6.5 6.5 0 0 1 3 6"/></svg></span><h4>편집 권한</h4><p>2명 이상 — 한 사람이 비워도 바로 이어서 수정</p></div>
+    <div class="card"><span class="rc-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></span><h4>파일 · 보관</h4><p><code>hero-01-pc.jpg</code> 형식, 확정본만 NAS 배너 폴더에</p></div>
+    <div class="card"><span class="rc-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/></svg></span><h4>넘기기 전 확인</h4><p>용량·최소 글자·글자 영역, 가격 대신 '견적'</p></div>
+  </div>
+
 </div></section>
 
-<!-- 3. 일정 -->
-<section id="p3" class="sec sec-alt"><div class="wrap">
+<!-- 4. 의사결정 요청 -->
+<section id="p3" class="sec"><div class="wrap">
   <div class="ch">
-    <p class="ch-eb">03 주차별 계획</p>
-    <h2>주마다 끝에 '문'이 하나씩</h2>
-    <p class="lead">10/30 시안 동결 → 11/6 주요 화면 적용 → 11/13 완성. 문을 넘지 못하면 다음 주가 밀리므로, 그 주 금요일까지 정해지지 않은 항목은 남은 결정의 권장안으로 진행합니다.</p>
+    <p class="ch-eb">04 의사결정 요청</p>
+    <h2>결정 사항 4건</h2>
+    <p class="lead">마감까지 정해지지 않으면 권장안으로 진행합니다.</p>
   </div>
-
-  <div class="gt" role="img" aria-label="3주 일정: 1주차 시안 확정 10월 30일 동결, 2주차 고도몰 적용 11월 6일 2차 컨펌, 3주차 검수 11월 13일 완성">
-    <div class="gt-head"><span></span><div class="gt-weeks"><span>1주차 · 시안 확정</span><span>2주차 · 고도몰 적용</span><span>3주차 · 검수 · 오픈 준비</span></div></div>
-    <div class="gt-head"><span></span><div class="gt-days"><span class="now">10/26</span><span>27</span><span>28</span><span>29</span><span>30</span><span>11/2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>11/9</span><span>10</span><span>11</span><span>12</span><span>13</span></div></div>
-
-    <p class="gt-sec">1주차 · 10/26 ~ 10/30</p>
-    <div class="gt-row"><span class="gt-name">컨펌 자료 준비 · 이 계획서</span><div class="gt-track"><i class="gt-today gs-0"></i><i class="gt-bar gs-0 gw-2"></i></div></div>
-    <div class="gt-row"><span class="gt-name">dbk 견적 화면 · 사용 스킨 확인</span><div class="gt-track"><i class="gt-bar soft gs-1 gw-4"></i></div></div>
-    <div class="gt-row ms"><span class="gt-name">1차 컨펌 (전체 화면)</span><div class="gt-track"><i class="gt-dia gs-2"></i></div></div>
-    <div class="gt-row"><span class="gt-name">1차 피드백 반영</span><div class="gt-track"><i class="gt-bar gs-3 gw-2"></i></div></div>
-    <div class="gt-row"><span class="gt-name">실제 사례·글 요청</span><div class="gt-track"><i class="gt-bar soft gs-2 gw-3"></i></div></div>
-    <div class="gt-row"><span class="gt-name">실제 배너 제작 (6장)</span><div class="gt-track"><i class="gt-bar soft gs-2 gw-8"></i></div></div>
-    <div class="gt-row"><span class="gt-name">상품 짧은 설명 입력 (진열 상품 먼저)</span><div class="gt-track"><i class="gt-bar soft gs-3 gw-6"></i></div></div>
-    <div class="gt-row ms"><span class="gt-name">시안 동결</span><div class="gt-track"><i class="gt-dia gs-4"></i></div></div>
-
-    <p class="gt-sec">2주차 · 11/2 ~ 11/6</p>
-    <div class="gt-row"><span class="gt-name">테스트 스킨 준비 · CSS/JS 묶기</span><div class="gt-track"><i class="gt-bar gs-5 gw-1"></i></div></div>
-    <div class="gt-row"><span class="gt-name">공통 헤더·푸터·서랍·viewport</span><div class="gt-track"><i class="gt-bar gs-6 gw-1"></i></div></div>
-    <div class="gt-row"><span class="gt-name">메인 (배너·진열·추천)</span><div class="gt-track"><i class="gt-bar gs-7 gw-1"></i></div></div>
-    <div class="gt-row"><span class="gt-name">상품 목록·상세·검색·비교</span><div class="gt-track"><i class="gt-bar gs-8 gw-1"></i></div></div>
-    <div class="gt-row"><span class="gt-name">게시판·견적·회원 화면</span><div class="gt-track"><i class="gt-bar gs-9 gw-1"></i></div></div>
-    <div class="gt-row ms"><span class="gt-name">2차 컨펌 (테스트 스킨)</span><div class="gt-track"><i class="gt-dia gs-9"></i></div></div>
-
-    <p class="gt-sec">3주차 · 11/9 ~ 11/13</p>
-    <div class="gt-row"><span class="gt-name">나머지 화면 · 실제 콘텐츠 입력</span><div class="gt-track"><i class="gt-bar gs-10 gw-1"></i></div></div>
-    <div class="gt-row"><span class="gt-name">화면 검수 (폭 6종·실기기·브라우저)</span><div class="gt-track"><i class="gt-bar gs-11 gw-1"></i></div></div>
-    <div class="gt-row"><span class="gt-name">기능 검수 (견적·구매·회원)</span><div class="gt-track"><i class="gt-bar gs-12 gw-1"></i></div></div>
-    <div class="gt-row"><span class="gt-name">수정 반영 · 최종 컨펌</span><div class="gt-track"><i class="gt-bar gs-13 gw-1"></i></div></div>
-    <div class="gt-row ms"><span class="gt-name">완성 · 오픈 판단</span><div class="gt-track"><i class="gt-dia gs-14"></i></div></div>
-
-    <div class="gt-key"><span><i></i>직접 작업</span><span><i class="soft"></i>함께 진행·외부 대기</span><span><i class="dia"></i>컨펌·문(gate)</span><span>빨간 세로선 = 오늘</span></div>
-  </div>
-</div></section>
-
-<!-- 1주차 -->
-<section id="w1" class="sec"><div class="wrap">
-  <div class="ch">
-    <p class="ch-eb">1주차 · 10/26 (월) ~ 10/30 (금)</p>
-    <h2>시안 확정</h2>
-  </div>
-  <p class="wk-gate"><span class="chip red">문</span><b>10/30 (금) 시안 동결</b> — 이후에는 구조·디자인을 바꾸지 않고 문구·이미지만 바꿉니다.</p>
-  <div class="wk-cols">
-    <table class="pt">
-      <thead><tr><th>날짜</th><th>할 일</th><th>산출물</th></tr></thead>
-      <tbody>
-        <tr><td class="nw">10/26 (월)</td><td data-label="할 일">운영 사이트 비교·누락분 반영, 이 계획서 작성</td><td data-label="산출물">이 계획서</td></tr>
-        <tr><td class="nw">10/27 (화)</td><td data-label="할 일">컨펌 자료 준비(화면 링크 목록, 남은 결정 목록, 미리보기 주소) · <b>dbk 견적 화면 스킨 위치 확인</b>(필요하면 개발사 문의) · 관리자에서 <b>사용 중 스킨 확인</b></td><td data-label="산출물">컨펌 체크리스트</td></tr>
-        <tr><td class="nw">10/28 (수)</td><td data-label="할 일"><b>1차 컨펌</b> — 메인 → 상품 목록·상세 → 견적 요청·조회 → 기업 구매 → 고객지원·회원 순 · 배너 제작 착수 · 실제 사례·글 요청</td><td data-label="산출물">피드백 목록</td></tr>
-        <tr><td class="nw">10/29 (목)</td><td data-label="할 일">1차 피드백 반영 · 상품 짧은 설명 입력 시작(메인 진열·많이 찾는 제품 상품 먼저)</td><td data-label="산출물"><code>feedback-v0.4.md</code></td></tr>
-        <tr><td class="nw">10/30 (금)</td><td data-label="할 일">피드백 반영 마무리 · 남은 결정 1~8·10번 확정 · <b>시안 동결</b></td><td data-label="산출물">확정 시안 커밋</td></tr>
-      </tbody>
-    </table>
-    <div class="card">
-      <h4>이번 주에 꼭 <small>2주차 적용을 막는 것들</small></h4>
-      <ul class="ck">
-        <li>dbk 확인: 견적 화면 스킨 위치·수정 권한, 견적함 값(상품명·사양) 넘김, 상태값 <code>접수중·처리중·발송완료</code> 유지 (처리중 전환 때 고객 문자가 나감)</li>
-        <li>관리자 &gt; 스킨 관리에서 사용 중 PC·모바일 스킨 확인 → <code>site.conf</code> 운영 반영 경로(<code>LIVE_*</code>)</li>
-        <li>컨펌 전 공개 미리보기 갱신: <code>bash _tools/publish-preview.sh --push</code> → <code>itketweb.github.io/on-core-renewal</code> 주소 공유</li>
-        <li>배너 제작 주체·일정 확정 (규격: 규칙 11-2)</li>
-        <li>구축사례 실제 사례 수집 시작 (3건 이상이어야 노출)</li>
-        <li>약관·개인정보처리방침 운영 사이트 원문 확보</li>
-      </ul>
-    </div>
-  </div>
-</div></section>
-
-<!-- 2주차 -->
-<section id="w2" class="sec sec-alt"><div class="wrap">
-  <div class="ch">
-    <p class="ch-eb">2주차 · 11/2 (월) ~ 11/6 (금)</p>
-    <h2>고도몰 적용</h2>
-  </div>
-  <p class="wk-gate"><span class="chip red">문</span><b>11/6 (금) 주요 화면 적용 + 2차 컨펌</b> — 테스트 스킨에서 메인·상품·견적 흐름을 확인합니다.</p>
-  <div class="wk-cols">
-    <table class="pt">
-      <thead><tr><th>날짜</th><th>할 일</th><th>위치</th></tr></thead>
-      <tbody>
-        <tr><td class="nw">11/2 (월)</td><td data-label="할 일">서버에 <b>테스트용 스킨 사본</b>(운영 <code>chefs_choice</code> 복사) → <code>site.conf</code> <code>TEST_*</code> 채우기 → 자동 반영 시험 · <code>main.css</code>+<code>sub*.css</code> → <code>oncore.css</code>, <code>main.js</code> 등 → <code>oncore.js</code> (목업 전용 제외)</td><td data-label="위치">스킨 관리, <code>site.conf</code>, <code>skin/front/</code></td></tr>
-        <tr><td class="nw">11/3 (화)</td><td data-label="할 일">공통: 헤더·메가메뉴·모바일 서랍·견적함·하단 고정 바·푸터, viewport 분기(리뉴얼 화면만), 360 미만 보정 스크립트</td><td data-label="위치"><code>outline/_header.html</code>, <code>outline/footer/</code></td></tr>
-        <tr><td class="nw">11/4 (수)</td><td data-label="할 일">메인: 슬라이드 배너 그룹(PC·모바일), 많이 찾는 제품 메인 진열 6개, 업종별 추천, 가이드 최신글</td><td data-label="위치"><code>main/index.html</code>, 배너·진열 관리</td></tr>
-        <tr><td class="nw">11/5 (목)</td><td data-label="할 일">상품: 목록(정렬값 고도몰 그대로)·상세(상품코드, 바로 구매 = <code>goodsCnt[]</code> 폼, 견적함)·검색·비교 추가 페이지</td><td data-label="위치"><code>goods/goods_list.html</code>, <code>goods/goods_view.html</code></td></tr>
-        <tr><td class="nw">11/6 (금)</td><td data-label="할 일">게시판(notice·story·event·case·qa), 견적(dbk) 화면, 로그인(아이디 저장·비회원 주문조회)·회원가입 · <b>2차 컨펌</b></td><td data-label="위치"><code>board/</code>, <code>member/</code>, dbk</td></tr>
-      </tbody>
-    </table>
-    <div class="card">
-      <h4>함께 진행 <small>관리자 데이터</small></h4>
-      <ul class="ck">
-        <li><code>case</code>(구축사례) 게시판 신설 — 운영 사이트에 없음</li>
-        <li>story(구매 가이드)·event(프로모션) 말머리 사용</li>
-        <li>기본 FAQ(<code>/service/faq.php</code>) 분류·질문</li>
-        <li>상품 짧은 설명 사양 4줄·모델번호 계속 (약 158개)</li>
-      </ul>
-      <p class="note">작업은 브랜치 → PR → main merge. merge 하면 <b>테스트 스킨</b>에만 반영되고, 운영 화면은 릴리즈 전까지 바뀌지 않습니다.</p>
-    </div>
-  </div>
-</div></section>
-
-<!-- 3주차 -->
-<section id="w3" class="sec"><div class="wrap">
-  <div class="ch">
-    <p class="ch-eb">3주차 · 11/9 (월) ~ 11/13 (금)</p>
-    <h2>검수 · 오픈 준비</h2>
-  </div>
-  <p class="wk-gate"><span class="chip red">문</span><b>11/13 (금) 완성</b> — 개요의 '완성의 정의' 다섯 가지를 모두 만족.</p>
-  <table class="pt">
-    <thead><tr><th>날짜</th><th>할 일</th></tr></thead>
+  <table class="pt pt-num">
+    <thead><tr><th>#</th><th>결정 항목</th><th>권장안</th><th>마감</th></tr></thead>
     <tbody>
-      <tr><td class="nw">11/9 (월)</td><td data-label="할 일">나머지 화면(회사소개·약관·개인정보·이용안내·고객센터·제휴 문의) · 실제 콘텐츠 입력(배너, 구축사례, 프로모션 말머리, 공지)</td></tr>
-      <tr><td class="nw">11/10 (화)</td><td data-label="할 일"><b>화면 검수</b> — 폭 360·480·768·1024·1280·1440 × 주요 화면 · 실제 아이폰·갤럭시 · 크롬·사파리·삼성 인터넷·엣지</td></tr>
-      <tr><td class="nw">11/11 (수)</td><td data-label="할 일"><b>기능 검수</b> — 체크리스트의 기능 항목 전부 · SEO(title·description·OG) · 첫 화면 속도(히어로 이미지)</td></tr>
-      <tr><td class="nw">11/12 (목)</td><td data-label="할 일">검수 수정 반영 · <b>최종 컨펌</b> · 오픈 일시 확정</td></tr>
-      <tr><td class="nw">11/13 (금)</td><td data-label="할 일">완성 확인 · 오픈 판단. 오픈한다면 <code>scripts/release.sh</code> 점검 → 릴리즈(운영 반영) — 되돌리기 절차를 먼저 확인</td></tr>
+      <tr><td>1</td><td data-label="결정 항목">'완성'의 기준</td><td data-label="권장안" class="rec">테스트 스킨 검수 완료까지</td><td data-label="마감" class="nw"><span class="chip red">1주차 초</span></td></tr>
+      <tr><td>2</td><td data-label="결정 항목">상단 메뉴 구성</td><td data-label="권장안" class="rec">1차 컨펌에서 결정 (그 전엔 시안 구성)</td><td data-label="마감" class="nw"><span class="chip red">1주차</span></td></tr>
+      <tr><td>3</td><td data-label="결정 항목">사은품 ASUS GPU 서버·ExpertBook</td><td data-label="권장안" class="rec">등록 계획 없으면 프로모션에서 제외</td><td data-label="마감" class="nw"><span class="chip">2주차</span></td></tr>
+      <tr><td>4</td><td data-label="결정 항목">오픈 일시</td><td data-label="권장안" class="rec">3주차 목 또는 4주차 월 오전</td><td data-label="마감" class="nw"><span class="chip">3주차</span></td></tr>
     </tbody>
   </table>
+  <p class="note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg><span><b>그 밖에는 권장안대로 진행</b> — 구축사례는 실제 3건이 모이면 공개, 시안용 글은 빼고 실제 글만, 업종별 추천은 관리자 진열로. 이견은 1차 컨펌에서.</span></p>
+
+  <h3 class="sub-h">상단 메뉴(GNB) 구성안 <small>확정 전까지는 디자인 시안 구성(B안)으로 작업합니다 — 확정안은 아님</small></h3>
+  <!-- 1차 컨펌에서 상단 메뉴가 정해지면: 캡처·3안 카드를 확정안 한 줄로 바꾸고 결정 표 2번을 확정 사항으로 옮긴다 -->
+  <figure class="gnb-shots">
+    <div><p class="gnb-shot-lb"><b>A안</b>운영 사이트 (on-core.co.kr)</p><img src="img/plan/gnb-a-live.png" alt="운영 사이트 상단 메뉴: 전체 상품, 게시판, 프로모션, 공지사항, 견적요청" width="1390" height="94" loading="lazy"></div>
+    <div><p class="gnb-shot-lb"><b>B안</b>디자인 시안 · 현재 작업 기준</p><img src="img/plan/gnb-b-mockup.png" alt="디자인 시안 상단 메뉴: 제품, 업종별 추천, 구축사례, 프로모션, 고객지원, 견적 요청" width="1230" height="63" loading="lazy"></div>
+  </figure>
+  <div class="grid g3">
+    <div class="card"><span class="chip">A안 · 현행 유지</span><h4>운영 사이트 메뉴 그대로</h4>
+      <ol class="gnb-list"><li>전체 상품</li><li>게시판</li><li>프로모션</li><li>공지사항</li><li>견적요청</li></ol>
+      <ul class="ck"><li>기존 고객에게 익숙하고, 바꿀 것이 가장 적음</li><li>구축사례·업종별 추천으로 바로 가는 메뉴가 없음</li></ul></div>
+    <div class="card"><span class="chip dark">B안 · 디자인 시안 구성 · 현재 작업 기준</span><h4>제품·용도·사례 중심</h4>
+      <ol class="gnb-list"><li>제품</li><li>업종별 추천</li><li>구축사례</li><li>프로모션</li><li>고객지원</li><li>견적 요청</li></ol>
+      <ul class="ck"><li>제품·용도·사례를 보고 견적까지 바로 이어지는 동선</li><li>운영의 게시판(구매 가이드)·공지사항은 '고객지원' 아래로 이동 (고객지원: 공지사항 · 구매 가이드 · 1:1 문의 · 고객센터)</li></ul></div>
+    <div class="card"><span class="chip">C안 · 새 구성</span><h4>A·B안을 섞거나 새로 정함</h4>
+      <ol class="gnb-list is-tbd"><li>협의 후 결정</li></ol>
+      <ul class="ck"><li>필요한 메뉴만 골라 이름·순서를 정할 수 있음</li><li>구성에 따라 서브 화면을 더하거나 빼야 할 수 있음</li></ul></div>
+  </div>
+
+  <h3 class="sub-h">이미 확정된 사항 <small>다시 논의하지 않고 이대로 진행합니다</small></h3>
+  <dl class="fixed">
+    <div><dt>화면 범위</dt><dd>PC 화면을 휴대폰에 맞춤, 주문·마이페이지는 기본</dd></div>
+    <div><dt>상품</dt><dd>카드 전체 클릭·사양 4줄, 바로 구매는 가격 상품만</dd></div>
+    <div><dt>상세 · 메뉴</dt><dd>후기·문의 탭 없음, 빈 분류는 메뉴에서 제외</dd></div>
+    <div><dt>견적</dt><dd>기존 폼·상태명 그대로, 개발은 2차</dd></div>
+    <div><dt>회원</dt><dd>로그인에 아이디 저장·비회원 주문조회</dd></div>
+    <div><dt>콘텐츠</dt><dd>시안의 가짜 사례·후기·수치는 올리지 않음</dd></div>
+    <div><dt>푸터</dt><dd>공식 채널 4종, 점심시간 12:00–13:00</dd></div>
+    <div><dt>만들지 않음</dt><dd>목록 필터·게시판 정렬·D-day (고도몰 불가)</dd></div>
+  </dl>
 </div></section>
 
-<!-- 4. 요청 -->
+<!-- 5. 리스크 -->
 <section id="p4" class="sec sec-alt"><div class="wrap">
   <div class="ch">
-    <p class="ch-eb">04 요청사항 정리</p>
-    <h2>받은 요청은 모두 반영됨</h2>
-    <p class="lead">최신 순입니다. 자세한 반영 내역은 <code>feedback-v0.3.md</code> 에 있습니다.</p>
-  </div>
-  <table class="pt">
-    <thead><tr><th>날짜</th><th>요청</th><th>처리 결과</th></tr></thead>
-    <tbody>
-      <tr><td class="nw">10-26</td><td data-label="요청">완성 계획서 (폴더 안 문서, HTML)</td><td data-label="결과">이 문서</td></tr>
-      <tr><td class="nw">10-26</td><td data-label="요청">시안 작업 위치를 NAS → 스킨 저장소 <code>renewal/</code> 로 (다른 세션)</td><td data-label="결과">커밋 <code>defba92</code>, 규칙 0장</td></tr>
-      <tr><td class="nw">10-26</td><td data-label="요청">사은품 대상 ASUS GPU 서버·ExpertBook 처리</td><td data-label="결과">프로모션 원문 유지 + 견적 안내 문장, 상품 등록은 적용 전 할 일</td></tr>
-      <tr><td class="nw">10-26</td><td data-label="요청">남은 결정 5~8번 권장안대로 확정</td><td data-label="결과">상세 바로 구매(가격 상품만)·비회원 주문조회, 후기·문의 탭·공유 없음, 빈 분류 숨김</td></tr>
-      <tr><td class="nw">10-26</td><td data-label="요청">프로모션 실제 조건 확인</td><td data-label="결과">본문 이미지 판독: 24인치 모니터, D7 미니타워만·선착순, 제품별 사은품</td></tr>
-      <tr><td class="nw">10-26</td><td data-label="요청">운영 사이트와 비교해 빠진 내용 추가 (레이아웃 유지)</td><td data-label="결과">게시판 3·프로모션 3·공지 1, 푸터 SNS·점심시간·사업자정보, 견적 상태명, 아이디 저장, 상품코드·교환반품, 스토리지 2종, 사후 관리</td></tr>
-      <tr><td class="nw">10-26</td><td data-label="요청">회사소개 지도 아래 여백</td><td data-label="결과">마무리 영역 위 80px (모바일 48px)</td></tr>
-      <tr><td class="nw">10-26</td><td data-label="요청">카드 호버: 상품명 빨간색 제거, 사진 확대 키우기</td><td data-label="결과">그림자 + 사진 1.24배만</td></tr>
-      <tr><td class="nw">10-26</td><td data-label="요청">카드 전체 링크(<code>::after</code>) 제거 여부</td><td data-label="결과">유지, 품번만 드래그 복사 가능</td></tr>
-      <tr><td class="nw">10-26</td><td data-label="요청">상품 목록 위쪽·하위 이동 탭 디자인</td><td data-label="결과">안내 띠 흰 상자, 하위 이동 탭 PC도 알약 칩</td></tr>
-      <tr><td class="nw">10-26</td><td data-label="요청">드롭다운 항목 여백</td><td data-label="결과">상자 안쪽 4px, 항목별 둥근 배경</td></tr>
-      <tr><td class="nw">10-26</td><td data-label="요청">화면의 '예시'·'목업' 표시 제거</td><td data-label="결과">11개 페이지·검수 막대, 41개 화면 0건</td></tr>
-      <tr><td class="nw">10-26</td><td data-label="요청">html·하단 고정 바 최소 폭 360</td><td data-label="결과">min-width 360 + 360 미만 폰은 <code>width=360</code> 으로 축소</td></tr>
-      <tr><td class="nw">10-26</td><td data-label="요청">많이 찾는 제품 479 이하 1열</td><td data-label="결과">1열 가로 카드</td></tr>
-      <tr><td class="nw">10-26</td><td data-label="요청">모바일 반응형 정밀 검토 · 480 고려 · 390 제외</td><td data-label="결과">8건 수정 + 푸터 여백, 기준점 확정</td></tr>
-      <tr><td class="nw">10-26</td><td data-label="요청">상품 비교 복원, 모바일 글자 14px, 프로모션·구축사례 목록 개편 (다른 세션)</td><td data-label="결과"><code>feedback-v0.3.md</code> 21~34번</td></tr>
-      <tr><td class="nw">10-19</td><td data-label="요청">모바일 점검·가로 스크롤 제거, 카드 사양 4줄, 고도몰에서 못 만드는 기능 정리</td><td data-label="결과"><code>feedback-v0.3.md</code> 9~20번</td></tr>
-      <tr><td class="nw">10-14</td><td data-label="요청">메인 시안 v0.3 피드백 (히어로 규격, 구축사례 검토, SEO)</td><td data-label="결과"><code>feedback-v0.3.md</code> 1~8번</td></tr>
-    </tbody>
-  </table>
-</div></section>
-
-<!-- 5. 결정 -->
-<section id="p5" class="sec"><div class="wrap">
-  <div class="ch">
-    <p class="ch-eb">05 결정사항 정리</p>
-    <h2>확정된 결정 17가지</h2>
-    <p class="lead">근거와 세부 규칙은 <code>PROJECT-RULES.md</code> 의 해당 장에 있습니다.</p>
-  </div>
-  <table class="pt">
-    <thead><tr><th>영역</th><th>결정</th><th>날짜</th><th>규칙</th></tr></thead>
-    <tbody>
-      <tr><td>작업 위치</td><td data-label="결정">시안·스킨 모두 저장소 <code>itketweb/on-core.co.kr</code>(비공개) — 커밋이 백업, NAS 는 열람용, 창마다 브랜치 분리</td><td data-label="날짜" class="nw">10-26</td><td data-label="규칙">0</td></tr>
-      <tr><td>컨펌용 미리보기</td><td data-label="결정">공개 저장소 <code>itketweb/on-core-renewal</code>(GitHub Pages)에 화면 파일만 올림 — 모든 페이지 noindex, 스킨 저장소는 비공개 유지 (<code>_tools/publish-preview.sh</code>)</td><td data-label="날짜" class="nw">10-26</td><td data-label="규칙">0</td></tr>
-      <tr><td>모바일 제공</td><td data-label="결정">PC 스킨 하나를 반응형으로 (모바일 스킨 따로 안 만듦), viewport 는 리뉴얼 화면에만</td><td data-label="날짜" class="nw">10-19</td><td data-label="규칙">3-4</td></tr>
-      <tr><td>최소 폭</td><td data-label="결정">360. 360 미만 폰은 360으로 그리고 축소, PC 창은 가로 스크롤</td><td data-label="날짜" class="nw">10-26</td><td data-label="규칙">8-1</td></tr>
-      <tr><td>기준점</td><td data-label="결정">768 · 1024 · 1280 + 모바일 보조 480 (1440 없음), 확인 폭 360/480/768/1024/1280</td><td data-label="날짜" class="nw">10-26</td><td data-label="규칙">8</td></tr>
-      <tr><td>모바일 글자</td><td data-label="결정"><code>html{font-size:14px}</code> (rem 토큰이 함께 줄어듦, 입력칸은 16px)</td><td data-label="날짜" class="nw">10-26</td><td data-label="규칙">6</td></tr>
-      <tr><td>탭</td><td data-label="결정">알약 칩 (서브 하위 이동도 PC·모바일 모두), 예외는 업종별 추천 밑줄 탭</td><td data-label="날짜" class="nw">10-26</td><td data-label="규칙">8, 9-5</td></tr>
-      <tr><td>상품 카드</td><td data-label="결정">카드 전체가 링크, 사양 4줄, 호버 = 그림자 + 사진 1.24배 (상품명 색 안 바꿈), 많이 찾는 제품은 479 이하 1열 가로 카드</td><td data-label="날짜" class="nw">10-26</td><td data-label="규칙">9-2</td></tr>
-      <tr><td>상품 상세</td><td data-label="결정">상품코드 표시, <b>바로 구매는 가격 있는 상품만</b>, 상품후기·상품문의 탭 없음, 공유 없음, 교환·반품 안내</td><td data-label="날짜" class="nw">10-26</td><td data-label="규칙">9-4-3</td></tr>
-      <tr><td>구매 화면</td><td data-label="결정">장바구니·주문서·주문 완료·마이페이지는 고도몰 기본 화면 유지</td><td data-label="날짜" class="nw">10-26</td><td data-label="규칙">9-4-3</td></tr>
-      <tr><td>회원</td><td data-label="결정">로그인 = 아이디 저장 + 비회원 주문조회, 프로필 아이콘 = 로그인 전 로그인 / 뒤 마이페이지</td><td data-label="날짜" class="nw">10-26</td><td data-label="규칙">3-1</td></tr>
-      <tr><td>분류</td><td data-label="결정">상품 없는 분류는 메뉴에 두지 않음 (ASUS AI GPU 서버·ThinkCentre·ExpertBook)</td><td data-label="날짜" class="nw">10-26</td><td data-label="규칙">3-1</td></tr>
-      <tr><td>견적</td><td data-label="결정">기존 dbk 폼 유지 (개발은 2차), 상태명 접수중·처리중·발송완료, 견적함·비교는 스킨 JS</td><td data-label="날짜" class="nw">10-19 / 10-26</td><td data-label="규칙">3-3</td></tr>
-      <tr><td>만들지 않는 기능</td><td data-label="결정">상품 목록 필터 칩, 게시판 정렬, 프로모션 D-day — 고도몰에서 만들 수 없음</td><td data-label="날짜" class="nw">10-19</td><td data-label="규칙">3-3</td></tr>
-      <tr><td>콘텐츠</td><td data-label="결정">시안에 '예시'·'목업' 표시 안 함, 가짜 사례·후기·수치는 운영에 올리지 않음, 구축사례는 실제 3건 이상일 때만 노출</td><td data-label="날짜" class="nw">10-26</td><td data-label="규칙">9-3, 12</td></tr>
-      <tr><td>푸터</td><td data-label="결정">공식 채널 4종(네이버 블로그·인스타그램·페이스북·스마트스토어), 점심 12:00–13:00</td><td data-label="날짜" class="nw">10-26</td><td data-label="규칙">—</td></tr>
-      <tr><td>히어로 배너</td><td data-label="결정">PC 2464×960 · 모바일 720×900, 가장 작은 글자 28px(PC 원본)·24px(모바일)</td><td data-label="날짜" class="nw">10-14</td><td data-label="규칙">11-2</td></tr>
-    </tbody>
-  </table>
-</div></section>
-
-<!-- 6. 남은 결정 -->
-<section id="p6" class="sec sec-alt"><div class="wrap">
-  <div class="ch">
-    <p class="ch-eb">06 남은 결정 · 컨펌 필요</p>
-    <h2>10/30 시안 동결 전에 정할 10가지</h2>
-    <p class="lead">정해지지 않으면 권장안으로 진행합니다. 9번(오픈 일시)만 11/12 최종 컨펌 때 정합니다.</p>
-  </div>
-  <table class="pt">
-    <thead><tr><th>#</th><th>정할 것</th><th>선택지</th><th>권장안</th><th>기한</th></tr></thead>
-    <tbody>
-      <tr><td>1</td><td data-label="정할 것">11/13 '완성'의 뜻</td><td data-label="선택지">(가) 테스트 스킨 검수 완료까지 (나) 운영 릴리즈(오픈)까지</td><td data-label="권장안" class="rec">(가) — 릴리즈는 11/12 최종 컨펌 때 정함</td><td data-label="기한" class="nw"><span class="chip red">10/27</span></td></tr>
-      <tr><td>2</td><td data-label="정할 것">실제 배너 제작 주체·일정</td><td data-label="선택지">내부 디자인 / 외주</td><td data-label="권장안" class="rec">10/28 착수, 11/6까지 6장</td><td data-label="기한" class="nw"><span class="chip">10/28</span></td></tr>
-      <tr><td>3</td><td data-label="정할 것">구축사례 오픈 시점</td><td data-label="선택지">오픈 때 공개 / 실제 3건 모이면 공개</td><td data-label="권장안" class="rec">3건 모이면 공개 (그 전에는 메뉴·메인 영역 숨김)</td><td data-label="기한" class="nw"><span class="chip">10/30</span></td></tr>
-      <tr><td>4</td><td data-label="정할 것">시안용 글 처리 (가이드 12·공지 12건)</td><td data-label="선택지">실제 글로 교체 / 오픈 때 빼기</td><td data-label="권장안" class="rec">빼기 — 운영 게시판 실제 글(가이드 3·공지 1)만</td><td data-label="기한" class="nw"><span class="chip">10/30</span></td></tr>
-      <tr><td>5</td><td data-label="정할 것">업종별 추천 구성 관리 방식</td><td data-label="선택지">정적 HTML / 탭마다 메인 진열 1개</td><td data-label="권장안" class="rec">메인 진열 1개 (운영자가 관리자에서 바꿈)</td><td data-label="기한" class="nw"><span class="chip">10/30</span></td></tr>
-      <tr><td>6</td><td data-label="정할 것">헤더 메뉴 빈자리 ('기업 구매' 삭제 후)</td><td data-label="선택지">새 메뉴 / 비워 둠</td><td data-label="권장안" class="rec">비워 둠</td><td data-label="기한" class="nw"><span class="chip">10/30</span></td></tr>
-      <tr><td>7</td><td data-label="정할 것">약관·개인정보처리방침 문구</td><td data-label="선택지">운영 원문 / 새로 작성</td><td data-label="권장안" class="rec">운영 원문 그대로 (법무 확인 필요 시 별도)</td><td data-label="기한" class="nw"><span class="chip">10/30</span></td></tr>
-      <tr><td>8</td><td data-label="정할 것">사은품 대상 ASUS GPU 서버·ExpertBook</td><td data-label="선택지">상품 등록 / 프로모션에서 제외</td><td data-label="권장안" class="rec">등록 계획이 없으면 운영 프로모션 이미지에서 제외</td><td data-label="기한" class="nw"><span class="chip">11/6</span></td></tr>
-      <tr><td>9</td><td data-label="정할 것">오픈 일시</td><td data-label="선택지">11/13(금) / 11/12(목) / 11/16(월)</td><td data-label="권장안" class="rec">금요일 오후는 피함 → 11/12(목) 오전 또는 11/16(월) 오전</td><td data-label="기한" class="nw"><span class="chip">11/12</span></td></tr>
-      <tr><td>10</td><td data-label="정할 것">dbk 견적함 값 넘김</td><td data-label="선택지">지원 / 미지원</td><td data-label="권장안" class="rec">미지원이면 견적함 '내용' 자동 입력은 2차로, 오픈은 기존 폼 링크로</td><td data-label="기한" class="nw"><span class="chip">10/30</span></td></tr>
-    </tbody>
-  </table>
-</div></section>
-
-<!-- 7. 체크리스트 -->
-<section id="p7" class="sec"><div class="wrap">
-  <div class="ch">
-    <p class="ch-eb">07 고도몰 적용 체크리스트</p>
-    <h2>적용 전 · 작업 · 검수 · 오픈</h2>
-  </div>
-  <div class="grid g2">
-    <div class="card">
-      <h4>적용 전 · 관리자 데이터</h4>
-      <ul class="ck">
-        <li>상품 '짧은 설명' 사양 4줄 (<code>항목: 값 / 항목: 값 / 항목: 값 / 항목: 값</code>) — 메인 진열 → 분류별, 약 158개</li>
-        <li>상품 '모델번호'(제조사 품번)</li>
-        <li>구축사례 게시판 <code>case</code> 신설 (갤러리형)</li>
-        <li>story·event 말머리 (분류 · 진행중/종료)</li>
-        <li>기본 FAQ 분류·질문</li>
-        <li>슬라이드 배너 그룹 PC용·모바일용 2개, 실제 배너 6장</li>
-        <li>많이 찾는 제품 메인 진열 6개 (전체·워크스테이션·서버·데스크탑·노트북·스토리지)</li>
-        <li>SEO: 관리자 &gt; 기본설정 &gt; 검색엔진 최적화에 title·description·OG</li>
-      </ul>
-    </div>
-    <div class="card">
-      <h4>스킨 작업</h4>
-      <ul class="ck">
-        <li>서버에 테스트 스킨 사본 + <code>site.conf</code> <code>TEST_*</code>·<code>LIVE_*</code> → push 자동 반영 시험</li>
-        <li>스킨 수정은 저장소 <code>skin/front/chefs_choice/</code> 에서만 (관리자 디자인 편집기에서 고친 내용은 다음 반영 때 덮어써짐)</li>
-        <li>저장소에서 파일을 지우면 서버에서도 지워짐 — 지우는 파일은 PR 에서 따로 확인</li>
-        <li><code>oncore.css</code>·<code>oncore.js</code> 올리기 (<code>setBrowserCache</code>, 스크립트는 스킨 HTML 안에 넣지 않음)</li>
-        <li>viewport: 리뉴얼 화면만 + <code>viewport-fit=cover</code> + 360 미만 보정(<code>oc-vp-min</code>)</li>
-        <li>목업 전용 파일·코드 제외 (<code>mock-goods.js</code>, 검수 막대, <code>sub-*.js</code> 시안 동작)</li>
-        <li>각 화면의 <code>&lt;!-- 고도몰: … --&gt;</code> 주석대로 템플릿 변수 연결</li>
-      </ul>
-    </div>
-    <div class="card">
-      <h4>기능 검수</h4>
-      <ul class="ck">
-        <li>견적 요청서 접수 → 견적 조회 목록 → 비밀번호 → 견적 상세</li>
-        <li>견적함 담기 → 견적 요청서로 넘김 (dbk 지원 범위 안에서)</li>
-        <li>바로 구매(가격 상품) → 주문서 → PG 결제창 (휴대폰에서도)</li>
-        <li>견적 전용 상품에 바로 구매가 안 보이는지</li>
-        <li>회원가입(기업/개인) · 로그인 · 아이디 저장 · 비회원 주문조회</li>
-        <li>1:1 문의 · 광고·제휴 문의 · 파일 첨부</li>
-        <li>상품 비교(최대 4개) · 검색 · 목록 정렬</li>
-        <li>채널톡 · 전화 걸기 · 우편번호 찾기 창(휴대폰)</li>
-      </ul>
-    </div>
-    <div class="card">
-      <h4>화면 검수 · 오픈</h4>
-      <ul class="ck">
-        <li>폭 360 · 480 · 768 · 1024 · 1280 · 1440 에서 가로 넘침 없음, 하단 고정 바에 내용 안 가림</li>
-        <li>실제 아이폰(홈 막대 여백) · 갤럭시 · 360 미만 기기 축소 표시</li>
-        <li>크롬 · 사파리 · 삼성 인터넷 · 엣지</li>
-        <li>리뉴얼하지 않은 기본 화면(장바구니·주문·마이페이지)이 깨지지 않는지</li>
-        <li><code>scripts/release.sh</code> 점검 → <code>--create</code> 로 릴리즈 = 운영 반영 (원본은 Actions 의 <code>live-backup-&lt;버전&gt;</code> 에 90일)</li>
-        <li>되돌리기 = Actions <b>Release Godomall Skin (운영)</b> → 이전 버전 (먼저 dry_run) — 오픈 전에 한 번 시험</li>
-        <li>GitHub Secret <code>SFTP_PASSWORD</code> 가 오픈 주간에 만료되지 않는지 (90일마다 변경)</li>
-        <li>오픈 후 30분 안에 견적 접수 1건·회원가입 1건 실제 테스트, 첫 1주 견적 건수를 이전 주와 비교</li>
-      </ul>
-    </div>
-  </div>
-</div></section>
-
-<!-- 8. 리스크 -->
-<section id="p8" class="sec sec-alt"><div class="wrap">
-  <div class="ch">
-    <p class="ch-eb">08 리스크와 대응</p>
+    <p class="ch-eb">05 주요 리스크</p>
     <h2>밀릴 수 있는 곳과 대비책</h2>
+    <p class="lead">일정·운영에 영향이 큰 6가지입니다.</p>
   </div>
   <table class="pt">
-    <thead><tr><th>리스크</th><th>영향</th><th>대응</th></tr></thead>
+    <thead><tr><th>리스크 · 영향</th><th>대응</th></tr></thead>
     <tbody>
-      <tr><td>테스트 스킨·반영 경로 준비가 늦음</td><td data-label="영향">2주차 적용 화면을 확인할 곳이 없음</td><td data-label="대응">10/27 사용 중 스킨 확인, 11/2 오전에 사본·<code>TEST_*</code> 설정을 먼저 끝냄</td></tr>
-      <tr><td>dbk 견적 화면 수정 범위가 불명확</td><td data-label="영향">견적 화면 적용이 2주차에 막힘</td><td data-label="대응">10/27 스킨 위치 확인, 10/30까지 정리 안 되면 기존 폼 링크로 적용하고 값 넘김은 2차</td></tr>
-      <tr><td>견적 상태명을 바꿈</td><td data-label="영향">고객 안내 문자 누락</td><td data-label="대응">상태명은 <code>접수중·처리중·발송완료</code> 그대로 (처리중 = 접수 안내 문자, 답변 = 답변 완료 문자)</td></tr>
-      <tr><td>상품 짧은 설명 입력량 (약 158개)</td><td data-label="영향">카드 사양 줄이 빈 상품이 생김</td><td data-label="대응">메인 진열·많이 찾는 제품부터, 나머지는 분류별로 매일 나눠 입력 · 미입력 상품 목록을 따로 관리</td></tr>
-      <tr><td>실제 배너 제작 지연</td><td data-label="영향">메인 첫 화면이 자리 표시 배너</td><td data-label="대응">자리 표시 배너가 이미 규격에 맞아 그대로 오픈 가능, 실제 배너는 관리자에서 교체</td></tr>
-      <tr><td>컨펌이 늦어지거나 범위가 커짐</td><td data-label="영향">2·3주차가 밀림</td><td data-label="대응">10/30 시안 동결, 이후 요청은 문구·이미지만 받고 구조 변경은 오픈 후로</td></tr>
-      <tr><td>실기기 미검증 (360 미만 축소, PG 결제창, 아이폰 홈 막대)</td><td data-label="영향">휴대폰에서만 생기는 문제</td><td data-label="대응">11/10 실기기 검수에 반드시 포함</td></tr>
-      <tr><td>고도몰 템플릿이 <code>{ }</code> 를 해석</td><td data-label="영향">스크립트 오작동</td><td data-label="대응">스크립트는 모두 별도 <code>.js</code> 파일 (규칙 3-1)</td></tr>
-      <tr><td>리뉴얼하지 않은 기본 화면이 깨짐</td><td data-label="영향">장바구니·주문에서 이탈</td><td data-label="대응">viewport 를 리뉴얼 화면에만 출력, 검수 목록에 포함</td></tr>
-      <tr><td>여러 작업자(Claude 창)가 같은 파일을 동시에 수정</td><td data-label="영향">수정이 덮어써짐</td><td data-label="대응">창마다 브랜치(worktree)를 나누고 작업 단위마다 커밋. NAS 사본은 고치지 않음</td></tr>
-      <tr><td>금요일 오픈</td><td data-label="영향">주말에 문제 대응 어려움</td><td data-label="대응">11/12(목) 오전 또는 11/16(월) 오전 운영 반영 권장</td></tr>
-      <tr><td>검색 노출 변화</td><td data-label="영향">유입 감소</td><td data-label="대응">주소(URL)는 고도몰 경로 그대로, title·description 은 관리자 SEO 설정으로</td></tr>
+      <tr><td>사전 준비 지연 (테스트 스킨·견적 화면)<small class="pt-opt">2주차 적용이 막힘</small></td><td data-label="대응">1주차에 확인, 불명확하면 기존 폼 링크로</td></tr>
+      <tr><td>컨펌 지연·범위 확대 (상단 메뉴 포함)<small class="pt-opt">41개 화면 수정, 2·3주차 밀림</small></td><td data-label="대응">1주차 말 시안 동결, 이후엔 문구·이미지만</td></tr>
+      <tr><td>콘텐츠 분량 (짧은 설명 약 158개·배너)<small class="pt-opt">빈 사양 줄, 임시 배너로 오픈</small></td><td data-label="대응">진열 상품부터 입력 · 임시 배너도 규격에 맞아 오픈 후 교체 가능</td></tr>
+      <tr><td>휴대폰·기본 화면 오류<small class="pt-opt">결제·구매 단계 이탈</small></td><td data-label="대응">3주차 실기기 검수 · 모바일 설정은 리뉴얼 화면에만</td></tr>
+      <tr><td>운영 영향 (견적 안내 문자·검색 노출)<small class="pt-opt">문자 누락, 검색 유입 감소</small></td><td data-label="대응">견적 상태명·주소(URL) 그대로, 제목·설명은 관리자 검색 설정</td></tr>
+      <tr><td>금요일 오픈<small class="pt-opt">주말 대응 공백</small></td><td data-label="대응">3주차 목요일 오전 또는 4주차 월요일 오전 반영</td></tr>
     </tbody>
   </table>
+
 </div></section>
 
 </main>
 
 <footer class="plan-foot"><div class="wrap">
-  온코어 리뉴얼 완성 계획 · 작성 2026-10-26 · 저장소 <code>renewal/project-plan.html</code> · 관련 문서 <a href="index.html">기획안</a> · <a href="renewal-plan.html">메인 시안</a> · <code>PROJECT-RULES.md</code> · <code>feedback-v0.3.md</code>
+  온코어 리뉴얼 실행 계획 · 작성 2026-10-26 · 관련 문서 <a href="index.html">제안서</a> · <a href="renewal-plan.html">디자인 시안</a>
 </div></footer>
 
 <!-- 목차: 지금 읽는 장 표시 + 읽은 만큼 진행 막대 (기획안 index.html 과 같은 동작) -->
 <script>
 (function () {
   'use strict';
-  var links = Array.prototype.slice.call(document.querySelectorAll('.toc a')), bar = document.querySelector('.progress'), toc = document.querySelector('.toc');
+  var links = Array.prototype.slice.call(document.querySelectorAll('.anchor-nav a')), bar = document.querySelector('.progress'), nav = document.querySelector('.anchor-nav');
   var secs = links.map(function (a) { return document.querySelector(a.getAttribute('href')); });
   var ticking = false;
   function onScroll() {
@@ -417,8 +258,8 @@
     secs.forEach(function (s, i) { if (s && s.offsetTop <= y) cur = i; });
     links.forEach(function (a, i) {
       var on = i === cur;
-      if (on && !a.classList.contains('on') && toc.scrollWidth > toc.clientWidth) {
-        toc.scrollTo({ left: a.offsetLeft - toc.offsetLeft - toc.clientWidth / 2 + a.clientWidth / 2, behavior: 'smooth' });
+      if (on && !a.classList.contains('on') && nav.scrollWidth > nav.clientWidth) { /* 칩 줄이 넘칠 때만: 지금 장을 가운데로 */
+        nav.scrollTo({ left: a.offsetLeft - nav.clientWidth / 2 + a.clientWidth / 2, behavior: 'smooth' });
       }
       a.classList.toggle('on', on);
       if (on) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current');

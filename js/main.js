@@ -78,7 +78,7 @@
     });
   }
 
-  /* ── 패널 열기·닫기 (검색, 견적함, 모바일 메뉴, 컬러 가이드) ── */
+  /* ── 패널 열기·닫기 (검색, 견적함, 모바일 메뉴) ── */
   var scrim = $('#oc-scrim'), openPanel = null, lastFocus = null;
   function open(id) {
     close();

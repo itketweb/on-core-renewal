@@ -28,13 +28,14 @@
   --oc-wrap:80rem; --oc-gut:var(--oc-sp-24);
   --oc-sec:var(--oc-sp-96);
   --oc-hd:var(--oc-sp-64);
+  --oc-stick:0px; /* 상단 고정 요소가 붙는 위치. 고도몰은 0 — 시안은 검토용 막대(review-bar.css)가 그 높이를 넣는다 */
   --oc-ease:cubic-bezier(.2,.7,.2,1);
   --oc-dur:6s;                  /* 히어로 자동 넘김 간격 (main.js가 읽음) */
   /* 아이폰 홈 막대·노치 안전 영역. viewport-fit=cover 일 때만 값이 생기고, 그 밖에는 0 */
   --oc-safe-b:env(safe-area-inset-bottom,0px); --oc-safe-l:env(safe-area-inset-left,0px); --oc-safe-r:env(safe-area-inset-right,0px);
 }
 /* 메인 페이지에서만 로드되는 CSS(css/main/main.css)로 옮길 규칙 */
-html{scroll-behavior:smooth;scroll-padding-top:calc(var(--oc-hd) + var(--oc-sp-16))}
+html{scroll-behavior:smooth;scroll-padding-top:calc(var(--oc-stick) + var(--oc-hd) + var(--oc-sp-16))}
 html{min-width:360px} /* 최소 폭 360 (8-1장) — 더 좁은 화면은 맞추지 않고 가로 스크롤로 본다. 모바일은 html 글자 크기가 바뀌므로 rem 이 아닌 px */
 .oc{background:var(--oc-bg);color:var(--oc-ink);font:var(--oc-fs-16)/1.6 "Pretendard Variable",Pretendard,-apple-system,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;-webkit-font-smoothing:antialiased;word-break:keep-all;overflow-x:clip /* hidden 은 sticky 를 막는다 */}
 :where(.oc) a{font-weight:inherit} /* 색·밑줄은 리셋이 처리. 굵기는 고도몰 reset.css 의 a{font-weight:normal} 을 되돌리려고 남김 */
@@ -44,18 +45,9 @@ html{min-width:360px} /* 최소 폭 360 (8-1장) — 더 좁은 화면은 맞추
 .oc-sr{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0} /* 화면에는 숨기고 검색엔진·화면낭독기에만 */
 
 
-/* ── 검토용 도구 막대 ── */
-.oc-review-bar{background:var(--oc-dark);color:#C9CBD1;font-size:var(--oc-fs-14)}
-.oc-review-bar .oc-wrap{display:flex;align-items:center;gap:var(--oc-sp-16);min-height:var(--oc-sp-40);flex-wrap:wrap;padding-top:var(--oc-sp-8);padding-bottom:var(--oc-sp-8)}
-.oc-rb-back{color:#fff;font-weight:600}
-.oc-rb-title{color:#fff;font-weight:600}
-.oc-rb-title em{font-style:normal;color:#fff;opacity:.6;margin-left:var(--oc-sp-4);font-weight:500}
-.oc-rb-note{font-size:var(--oc-fs-12);color:#C9CBD1;text-decoration:underline;text-underline-offset:3px;margin-left:auto}
-.oc-rb-palette{padding:var(--oc-sp-4) var(--oc-sp-12);border-radius:999px;background:var(--oc-primary);color:#fff;font-size:var(--oc-fs-12);font-weight:600}
-
 /* ── 헤더 ── */
 /* 상단 고정 묶음 (안내줄 + 헤더). 고도몰에서는 이 규칙을 #header_warp 에 건다 — 헤더 스킨이 #header_warp 안에 들어가므로 */
-.oc-top{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.88);backdrop-filter:saturate(180%) blur(18px);-webkit-backdrop-filter:saturate(180%) blur(18px);border-bottom:1px solid transparent;transition:border-color .2s}
+.oc-top{position:sticky;top:var(--oc-stick);z-index:40;background:rgba(255,255,255,.88);backdrop-filter:saturate(180%) blur(18px);-webkit-backdrop-filter:saturate(180%) blur(18px);border-bottom:1px solid transparent;transition:border-color .2s}
 .oc-top.oc-is-stuck{border-bottom-color:var(--oc-line-2)}
 .oc-hd{position:relative} /* 메가메뉴·검색 패널 위치 기준 */
 .oc-hd-in{display:flex;align-items:center;height:var(--oc-hd);gap:var(--oc-sp-40)}
@@ -324,7 +316,7 @@ html{min-width:360px} /* 최소 폭 360 (8-1장) — 더 좁은 화면은 맞추
 .oc-posts--feature .oc-post-txt{font-size:var(--oc-fs-16);line-height:1.5}
 
 .oc-split{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:var(--oc-sp-64);align-items:start}
-.oc-split .oc-sec-hd{display:block;position:sticky;top:calc(var(--oc-hd) + var(--oc-sp-32));margin-bottom:0}
+.oc-split .oc-sec-hd{display:block;position:sticky;top:calc(var(--oc-stick) + var(--oc-hd) + var(--oc-sp-32));margin-bottom:0}
 .oc-split .oc-sec-hd p{margin-top:var(--oc-sp-16)}
 .oc-split .oc-sec-hd .oc-more{margin-top:var(--oc-sp-32)}
 .oc-posts--list{counter-reset:oc-post;border-top:1px solid var(--oc-ink)}
@@ -362,7 +354,7 @@ html{min-width:360px} /* 최소 폭 360 (8-1장) — 더 좁은 화면은 맞추
 .oc-final-tel b{display:block;font-size:var(--oc-fs-20);font-weight:700;letter-spacing:-.01em;line-height:1.3}
 
 /* 푸터 */
-.oc-ft{background:var(--oc-surface);padding:var(--oc-sp-48) 0 var(--oc-sp-64);font-size:var(--oc-fs-14);color:var(--oc-ink-3)}
+.oc-ft{background:var(--oc-surface);padding:var(--oc-sp-48) 0;font-size:var(--oc-fs-14);color:var(--oc-ink-3)}
 .oc-ft-top{display:flex;align-items:center;justify-content:space-between;gap:var(--oc-sp-24);padding-bottom:var(--oc-sp-24);border-bottom:1px solid var(--oc-line);flex-wrap:wrap}
 .oc-ft-top img{height:2.25rem;width:auto}
 .oc-ft-top nav{display:flex;flex-wrap:wrap;gap:0 var(--oc-sp-24);color:var(--oc-ink-2)}
@@ -371,11 +363,14 @@ html{min-width:360px} /* 최소 폭 360 (8-1장) — 더 좁은 화면은 맞추
 .oc-ft-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:var(--oc-sp-40);padding-top:var(--oc-sp-24)}
 .oc-ft-info p{margin-bottom:var(--oc-sp-4);line-height:1.75}
 .oc-ft-info b{color:var(--oc-ink-2)}
-.oc-ft-info a,.oc-ft-sns a{text-decoration:underline;text-decoration-color:var(--oc-line);text-underline-offset:3px;transition:color .15s,text-decoration-color .15s}
-.oc-ft-info a:hover,.oc-ft-sns a:hover{color:var(--oc-ink);text-decoration-color:currentColor}
+.oc-ft-info a{text-decoration:underline;text-decoration-color:var(--oc-line);text-underline-offset:3px;transition:color .15s,text-decoration-color .15s}
+.oc-ft-info a:hover{color:var(--oc-ink);text-decoration-color:currentColor}
 .oc-ft-cs p+h5{margin-top:var(--oc-sp-20)} /* 한 칸에 소제목이 둘(취급 브랜드 · 공식 채널)일 때 */
-.oc-ft-sns{display:flex;flex-wrap:wrap;gap:0 var(--oc-sp-16)}
-.oc-ft-sns a{padding:var(--oc-sp-4) 0} /* 누르는 면 높이 확보 */
+/* 공식 채널: 로고 아이콘 (단색, 푸터 회색 톤에 맞춤) */
+.oc-ft-sns{display:flex;flex-wrap:wrap;gap:var(--oc-sp-8)}
+.oc-ft-sns a{display:inline-flex;align-items:center;justify-content:center;width:var(--oc-sp-40);height:var(--oc-sp-40);border-radius:50%;background:#fff;border:1px solid var(--oc-line);color:var(--oc-ink-2);transition:color .15s,border-color .15s}
+.oc-ft-sns a:hover{color:var(--oc-ink);border-color:var(--oc-ink-2)}
+.oc-ft-sns svg{width:1.125rem;height:1.125rem;fill:currentColor}
 .oc-ft .oc-copy{margin-top:var(--oc-sp-16);font-size:var(--oc-fs-12)}
 .oc-ft-cs h5{font-size:var(--oc-fs-14);color:var(--oc-ink-2);margin-bottom:var(--oc-sp-8)}
 .oc-ft-cs .oc-tel{display:block;font-size:var(--oc-fs-24);font-weight:700;color:var(--oc-ink);letter-spacing:-.01em;margin-bottom:var(--oc-sp-4)}
@@ -400,7 +395,7 @@ html{min-width:360px} /* 최소 폭 360 (8-1장) — 더 좁은 화면은 맞추
 body.oc-has-cmp .oc{padding-bottom:calc(var(--oc-sp-80) + var(--oc-safe-b))} /* 비교 바가 떠 있는 동안 푸터 끝을 가리지 않게 */
 
 
-/* 드로어 (견적함·모바일 메뉴·컬러 가이드) */
+/* 드로어 (견적함·모바일 메뉴) */
 body.oc-is-locked{overflow:hidden}
 .oc-scrim{position:fixed;inset:0;z-index:60;background:rgba(22,24,29,.42);animation:fade .25s}
 .oc-drawer{position:fixed;top:0;right:0;bottom:0;z-index:61;width:min(28rem,100%);background:#fff;display:flex;flex-direction:column;box-shadow:-24px 0 48px -24px rgba(22,24,29,.3);animation:slide .32s var(--oc-ease)}
@@ -448,23 +443,6 @@ body.oc-is-locked{overflow:hidden}
 .oc-mnav-act .oc-btn{min-width:0;padding:0 var(--oc-sp-12)}
 .oc-mnav small{font-size:var(--oc-fs-14);color:var(--oc-ink-3);font-weight:500}
 
-/* 컬러 가이드 */
-.oc-palette{width:min(30rem,100%)}
-.oc-pal-logo{background:var(--oc-surface);border-radius:var(--oc-r);padding:var(--oc-sp-20);margin-bottom:var(--oc-sp-8)}
-.oc-pal-logo img{height:var(--oc-sp-48);width:auto;margin-bottom:var(--oc-sp-12)}
-.oc-pal-logo p{font-size:var(--oc-fs-14);color:var(--oc-ink-3)}
-.oc-palette h4{font-size:var(--oc-fs-14);margin:var(--oc-sp-24) 0 var(--oc-sp-8)}
-.oc-pal{display:grid;gap:var(--oc-sp-8)}
-.oc-pal div{display:grid;grid-template-columns:var(--oc-sp-40) 1fr auto;column-gap:var(--oc-sp-12);align-items:center;font-size:var(--oc-fs-14)}
-.oc-pal i{grid-row:1/3;width:var(--oc-sp-40);height:var(--oc-sp-40);border-radius:var(--oc-sp-8)}
-.oc-pal b{font-size:var(--oc-fs-14)}
-.oc-pal code{font-size:var(--oc-fs-12);color:var(--oc-ink-2);font-family:ui-monospace,Consolas,monospace}
-.oc-pal span{grid-column:2/4;font-size:var(--oc-fs-12);color:var(--oc-ink-3)}
-.oc-sw-primary{background:var(--oc-primary)}.oc-sw-primary-600{background:var(--oc-primary-600)}.oc-sw-primary-50{background:var(--oc-primary-50)}.oc-sw-dark{background:var(--oc-dark)}
-.oc-sw-ink{background:var(--oc-ink)}.oc-sw-ink-3{background:var(--oc-ink-3)}.oc-sw-img{background:var(--oc-img);box-shadow:inset 0 0 0 1px var(--oc-line)}
-.oc-sw-lenovo{background:var(--oc-lenovo)}.oc-sw-asus{background:var(--oc-asus)}
-.oc-pal-why{margin-top:var(--oc-sp-16);padding:var(--oc-sp-16) var(--oc-sp-16);background:var(--oc-primary-50);border-radius:var(--oc-sp-12);font-size:var(--oc-fs-14);color:var(--oc-ink-2);line-height:1.65}
-.oc-pal-why b{display:block;color:var(--oc-primary-600);margin-bottom:2px}
 
 /* 토스트 */
 .oc-toast{position:fixed;left:50%;bottom:calc(var(--oc-sp-32) + var(--oc-safe-b));z-index:80;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:var(--oc-dark);color:#fff;padding:var(--oc-sp-12) var(--oc-sp-20);border-radius:var(--oc-r-lg);font-size:var(--oc-fs-14);font-weight:500;line-height:1.45;text-align:center;transition:all .3s var(--oc-ease);width:max-content;max-width:calc(100vw - var(--oc-gut) * 2)} /* 긴 상품명은 화면 밖으로 나가지 않고 줄을 바꾼다 */
@@ -527,8 +505,6 @@ body.oc-is-locked .oc-toast{opacity:0} /* 서랍이 열리면 서랍 아래 버�
   html{font-size:14px} /* 모바일 기준 글자 14px — rem 토큰(글자·여백·크기)이 모두 87.5% 로 함께 줄어든다. 입력칸은 --oc-fs-input 으로 16px 유지 */
   :root{--oc-gut:var(--oc-sp-16);--oc-sec:var(--oc-sp-64);--oc-hd:var(--oc-sp-64)}
   .oc-ft{padding-bottom:calc(var(--oc-sp-64) + var(--oc-sp-64) + var(--oc-safe-b))} /* 하단 고정 바 높이만큼 — 페이지(.oc)가 아니라 푸터에 줘야 푸터 아래에 흰 띠가 생기지 않는다 */
-  .oc-review-bar .oc-wrap{gap:var(--oc-sp-8)}
-  .oc-rb-note,.oc-rb-title{display:none}
   .oc-gnb,.oc-hide-sm{display:none} /* 햄버거 메뉴는 모바일(768 미만)에서만 */
   .oc-hd-burger{display:inline-block}
   .oc-hd-in{gap:var(--oc-sp-8)}
@@ -610,7 +586,6 @@ body.oc-is-locked .oc-toast{opacity:0} /* 서랍이 열리면 서랍 아래 버�
   .oc *,.oc *::before,.oc *::after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
 }
 
-/* 기획안 미리보기(iframe)에서는 검토용 막대와 스크롤바를 숨김 */
-.oc-embed .oc-review-bar{display:none}
+/* 기획안 미리보기(iframe)에서는 스크롤바를 숨김 (검토용 막대는 review-bar.css 가 숨김) */
 .oc-embed{scrollbar-width:none}
 .oc-embed::-webkit-scrollbar{display:none}

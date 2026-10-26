@@ -4,43 +4,51 @@
 <meta name="robots" content="noindex, nofollow">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>온코어 리뉴얼 기획안</title>
+<title>온코어 리뉴얼 제안서</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
 <link rel="stylesheet" href="css/plan.css">
+<link rel="stylesheet" href="css/review-bar.css">
+<script src="js/review-bar.js"></script><!-- 목업 전용: 검토 막대 접기 (그리기 전에 접힘 상태 적용) -->
 </head>
 <body>
 
-<header class="top">
-  <div class="wrap top-in">
-    <a class="top-brand" href="#top">온코어 리뉴얼<em>기획안 v0.4</em></a>
-    <nav class="toc" aria-label="목차">
-      <a href="#s0">요약</a>
-      <a href="#s1">문제</a>
-      <a href="#s2">레퍼런스</a>
-      <a href="#s3">방향</a>
-      <a href="#s4">디자인</a>
-      <a href="#s5">화면</a>
-      <a href="#s6">견적</a>
-      <a href="#s7">효과</a>
-      <a href="#s8">일정</a>
+<!-- 시안 검토용 도구 막대 — 메인 시안·서브 페이지와 같은 막대(css/review-bar.css), 화면 위에 늘 고정. 지금 문서는 aria-current -->
+<div class="oc-review-bar">
+  <div class="oc-rb-in">
+    <span class="oc-rb-title">온코어 리뉴얼 <em>제안서 v0.4</em></span>
+    <nav class="oc-rb-nav" aria-label="문서">
+      <a href="index.html" aria-current="page">제안서</a>
+      <a href="project-plan.html">실행 계획</a>
+      <a href="renewal-plan.html">디자인 시안</a>
     </nav>
-    <a class="btn btn-d btn-sm" href="renewal-plan.html" target="_blank" rel="noopener">메인 시안 열기</a>
   </div>
   <i class="progress" aria-hidden="true"></i>
-</header>
+</div>
+
+<!-- 장 이동: 1280 미만 상단 바 아래 칩 / 1280 이상 화면 오른쪽 목차 -->
+<nav class="anchor-nav" aria-label="목차">
+  <a href="#s0">요약</a>
+  <a href="#s1">문제</a>
+  <a href="#s2">레퍼런스</a>
+  <a href="#s3">방향</a>
+  <a href="#s4">디자인</a>
+  <a href="#s5">화면</a>
+  <a href="#s6">견적</a>
+  <a href="#s7">효과</a>
+  <a href="#s8">일정</a>
+</nav>
 
 <main id="top">
 
 <!-- 첫 화면: 한 줄 약속 + 바로 볼 수 있는 시안 -->
 <div class="hero"><div class="wrap hero-in">
   <div>
-    <p class="kicker">온코어 리뉴얼 기획안</p>
+    <p class="kicker">온코어 리뉴얼 제안서</p>
     <h1>견적까지 가장 짧은<br><span>IT 장비 스토어.</span></h1>
     <p class="hero-sub">기업 고객이 필요한 장비를 빨리 찾고, 그 자리에서 바로 견적을 받는 쇼핑몰로 바꿉니다.</p>
     <div class="hero-cta">
-      <a class="btn btn-p" href="renewal-plan.html" target="_blank" rel="noopener">메인 시안 열기
+      <a class="btn btn-p" href="renewal-plan.html" target="_blank" rel="noopener">디자인 시안 보기
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-      <a class="btn btn-ghost" href="project-plan.html">11/13 완성 계획 보기</a>
     </div>
     <div class="hero-meta">
       <span>작성<b>2026-10-13</b></span>
@@ -265,12 +273,25 @@
     <div>
       <div class="ds-panel">
         <h4>색 <small>강조색 1 + 무채색</small></h4>
+        <!-- 컬러 가이드 (메인 시안의 검토용 서랍에 있던 내용을 옮김). 값은 css/main.css :root 와 같아야 한다 -->
+        <p class="sw-group">강조색 · Lenovo 레드</p>
         <div class="swatches">
-          <div class="sw"><i class="sw-primary"></i><b>Lenovo 레드</b><code>#E1251B</code><p>핵심 버튼·강조 (한 화면 1~2곳)</p></div>
+          <div class="sw"><i class="sw-primary"></i><b>Lenovo 레드</b><code>#E1251B</code><p>핵심 버튼·선택 상태 (한 화면 1~2곳). 흰 글자 대비 4.7:1 (AA)</p></div>
+          <div class="sw"><i class="sw-primary-600"></i><b>레드 진하게</b><code>#BE1E15</code><p>마우스를 올렸을 때·눌렀을 때</p></div>
+          <div class="sw line"><i class="sw-primary-50"></i><b>레드 연하게</b><code>#FDECEB</code><p>선택된 버튼·배지 바탕</p></div>
+        </div>
+        <p class="sw-group">무채색</p>
+        <div class="swatches">
           <div class="sw"><i class="sw-ink"></i><b>블랙</b><code>#16181D</code><p>글자·반복 버튼·마무리 영역</p></div>
+          <div class="sw"><i class="sw-ink-3"></i><b>보조 글자</b><code>#6B6F78</code><p>설명·라벨</p></div>
           <div class="sw line"><i class="sw-surface"></i><b>그레이</b><code>#F3F4F6</code><p>섹션 바탕 (흰색과 번갈아)</p></div>
           <div class="sw line"><i class="sw-img"></i><b>사진 그레이</b><code>#F4F4F4</code><p>상품 사진·배너 바탕</p></div>
         </div>
+        <p class="sw-group">제조사 라벨</p>
+        <div class="swatches">
+          <div class="sw"><i class="sw-asus"></i><b>ASUS</b><code>#00539B</code><p>상품 카드의 브랜드 이름에만. Lenovo 는 강조색과 같은 빨강</p></div>
+        </div>
+        <p class="sw-rule"><b>규칙은 두 가지</b>① 빨강은 '누르는 곳'과 '지금 선택된 것'에만 씁니다. 큰 면을 빨강으로 칠하지 않습니다. ② 나머지는 무채색입니다. 온코어 로고는 원본 색 그대로 두고, 화면의 강조색만 빨강으로 바꿉니다.</p>
       </div>
       <div class="ds-panel">
         <h4>버튼 <small>빨강은 아껴 씁니다</small></h4>
@@ -463,7 +484,7 @@
   </div>
   <h3 class="sub-h">앞으로의 단계</h3>
   <ol class="tl">
-    <li class="tl-item now"><span class="tl-dot">1</span><div><h4>기획 확정 <span class="chip red">지금 단계</span></h4><p>이 기획안을 보고하고 방향을 확정합니다</p></div><p class="tl-prep"><b>회사에서 준비할 것</b>기획안 검토 의견</p></li>
+    <li class="tl-item now"><span class="tl-dot">1</span><div><h4>기획 확정 <span class="chip red">지금 단계</span></h4><p>이 제안서를 보고하고 방향을 확정합니다</p></div><p class="tl-prep"><b>회사에서 준비할 것</b>기획안 검토 의견</p></li>
     <li class="tl-item"><span class="tl-dot">2</span><div><h4>디자인 시안</h4><p>목록·상세·견적 화면 시안을 만듭니다 (PC·모바일)</p></div><p class="tl-prep"><b>회사에서 준비할 것</b>로고 원본, 대표 제품 사진</p></li>
     <li class="tl-item"><span class="tl-dot">3</span><div><h4>메인·공통 화면</h4><p>헤더·푸터·메인 화면을 테스트 화면에 적용합니다</p></div><p class="tl-prep"><b>회사에서 준비할 것</b>메인 배너 이미지</p></li>
     <li class="tl-item"><span class="tl-dot">4</span><div><h4>상품·견적 화면</h4><p>상품 목록·상세, 견적함, 회원·주문 화면 디자인을 적용합니다</p></div><p class="tl-prep"><b>회사에서 준비할 것</b>상품 사양 정리</p></li>
@@ -525,7 +546,7 @@
   </div>
   <div class="final-cta">
     <div><b>다음 단계는 기획 확정 후 고도몰 적용입니다.</b><p>메인·서브 페이지 시안이 모두 완성됐습니다. 운영 사이트는 건드리지 않고 테스트 화면에서 먼저 만들며, 견적 접수·알림은 그대로입니다.</p></div>
-    <div><a class="btn btn-p" href="renewal-plan.html" target="_blank" rel="noopener">메인 시안 열기</a></div>
+    <div><a class="btn btn-p" href="renewal-plan.html" target="_blank" rel="noopener">디자인 시안 보기</a></div>
   </div>
 </div></section>
 
@@ -547,7 +568,7 @@
   fit(); window.addEventListener('resize', fit);
 
   /* 목차: 지금 읽는 장 표시 + 읽은 만큼 진행 막대 */
-  var links = $$('.toc a'), bar = document.querySelector('.progress'), toc = document.querySelector('.toc');
+  var links = $$('.anchor-nav a'), bar = document.querySelector('.progress'), nav = document.querySelector('.anchor-nav');
   var secs = links.map(function (a) { return document.querySelector(a.getAttribute('href')); });
   var ticking = false;
   function onScroll() {
@@ -556,8 +577,8 @@
     secs.forEach(function (s, i) { if (s && s.offsetTop <= y) cur = i; });
     links.forEach(function (a, i) {
       var on = i === cur;
-      if (on && !a.classList.contains('on') && toc.scrollWidth > toc.clientWidth) {
-        toc.scrollTo({ left: a.offsetLeft - toc.offsetLeft - toc.clientWidth / 2 + a.clientWidth / 2, behavior: 'smooth' }); /* offsetLeft 는 .top 기준이라 목차 시작 위치를 뺀다 */
+      if (on && !a.classList.contains('on') && nav.scrollWidth > nav.clientWidth) { /* 칩 줄이 넘칠 때만: 지금 장을 가운데로 */
+        nav.scrollTo({ left: a.offsetLeft - nav.clientWidth / 2 + a.clientWidth / 2, behavior: 'smooth' });
       }
       a.classList.toggle('on', on);
       if (on) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current');

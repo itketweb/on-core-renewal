@@ -33,7 +33,7 @@
 .oc-pg-sec>h2{margin-bottom:var(--oc-sp-24);font-size:clamp(var(--oc-fs-24),2.6vw,var(--oc-fs-32));line-height:1.25}
 .oc-pg-sec>h2+p{margin:calc(var(--oc-sp-12)*-1) 0 var(--oc-sp-24);color:var(--oc-ink-3)}
 .oc-pg-grid{display:grid;grid-template-columns:minmax(0,1fr) 22rem;gap:var(--oc-sp-64);align-items:start}
-.oc-aside{position:sticky;top:calc(var(--oc-hd) + var(--oc-sp-32));padding:var(--oc-sp-24);border:1px solid var(--oc-line);border-radius:var(--oc-r)}
+.oc-aside{position:sticky;top:calc(var(--oc-stick) + var(--oc-hd) + var(--oc-sp-32));padding:var(--oc-sp-24);border:1px solid var(--oc-line);border-radius:var(--oc-r)}
 .oc-aside h3{font-size:var(--oc-fs-18);margin-bottom:var(--oc-sp-12)}
 
 /* ── 하위 이동: 알약 칩 링크 (규칙 9-5 — 탭은 알약. 선택 칩 .oc-filter 와 같은 모양, 선택된 칩만 검정) ──

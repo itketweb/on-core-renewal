@@ -14,17 +14,21 @@
 <link rel="stylesheet" href="../css/main.css">
 <link rel="stylesheet" href="../css/sub.css">
 <link rel="stylesheet" href="../css/sub-company.css">
+<link rel="stylesheet" href="../css/review-bar.css">
+<script src="../js/review-bar.js"></script>
 </head>
 <body>
 <div class="oc">
 
-<!-- 시안 검토용 도구 막대 (실제 사이트에는 없음) -->
+<!-- 시안 검토용 도구 막대 (실제 사이트에는 없음) — renewal-plan.html 과 같은 막대(css/review-bar.css) -->
 <div class="oc-review-bar">
-  <div class="oc-wrap">
-    <a href="../renewal-plan.html" class="oc-rb-back">← 메인 시안</a>
-    <span class="oc-rb-title">온코어 서브 페이지 시안</span>
-    <a href="../index.html" class="oc-rb-note">리뉴얼 기획안</a>
-    <button type="button" class="oc-rb-palette" data-open="oc-palette">컬러 가이드</button>
+  <div class="oc-rb-in">
+    <span class="oc-rb-title">온코어 리뉴얼 <em>서브 페이지 시안</em></span>
+    <nav class="oc-rb-nav" aria-label="문서">
+      <a href="../index.html">제안서</a>
+      <a href="../project-plan.html">실행 계획</a>
+      <a href="../renewal-plan.html">디자인 시안</a>
+    </nav>
   </div>
 </div>
 
@@ -225,9 +229,10 @@
         <h5>취급 브랜드</h5>
         <div class="oc-ft-badges"><span class="oc-lenovo">Lenovo</span><span class="oc-asus">ASUS</span></div>
         <p>기업용 서버·워크스테이션·PC 공급</p>
-        <!-- 운영 사이트 푸터 SNS 와 같은 주소. 고도몰: 관리자 > 기본설정 의 SNS 주소를 쓰면 그 값으로 -->
+        <!-- 운영 사이트 푸터 SNS 와 같은 주소, 글자 대신 로고 아이콘(이름은 aria-label·title). 고도몰: 관리자 > 기본설정 의 SNS 주소를 쓰면 그 값으로.
+             로고: Instagram·Facebook·Naver N = Simple Icons(CC0), 블로그 말풍선·스마트스토어 쇼핑백은 N 을 넣어 그린 모양 -->
         <h5>공식 채널</h5>
-        <p class="oc-ft-sns"><a href="https://blog.naver.com/on-core" target="_blank" rel="noopener">네이버 블로그</a><a href="https://www.instagram.com/oncore_official" target="_blank" rel="noopener">인스타그램</a><a href="https://www.facebook.com/Oncore.Meta" target="_blank" rel="noopener">페이스북</a><a href="https://smartstore.naver.com/on-core" target="_blank" rel="noopener">스마트스토어</a></p>
+        <p class="oc-ft-sns"><a href="https://blog.naver.com/on-core" target="_blank" rel="noopener" aria-label="네이버 블로그" title="네이버 블로그"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 2.5h16A2.5 2.5 0 0 1 22.5 5v11a2.5 2.5 0 0 1-2.5 2.5h-6.5l-4.5 3.8v-3.8H4A2.5 2.5 0 0 1 1.5 16V5A2.5 2.5 0 0 1 4 2.5z"/><path fill="#fff" transform="translate(8.25 6.75) scale(.3125)" d="M16.273 12.845 7.376 0H0v24h7.726V11.156L16.624 24H24V0h-7.727v12.845Z"/></svg></a><a href="https://www.instagram.com/oncore_official" target="_blank" rel="noopener" aria-label="인스타그램" title="인스타그램"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.0301.084c-1.2768.0602-2.1487.264-2.911.5634-.7888.3075-1.4575.72-2.1228 1.3877-.6652.6677-1.075 1.3368-1.3802 2.127-.2954.7638-.4956 1.6365-.552 2.914-.0564 1.2775-.0689 1.6882-.0626 4.947.0062 3.2586.0206 3.6671.0825 4.9473.061 1.2765.264 2.1482.5635 2.9107.308.7889.72 1.4573 1.388 2.1228.6679.6655 1.3365 1.0743 2.1285 1.38.7632.295 1.6361.4961 2.9134.552 1.2773.056 1.6884.069 4.9462.0627 3.2578-.0062 3.668-.0207 4.9478-.0814 1.28-.0607 2.147-.2652 2.9098-.5633.7889-.3086 1.4578-.72 2.1228-1.3881.665-.6682 1.0745-1.3378 1.3795-2.1284.2957-.7632.4966-1.636.552-2.9124.056-1.2809.0692-1.6898.063-4.948-.0063-3.2583-.021-3.6668-.0817-4.9465-.0607-1.2797-.264-2.1487-.5633-2.9117-.3084-.7889-.72-1.4568-1.3876-2.1228C21.2982 1.33 20.628.9208 19.8378.6165 19.074.321 18.2017.1197 16.9244.0645 15.6471.0093 15.236-.005 11.977.0014 8.718.0076 8.31.0215 7.0301.0839m.1402 21.6932c-1.17-.0509-1.8053-.2453-2.2287-.408-.5606-.216-.96-.4771-1.3819-.895-.422-.4178-.6811-.8186-.9-1.378-.1644-.4234-.3624-1.058-.4171-2.228-.0595-1.2645-.072-1.6442-.079-4.848-.007-3.2037.0053-3.583.0607-4.848.05-1.169.2456-1.805.408-2.2282.216-.5613.4762-.96.895-1.3816.4188-.4217.8184-.6814 1.3783-.9003.423-.1651 1.0575-.3614 2.227-.4171 1.2655-.06 1.6447-.072 4.848-.079 3.2033-.007 3.5835.005 4.8495.0608 1.169.0508 1.8053.2445 2.228.408.5608.216.96.4754 1.3816.895.4217.4194.6816.8176.9005 1.3787.1653.4217.3617 1.056.4169 2.2263.0602 1.2655.0739 1.645.0796 4.848.0058 3.203-.0055 3.5834-.061 4.848-.051 1.17-.245 1.8055-.408 2.2294-.216.5604-.4763.96-.8954 1.3814-.419.4215-.8181.6811-1.3783.9-.4224.1649-1.0577.3617-2.2262.4174-1.2656.0595-1.6448.072-4.8493.079-3.2045.007-3.5825-.006-4.848-.0608M16.953 5.5864A1.44 1.44 0 1 0 18.39 4.144a1.44 1.44 0 0 0-1.437 1.4424M5.8385 12.012c.0067 3.4032 2.7706 6.1557 6.173 6.1493 3.4026-.0065 6.157-2.7701 6.1506-6.1733-.0065-3.4032-2.771-6.1565-6.174-6.1498-3.403.0067-6.156 2.771-6.1496 6.1738M8 12.0077a4 4 0 1 1 4.008 3.9921A3.9996 3.9996 0 0 1 8 12.0077"/></svg></a><a href="https://www.facebook.com/Oncore.Meta" target="_blank" rel="noopener" aria-label="페이스북" title="페이스북"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z"/></svg></a><a href="https://smartstore.naver.com/on-core" target="_blank" rel="noopener" aria-label="네이버 스마트스토어" title="네이버 스마트스토어"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 7V6a3.5 3.5 0 0 1 7 0v1" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3.5 7h17l-1.2 14.5H4.7z"/><path fill="#fff" transform="translate(8.5 10.25) scale(.2917)" d="M16.273 12.845 7.376 0H0v24h7.726V11.156L16.624 24H24V0h-7.727v12.845Z"/></svg></a></p>
       </div>
     </div>
   </div>
@@ -284,33 +289,6 @@
     <h5>고객지원</h5>
     <div class="oc-mnav-grid"><a href="notice.html">공지사항</a><a href="inquiry.html">1:1 문의</a><a href="cs.html">고객센터</a></div>
     <div class="oc-mnav-act"><a href="login.html" class="oc-btn oc-btn-o">로그인</a><a href="join.html" class="oc-btn oc-btn-d">회원가입</a></div>
-  </div>
-</aside>
-
-<!-- 컬러 가이드 (검토용) -->
-<aside class="oc-drawer oc-palette" id="oc-palette" aria-label="컬러 가이드" hidden>
-  <div class="oc-dr-hd"><h3>컬러 가이드</h3><button type="button" class="oc-ic-btn" data-close aria-label="닫기"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button></div>
-  <div class="oc-dr-body">
-    <div class="oc-pal-logo"><img src="../img/oncore-logo.png" alt="온코어 로고" width="208" height="66"><p>v0.3부터 주력 상품인 Lenovo 의 빨강을 Primary 로 씁니다. 온코어 로고는 원본 색 그대로 두고, 화면의 강조색만 빨강으로 바꿨습니다.</p></div>
-    <h4>Primary · Lenovo Red</h4>
-    <div class="oc-pal">
-      <div><i class="oc-sw-primary"></i><b>Primary</b><code>#E1251B</code><span>주 버튼('견적 요청')·선택 상태·강조. 흰 글자 대비 4.7:1 (AA)</span></div>
-      <div><i class="oc-sw-primary-600"></i><b>Primary Hover</b><code>#BE1E15</code><span>눌렀을 때·마우스 올렸을 때</span></div>
-      <div><i class="oc-sw-primary-50"></i><b>Primary Soft</b><code>#FDECEB</code><span>선택된 버튼·배지 배경</span></div>
-    </div>
-    <h4>Dark · 무채색</h4>
-    <div class="oc-pal">
-      <div><i class="oc-sw-dark"></i><b>Dark</b><code>#16181D</code><span>마무리 영역·토스트. 빨강과 함께 쓰는 유일한 어두운 면</span></div>
-      <div><i class="oc-sw-ink"></i><b>Ink</b><code>#16181D</code><span>본문·제목</span></div>
-      <div><i class="oc-sw-ink-3"></i><b>Ink 3</b><code>#6B6F78</code><span>보조 글자</span></div>
-      <div><i class="oc-sw-img"></i><b>Image</b><code>#F4F4F4</code><span>상품 사진·배너 배경과 동일</span></div>
-    </div>
-    <p class="oc-pal-why"><b>규칙은 두 가지</b> ① 빨강은 '누르는 곳'과 '지금 선택된 것'에만 씁니다. 큰 면을 빨강으로 칠하지 않습니다. ② 나머지는 무채색입니다. 색이 하나라 새 영역을 만들 때도 고민할 것이 없습니다.</p>
-    <h4>제조사 라벨</h4>
-    <div class="oc-pal">
-      <div><i class="oc-sw-lenovo"></i><b>Lenovo</b><code>#E1251B</code><span>Primary 와 같은 색</span></div>
-      <div><i class="oc-sw-asus"></i><b>ASUS</b><code>#00539B</code><span>상품 카드의 브랜드 라벨에만</span></div>
-    </div>
   </div>
 </aside>
 
