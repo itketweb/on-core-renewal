@@ -1,0 +1,101 @@
+/* 완성 계획서(project-plan.html) 전용 — 기획안 css/plan.css 의 토큰·부품을 그대로 쓰고, 계획서에만 필요한 것만 더한다.
+   일정 막대(.gt) · 데이터 표(.pt, 모바일은 카드) · 체크리스트(.ck) · 완성의 정의(.dod). 인라인 스타일은 쓰지 않는다 */
+
+/* ── 일정 막대(간트) ── 영업일 15칸(10/26~11/13). 막대 위치는 .gs-N(시작 칸) + .gw-N(길이) 클래스로 */
+.gt{background:#fff;border-radius:var(--r-lg);padding:var(--sp-24) var(--sp-24) var(--sp-16)}
+.sec:not(.sec-alt) .gt{background:var(--surface)}
+.gt-head,.gt-row{display:grid;grid-template-columns:232px minmax(0,1fr);align-items:center;column-gap:var(--sp-16)}
+.gt-weeks,.gt-days,.gt-track{display:grid;grid-template-columns:repeat(15,minmax(0,1fr))}
+.gt-weeks span{grid-column:span 5;padding-bottom:var(--sp-4);font-size:var(--fs-12);font-weight:700;color:var(--ink-3);border-bottom:2px solid var(--ink)}
+.gt-weeks span+span{margin-left:var(--sp-4)}
+.gt-days{margin-top:var(--sp-8)}
+.gt-days span{font-size:var(--fs-12);color:var(--ink-3);text-align:center;font-variant-numeric:tabular-nums}
+.gt-days .now{color:var(--primary-600);font-weight:700}
+.gt-sec{grid-column:1/-1;margin:var(--sp-16) 0 var(--sp-4);font-size:var(--fs-14);font-weight:700;color:var(--ink)}
+.gt-row{padding:6px 0;border-top:1px solid var(--line-2)}
+.gt-name{font-size:var(--fs-14);color:var(--ink-2);line-height:1.4}
+.gt-row.ms .gt-name{font-weight:700;color:var(--ink)}
+.gt-track{position:relative;height:24px;background:linear-gradient(90deg,var(--line-2) 1px,transparent 1px) 0 0/calc(100% / 15) 100%}
+.gt-bar{grid-row:1;height:16px;align-self:center;border-radius:999px;background:var(--ink)}
+.gt-bar.soft{background:#C9CCD3}
+.gt-dia{grid-row:1;justify-self:center;align-self:center;width:14px;height:14px;transform:rotate(45deg);border-radius:2px;background:var(--primary)}
+.gt-today{grid-row:1;justify-self:start;width:2px;height:100%;background:var(--primary)}
+.gt-key{display:flex;flex-wrap:wrap;gap:var(--sp-8) var(--sp-20);margin-top:var(--sp-16);font-size:var(--fs-12);color:var(--ink-3)}
+.gt-key span{display:inline-flex;align-items:center;gap:6px}
+.gt-key i{display:inline-block;width:20px;height:8px;border-radius:999px;background:var(--ink)}
+.gt-key i.soft{background:#C9CCD3}
+.gt-key i.dia{width:10px;height:10px;border-radius:2px;transform:rotate(45deg);background:var(--primary)}
+.gs-0{grid-column-start:1}.gs-1{grid-column-start:2}.gs-2{grid-column-start:3}.gs-3{grid-column-start:4}.gs-4{grid-column-start:5}
+.gs-5{grid-column-start:6}.gs-6{grid-column-start:7}.gs-7{grid-column-start:8}.gs-8{grid-column-start:9}.gs-9{grid-column-start:10}
+.gs-10{grid-column-start:11}.gs-11{grid-column-start:12}.gs-12{grid-column-start:13}.gs-13{grid-column-start:14}.gs-14{grid-column-start:15}
+.gw-1{grid-column-end:span 1}.gw-2{grid-column-end:span 2}.gw-3{grid-column-end:span 3}.gw-4{grid-column-end:span 4}.gw-6{grid-column-end:span 6}.gw-8{grid-column-end:span 8}
+.gt-bar{margin:0 2px}
+
+/* ── 데이터 표 ── 768 미만은 행마다 카드, 칸 이름은 data-label */
+.pt{width:100%;border-collapse:collapse;background:#fff;border-radius:var(--r);overflow:hidden;font-size:var(--fs-14)}
+.sec:not(.sec-alt) .pt{box-shadow:inset 0 0 0 1px var(--line-2)}
+.pt th{padding:var(--sp-12) var(--sp-16);text-align:left;font-size:var(--fs-12);font-weight:700;color:var(--ink-3);background:var(--surface);white-space:nowrap}
+.sec-alt .pt th{background:#F7F8F9}
+.pt td{padding:var(--sp-12) var(--sp-16);vertical-align:top;color:var(--ink-2);border-top:1px solid var(--line-2);line-height:1.6}
+.pt td:first-child{font-weight:600;color:var(--ink)}
+.pt td.nw{white-space:nowrap}
+.pt code,.ck code,.card code,.note code{font:.92em ui-monospace,Consolas,monospace;padding:1px 5px;border-radius:4px;background:var(--surface);color:var(--ink)}
+.sec-alt .pt code{background:#F0F1F3}
+.pt b{color:var(--ink)}
+.pt .rec{color:var(--ink);font-weight:600}
+
+/* ── 체크리스트 ── 빈 원 = 할 일 (화면에서 체크하지 않는다: 상태는 저장소 커밋으로 관리) */
+.ck{display:grid;gap:var(--sp-8)}
+.ck li{position:relative;padding-left:28px;font-size:var(--fs-14);color:var(--ink-2);line-height:1.65}
+.ck li::before{content:"";position:absolute;left:0;top:.25em;width:16px;height:16px;border-radius:50%;box-shadow:inset 0 0 0 1.5px #C9CCD3}
+.card .ck{margin-top:var(--sp-16)}
+.card>.chip{margin-bottom:var(--sp-12)}
+.card h4 small{margin-left:var(--sp-8);font-size:var(--fs-12);font-weight:600;color:var(--ink-3)}
+
+/* ── 완성의 정의 ── 번호 카드 5개 */
+.dod{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:var(--sp-12);counter-reset:dod}
+.dod li{counter-increment:dod;display:flex;flex-direction:column;gap:var(--sp-8);padding:var(--sp-20);border-radius:var(--r);background:#fff;font-size:var(--fs-14);color:var(--ink-2);line-height:1.6}
+.dod li::before{content:counter(dod);display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;background:var(--ink);color:#fff;font-size:var(--fs-14);font-weight:700}
+.dod b{color:var(--ink);font-size:var(--fs-16)}
+
+/* 주차 머리: 날짜 + 문(gate) */
+.wk-gate{display:flex;flex-wrap:wrap;align-items:center;gap:var(--sp-8) var(--sp-12);margin:calc(var(--sp-24) * -1) 0 var(--sp-24);font-size:var(--fs-16);color:var(--ink-2)}
+.wk-gate b{color:var(--ink)}
+.wk-cols{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:var(--sp-16);align-items:start}
+.plan-foot{padding:var(--sp-40) 0 var(--sp-64);font-size:var(--fs-14);color:var(--ink-3)}
+.plan-foot a{color:var(--ink-2);text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--line)}
+
+@media(max-width:1023px){
+  .dod{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .dod li:last-child{grid-column:1/-1}
+  .wk-cols{grid-template-columns:minmax(0,1fr)}
+  .gt-head,.gt-row{grid-template-columns:168px minmax(0,1fr)}
+}
+@media(max-width:767px){
+  .gt{padding:var(--sp-16)}
+  /* 일정 막대: 이름을 막대 위 한 줄로 */
+  .gt-head{grid-template-columns:minmax(0,1fr)}
+  .gt-head>span:first-child{display:none}
+  .gt-row{grid-template-columns:minmax(0,1fr);row-gap:4px}
+  .gt-days span{font-size:10.5px}
+  .gt-days span:nth-child(even){visibility:hidden} /* 좁은 폭은 날짜를 하루걸러 */
+  .gt-weeks span{font-size:11px}
+  .dod{grid-template-columns:minmax(0,1fr)}
+  .dod li{flex-direction:row;align-items:flex-start;padding:var(--sp-16)}
+  .dod li::before{flex:none}
+  /* 표 → 카드 */
+  .pt,.pt tbody,.pt tr,.pt td{display:block;width:auto;min-width:0;max-width:100%}
+  .pt{width:100%;background:none;box-shadow:none!important;overflow:visible}
+  .pt td{overflow-wrap:anywhere} /* 긴 파일 경로·코드가 카드를 밀어내지 않게 (넘칠 때만 끊음) */
+  .pt thead{display:none}
+  .pt tr{background:#fff;border:1px solid var(--line-2);border-radius:var(--r);padding:var(--sp-12) var(--sp-16)}
+  .pt tr+tr{margin-top:var(--sp-8)}
+  .pt td{padding:2px 0 2px 76px;border:0;position:relative;white-space:normal!important}
+  .pt td::before{content:attr(data-label);position:absolute;left:0;top:4px;width:68px;font-size:var(--fs-12);font-weight:600;color:var(--ink-3)}
+  .pt td:first-child{padding-left:0;margin-bottom:var(--sp-4);font-size:var(--fs-16)}
+  .pt td:first-child::before{content:none}
+  .wk-gate{margin-top:calc(var(--sp-16) * -1);font-size:var(--fs-14)}
+}
+@media print{
+  .gt,.pt tr{break-inside:avoid}
+}

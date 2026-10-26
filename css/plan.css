@@ -356,6 +356,8 @@ td small{color:var(--ink-3)}
 
 /* ── 개별 요소 보정 (HTML 의 style 속성 대신) ── */
 .sub-h-first{margin-top:0}
+.sec-link{display:flex;flex-wrap:wrap;align-items:center;gap:var(--sp-12) var(--sp-16);margin-top:var(--sp-32)} /* 장 끝의 '자세히 보기' 버튼 + 설명 한 줄 */
+.sec-link span{font-size:var(--fs-14);color:var(--ink-3)}
 .sw-primary{background:var(--primary)}.sw-ink{background:var(--ink)}.sw-surface{background:var(--surface)}.sw-img{background:var(--img)}
 .type-rule .t-title{font-size:var(--fs-40)}
 .type-rule .t-card{font-size:var(--fs-20)}
