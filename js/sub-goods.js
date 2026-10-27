@@ -83,7 +83,7 @@
     var set = function (k, v) { $$('[data-f="' + k + '"]').forEach(function (e) { e.textContent = v; }); };
     set('name', g.goodsNm); set('brand', g.brandNm); set('model', '제조사 품번 ' + (g.goodsModelNo || '—')); set('code', '상품코드 ' + no);
     set('price', quote ? g.goodsPriceString : M.money(g.goodsPrice) + '원');
-    set('pricenote', quote ? 'CPU·메모리·디스크 맞춤 구성' : '부가세 포함 · 수량 구매 시 별도 견적');
+    set('pricenote', quote ? '구성·수량에 따라 견적' : '부가세 포함 · 수량 구매 시 별도 견적'); // 견적 전용 안내는 모든 분류 공통 문구
     set('cat', fam[0]); $$('a[data-f="cat"]').forEach(function (a) { a.setAttribute('href', fam[1]); });
     $$('[data-brand-host]').forEach(function (e) { e.setAttribute('data-brand', g.brandNm); });
     $$('img[data-f-img]').forEach(function (i) { i.src = imgSrc; i.alt = g.goodsNm; });

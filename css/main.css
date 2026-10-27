@@ -238,7 +238,10 @@ html{min-width:360px} /* 최소 폭 360 (8-1장) — 더 좁은 화면은 맞추
   .oc-card:hover{box-shadow:var(--oc-lift)}
   .oc-card:hover .oc-card-img img{transform:scale(1.04)} /* 살짝만 — 사진 가장자리의 브랜드 로고가 틀 밖으로 나가지 않게 */
 }
-.oc-badge{position:absolute;top:var(--oc-sp-12);right:var(--oc-sp-12);font-size:var(--oc-fs-12);font-weight:700;padding:var(--oc-sp-4) var(--oc-sp-8);border-radius:var(--oc-sp-8);background:#fff;color:var(--oc-ink-2)}
+/* 브랜드 줄: 왼쪽 브랜드 + 오른쪽 '견적 전용' 배지. 배지는 사진 위에 얹지 않는다(운영자가 올린 사진의 로고·글자를 가리지 않게, 글 카드와 같은 원칙 — 2026-10-27).
+   줄 높이를 배지 높이로 고정해 배지가 없는 카드도 같은 높이 → 한 줄의 카드끼리 이름·사양 위치가 맞는다 */
+.oc-card-meta{display:flex;align-items:center;justify-content:space-between;gap:var(--oc-sp-8);min-height:calc(var(--oc-fs-12) * 1.5 + var(--oc-sp-4) * 2)}
+.oc-badge{flex:none;font-size:var(--oc-fs-12);font-weight:700;line-height:1.5;padding:var(--oc-sp-4) var(--oc-sp-8);border-radius:var(--oc-sp-8);background:#fff;color:var(--oc-ink-2)}
 .oc-badge.oc-q{background:var(--oc-primary-50);color:var(--oc-primary-600)}
 .oc-card-body{padding:var(--oc-sp-16) var(--oc-sp-20) var(--oc-sp-20);display:flex;flex-direction:column;flex:1}
 .oc-card-name{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;font-size:var(--oc-fs-18);font-weight:700;letter-spacing:-.02em;line-height:1.35;margin:var(--oc-sp-4) 0 2px} /* 제목은 최대 2줄(넘치면 …). 높이는 잡지 않는다 — 한 줄 카드끼리의 정렬은 사양 표를 아래로 붙여 맞춘다(.oc-card-spec margin-top:auto) */
