@@ -50,8 +50,8 @@
     if (!rows.length) { ul.remove(); return; }
     // 카드 사양은 항상 4줄: 넘치면 앞 4줄만, 모자라면 빈 줄로 채운다(카드끼리 높이를 맞추기 위해 — 운영자는 '짧은 설명'을 4항목으로 쓴다)
     rows = rows.slice(0, 4);
-    var html = rows.map(function (r) { return '<li>' + (r[0] ? '<span>' + esc(r[0]) + '</span>' : '') + esc(r[1]) + '</li>'; }).join('');
-    for (var k = rows.length; k < 4; k++) html += '<li aria-hidden="true">&nbsp;</li>';
+    var html = rows.map(function (r) { return '<li class="oc-card-spec-row">' + (r[0] ? '<span class="oc-card-spec-k">' + esc(r[0]) + '</span>' : '') + esc(r[1]) + '</li>'; }).join('');
+    for (var k = rows.length; k < 4; k++) html += '<li class="oc-card-spec-row" aria-hidden="true">&nbsp;</li>';
     ul.innerHTML = html;
   });
 
@@ -137,7 +137,7 @@
     // 점(페이지 표시)은 배너 수만큼 여기서 만든다 → 관리자에서 배너를 늘리거나 줄여도 HTML 을 고칠 필요가 없다
     $('.oc-dots').innerHTML = slides.map(function (s, k) {
       s.setAttribute('aria-label', (k + 1) + ' / ' + slides.length);
-      return '<button type="button" role="tab" aria-label="' + (k + 1) + '번 슬라이드"><i></i></button>';
+      return '<button type="button" role="tab" aria-label="' + (k + 1) + '번 슬라이드" class="oc-dot"><i class="oc-dot-bar"></i></button>';
     }).join('');
     $('.oc-hero-ctrl').hidden = slides.length < 2;
     var dots = $$('.oc-dots button');
@@ -396,7 +396,7 @@
   // 비교 화면: 제품이 열, 항목이 행. 사양 항목은 담은 제품들의 짧은 설명 라벨을 나온 순서대로 모은다
   function renderCmpView() {
     if (cmp.length < 2) {
-      cmpView.innerHTML = '<div class="oc-cmpv-empty"><p>비교할 제품을 2개 이상 골라 주세요.</p><span>제품 목록에서 카드 아래 \'비교\'를 체크하면 최대 4개까지 나란히 볼 수 있습니다.</span>' +
+      cmpView.innerHTML = '<div class="oc-cmpv-empty"><p class="oc-cmpv-empty-t">비교할 제품을 2개 이상 골라 주세요.</p><span class="oc-cmpv-empty-d">제품 목록에서 카드 아래 \'비교\'를 체크하면 최대 4개까지 나란히 볼 수 있습니다.</span>' +
         '<a href="' + esc((window.OC_ROOT || '') + 'pages/goods-all.html') + '" class="oc-btn oc-btn-d">제품 보러 가기</a></div>';
       return;
     }
@@ -520,6 +520,20 @@
       else toast('시안 화면입니다 · 실제 사이트에서는 채널톡 상담 창이 열립니다');
     });
   });
+  // 안 읽은 상담 메시지 수: 운영 스킨이 #cusChannel 안 span 에 넣는 숫자를 모바일 하단 바 '채팅 상담'에도 보여 준다.
+  // 채널톡 설정(boot)·이벤트 핸들러는 운영 스킨 것을 그대로 두고 화면만 읽는다 (#cusChannel 이 없으면 아무 일도 하지 않음)
+  var chBadge = $('[data-channel-badge]');
+  if (chBadge && window.MutationObserver) {
+    var syncCh = function () {
+      var sp = $('#cusChannel span'), n = sp && sp.style.display !== 'none' ? parseInt(sp.textContent, 10) || 0 : 0;
+      chBadge.hidden = !n;
+      chBadge.textContent = n > 99 ? '99+' : String(n);
+    };
+    var watchCh = function (btn) { new MutationObserver(syncCh).observe(btn, { subtree: true, childList: true, characterData: true, attributes: true }); syncCh(); };
+    var chBtn = $('#cusChannel');
+    if (chBtn) watchCh(chBtn);
+    else { var chWait = new MutationObserver(function () { var b = $('#cusChannel'); if (b) { chWait.disconnect(); watchCh(b); } }); chWait.observe(document.body, { childList: true }); }
+  }
 
   renderQuote();
 })();

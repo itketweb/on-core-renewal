@@ -4,27 +4,27 @@
 
 /* ── 회사소개: 소개 문구 (왼쪽 큰 제목 + 오른쪽 본문) ── */
 .oc-company-lead{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:var(--oc-sp-64);align-items:start}
-.oc-company-lead h2{font-size:clamp(var(--oc-fs-28),3.2vw,var(--oc-fs-40));line-height:1.25}
+.oc-company-lead-t{font-size:clamp(var(--oc-fs-28),3.2vw,var(--oc-fs-40));line-height:1.25}
 .oc-company-lead p{font-size:var(--oc-fs-18);line-height:1.8;color:var(--oc-ink-2)}
 .oc-company-lead p+p{margin-top:var(--oc-sp-16)}
 
 /* 하는 일: 번호 + 제목 + 설명, 선으로만 나눈다 (카드 상자 없음) */
 .oc-company-work{counter-reset:oc-work;border-top:2px solid var(--oc-ink)}
-.oc-company-work li{counter-increment:oc-work;display:grid;grid-template-columns:var(--oc-sp-80) minmax(0,5fr) minmax(0,7fr);gap:var(--oc-sp-24);align-items:start;padding:var(--oc-sp-32) 0;border-bottom:1px solid var(--oc-line)}
-.oc-company-work li::before{content:counter(oc-work,decimal-leading-zero);font-size:var(--oc-fs-24);font-weight:700;line-height:1.3;letter-spacing:-.02em;color:var(--oc-ink-3)}
+.oc-company-work-item{counter-increment:oc-work;display:grid;grid-template-columns:var(--oc-sp-80) minmax(0,5fr) minmax(0,7fr);gap:var(--oc-sp-24);align-items:start;padding:var(--oc-sp-32) 0;border-bottom:1px solid var(--oc-line)}
+.oc-company-work-item::before{content:counter(oc-work,decimal-leading-zero);font-size:var(--oc-fs-24);font-weight:700;line-height:1.3;letter-spacing:-.02em;color:var(--oc-ink-3)}
 .oc-company-work h3{font-size:var(--oc-fs-24);line-height:1.3}
 .oc-company-work p{color:var(--oc-ink-2)}
 
 /* 취급 브랜드 */
 .oc-company-brands{border-top:2px solid var(--oc-ink)}
-.oc-company-brands li{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,6fr) minmax(0,3fr);gap:var(--oc-sp-24);align-items:center;padding:var(--oc-sp-24) 0;border-bottom:1px solid var(--oc-line)}
+.oc-company-brand{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,6fr) minmax(0,3fr);gap:var(--oc-sp-24);align-items:center;padding:var(--oc-sp-24) 0;border-bottom:1px solid var(--oc-line)}
 .oc-company-brands h3{font-size:var(--oc-fs-24)}
 .oc-company-brands p{color:var(--oc-ink-2)}
 .oc-company-brands .oc-more{justify-self:end;color:var(--oc-ink)} /* 3번 반복되는 링크라 빨강 대신 검정 (빨강은 한 화면 1~2곳) */
 
 /* 오시는 길 */
 .oc-company-loc{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:var(--oc-sp-48);align-items:stretch}
-.oc-company-addr b{display:block;margin-bottom:var(--oc-sp-8);font-size:var(--oc-fs-18)}
+.oc-company-addr-t{display:block;margin-bottom:var(--oc-sp-8);font-size:var(--oc-fs-18)}
 .oc-company-addr p{color:var(--oc-ink-2)}
 .oc-company-addr p+p{margin-top:var(--oc-sp-12)}
 .oc-company-map{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:var(--oc-sp-8);min-height:var(--oc-sp-160);aspect-ratio:16/7;border-radius:var(--oc-r-lg);background:var(--oc-img);color:var(--oc-ink-3);font-size:var(--oc-fs-14);text-align:center}
@@ -32,8 +32,8 @@
 
 /* 하단 상담 유도: 선 + 한 줄, 상자 없음 */
 .oc-company-cta{display:flex;align-items:center;justify-content:space-between;gap:var(--oc-sp-32);flex-wrap:wrap;margin-top:var(--oc-sp-80);padding:var(--oc-sp-40) 0 0;border-top:2px solid var(--oc-ink)} /* 위 섹션(오시는 길 지도)과 띄운다 */
-.oc-company-cta h2{font-size:clamp(var(--oc-fs-24),2.6vw,var(--oc-fs-32));line-height:1.25}
-.oc-company-cta p{margin-top:var(--oc-sp-8);color:var(--oc-ink-3)}
+.oc-company-cta-t{font-size:clamp(var(--oc-fs-24),2.6vw,var(--oc-fs-32));line-height:1.25}
+.oc-company-cta-d{margin-top:var(--oc-sp-8);color:var(--oc-ink-3)}
 .oc-company-cta-act{display:flex;gap:var(--oc-sp-12);flex-wrap:wrap}
 
 /* ── 약관·방침: 본문(왼쪽) + 목차(오른쪽 고정) ── */
@@ -57,7 +57,7 @@
 .oc-company-guide .oc-note{margin-bottom:var(--oc-sp-48)}
 .oc-company-guide .oc-pg-sec>ol+p{margin-top:var(--oc-sp-24)}
 .oc-company-lines{border-top:2px solid var(--oc-ink)}
-.oc-company-lines li{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,9fr);gap:var(--oc-sp-24);padding:var(--oc-sp-20) 0;border-bottom:1px solid var(--oc-line)}
+.oc-company-line{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,9fr);gap:var(--oc-sp-24);padding:var(--oc-sp-20) 0;border-bottom:1px solid var(--oc-line)}
 .oc-company-lines b{font-size:var(--oc-fs-16)}
 .oc-company-lines p{color:var(--oc-ink-2)}
 .oc-company-lines small{display:block;margin-top:var(--oc-sp-4);font-size:var(--oc-fs-12);color:var(--oc-ink-3)}
@@ -77,10 +77,10 @@
 /* ── 반응형 (1024 미만 / 768 미만) ── */
 @media (max-width:1023px){
   .oc-company-lead{grid-template-columns:minmax(0,1fr);gap:var(--oc-sp-24)}
-  .oc-company-work li{grid-template-columns:var(--oc-sp-64) minmax(0,1fr)}
-  .oc-company-work li p{grid-column:2}
-  .oc-company-brands li{grid-template-columns:minmax(0,1fr) auto}
-  .oc-company-brands li p{grid-column:1/-1;grid-row:2}
+  .oc-company-work-item{grid-template-columns:var(--oc-sp-64) minmax(0,1fr)}
+  .oc-company-work-item .oc-company-work-d{grid-column:2}
+  .oc-company-brand{grid-template-columns:minmax(0,1fr) auto}
+  .oc-company-brand .oc-company-brand-d{grid-column:1/-1;grid-row:2}
   .oc-company-loc{grid-template-columns:minmax(0,1fr);gap:var(--oc-sp-24)}
   .oc-company-doc .oc-aside{order:-1}
   .oc-pg-grid--toc .oc-company-toc li+li{border-top:1px solid var(--oc-line-2)}
@@ -89,12 +89,12 @@
 }
 @media (max-width:767px){
   .oc-company-lead p{font-size:var(--oc-fs-16)}
-  .oc-company-work li{grid-template-columns:minmax(0,1fr);gap:var(--oc-sp-8);padding:var(--oc-sp-24) 0}
-  .oc-company-work li p{grid-column:1}
+  .oc-company-work-item{grid-template-columns:minmax(0,1fr);gap:var(--oc-sp-8);padding:var(--oc-sp-24) 0}
+  .oc-company-work-item .oc-company-work-d{grid-column:1}
   .oc-company-work h3{font-size:var(--oc-fs-20)}
   .oc-company-map{aspect-ratio:16/9}
   .oc-company-cta{flex-direction:column;align-items:flex-start;margin-top:var(--oc-sp-48);padding-top:var(--oc-sp-24)}
   .oc-company-cta-act,.oc-company-cta-act .oc-btn{width:100%}
-  .oc-company-lines li{grid-template-columns:minmax(0,1fr);gap:var(--oc-sp-4)}
+  .oc-company-line{grid-template-columns:minmax(0,1fr);gap:var(--oc-sp-4)}
   .oc-company-consent{flex-direction:column;align-items:flex-start}
 }

@@ -19,10 +19,10 @@
 .oc-gv-model+.oc-gv-model{position:relative}
 .oc-gv-model+.oc-gv-model::before{content:"";position:absolute;left:calc(var(--oc-sp-8) * -1);top:50%;width:1px;height:.8em;transform:translateY(-50%);background:var(--oc-line)} /* 품번 | 상품코드 */
 .oc-gv-model{font-size:var(--oc-fs-14);color:var(--oc-ink-3);white-space:nowrap} /* 품번이 'D700SF-' 에서 끊기지 않게 */
-.oc-gv-info h1{margin-top:var(--oc-sp-4);font-size:var(--oc-fs-32);line-height:1.25} /* 상품명이 가격보다 커야 무엇을 보는지 먼저 읽힌다 */
+.oc-gv-name{margin-top:var(--oc-sp-4);font-size:var(--oc-fs-32);line-height:1.25} /* 상품명이 가격보다 커야 무엇을 보는지 먼저 읽힌다 */
 .oc-gv-price{margin-top:0} /* 사양 묶음 바로 아래 (위 여백은 사양 묶음이 가진다) */
-.oc-gv-price b{display:block;font-size:var(--oc-fs-28);font-weight:700;line-height:1.2;letter-spacing:-.02em}
-.oc-gv-price small{display:block;margin-top:var(--oc-sp-4);font-size:var(--oc-fs-14);color:var(--oc-ink-3)}
+.oc-gv-amt{display:block;font-size:var(--oc-fs-28);font-weight:700;line-height:1.2;letter-spacing:-.02em}
+.oc-gv-price-note{display:block;margin-top:var(--oc-sp-4);font-size:var(--oc-fs-14);color:var(--oc-ink-3)}
 /* 사양 요약: 선은 위 1개(가는 선)와 행 구분선만. 라벨 칸을 좁히고 행 높이를 40 으로 — 큰 표(상세 탭)와 달리 요약이라 촘촘하게 */
 /* 사양: 카드처럼 위아래 선 사이에 줄선 없이 — 항목(회색 작게) · 값(보통 굵기) */
 .oc-gv-spec{margin:var(--oc-sp-24) 0;padding:var(--oc-sp-12) 0;--oc-kv-l:var(--oc-sp-64);border-top:1px solid var(--oc-line-2);border-bottom:1px solid var(--oc-line-2)}
@@ -58,7 +58,7 @@
 .oc-gv-desc{text-align:center}
 .oc-gv-desc img{display:block;max-width:100%;height:auto;margin:0 auto}
 .oc-gv-desc p{color:var(--oc-ink-3)}
-.oc-gv-panel h2{margin-bottom:var(--oc-sp-16);font-size:var(--oc-fs-24)}
+.oc-gv-panel-t{margin-bottom:var(--oc-sp-16);font-size:var(--oc-fs-24)}
 .oc-gv-panel * + h2{margin-top:var(--oc-sp-48)} /* 한 탭에 소제목이 여럿(구매 안내: 견적·납품 / 배송 / 교환·반품)일 때 구간을 띄운다 */
 .oc-gv-panel p{font-size:var(--oc-fs-16);line-height:1.8;color:var(--oc-ink-2)}
 .oc-gv-panel p+p,.oc-gv-panel .oc-kv+p,.oc-gv-panel p+.oc-steps{margin-top:var(--oc-sp-20)}
@@ -70,8 +70,8 @@
 .oc-gs-form .oc-input{height:var(--oc-sp-48);padding:0 var(--oc-sp-24);border-radius:999px;flex:1;min-width:0}
 .oc-gs-empty{padding:var(--oc-sp-64) 0;text-align:center}
 .oc-gs-empty[hidden],.oc-gs-result[hidden]{display:none}
-.oc-gs-empty b{display:block;font-size:var(--oc-fs-20)}
-.oc-gs-empty p{margin:var(--oc-sp-8) 0 var(--oc-sp-24);color:var(--oc-ink-3)}
+.oc-gs-empty-t{display:block;font-size:var(--oc-fs-20)}
+.oc-gs-empty-d{margin:var(--oc-sp-8) 0 var(--oc-sp-24);color:var(--oc-ink-3)}
 .oc-gs-empty .oc-chips{justify-content:center}
 .oc-gs-empty .oc-chips a{background:#fff}
 
@@ -98,8 +98,8 @@
 .oc-cmpv-act .oc-btn + .oc-btn{margin-top:var(--oc-sp-8)}
 .oc-cmpv-act .oc-add.oc-is-on{background:var(--oc-primary-50);border-color:var(--oc-primary-100);color:var(--oc-primary-600)}
 .oc-cmpv-empty{padding:var(--oc-sp-64) var(--oc-sp-24);text-align:center;background:#fff;border:1px solid var(--oc-line-2);border-radius:var(--oc-r-lg)}
-.oc-cmpv-empty p{font-size:var(--oc-fs-20);font-weight:700;color:var(--oc-ink)}
-.oc-cmpv-empty span{display:block;margin:var(--oc-sp-8) 0 var(--oc-sp-24);color:var(--oc-ink-3)}
+.oc-cmpv-empty-t{font-size:var(--oc-fs-20);font-weight:700;color:var(--oc-ink)}
+.oc-cmpv-empty-d{display:block;margin:var(--oc-sp-8) 0 var(--oc-sp-24);color:var(--oc-ink-3)}
 
 /* ── 반응형 ── */
 @media (min-width:768px) and (max-width:1279px){[data-related] .oc-card:nth-child(4){display:none}} /* 상품 카드 3열 폭: 4개 중 넷째를 숨겨 줄을 채운다 */
@@ -115,9 +115,9 @@
   .oc-pg-hd:has(+ .oc-pg-body [data-goods]) .oc-subnav{margin-top:var(--oc-sp-16)}
   .oc-pg-body:has([data-goods]){padding-top:var(--oc-sp-16)}
   .oc-pg-body:has([data-goods]) .oc-toolbar{padding-bottom:var(--oc-sp-8);margin-bottom:var(--oc-sp-16)}
-  .oc-gv-info h1{font-size:var(--oc-fs-24)}
+  .oc-gv-name{font-size:var(--oc-fs-24)}
   .oc-gv-spec{margin:var(--oc-sp-16) 0}
-  .oc-gv-price b{font-size:var(--oc-fs-24)}
+  .oc-gv-amt{font-size:var(--oc-fs-24)}
   .oc-gv-act{display:none} /* 같은 버튼이 아래 구매 바에 늘 떠 있다 */
   .oc:has(.oc-gv-bar) .oc-mbar{display:none}
   .oc-gv-bar{display:flex;align-items:center;gap:var(--oc-sp-8);position:fixed;left:0;right:0;bottom:0;min-width:360px;z-index:44;height:calc(var(--oc-sp-64) + var(--oc-safe-b));padding:0 calc(var(--oc-sp-12) + var(--oc-safe-r)) var(--oc-safe-b) calc(var(--oc-sp-8) + var(--oc-safe-l));background:#fff;border-top:1px solid var(--oc-line-2);box-shadow:0 -8px 24px -16px rgba(22,24,29,.2)}
@@ -130,7 +130,7 @@
   .oc-gv-tabs{margin-top:var(--oc-sp-48)}
   .oc-gv-tabs [role="tablist"]{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);column-gap:0} /* 탭 3개를 칸 똑같이 */
   .oc-gv-tabs [role="tab"]{white-space:normal;text-align:center;font-size:var(--oc-fs-14);line-height:1.35}
-  .oc-gv-panel h2{font-size:var(--oc-fs-20)}
+  .oc-gv-panel-t{font-size:var(--oc-fs-20)}
   .oc-gs-form .oc-btn{padding:0 var(--oc-sp-16)}
   /* 비교 표: 왼쪽 항목 칸을 없애 제품 칸을 넓히고, 항목 이름은 값 줄 위에 한 줄로 */
   .oc-cmpv .oc-cmpv-lb{display:none}

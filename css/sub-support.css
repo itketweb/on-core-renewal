@@ -21,9 +21,9 @@
 .oc-support-st--done{background:var(--oc-ink);color:#fff}
 .oc-support-agree{padding:var(--oc-sp-16);border:1px solid var(--oc-line);border-radius:var(--oc-r-sm);background:var(--oc-surface)}
 .oc-support-aside-links{margin-top:var(--oc-sp-16);border-top:1px solid var(--oc-line)}
-.oc-support-aside-links a{display:flex;justify-content:space-between;padding:var(--oc-sp-12) 0;border-bottom:1px solid var(--oc-line-2);font-size:var(--oc-fs-14);font-weight:600;color:var(--oc-ink-2)}
-.oc-support-aside-links a::after{content:"›";color:var(--oc-ink-3)}
-@media (hover:hover) and (pointer:fine) and (min-width:768px){.oc-support-aside-links a:hover{color:var(--oc-ink)}}
+.oc-support-aside-link{display:flex;justify-content:space-between;padding:var(--oc-sp-12) 0;border-bottom:1px solid var(--oc-line-2);font-size:var(--oc-fs-14);font-weight:600;color:var(--oc-ink-2)}
+.oc-support-aside-link::after{content:"›";color:var(--oc-ink-3)}
+@media (hover:hover) and (pointer:fine) and (min-width:768px){.oc-support-aside-link:hover{color:var(--oc-ink)}}
 .oc-aside p{font-size:var(--oc-fs-14);color:var(--oc-ink-3)}
 .oc-aside .oc-btn{margin-top:var(--oc-sp-16)}
 
@@ -40,11 +40,11 @@
 .oc-support-faq-q{display:block;margin-bottom:var(--oc-sp-4);font-style:normal;font-size:var(--oc-fs-12);font-weight:700;letter-spacing:.04em;color:var(--oc-ink-3)} /* 분류를 질문 위 줄로: 분류 길이가 달라도 질문 시작 위치가 같다 */
 .oc-support-faq summary span{flex:1}
 .oc-support-go{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--oc-sp-32);border-top:2px solid var(--oc-ink)}
-.oc-support-go a{display:flex;align-items:center;justify-content:space-between;gap:var(--oc-sp-16);padding:var(--oc-sp-24) 0;border-bottom:1px solid var(--oc-line);transition:color .15s}
+.oc-support-go-item{display:flex;align-items:center;justify-content:space-between;gap:var(--oc-sp-16);padding:var(--oc-sp-24) 0;border-bottom:1px solid var(--oc-line);transition:color .15s}
 .oc-support-go b{display:block;font-size:var(--oc-fs-20)}
 .oc-support-go span{display:block;margin-top:var(--oc-sp-4);font-size:var(--oc-fs-14);color:var(--oc-ink-3)}
-.oc-support-go a::after{content:"→";font-size:var(--oc-fs-24);color:var(--oc-ink-3);transition:transform .2s var(--oc-ease)}
-@media (hover:hover) and (pointer:fine) and (min-width:768px){.oc-support-go a:hover::after{transform:translateX(4px)}} /* 바로가기 행: → 가 오른쪽으로 이동 (9-3장 목록 hover 와 같은 계열) */
+.oc-support-go-item::after{content:"→";font-size:var(--oc-fs-24);color:var(--oc-ink-3);transition:transform .2s var(--oc-ease)}
+@media (hover:hover) and (pointer:fine) and (min-width:768px){.oc-support-go-item:hover::after{transform:translateX(4px)}} /* 바로가기 행: → 가 오른쪽으로 이동 (9-3장 목록 hover 와 같은 계열) */
 
 /* 로그인 */
 .oc-support-auth{max-width:28rem;margin:0 auto}
@@ -55,7 +55,7 @@
 .oc-support-auth-links a{padding:var(--oc-sp-8) 0} /* 누르는 면 높이 확보 */
 @media (hover:hover) and (pointer:fine) and (min-width:768px){.oc-support-auth-links a:hover{color:var(--oc-ink);text-decoration:underline;text-underline-offset:3px}}
 .oc-support-auth-links li+li::before{content:"";display:inline-block;width:1px;height:var(--oc-sp-12);margin-right:var(--oc-sp-16);background:var(--oc-line);vertical-align:-1px}
-.oc-support-auth-links li{display:flex;align-items:center}
+.oc-support-auth-item{display:flex;align-items:center}
 .oc-support-auth-sub{margin-top:var(--oc-sp-40);padding-top:var(--oc-sp-24);border-top:1px solid var(--oc-line);text-align:center}
 .oc-support-auth-sub p{margin-bottom:var(--oc-sp-12);font-size:var(--oc-fs-14);color:var(--oc-ink-3)}
 /* 비회원 주문조회 — 회색 상자로 회원 로그인과 나눈다 */
@@ -72,9 +72,9 @@
 /* 회원가입 */
 .oc-support-join{max-width:48rem;margin:0 auto}
 .oc-support-steps{margin-bottom:var(--oc-sp-48)}
-.oc-support-steps li{padding-left:var(--oc-sp-16);color:var(--oc-ink-3)}
-.oc-support-steps li[aria-current="step"]{color:var(--oc-ink);box-shadow:inset 0 3px 0 var(--oc-ink);padding-top:var(--oc-sp-20)}
-.oc-support-steps li[aria-current="step"]::before{color:var(--oc-ink)}
+.oc-support-step{padding-left:var(--oc-sp-16);color:var(--oc-ink-3)}
+.oc-support-step[aria-current="step"]{color:var(--oc-ink);box-shadow:inset 0 3px 0 var(--oc-ink);padding-top:var(--oc-sp-20)}
+.oc-support-step[aria-current="step"]::before{color:var(--oc-ink)}
 .oc-support-steps b{color:inherit}
 .oc-support-join h2{margin:var(--oc-sp-48) 0 var(--oc-sp-16);font-size:var(--oc-fs-20);line-height:1.3}
 .oc-support-join h2:first-of-type{margin-top:0}
@@ -108,7 +108,7 @@
   .oc-support-go{grid-template-columns:minmax(0,1fr);gap:0}
   .oc-support-go b{font-size:var(--oc-fs-18)}
   .oc-support-steps{margin-bottom:var(--oc-sp-32);grid-template-columns:repeat(3,minmax(0,1fr))} /* 가입 3단계는 한 줄에 — 자동 열(160px)이면 360 폭에서 3단계가 둘째 줄로 떨어진다 */
-  .oc-support-steps li{padding-right:var(--oc-sp-8)}
+  .oc-support-step{padding-right:var(--oc-sp-8)}
   .oc-support-steps p{display:none}
   .oc-support-join h2{margin-top:var(--oc-sp-32)}
   .oc-support-id{flex-direction:column}

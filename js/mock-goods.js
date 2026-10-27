@@ -514,13 +514,13 @@
       '</a>' +
       '<div class="oc-card-body">' +
         '<em class="oc-brand">' + esc(g.brandNm) + '</em>' +
-        '<h3 class="oc-card-name"><a href="' + url(no) + '">' + esc(g.goodsNm) + '</a></h3>' +
+        '<h3 class="oc-card-name"><a class="oc-card-link" href="' + url(no) + '">' + esc(g.goodsNm) + '</a></h3>' +
         // 품번 줄은 항상 출력한다 (카드마다 줄 수가 달라지지 않게). 고도몰 템플릿: 품번이 없을 때 { ? .goodsModelNo } 의 else 쪽에 '—' 출력
         '<p class="oc-card-mfg">제조사 품번 ' + (g.goodsModelNo ? esc(g.goodsModelNo) : '—') + '</p>' + // 늘 출력(줄 높이를 맞춘다). 고도몰: {? ..goodsModelNo}{..goodsModelNo}{:}—{/}
         '<ul class="oc-card-spec" data-spec="' + esc(g.shortDescription) + '"></ul>' +
         '<div class="oc-card-price">' + (quoteOnly
-          ? '<b class="oc-q">' + esc(g.goodsPriceString) + '</b><small>CPU·메모리·디스크 맞춤 구성</small>'
-          : '<b>' + money(g.goodsPrice) + '원</b><small>부가세 포함<span class="oc-more-note"> · 수량 구매 시 별도 견적</span></small>') +
+          ? '<b class="oc-q oc-card-amt">' + esc(g.goodsPriceString) + '</b><small class="oc-card-note">CPU·메모리·디스크 맞춤 구성</small>'
+          : '<b class="oc-card-amt">' + money(g.goodsPrice) + '원</b><small class="oc-card-note">부가세 포함<span class="oc-more-note"> · 수량 구매 시 별도 견적</span></small>') +
         '</div>' +
         '<div class="oc-card-act"><button type="button" class="oc-btn oc-btn-d" data-quote>견적 요청</button><button type="button" class="oc-btn oc-btn-o oc-add" data-add>담기</button></div>' +
         '<label class="oc-chk"><input type="checkbox" data-cmp> 비교</label>' +

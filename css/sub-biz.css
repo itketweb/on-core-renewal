@@ -29,8 +29,8 @@
 .oc-biz-targets{margin-top:var(--oc-sp-48);padding:var(--oc-sp-24);border-radius:var(--oc-r-lg);background:var(--oc-surface)}
 .oc-biz-targets+.oc-art-body{padding-top:var(--oc-sp-48)}
 .oc-biz-targets-hd{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:var(--oc-sp-4) var(--oc-sp-16);margin-bottom:var(--oc-sp-16)}
-.oc-biz-targets-hd h2{font-size:var(--oc-fs-20)}
-.oc-biz-targets-hd p{font-size:var(--oc-fs-14);color:var(--oc-ink-3)}
+.oc-biz-targets-t{font-size:var(--oc-fs-20)}
+.oc-biz-targets-d{font-size:var(--oc-fs-14);color:var(--oc-ink-3)}
 .oc-biz-targets-hd b{margin-left:var(--oc-sp-4);color:var(--oc-primary-600)}
 .oc-biz-targets .oc-cards{grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--oc-sp-16)}
 @media (min-width:1024px) and (max-width:1279px){.oc-biz-targets .oc-cards{grid-template-columns:repeat(2,minmax(0,1fr))}}
@@ -46,9 +46,9 @@
 .oc-biz-prodlist span{font-size:var(--oc-fs-14);color:var(--oc-ink-3)}
 .oc-biz-related{margin-top:var(--oc-sp-48)}
 .oc-aside>.oc-biz-related:first-child{margin-top:0} /* 오른쪽 칸 첫 묶음(가이드 상세 '관련 글')은 본문 첫 줄과 같은 높이에서 시작 */
-.oc-biz-related h4{margin-bottom:var(--oc-sp-12);font-size:var(--oc-fs-20)}
-.oc-biz-related a{display:block;padding:var(--oc-sp-12) 0;border-bottom:1px solid var(--oc-line)} /* 분류는 제목 위 작은 줄 — 옆에 두면 분류 글자 길이에 따라 제목 시작이 어긋난다 */
-.oc-biz-related a:first-of-type{border-top:2px solid var(--oc-ink)}
+.oc-biz-related-t{margin-bottom:var(--oc-sp-12);font-size:var(--oc-fs-20)}
+.oc-biz-related-item{display:block;padding:var(--oc-sp-12) 0;border-bottom:1px solid var(--oc-line)} /* 분류는 제목 위 작은 줄 — 옆에 두면 분류 글자 길이에 따라 제목 시작이 어긋난다 */
+.oc-biz-related-item:first-of-type{border-top:2px solid var(--oc-ink)}
 .oc-biz-related em{display:block;margin-bottom:2px;font-style:normal;font-size:var(--oc-fs-12);font-weight:700;color:var(--oc-primary-600)}
 
 /* ── 견적 요청 폼 ── */
