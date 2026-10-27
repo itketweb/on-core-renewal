@@ -18,14 +18,7 @@
   var specRows = function (g) {
     return g.shortDescription.split(' / ').map(function (p) { var i = p.indexOf(':'); return i > -1 ? [p.slice(0, i).trim(), p.slice(i + 1).trim()] : ['', p.trim()]; }).filter(function (r) { return r[1]; });
   };
-  function family(g) {
-    var n = g.goodsNm;
-    if (n.indexOf('ThinkStation') > -1) return 'ws';
-    if (n.indexOf('ThinkSystem') > -1) return 'server';
-    if (n.indexOf('ExpertCenter') > -1) return 'desktop';
-    if (n.indexOf('ThinkPad') > -1) return 'notebook';
-    return 'storage';
-  }
+  function family(g) { return g.cate; } // 운영 상품명에는 계열 이름(ThinkStation 등)이 없는 것이 많아 데이터의 cate 로 정한다
   var FAMILY = { ws: ['워크스테이션', 'goods-workstation.html'], server: ['서버', 'goods-server.html'], desktop: ['데스크탑', 'goods-desktop.html'], notebook: ['노트북', 'goods-notebook.html'], storage: ['스토리지', 'goods-storage.html'] };
 
   /* ── 목록(정렬·건수) ──
@@ -86,7 +79,7 @@
   var view = $('[data-view]');
   if (view) {
     var no = param('no'); if (!Object.prototype.hasOwnProperty.call(G, no)) no = Object.keys(G)[0];
-    var g = G[no], fam = FAMILY[family(g)], quote = isQuote(no), imgSrc = ROOT + 'img/' + g.image;
+    var g = G[no], fam = FAMILY[family(g)], quote = isQuote(no), imgSrc = g.image;
     var set = function (k, v) { $$('[data-f="' + k + '"]').forEach(function (e) { e.textContent = v; }); };
     set('name', g.goodsNm); set('brand', g.brandNm); set('model', '제조사 품번 ' + (g.goodsModelNo || '—')); set('code', '상품코드 ' + no);
     set('price', quote ? g.goodsPriceString : M.money(g.goodsPrice) + '원');

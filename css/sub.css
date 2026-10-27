@@ -22,7 +22,7 @@
 .oc-pg-hd h1{font-size:clamp(var(--oc-fs-28),3.4vw,var(--oc-fs-40));line-height:1.2}
 .oc-pg-hd--bc{padding:var(--oc-sp-20) 0 0;border-bottom:0} /* 경로 표시만 있는 머리(상품 상세): 큰 빈 띠를 만들지 않는다 */
 .oc-pg-hd--bc .oc-bc{margin-bottom:0}
-.oc-pg-hd p{margin-top:var(--oc-sp-12);max-width:48rem;font-size:var(--oc-fs-18);color:var(--oc-ink-3)}
+.oc-pg-hd p{margin-top:var(--oc-sp-12);font-size:var(--oc-fs-18);color:var(--oc-ink-3)}
 .oc-pg-hd .oc-subnav{margin-top:var(--oc-sp-24)}
 .oc-pg-hd:has(.oc-subnav){padding-bottom:0} /* 하위 이동이 있으면 머리 맨 아래에 붙여, 현재 항목 밑줄이 머리 아래 선 위에 겹치게 한다 */
 
@@ -81,8 +81,6 @@
 .oc-bl-t{font-size:var(--oc-fs-18);font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;transition:color .15s}
 .oc-bl-t .oc-tag{margin-right:var(--oc-sp-8);vertical-align:middle}
 .oc-bl-d,.oc-bl-v{font-size:var(--oc-fs-14);color:var(--oc-ink-3);text-align:center}
-.oc-bl--pin li{background:var(--oc-surface)}
-.oc-bl--pin a::after{background:var(--oc-line-2)} /* 회색 고정 행은 한 단계 진하게 (옅은 바탕이면 오히려 밝아진다) */
 .oc-pgn{display:flex;flex-wrap:wrap;justify-content:center;gap:var(--oc-sp-4);margin-top:var(--oc-sp-40)}
 .oc-pgn a,.oc-pgn span{display:grid;place-items:center;min-width:var(--oc-ctl-sm);height:var(--oc-ctl-sm);padding:0 var(--oc-sp-8);border-radius:50%;font-size:var(--oc-fs-14);font-weight:600;color:var(--oc-ink-2)}
 @media (hover:hover) and (pointer:fine) and (min-width:768px){.oc-pgn a:hover{background:var(--oc-surface)}}
@@ -209,6 +207,11 @@ select.oc-select.oc-is-ph option{color:var(--oc-ink)} /* 펼친 목록의 항목
 /* ── 안내 상자·절차·자주 묻는 질문 ── */
 .oc-note{padding:var(--oc-sp-20) var(--oc-sp-24);border-radius:var(--oc-r);background:var(--oc-surface);font-size:var(--oc-fs-14);color:var(--oc-ink-2)}
 .oc-note b{display:block;margin-bottom:var(--oc-sp-4);color:var(--oc-ink)}
+/* 빈 상태 (.oc-empty): 글·내역이 없을 때 목록·표 자리에. 가운데 정렬 제목 20 + 설명(회색) + 버튼 하나(선택) — 상자·아이콘 없이 */
+.oc-empty{padding:var(--oc-sp-64) 0;border-top:1px solid var(--oc-line);border-bottom:1px solid var(--oc-line);text-align:center}
+.oc-empty b{display:block;font-size:var(--oc-fs-20)}
+.oc-empty p{margin-top:var(--oc-sp-8);color:var(--oc-ink-3)}
+.oc-empty .oc-btn{margin-top:var(--oc-sp-24)}
 .oc-steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(var(--oc-sp-160),1fr));counter-reset:oc-step;border-top:2px solid var(--oc-ink)}
 .oc-steps li{counter-increment:oc-step;padding:var(--oc-sp-20) var(--oc-sp-16) var(--oc-sp-20) 0}
 .oc-steps li::before{content:counter(oc-step,decimal-leading-zero);display:block;margin-bottom:var(--oc-sp-8);font-size:var(--oc-fs-14);font-weight:700;letter-spacing:.08em;color:var(--oc-ink-3)}

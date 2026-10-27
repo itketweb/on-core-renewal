@@ -179,6 +179,7 @@ html{min-width:360px} /* 최소 폭 360 (8-1장) — 더 좁은 화면은 맞추
 /* ── 섹션 공통 ── */
 .oc-sec{padding:var(--oc-sec) 0}
 .oc-sec-alt{background:var(--oc-surface)}
+.oc-sec-alt+.oc-sec-alt,.oc-sec-alt+.oc-sec[hidden]+.oc-sec-alt{background:var(--oc-bg)} /* 영역 하나가 빠져(구축사례 글 3건 미만 숨김) 회색끼리 붙으면 뒤쪽을 흰 바탕으로 — 흰·회색 번갈아 유지 */
 .oc-sec-hd{display:flex;align-items:flex-end;justify-content:space-between;gap:var(--oc-sp-24);margin-bottom:var(--oc-sp-40);flex-wrap:wrap}
 .oc-sec-hd h2{font-size:clamp(var(--oc-fs-28),3.4vw,var(--oc-fs-40));line-height:1.2;font-weight:700}
 .oc-sec-hd h2 span{color:var(--oc-ink-3);font-weight:600}
@@ -373,9 +374,9 @@ html{min-width:360px} /* 최소 폭 360 (8-1장) — 더 좁은 화면은 맞추
 @keyframes up{from{transform:translateY(100%)}}
 .oc-cmp-in{display:flex;align-items:center;gap:var(--oc-sp-20);height:var(--oc-sp-80)}
 .oc-cmp-list{display:flex;gap:var(--oc-sp-8);flex:1;min-width:0}
-.oc-cmp-item,.oc-cmp-slot{flex:1 1 0;min-width:0;max-width:224px}
-.oc-cmp-item{display:flex;align-items:center;gap:var(--oc-sp-8);padding:var(--oc-sp-8);border-radius:var(--oc-sp-12);background:var(--oc-surface);font-size:var(--oc-fs-14);font-weight:600}
-.oc-cmp-item img{flex:none;width:var(--oc-sp-40);height:var(--oc-sp-40);border-radius:var(--oc-sp-8);object-fit:contain;background:var(--oc-img)}
+.oc-cmp-item,.oc-cmp-slot{flex:1 1 0;min-width:0;max-width:224px} /* 담은 제품 칸과 빈 칸은 같은 높이(48) — 사진 32 + 위아래 여백 8 */
+.oc-cmp-item{display:flex;align-items:center;gap:var(--oc-sp-8);height:var(--oc-sp-48);padding:0 var(--oc-sp-8);border-radius:var(--oc-sp-12);background:var(--oc-surface);font-size:var(--oc-fs-14);font-weight:600}
+.oc-cmp-item img{flex:none;width:var(--oc-sp-32);height:var(--oc-sp-32);border-radius:var(--oc-sp-8);object-fit:contain;background:var(--oc-img)}
 .oc-cmp-item span{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .oc-cmp-item button{color:var(--oc-ink-3);font-size:var(--oc-fs-18);line-height:1;padding:0 2px}
 .oc-cmp-slot{height:var(--oc-sp-48);border-radius:var(--oc-sp-12);border:1px dashed var(--oc-line);display:flex;align-items:center;justify-content:center;font-size:var(--oc-fs-12);color:var(--oc-ink-3)}

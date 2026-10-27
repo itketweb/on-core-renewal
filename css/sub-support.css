@@ -6,9 +6,6 @@
 .oc-support-search{display:flex;gap:var(--oc-sp-8);width:100%;max-width:26rem}
 .oc-support-search .oc-input{height:var(--oc-sp-40);padding:0 var(--oc-sp-20);border-radius:999px;font-size:var(--oc-fs-14)} /* 옆 '검색' 알약 버튼·다른 검색칸과 같은 알약 모양 */
 .oc-support-search .oc-btn{flex:none}
-.oc-bl--pin{margin-bottom:var(--oc-sp-32)}
-.oc-bl--pin .oc-bl-n{font-size:var(--oc-fs-12)}
-.oc-bl-sec{margin:var(--oc-sp-32) 0 var(--oc-sp-12);font-size:var(--oc-fs-14);font-weight:700;color:var(--oc-ink-3)}
 
 /* 공지 상세: 첨부파일 */
 .oc-support-files{margin-top:var(--oc-sp-32);border-top:1px solid var(--oc-line);border-bottom:1px solid var(--oc-line)}

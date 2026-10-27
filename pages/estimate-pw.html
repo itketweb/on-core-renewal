@@ -120,7 +120,7 @@
 
 <main class="oc-sub">
 <!-- 견적 비밀번호 확인 | 고도몰: 견적 게시판(/dbk/dbk_estimate_list.php) 비밀글 확인 화면. 견적 조회 목록에서 견적을 누르면 이 화면으로 온다.
-     위 요약(접수번호·제목·접수일·상태)은 고른 견적의 값을 출력한다. 시안에서는 비밀번호를 아무거나 넣고 확인을 누르면 견적 상세(estimate-view.html)로 넘어간다 -->
+     시안에서는 비밀번호를 아무거나 넣고 확인을 누르면 견적 상세(estimate-view.html)로 넘어간다 -->
 <div class="oc-pg-hd">
   <div class="oc-wrap">
     <ol class="oc-bc" aria-label="현재 위치"><li><a href="../renewal-plan.html">홈</a></li><li><a href="estimate-list.html">견적 조회</a></li><li aria-current="page">비밀번호 확인</li></ol>
@@ -132,12 +132,7 @@
 <div class="oc-pg-body">
   <div class="oc-wrap">
     <div class="oc-support-auth">
-      <dl class="oc-kv oc-biz-pw-item" aria-label="고른 견적">
-        <dt>접수번호</dt><dd>E-2609-0011</dd>
-        <dt>제목</dt><dd>사무용 PC 25대 일괄 견적</dd>
-        <dt>접수일</dt><dd>2026-09-24</dd>
-        <dt>상태</dt><dd><span class="oc-biz-st oc-biz-st--done">발송완료</span></dd>
-      </dl>
+      <!-- 고른 견적 요약(dl.oc-kv.oc-biz-pw-item: 접수번호·제목·접수일·상태)은 고도몰이 값을 출력한다. 시안에는 실제 견적이 없어 비워 둔다 -->
 
       <form action="estimate-pw.html" method="post" data-mock data-mock-go="estimate-view.html">
         <div class="oc-field">
