@@ -48,7 +48,20 @@
   $$('.oc-card-spec[data-spec]').forEach(function (ul) {
     var rows = parseSpec(ul.getAttribute('data-spec'));
     if (!rows.length) { ul.remove(); return; }
-    ul.innerHTML = rows.map(function (r) { return '<li>' + (r[0] ? '<span>' + esc(r[0]) + '</span>' : '') + esc(r[1]) + '</li>'; }).join('');
+    // 카드 사양은 항상 4줄: 넘치면 앞 4줄만, 모자라면 빈 줄로 채운다(카드끼리 높이를 맞추기 위해 — 운영자는 '짧은 설명'을 4항목으로 쓴다)
+    rows = rows.slice(0, 4);
+    var html = rows.map(function (r) { return '<li>' + (r[0] ? '<span>' + esc(r[0]) + '</span>' : '') + esc(r[1]) + '</li>'; }).join('');
+    for (var k = rows.length; k < 4; k++) html += '<li aria-hidden="true">&nbsp;</li>';
+    ul.innerHTML = html;
+  });
+
+  /* ── 표: 768 미만에서 카드로 쌓을 때 쓰는 칸 이름(data-label)을 머리줄 글자로 채운다 (게시글 본문 표처럼 직접 못 붙이는 표용) ── */
+  $$('.oc-tbl').forEach(function (t) {
+    var heads = $$('thead th', t).map(function (th) { return th.textContent.trim(); });
+    if (!heads.length) return;
+    $$('tbody tr', t).forEach(function (tr) {
+      Array.prototype.forEach.call(tr.children, function (c, i) { if (c.tagName === 'TD' && !c.hasAttribute('data-label') && heads[i]) c.setAttribute('data-label', heads[i]); });
+    });
   });
 
   /* ── 헤더 ── */

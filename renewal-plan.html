@@ -53,18 +53,17 @@
   <div class="oc-wrap oc-hd-in">
     <button type="button" class="oc-hd-burger" aria-label="메뉴 열기" data-open="oc-mnav"><span></span></button>
     <a href="renewal-plan.html" class="oc-hd-logo" aria-label="온코어 홈"><img src="img/oncore-logo.png" alt="온코어(주) ONCORE" width="208" height="66"></a>
-    <!-- 상단 메뉴: 제품 / 프로모션 / 구축사례 / 고객지원 / 견적 요청 (1차 컨펌 2026-10-27 확정. 업종별 추천은 없앰). 제품 메가메뉴·고객지원 드롭다운 항목은 그대로 -->
+    <!-- 상단 메뉴: 제품 / 프로모션 / 기업소식 / 고객지원 / 견적 요청 (1차 컨펌 2026-10-27 확정. 업종별 추천은 없앰, 구축사례 → 기업소식). 제품 메가메뉴·고객지원 드롭다운 항목은 그대로 -->
     <nav class="oc-gnb" aria-label="주 메뉴">
       <div class="oc-gnb-item oc-has-mega">
         <button type="button" class="oc-gnb-link" aria-expanded="false" aria-controls="oc-mega">제품 <svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 3.5 5 6.5 8 3.5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
       </div>
       <a class="oc-gnb-link" href="pages/promotion.html">프로모션</a>
-      <a class="oc-gnb-link" href="pages/cases.html">구축사례</a>
+      <a class="oc-gnb-link" href="pages/cases.html">기업소식</a>
       <div class="oc-gnb-item oc-has-drop">
         <button type="button" class="oc-gnb-link" aria-expanded="false" aria-controls="oc-drop">고객지원 <svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 3.5 5 6.5 8 3.5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
         <div class="oc-drop" id="oc-drop" hidden>
           <a href="pages/notice.html">공지사항</a>
-          <a href="pages/guide.html">구매 가이드</a>
           <a href="pages/inquiry.html">1:1 문의</a>
           <a href="pages/cs.html">고객센터</a>
         </div>
@@ -264,33 +263,20 @@
   </div>
 </section>
 
-<!-- 게시판 글(.oc-post) 하나를 구축사례·구매 가이드 두 영역이 같이 쓴다. 배치는 목록의 변형 클래스로만 바꾼다
-     (.oc-posts--feature = 같은 폭 3단 고정, .oc-posts--list = 번호 목록).
-     고도몰: 게시판 위젯 스킨 1개(board/_board_article.html 을 이 마크업으로 교체)를 bdId 만 바꿔 두 번 부른다. 변형 클래스는 위젯을 감싼 div 에 둔다.
-     목록 이미지 = .viewListImage (있을 때만 .oc-post-img 출력), 분류 = 말머리 .category, 제목 = .subject, 요약 = 본문 앞부분 .contents (2줄로 자름),
-     .oc-post-go = 화살표 (번호 목록에서만 보임) -->
+<!-- 글 카드(.oc-pcard) — 기업소식 목록·프로모션 목록과 같은 부품 (2026-10-27).
+     고도몰: 게시판 위젯 스킨 1개(board/_board_article.html 을 이 마크업으로 교체). 운영자가 직접 등록해도 깨지지 않게
+     목록 이미지 .viewListImage 가 있을 때만 .oc-pcard-img 출력, 분류 = 말머리 .category 가 있을 때만 .oc-pcard-cat, 제목 = .subject(2줄), 요약 = 본문 앞부분 .contents(2줄).
+     사진 위에는 아무것도 얹지 않는다(썸네일 글자·로고를 가리지 않게). 권장 목록 이미지 1280×720(16:9), JPG 200KB 이하 — 다른 비율이어도 회색 틀 안에 잘리지 않게 들어간다 -->
 
-<!-- 구축사례 | 고도몰: 갤러리형 게시판 신설(예: bdId=case) + includeWidget('board/_board_article.html','bdId','case','listCount','3')
-     ※ 게시글이 3개 미만이면 이 영역을 통째로 숨긴다 (빈 칸·예시 글을 노출하지 않음). 같은 폭 3단으로 고정되며 마우스를 올려도 배치가 움직이지 않는다 -->
-<!-- 시안: 운영 사이트에 구축사례 글이 없어(2026-10-27) 규칙대로 영역을 숨긴다(hidden). 글이 3건 이상 등록되면 hidden 을 뺀다 -->
-<section class="oc-sec" id="oc-cases" hidden>
-  <div class="oc-wrap">
-    <div class="oc-sec-hd"><h2>구축사례</h2><p>업종별로 어떤 장비를, 어떻게 구성해 납품했는지 보여 드립니다.</p><a href="pages/cases.html" class="oc-more">구축사례 전체 보기</a></div>
-    <div class="oc-posts oc-posts--feature">
-      <!-- 글 3건이 여기에 출력된다(.oc-post + .oc-post-img). 2026-10-27 운영 사이트 글 0건 -->
-    </div>
-  </div>
-</section>
-
-<!-- 구매 가이드 (구 '인사이트') | 고도몰: 기존 includeWidget('board/_board_article.html','bdId','story','listCount','3') — 위와 같은 위젯 스킨.
-     분류 = 말머리 .category (story 게시판에서 말머리 사용 설정 필요). 번호(01·02·03)는 CSS 가 붙인다. 목록 이미지는 이 영역에서 쓰지 않는다 -->
+<!-- 기업소식 (구 '인사이트' → 구매 가이드 → 2026-10-27 기업소식: 구축사례 메뉴를 기업소식으로 바꾸고 운영 '온코어 게시판'(story) 글로 채움) | 고도몰: 기존 includeWidget('board/_board_article.html','bdId','story','listCount','3') — 위와 같은 위젯 스킨.
+     분류 = 말머리 .category (story 게시판에서 말머리 사용 설정 필요). 사진 = 목록 이미지 .viewListImage (운영 썸네일 16:9) — 글 카드(.oc-pcard, 기업소식 목록·프로모션과 같은 부품). 위젯 스킨은 사진이 있을 때만 .oc-pcard-img 출력 -->
 <section class="oc-sec oc-sec-alt" id="oc-guide">
-  <div class="oc-wrap oc-split">
-    <div class="oc-sec-hd"><h2>장비 고르기 전에 읽어 보세요</h2><p>장비를 고를 때 알아 두면 좋은 구매 가이드와 신제품·행사 소식을 전합니다.</p><a href="pages/guide.html" class="oc-more">구매 가이드 전체 보기</a></div>
-    <div class="oc-posts oc-posts--list">
-      <a href="pages/guide-view.html?no=11" class="oc-post"><em>서버</em><h3>사내 sLLM 구축을 위한 Lenovo GPU 서버 아키텍처 가이드</h3><span class="oc-post-txt">클라우드 API 비용 절감과 기업 데이터 보안을 함께 잡는 온프레미스 AI 인프라. ThinkSystem SR675 V3·SR650 V3 기반 구성을 정리했습니다.</span><span class="oc-post-go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span></a>
-      <a href="pages/guide-view.html?no=10" class="oc-post"><em>데스크탑</em><h3>책상 위 공간이냐, 넉넉한 확장성이냐? ASUS ExpertCenter D7 3종 완벽 비교 가이드</h3><span class="oc-post-txt">Core Ultra 5·DDR5 32GB를 갖춘 15L 미니타워와 9L 슬림(SFF)의 핵심 차이를 정리했습니다.</span><span class="oc-post-go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span></a>
-      <a href="pages/guide-view.html?no=9" class="oc-post"><em>워크스테이션</em><h3>[현장 스케치] Lenovo 파트너 행사 후기 ThinkStation P4 신제품 및 AI Express</h3><span class="oc-post-txt">Lenovo 360 Evolve '26에서 발표된 수랭식 ThinkStation P4와 납기 30일 단축 프로그램을 전해 드립니다.</span><span class="oc-post-go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span></a>
+  <div class="oc-wrap">
+    <div class="oc-sec-hd"><h2>기업소식</h2><p>온코어의 신제품·행사 소식과 장비를 고를 때 알아 두면 좋은 글을 전합니다.</p><a href="pages/cases.html" class="oc-more">기업소식 전체 보기</a></div>
+    <div class="oc-pcards oc-pcards--main">
+      <a href="pages/case-view.html?no=11" class="oc-pcard"><span class="oc-pcard-img"><img src="https://itketweb.hgodo.com/data/img/%EC%98%A8%EC%BD%94%EC%96%B4/%EC%98%A8%EC%BD%94%EC%96%B4%20%EC%9D%B8%EC%82%AC%EC%9D%B4%ED%8A%B8/2026/post%2010/post-10-Lenovo-GPU-Server_thum.png" alt="" width="1000" height="564" loading="lazy"></span><span class="oc-pcard-body"><em class="oc-pcard-cat">서버</em><h3>사내 sLLM 구축을 위한 Lenovo GPU 서버 아키텍처 가이드</h3><p>클라우드 API 비용 절감과 기업 데이터 보안을 함께 잡는 온프레미스 AI 인프라. ThinkSystem SR675 V3·SR650 V3 기반 구성을 정리했습니다.</p></span></a>
+      <a href="pages/case-view.html?no=10" class="oc-pcard"><span class="oc-pcard-img"><img src="https://itketweb.hgodo.com/data/img/%EC%98%A8%EC%BD%94%EC%96%B4/%EC%98%A8%EC%BD%94%EC%96%B4%20%EC%9D%B8%EC%82%AC%EC%9D%B4%ED%8A%B8/2026/post%209/post-9-ASUS-Desktop_thum.png" alt="" width="1000" height="564" loading="lazy"></span><span class="oc-pcard-body"><em class="oc-pcard-cat">데스크탑</em><h3>책상 위 공간이냐, 넉넉한 확장성이냐? ASUS ExpertCenter D7 3종 완벽 비교 가이드</h3><p>Core Ultra 5·DDR5 32GB를 갖춘 15L 미니타워와 9L 슬림(SFF)의 핵심 차이를 정리했습니다.</p></span></a>
+      <a href="pages/case-view.html?no=9" class="oc-pcard"><span class="oc-pcard-img"><img src="https://itketweb.hgodo.com/data/img/%EC%98%A8%EC%BD%94%EC%96%B4/%EC%98%A8%EC%BD%94%EC%96%B4%20%EC%9D%B8%EC%82%AC%EC%9D%B4%ED%8A%B8/2026/360%20Evolve26/Lenovo-360-Evolve26.png" alt="" width="1000" height="564" loading="lazy"></span><span class="oc-pcard-body"><em class="oc-pcard-cat">워크스테이션</em><h3>[현장 스케치] Lenovo 파트너 행사 후기 ThinkStation P4 신제품 및 AI Express</h3><p>Lenovo 360 Evolve '26에서 발표된 수랭식 ThinkStation P4와 납기 30일 단축 프로그램을 전해 드립니다.</p></span></a>
     </div>
   </div>
 </section>
@@ -406,7 +392,7 @@
     <h5>제품</h5>
     <div class="oc-mnav-grid"><a href="pages/goods-all.html">전체 제품</a><a href="pages/goods-server.html">서버</a><a href="pages/goods-workstation.html">워크스테이션</a><a href="pages/goods-desktop.html">데스크탑</a><a href="pages/goods-notebook.html">노트북</a><a href="pages/goods-storage.html">스토리지</a></div>
     <h5>기업 구매</h5>
-    <div class="oc-mnav-grid"><a href="pages/promotion.html">프로모션</a><a href="pages/cases.html">구축사례</a><a href="pages/guide.html">구매 가이드</a><a href="pages/estimate-list.html">견적 요청</a></div>
+    <div class="oc-mnav-grid"><a href="pages/promotion.html">프로모션</a><a href="pages/cases.html">기업소식</a><a href="pages/estimate-list.html">견적 요청</a></div>
     <h5>고객지원</h5>
     <div class="oc-mnav-grid"><a href="pages/notice.html">공지사항</a><a href="pages/inquiry.html">1:1 문의</a><a href="pages/cs.html">고객센터</a></div>
     <div class="oc-mnav-act"><a href="pages/login.html" class="oc-btn oc-btn-o">로그인</a><a href="pages/join.html" class="oc-btn oc-btn-d">회원가입</a></div>

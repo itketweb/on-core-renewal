@@ -5,8 +5,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <script>/* oc-vp-min */(function(){var m=document.querySelector('meta[name=viewport]');if(!m)return;var d=m.getAttribute('content');function fit(){var s=screen,w=matchMedia('(orientation: landscape)').matches?Math.max(s.width,s.height):Math.min(s.width,s.height);m.setAttribute('content',w<360?'width=360, viewport-fit=cover':d);}fit();addEventListener('orientationchange',function(){setTimeout(fit,100);});})();</script>
-<title>구축사례 | 온코어</title>
-<meta name="description" content="온코어가 서버·워크스테이션·PC·스토리지를 어떻게 구성해 납품했는지 업종별로 보여 드립니다.">
+<title>기업소식 | 온코어</title>
+<meta name="description" content="온코어 기업소식. 신제품·행사 소식과 서버·워크스테이션·데스크탑·노트북 구매 가이드를 전해 드립니다.">
 <!-- 목업 전용 페이지: pages-src/cases.html 을 _tools/build-pages.js 가 빌드한 결과. 이 파일을 직접 고치지 말고 조각 파일을 고친다 -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
 <link rel="stylesheet" href="../css/mock.css">
@@ -40,18 +40,17 @@
   <div class="oc-wrap oc-hd-in">
     <button type="button" class="oc-hd-burger" aria-label="메뉴 열기" data-open="oc-mnav"><span></span></button>
     <a href="../renewal-plan.html" class="oc-hd-logo" aria-label="온코어 홈"><img src="../img/oncore-logo.png" alt="온코어(주) ONCORE" width="208" height="66"></a>
-    <!-- 상단 메뉴: 제품 / 프로모션 / 구축사례 / 고객지원 / 견적 요청 (1차 컨펌 2026-10-27 확정. 업종별 추천은 없앰). 제품 메가메뉴·고객지원 드롭다운 항목은 그대로 -->
+    <!-- 상단 메뉴: 제품 / 프로모션 / 기업소식 / 고객지원 / 견적 요청 (1차 컨펌 2026-10-27 확정. 업종별 추천은 없앰, 구축사례 → 기업소식). 제품 메가메뉴·고객지원 드롭다운 항목은 그대로 -->
     <nav class="oc-gnb" aria-label="주 메뉴">
       <div class="oc-gnb-item oc-has-mega">
         <button type="button" class="oc-gnb-link" aria-expanded="false" aria-controls="oc-mega">제품 <svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 3.5 5 6.5 8 3.5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
       </div>
       <a class="oc-gnb-link" href="promotion.html">프로모션</a>
-      <a class="oc-gnb-link" href="cases.html" aria-current="page">구축사례</a>
+      <a class="oc-gnb-link" href="cases.html" aria-current="page">기업소식</a>
       <div class="oc-gnb-item oc-has-drop">
         <button type="button" class="oc-gnb-link" aria-expanded="false" aria-controls="oc-drop">고객지원 <svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 3.5 5 6.5 8 3.5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
         <div class="oc-drop" id="oc-drop" hidden>
           <a href="notice.html">공지사항</a>
-          <a href="guide.html">구매 가이드</a>
           <a href="inquiry.html">1:1 문의</a>
           <a href="cs.html">고객센터</a>
         </div>
@@ -118,29 +117,42 @@
 </div><!-- /.oc-top -->
 
 <main class="oc-sub">
-<!-- 구축사례 목록 | 고도몰: 갤러리형 게시판(bdId=case) 목록 스킨. 게시글이 3개 미만이면 이 페이지로 가는 링크도 숨긴다.
-     배치: 사진이 위인 격자(3열 · 2열), 최신 글부터.
-     도입 장비·납품 시기 줄의 고도몰 출력 방법(게시판 추가 항목 사용 가능 여부)은 적용 때 확인한다 — 안 되면 이 줄을 빼고 요약에 함께 쓴다.
-     시안: 운영 사이트에 글이 없어 빈 상태만 보여 준다. 글이 생기면 분류 칩(말머리)·건수·사진 격자·쪽 번호를 출력한다 -->
+<!-- 기업소식 목록 (2026-10-27: 구축사례 → 기업소식, 구매 가이드를 기업소식으로 통합 — 운영 '온코어 게시판' bdId=story 그대로) | 고도몰: 기존 게시판(bdId=story) 목록 스킨. 메인 #oc-guide 와 같은 번호 목록 마크업(.oc-posts--list)을 쓰고, 분류는 말머리 .category -->
 <div class="oc-pg-hd">
   <div class="oc-wrap">
-    <ol class="oc-bc" aria-label="현재 위치"><li><a href="../renewal-plan.html">홈</a></li><li aria-current="page">구축사례</li></ol>
-    <h1>구축사례</h1>
-    <p>업종별로 어떤 장비를, 어떻게 구성해 납품했는지 보여 드립니다.</p>
+    <ol class="oc-bc" aria-label="현재 위치"><li><a href="../renewal-plan.html">홈</a></li><li aria-current="page">기업소식</li></ol>
+    <h1>기업소식</h1>
+    <p>온코어의 신제품·행사 소식과 장비를 고를 때 알아 두면 좋은 글을 전해 드립니다.</p>
   </div>
 </div>
 
 <div class="oc-pg-body">
   <div class="oc-wrap">
-
-    <div class="oc-pg-sec">
-      <!-- 2026-10-27 운영 사이트에 구축사례 게시판·글이 없어 빈 상태. 고도몰: 게시판 목록 스킨의 글 없음 출력(분류 칩·건수·쪽 번호는 글이 있을 때만) -->
-      <div class="oc-empty">
-        <b>등록된 구축사례가 없습니다.</b>
-        <p>장비 구성이 궁금하시면 구매 가이드를 보거나 견적 요청으로 물어보세요.</p>
-        <a href="guide.html" class="oc-btn oc-btn-o">구매 가이드 보기</a>
-      </div>
+    <div class="oc-filter" role="group" aria-label="분류 선택" data-filter-for="oc-biz-list">
+      <button type="button" data-filter="all" aria-pressed="true">전체</button>
+      <button type="button" data-filter="서버" aria-pressed="false">서버</button>
+      <button type="button" data-filter="워크스테이션" aria-pressed="false">워크스테이션</button>
+      <button type="button" data-filter="데스크탑" aria-pressed="false">데스크탑</button>
+      <button type="button" data-filter="노트북" aria-pressed="false">노트북</button>
     </div>
+    <div class="oc-toolbar"><span>총 <b data-count>10</b>건</span></div>
+
+    <h2 class="oc-sr">기업소식 목록</h2>
+    <div class="oc-pcards" id="oc-biz-list">
+      <!-- 운영 사이트 게시판(bdId=story) 글 10건, 최신 글부터. 사진 = 게시글 목록 이미지(viewListImage, 운영 썸네일 16:9) — 운영 목록처럼 갤러리형. 글 카드 .oc-pcard (메인·프로모션과 같은 부품) -->
+      <a href="case-view.html?no=11" class="oc-pcard" data-cat="서버"><span class="oc-pcard-img"><img src="https://itketweb.hgodo.com/data/img/%EC%98%A8%EC%BD%94%EC%96%B4/%EC%98%A8%EC%BD%94%EC%96%B4%20%EC%9D%B8%EC%82%AC%EC%9D%B4%ED%8A%B8/2026/post%2010/post-10-Lenovo-GPU-Server_thum.png" alt="" width="1000" height="564" loading="lazy"></span><span class="oc-pcard-body"><em class="oc-pcard-cat">서버</em><h3>사내 sLLM 구축을 위한 Lenovo GPU 서버 아키텍처 가이드</h3><p>클라우드 API 비용 절감과 기업 데이터 보안을 함께 잡는 온프레미스 AI 인프라. ThinkSystem SR675 V3·SR650 V3 기반 구성을 정리했습니다.</p></span></a>
+      <a href="case-view.html?no=10" class="oc-pcard" data-cat="데스크탑"><span class="oc-pcard-img"><img src="https://itketweb.hgodo.com/data/img/%EC%98%A8%EC%BD%94%EC%96%B4/%EC%98%A8%EC%BD%94%EC%96%B4%20%EC%9D%B8%EC%82%AC%EC%9D%B4%ED%8A%B8/2026/post%209/post-9-ASUS-Desktop_thum.png" alt="" width="1000" height="564" loading="lazy"></span><span class="oc-pcard-body"><em class="oc-pcard-cat">데스크탑</em><h3>책상 위 공간이냐, 넉넉한 확장성이냐? ASUS ExpertCenter D7 3종 완벽 비교 가이드</h3><p>Core Ultra 5·DDR5 32GB를 갖춘 15L 미니타워와 9L 슬림(SFF)의 핵심 차이를 정리했습니다.</p></span></a>
+      <a href="case-view.html?no=9" class="oc-pcard" data-cat="워크스테이션"><span class="oc-pcard-img"><img src="https://itketweb.hgodo.com/data/img/%EC%98%A8%EC%BD%94%EC%96%B4/%EC%98%A8%EC%BD%94%EC%96%B4%20%EC%9D%B8%EC%82%AC%EC%9D%B4%ED%8A%B8/2026/360%20Evolve26/Lenovo-360-Evolve26.png" alt="" width="1000" height="564" loading="lazy"></span><span class="oc-pcard-body"><em class="oc-pcard-cat">워크스테이션</em><h3>[현장 스케치] Lenovo 파트너 행사 후기 ThinkStation P4 신제품 및 AI Express</h3><p>Lenovo 360 Evolve '26에서 발표된 수랭식 ThinkStation P4와 납기 30일 단축 프로그램을 전해 드립니다.</p></span></a>
+      <a href="case-view.html?no=8" class="oc-pcard" data-cat="워크스테이션"><span class="oc-pcard-img"><img src="https://itketweb.hgodo.com/data/img/%EC%98%A8%EC%BD%94%EC%96%B4/%EC%98%A8%EC%BD%94%EC%96%B4%20%EC%9D%B8%EC%82%AC%EC%9D%B4%ED%8A%B8/lenovo_%EC%9B%8C%ED%81%AC%EC%8A%A4%ED%85%8C%EC%9D%B4%EC%85%98_%EB%B9%84%EA%B5%90%EA%B0%80%EC%9D%B4%EB%93%9C.jpg" alt="" width="1000" height="564" loading="lazy"></span><span class="oc-pcard-body"><em class="oc-pcard-cat">워크스테이션</em><h3>내 업무에 딱 맞는 Lenovo 워크스테이션 선택하기</h3><p>ThinkStation P2·P3·P5의 차이를 프로세서·메모리·그래픽·크기 기준으로 비교했습니다.</p></span></a>
+      <a href="case-view.html?no=7" class="oc-pcard" data-cat="서버"><span class="oc-pcard-img"><img src="https://itketweb.hgodo.com/data/img/%EC%98%A8%EC%BD%94%EC%96%B4/%EC%98%A8%EC%BD%94%EC%96%B4%20%EC%9D%B8%EC%82%AC%EC%9D%B4%ED%8A%B8/xeon_epyc_%EB%B9%84%EA%B5%90%EA%B0%80%EC%9D%B4%EB%93%9C.jpg" alt="" width="1000" height="564" loading="lazy"></span><span class="oc-pcard-body"><em class="oc-pcard-cat">서버</em><h3>우리 회사에 맞는 CPU는? 인텔 제온 vs AMD 에픽 비교 가이드</h3><p>CPU 선택은 성능 비교만이 아닙니다. 라이선스 비용, 메모리 확장성, 전력 효율까지 함께 따져 인텔 제온과 AMD 에픽을 비교했습니다.</p></span></a>
+      <a href="case-view.html?no=6" class="oc-pcard" data-cat="서버"><span class="oc-pcard-img"><img src="https://itketweb.hgodo.com/data/img/%EC%98%A8%EC%BD%94%EC%96%B4/%EC%98%A8%EC%BD%94%EC%96%B4%20%EC%9D%B8%EC%82%AC%EC%9D%B4%ED%8A%B8/1U2U_%EB%9E%99%EC%84%9C%EB%B2%84%EB%B9%84%EA%B5%90%EA%B0%80%EC%9D%B4%EB%93%9C.jpg" alt="" width="1000" height="564" loading="lazy"></span><span class="oc-pcard-body"><em class="oc-pcard-cat">서버</em><h3>우리 회사에 맞는 서버 규격은? 1U vs 2U 랙 서버 완벽 비교 가이드!</h3><p>서버실 공간과 예산은 한정되어 있습니다. 1U와 2U 랙 서버의 공간 효율·확장성·냉각·비용 차이를 비교했습니다.</p></span></a>
+      <a href="case-view.html?no=5" class="oc-pcard" data-cat="워크스테이션"><span class="oc-pcard-img"><img src="https://itketweb.hgodo.com/data/img/%EC%98%A8%EC%BD%94%EC%96%B4/%EC%98%A8%EC%BD%94%EC%96%B4%20%EC%9D%B8%EC%82%AC%EC%9D%B4%ED%8A%B8/Lenovo%20ThinkStation%20%EB%8F%84%EC%9E%85%20%EA%B0%80%EC%9D%B4%EB%93%9C.jpg" alt="" width="1000" height="564" loading="lazy"></span><span class="oc-pcard-body"><em class="oc-pcard-cat">워크스테이션</em><h3>기업의 '숨은 손실'을 줄이는 ThinkStation 도입 가이드</h3><p>도입 비용만 보고 일반 PC를 고르면 유지보수·생산성 손실이 초기 절감액을 넘을 수 있습니다. 총소유비용(TCO)으로 일반 PC와 ThinkStation을 비교했습니다.</p></span></a>
+      <a href="case-view.html?no=3" class="oc-pcard" data-cat="노트북"><span class="oc-pcard-img"><img src="https://itketweb.hgodo.com/data/img/%EC%98%A8%EC%BD%94%EC%96%B4/%EC%98%A8%EC%BD%94%EC%96%B4%20%EC%9D%B8%EC%82%AC%EC%9D%B4%ED%8A%B8/%ED%95%98%EC%9D%B4%EB%B8%8C%EB%A6%AC%EB%93%9C-%EB%8D%B0%EC%8A%A4%ED%81%AC-%EA%B0%80%EC%9D%B4%EB%93%9C.jpg" alt="" width="1000" height="564" loading="lazy"></span><span class="oc-pcard-body"><em class="oc-pcard-cat">노트북</em><h3>몰입을 완성하는 공간, 하이브리드 데스크 가이드</h3><p>재택과 사무실을 오가는 업무 환경에 맞춰 PC·도킹 스테이션·모니터 3단계로 책상을 구성하는 방법을 소개합니다.</p></span></a>
+      <a href="case-view.html?no=2" class="oc-pcard" data-cat="데스크탑"><span class="oc-pcard-img"><img src="https://itketweb.hgodo.com/data/img/%EC%98%A8%EC%BD%94%EC%96%B4/%EC%98%A8%EC%BD%94%EC%96%B4%20%EC%9D%B8%EC%82%AC%EC%9D%B4%ED%8A%B8/ASUS-Expert-Series.jpg" alt="" width="1000" height="564" loading="lazy"></span><span class="oc-pcard-body"><em class="oc-pcard-cat">데스크탑</em><h3>기업 현장을 위해 설계된 4세대 보안 아키텍처</h3><p>ASUS Expert 시리즈 노트북·데스크탑에 들어간 보안 기능과 제품별 특징을 정리했습니다.</p></span></a>
+      <a href="case-view.html?no=1" class="oc-pcard" data-cat="노트북"><span class="oc-pcard-img"><img src="https://itketweb.hgodo.com/data/img/%EC%98%A8%EC%BD%94%EC%96%B4/%EC%98%A8%EC%BD%94%EC%96%B4%20%EC%9D%B8%EC%82%AC%EC%9D%B4%ED%8A%B8/Lenovo-ThinkPad-Series.jpg" alt="" width="1000" height="564" loading="lazy"></span><span class="oc-pcard-body"><em class="oc-pcard-cat">노트북</em><h3>AI 비즈니스의 정점, Lenovo ThinkPad</h3><p>NPU를 내장한 Intel Core Ultra ThinkPad로 클라우드 없이 기기 안에서 AI 기능을 쓰는 방법과 추천 모델을 정리했습니다.</p></span></a>
+    </div>
+
+    <nav class="oc-pgn" aria-label="쪽 이동"><a href="cases.html" aria-label="이전">‹</a><a href="cases.html" aria-current="page">1</a><a href="cases.html" aria-label="다음">›</a></nav>
   </div>
 </div>
 
@@ -148,8 +160,8 @@
 <section class="oc-final">
   <div class="oc-wrap oc-final-in">
     <div class="oc-final-txt">
-      <h2>비슷한 환경이라면 같은 방식으로 구성해 드립니다.</h2>
-      <p>업종과 사용 인원, 예산만 알려 주세요. 담당자가 직접 구성을 제안합니다.</p>
+      <h2>읽어도 고르기 어렵다면 물어보세요.</h2>
+      <p>용도와 예산만 알려 주시면 담당자가 직접 구성을 제안합니다.</p>
       <ul class="oc-final-pts">
         <li>담당자 직접 회신</li>
         <li>용도에 맞춘 사양 제안</li>
@@ -253,7 +265,7 @@
     <h5>제품</h5>
     <div class="oc-mnav-grid"><a href="goods-all.html">전체 제품</a><a href="goods-server.html">서버</a><a href="goods-workstation.html">워크스테이션</a><a href="goods-desktop.html">데스크탑</a><a href="goods-notebook.html">노트북</a><a href="goods-storage.html">스토리지</a></div>
     <h5>기업 구매</h5>
-    <div class="oc-mnav-grid"><a href="promotion.html">프로모션</a><a href="cases.html">구축사례</a><a href="guide.html">구매 가이드</a><a href="estimate-list.html">견적 요청</a></div>
+    <div class="oc-mnav-grid"><a href="promotion.html">프로모션</a><a href="cases.html">기업소식</a><a href="estimate-list.html">견적 요청</a></div>
     <h5>고객지원</h5>
     <div class="oc-mnav-grid"><a href="notice.html">공지사항</a><a href="inquiry.html">1:1 문의</a><a href="cs.html">고객센터</a></div>
     <div class="oc-mnav-act"><a href="login.html" class="oc-btn oc-btn-o">로그인</a><a href="join.html" class="oc-btn oc-btn-d">회원가입</a></div>

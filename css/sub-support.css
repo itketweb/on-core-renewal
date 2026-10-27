@@ -44,7 +44,7 @@
 .oc-support-go b{display:block;font-size:var(--oc-fs-20)}
 .oc-support-go span{display:block;margin-top:var(--oc-sp-4);font-size:var(--oc-fs-14);color:var(--oc-ink-3)}
 .oc-support-go a::after{content:"→";font-size:var(--oc-fs-24);color:var(--oc-ink-3);transition:transform .2s var(--oc-ease)}
-@media (hover:hover) and (pointer:fine) and (min-width:768px){.oc-support-go a:hover::after{transform:translateX(4px)}} /* 바로가기 행: 행 바탕(sub.css) + 화살표 이동 */
+@media (hover:hover) and (pointer:fine) and (min-width:768px){.oc-support-go a:hover::after{transform:translateX(4px)}} /* 바로가기 행: → 가 오른쪽으로 이동 (9-3장 목록 hover 와 같은 계열) */
 
 /* 로그인 */
 .oc-support-auth{max-width:28rem;margin:0 auto}

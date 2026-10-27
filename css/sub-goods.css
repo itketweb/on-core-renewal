@@ -25,7 +25,7 @@
 .oc-gv-price small{display:block;margin-top:var(--oc-sp-4);font-size:var(--oc-fs-14);color:var(--oc-ink-3)}
 /* 사양 요약: 선은 위 1개(가는 선)와 행 구분선만. 라벨 칸을 좁히고 행 높이를 40 으로 — 큰 표(상세 탭)와 달리 요약이라 촘촘하게 */
 /* 사양: 카드처럼 위아래 선 사이에 줄선 없이 — 항목(회색 작게) · 값(보통 굵기) */
-.oc-gv-spec{margin:var(--oc-sp-24) 0;padding:var(--oc-sp-12) 0;grid-template-columns:var(--oc-sp-80) minmax(0,1fr);border-top:1px solid var(--oc-line-2);border-bottom:1px solid var(--oc-line-2)}
+.oc-gv-spec{margin:var(--oc-sp-24) 0;padding:var(--oc-sp-12) 0;--oc-kv-l:var(--oc-sp-64);border-top:1px solid var(--oc-line-2);border-bottom:1px solid var(--oc-line-2)}
 .oc-gv-spec dt,.oc-gv-spec dd{min-height:0;padding:var(--oc-sp-4) 0;border-bottom:0;line-height:1.6}
 .oc-gv-spec dt{font-size:var(--oc-fs-14)}
 .oc-gv-spec dd{font-weight:400;color:var(--oc-ink-2)}

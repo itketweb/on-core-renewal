@@ -5,7 +5,7 @@
    부품 목록
    페이지 머리  .oc-pg-hd (.oc-bc 경로 표시 + h1 + 설명)       본문 틀  .oc-pg-body · .oc-pg-grid(본문 + 오른쪽 열) · .oc-aside
    하위 이동    .oc-subnav (글자 탭 + 밑줄)                     도구줄   .oc-toolbar (건수 + 정렬)  ·  .oc-filter (선택 칩)
-   게시판       .oc-bl (글 목록) · .oc-pgn (쪽 번호)           글       .oc-art-hd · .oc-art-body · .oc-art-nav
+   게시판       .oc-tbl (글 목록도 표) · .oc-pgn (쪽 번호)           글       .oc-art-hd · .oc-art-body · .oc-art-nav
    양식         .oc-field · .oc-input · .oc-select · .oc-textarea · .oc-check · .oc-form-row
    표·값        .oc-tbl · .oc-kv                                 안내    .oc-note · .oc-steps · details.oc-faq · .oc-tag
    상담 유도    .oc-biz-cta--top (위쪽 회색 상자, 견적 조회) — 페이지 맨 아래는 메인과 같은 .oc-final(main.css) */
@@ -35,7 +35,7 @@
 .oc-pg-grid{display:grid;grid-template-columns:minmax(0,1fr) 18rem;gap:var(--oc-sp-48);align-items:start} /* 오른쪽 열은 요약·버튼만 담는 보조 칸 — 22rem·간격 64 는 본문을 너무 좁혔다(2026-10-27) */
 .oc-aside{position:sticky;top:calc(var(--oc-stick) + var(--oc-hd) + var(--oc-sp-32));padding:var(--oc-sp-24);border:1px solid var(--oc-line);border-radius:var(--oc-r)}
 .oc-aside h3{font-size:var(--oc-fs-18);margin-bottom:var(--oc-sp-12)}
-.oc-aside .oc-kv{grid-template-columns:var(--oc-sp-64) minmax(0,1fr)} /* 좁은 열이라 라벨 칸도 줄인다 — 라벨은 세 글자 이내(목적·시기·상담·장비·읽기 등)로 쓴다 */
+.oc-aside .oc-kv{--oc-kv-l:var(--oc-sp-64)} /* 좁은 칸(표·값 9-4장) — 라벨은 세 글자 이내(목적·시기·상담·장비·조회 등)로 쓴다 */
 /* 목차 열(.oc-pg-grid--toc): 이용약관·개인정보처리방침·이용안내. 목차는 보조 정보라 카드 대신 좁은 열(14rem) + 왼쪽 선 하나로 본문 폭을 넓힌다 */
 .oc-pg-grid--toc{grid-template-columns:minmax(0,1fr) 14rem}
 .oc-pg-grid--toc>.oc-aside{padding:0 0 0 var(--oc-sp-24);border:0;border-left:1px solid var(--oc-line);border-radius:0}
@@ -54,7 +54,7 @@
 /* ── 도구줄·선택 칩 ── */
 .oc-toolbar{display:flex;align-items:center;justify-content:space-between;gap:var(--oc-sp-16);flex-wrap:wrap;padding-bottom:var(--oc-sp-16);margin-bottom:var(--oc-sp-24);border-bottom:1px solid var(--oc-ink)}
 .oc-toolbar b{font-weight:700}
-.oc-toolbar+.oc-bl{border-top:0} /* 도구줄 아래 선과 겹치지 않게 */
+.oc-toolbar:has(+.oc-tbl-wrap){padding-bottom:0;border-bottom:0} /* 바로 아래 표의 위 2px 선과 겹치지 않게 */
 .oc-toolbar .oc-select{width:auto;min-width:var(--oc-sp-160);height:var(--oc-ctl-sm);font-size:var(--oc-fs-14)}
 .oc-filter{display:flex;flex-wrap:wrap;gap:var(--oc-sp-8);margin-bottom:var(--oc-sp-24)}
 .oc-filter a,.oc-filter button{height:var(--oc-ctl-sm);padding:0 var(--oc-sp-20);display:inline-flex;align-items:center;border-radius:999px;border:1px solid var(--oc-line);background:#fff;font-size:var(--oc-fs-14);font-weight:600;color:var(--oc-ink-2);transition:all .15s}
@@ -68,19 +68,13 @@
 .oc-tag{display:inline-block;padding:var(--oc-sp-4) var(--oc-sp-12);border-radius:999px;background:var(--oc-surface);font-size:var(--oc-fs-12);font-weight:600;color:var(--oc-ink-2)}
 .oc-tag--p{background:var(--oc-primary-50);color:var(--oc-primary-600)}
 
-/* ── 게시판 글 목록: 선과 여백, 상자 없음 ── */
-.oc-bl{border-top:1px solid var(--oc-ink)}
-.oc-bl li{border-bottom:1px solid var(--oc-line)}
-.oc-bl a{display:grid;grid-template-columns:var(--oc-sp-64) minmax(0,1fr) var(--oc-sp-96) var(--oc-sp-80);gap:var(--oc-sp-16);align-items:center;padding:var(--oc-sp-20) 0;transition:background .15s}
-/* 행 전체가 링크인 목록의 hover = 행 뒤 연회색 바탕(9-3장). 행보다 좌우 12px 넓게 깐다.
-   게시판 목록·이전/다음 글·사용 제품·관련 글·고객센터 바로가기가 함께 쓴다 (바로가기는 ::after 가 화살표라 ::before) */
-.oc-bl a,.oc-art-nav a,.oc-biz-prodlist a,.oc-biz-related a,.oc-support-go a{position:relative;isolation:isolate}
-.oc-bl a::after,.oc-art-nav a::after,.oc-biz-prodlist a::after,.oc-biz-related a::after,.oc-support-go a::before{content:"";position:absolute;inset:0;z-index:-1;background:var(--oc-hover);opacity:0;transition:opacity .2s} /* 행 바탕은 위아래 선 사이에 꼭 맞게 (튀어나오거나 둥글면 선과 어긋나 보인다) */
-@media (hover:hover) and (pointer:fine) and (min-width:768px){.oc-bl a:hover::after,.oc-art-nav a:hover::after,.oc-biz-prodlist a:hover::after,.oc-biz-related a:hover::after,.oc-support-go a:hover::before{opacity:1}}
-.oc-bl-n{text-align:center;font-size:var(--oc-fs-14);color:var(--oc-ink-3)}
-.oc-bl-t{font-size:var(--oc-fs-18);font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;transition:color .15s}
-.oc-bl-t .oc-tag{margin-right:var(--oc-sp-8);vertical-align:middle}
-.oc-bl-d,.oc-bl-v{font-size:var(--oc-fs-14);color:var(--oc-ink-3);text-align:center}
+/* 행 전체가 링크인 줄 목록의 hover = 행 바탕(9-3장): 이전/다음 글·관련 글·사용 제품 (게시판 글 목록은 표 .oc-tbl — 같은 바탕). 칸이 나뉜 줄 목록이라 행 전체에 색이 깔려야 한 줄이 한 링크로 읽힌다.
+   바탕은 위아래 선 사이에 꼭 맞게(좌우로 튀어나오거나 둥글면 선과 어긋나 보인다), 색은 회색 태그가 묻히지 않게 --oc-surface 보다 옅은 --oc-hover.
+   원래 화살표가 있는 목록(번호 목록의 화살표 원 · 고객센터 바로가기 →)은 바탕 없이 화살표만 반응한다 — 효과를 겹치지 않는다 */
+.oc-art-nav a,.oc-biz-prodlist a,.oc-biz-related a{position:relative;isolation:isolate}
+.oc-art-nav a::after,.oc-biz-prodlist a::after,.oc-biz-related a::after{content:"";position:absolute;inset:0;z-index:-1;background:var(--oc-hover);opacity:0;transition:opacity .2s}
+@media (hover:hover) and (pointer:fine) and (min-width:768px){.oc-art-nav a:hover::after,.oc-biz-prodlist a:hover::after,.oc-biz-related a:hover::after{opacity:1}}
+@media (min-width:768px){.oc-art-nav a[href],.oc-biz-prodlist a[href],.oc-biz-related a[href]{padding-left:var(--oc-sp-16);padding-right:var(--oc-sp-16)}} /* 줄 목록 안쪽 좌우 16 = 표 칸(.oc-tbl)과 같게 — 바탕이 깔릴 때 글자가 끝에 붙지 않는다. [href] 로 각 목록의 padding 규칙(sub-biz.css 등)보다 한 단계 강하게. 768 미만은 호버가 없고 표도 카드로 쌓여 좌우 0 */
 .oc-pgn{display:flex;flex-wrap:wrap;justify-content:center;gap:var(--oc-sp-4);margin-top:var(--oc-sp-40)}
 .oc-pgn a,.oc-pgn span{display:grid;place-items:center;min-width:var(--oc-ctl-sm);height:var(--oc-ctl-sm);padding:0 var(--oc-sp-8);border-radius:50%;font-size:var(--oc-fs-14);font-weight:600;color:var(--oc-ink-2)}
 @media (hover:hover) and (pointer:fine) and (min-width:768px){.oc-pgn a:hover{background:var(--oc-surface)}}
@@ -99,6 +93,9 @@
 .oc-art-body ol{padding-left:var(--oc-sp-20);list-style:decimal}
 .oc-art-body li+li{margin-top:var(--oc-sp-8)}
 .oc-art-body img{width:100%;border-radius:var(--oc-r-lg);background:var(--oc-img)}
+.oc-art-body blockquote{margin-left:0;padding:var(--oc-sp-16) var(--oc-sp-24);border-left:3px solid var(--oc-ink);border-radius:0 var(--oc-r-sm) var(--oc-r-sm) 0;background:var(--oc-surface);color:var(--oc-ink)} /* 전문가 한마디 — 본문 문단과 구분 */
+.oc-art-body blockquote cite{display:block;margin-top:var(--oc-sp-8);font-size:var(--oc-fs-14);font-style:normal;color:var(--oc-ink-3)}
+.oc-art-body .oc-art-note{margin-top:var(--oc-sp-8);font-size:var(--oc-fs-14);color:var(--oc-ink-3)} /* 표·목록의 기준·출처 */
 .oc-art-body figcaption{margin-top:var(--oc-sp-8);font-size:var(--oc-fs-14);color:var(--oc-ink-3)}
 .oc-art-nav{border-top:1px solid var(--oc-line)}
 .oc-art-nav a{display:grid;grid-template-columns:var(--oc-sp-80) minmax(0,1fr);gap:var(--oc-sp-16);padding:var(--oc-sp-16) 0;border-bottom:1px solid var(--oc-line);font-size:var(--oc-fs-16)}
@@ -193,16 +190,23 @@ select.oc-select.oc-is-ph option{color:var(--oc-ink)} /* 펼친 목록의 항목
 .oc-form-act{display:flex;gap:var(--oc-sp-12);margin-top:var(--oc-sp-32)}
 .oc-form-act .oc-btn{min-width:var(--oc-sp-160)}
 
-/* ── 표·값 ── */
+.oc-tbl-wrap{overflow-x:auto} /* 표 감싸개: 안전장치일 뿐 — 표는 최소 폭 없이 화면 폭에 맞춰 줄바꿈하고, 768 미만은 카드로 쌓는다 */
+/* ── 표·값 ── 표는 한 가지(.oc-tbl): 위 2px 검정 선, 머리줄 회색, 행 사이 가는 선. 768 미만은 행마다 카드로 쌓고 칸 이름(data-label)을 왼쪽에 둔다.
+   data-label 이 없는 표(게시글 본문 표 등)는 main.js 가 머리줄 글자로 채운다 */
 .oc-tbl{width:100%;border-collapse:collapse;border-top:2px solid var(--oc-ink);font-size:var(--oc-fs-16)}
 .oc-tbl th,.oc-tbl td{padding:var(--oc-sp-12) var(--oc-sp-16);border-bottom:1px solid var(--oc-line-2);text-align:left;vertical-align:middle}
 .oc-tbl thead th{background:var(--oc-surface);font-size:var(--oc-fs-14);color:var(--oc-ink-3);font-weight:600}
-.oc-tbl tbody th{width:var(--oc-sp-160);color:var(--oc-ink-3);font-weight:600;background:var(--oc-surface)}
+.oc-tbl tbody th{color:var(--oc-ink);font-weight:600} /* 행 머리도 흰 바탕 — 굵기로만 구분 (견적 목록 표와 같은 모양, 2026-10-27) */
+/* 링크가 있는 행(견적 목록 등)은 행 전체가 링크: 줄 목록(9-3장)과 같은 옅은 바탕. 표 안 링크는 행마다 하나만 둔다 */
+.oc-tbl tbody tr:has(a){position:relative}
+.oc-tbl tbody tr a::after{content:"";position:absolute;inset:0}
+@media (hover:hover) and (pointer:fine) and (min-width:768px){.oc-tbl tbody tr:has(a):hover{background:var(--oc-hover)}}
 .oc-tbl small{font-size:var(--oc-fs-12)} /* 브라우저 기본(80%)이면 모바일 14px 표에서 12px 아래로 내려간다 */
-.oc-kv{display:grid;grid-template-columns:var(--oc-sp-128) minmax(0,1fr);border-top:2px solid var(--oc-ink)}
+.oc-kv{--oc-kv-l:var(--oc-sp-128);display:grid;grid-template-columns:var(--oc-kv-l) minmax(0,1fr);border-top:2px solid var(--oc-ink)}
 .oc-kv dt,.oc-kv dd{display:flex;align-items:center;min-height:var(--oc-sp-48);padding:var(--oc-sp-8) 0;border-bottom:1px solid var(--oc-line-2)}
 .oc-kv dt{padding-right:var(--oc-sp-16);color:var(--oc-ink-3);overflow-wrap:anywhere}
 .oc-kv dd{font-weight:600}
+/* 라벨 칸 폭은 두 가지뿐(2026-10-27): 기본 128(가장 긴 '사업자등록번호'가 한 줄) · 좁은 칸 64(오른쪽 요약 칸·상품 상세 사양 요약 — 라벨 세 글자 이내). 화면 폭별로 따로 바꾸지 않는다(768 미만은 토큰이 함께 줄어 112·56) */
 
 /* ── 안내 상자·절차·자주 묻는 질문 ── */
 .oc-note{padding:var(--oc-sp-20) var(--oc-sp-24);border-radius:var(--oc-r);background:var(--oc-surface);font-size:var(--oc-fs-14);color:var(--oc-ink-2)}
@@ -255,20 +259,21 @@ details.oc-faq>div{padding:0 0 var(--oc-sp-24);color:var(--oc-ink-2);line-height
   .oc-pg-body{padding:var(--oc-sp-32) 0 var(--oc-sp-64)}
   .oc-toolbar .oc-select{font-size:var(--oc-fs-input)} /* 16px 미만이면 아이폰이 고를 때 화면을 확대한다 */
   .oc-pg-sec+.oc-pg-sec{margin-top:var(--oc-sp-64)}
-  .oc-bl a{grid-template-columns:minmax(0,1fr) auto;gap:var(--oc-sp-4) var(--oc-sp-16);padding:var(--oc-sp-16) 0}
-  .oc-bl-n,.oc-bl-v{display:none}
-  .oc-bl-t{grid-column:1/-1;font-size:var(--oc-fs-16)}
-  .oc-bl-d{text-align:left}
   .oc-form-row{grid-template-columns:minmax(0,1fr);gap:var(--oc-sp-20)} /* 한 단으로 쌓이면 칸 사이도 줄 사이(20)와 같게 — 여백과 gap 을 겹쳐 쓰면 36 으로 벌어진다 */
   .oc-form-act{flex-direction:column}
   .oc-form-act .oc-btn{width:100%}
   .oc-art-body{font-size:var(--oc-fs-16)}
-  .oc-kv{grid-template-columns:var(--oc-sp-112) minmax(0,1fr)}
   .oc-kv dt{font-size:var(--oc-fs-14)} /* '사업자등록번호'(7자)가 한 줄에 들어가게 */
   /* 경로 표시: 한 줄로 두고 마지막(현재 페이지)만 말줄임 — 긴 글 제목이 둘째 줄로 떨어지면 '›' 로 시작하는 줄이 생긴다 */
   .oc-bc{flex-wrap:nowrap;white-space:nowrap}
   .oc-bc li:last-child{min-width:0;overflow:hidden;text-overflow:ellipsis}
-  .oc-tbl th,.oc-tbl td{padding:var(--oc-sp-12) var(--oc-sp-8);font-size:var(--oc-fs-14)}
-  .oc-tbl tbody th{width:var(--oc-sp-96)}
+  /* 표: 행마다 카드로 쌓는다. 행 머리(th) 또는 링크 칸이 카드 제목 */
+  .oc-tbl thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)} /* 화면에서만 숨김 (화면낭독기는 읽음) */
+  .oc-tbl,.oc-tbl tbody,.oc-tbl tr,.oc-tbl th,.oc-tbl td{display:block}
+  .oc-tbl tr{padding:var(--oc-sp-12) 0;border-bottom:1px solid var(--oc-line)}
+  .oc-tbl th,.oc-tbl td{padding:var(--oc-sp-4) 0;border:0;font-size:var(--oc-fs-14)}
+  .oc-tbl td{display:flex;justify-content:space-between;align-items:center;gap:var(--oc-sp-16);text-align:right}
+  .oc-tbl td::before{content:attr(data-label);flex:none;color:var(--oc-ink-3);font-size:var(--oc-fs-14);font-weight:400;text-align:left}
+  .oc-tbl tbody th,.oc-tbl td:has(a){font-size:var(--oc-fs-16);font-weight:600}
   details.oc-faq summary{font-size:var(--oc-fs-16)}
 }
