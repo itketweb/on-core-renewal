@@ -1,6 +1,7 @@
 /* 서브 페이지 시안 — 고객지원·회원 묶음 동작 (목업 전용. 고도몰에서는 쓰지 않는다)
    ① join: 전체 동의 ↔ 개별 동의 연동, 기업/개인에 따라 사업자등록번호 칸 표시
    ② cs : 자주 묻는 질문 분류 칩으로 걸러 보기
+   ③ login: 회원 로그인 / 비회원 조회 탭 (주소 끝 #guest 면 비회원 조회로 연다)
    서식 제출은 시안이라 막는다. 전체를 즉시 실행 함수로 감싼 ES5 문법 (main.js 와 같은 규칙) */
 (function () {
   'use strict';
@@ -37,6 +38,23 @@
     };
     types.forEach(function (t) { t.addEventListener('change', sync); });
     sync();
+  }
+
+  // ③ 로그인 탭
+  var auth = $('[data-auth-tabs]');
+  if (auth) {
+    var tabs = $$('[role="tab"]', auth);
+    var pick = function (t, focus) {
+      tabs.forEach(function (b) { var on = b === t; b.setAttribute('aria-selected', String(on)); b.tabIndex = on ? 0 : -1; document.getElementById(b.getAttribute('aria-controls')).hidden = !on; });
+      if (focus) t.focus();
+    };
+    tabs.forEach(function (t) { t.addEventListener('click', function () { pick(t); }); });
+    $('[role="tablist"]', auth).addEventListener('keydown', function (e) {
+      if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+      var k = tabs.indexOf(document.activeElement); if (k < 0) return;
+      pick(tabs[(k + (e.key === 'ArrowRight' ? 1 : -1) + tabs.length) % tabs.length], true);
+    });
+    if (location.hash === '#guest') pick(tabs[1]);
   }
 
   // ② 고객센터 FAQ 걸러 보기

@@ -123,56 +123,68 @@
   <div class="oc-wrap">
     <ol class="oc-bc" aria-label="현재 위치"><li><a href="../renewal-plan.html">홈</a></li><li aria-current="page">로그인</li></ol>
     <h1>로그인</h1>
-    <p>회원이 아니어도 견적을 요청할 수 있습니다.</p>
+    <p>회원이 아니어도 견적을 요청하고, 주문·견적을 조회할 수 있습니다.</p>
   </div>
 </div>
 
 <div class="oc-pg-body">
   <div class="oc-wrap">
-    <div class="oc-support-auth">
-      <form action="login.html" method="post" data-mock>
-        <div class="oc-field">
-          <label for="oc-login-id">아이디</label>
-          <input class="oc-input" id="oc-login-id" name="loginId" type="text" autocomplete="username" placeholder="아이디를 입력해 주세요">
-        </div>
-        <div class="oc-field">
-          <label for="oc-login-pw">비밀번호</label>
-          <input class="oc-input" id="oc-login-pw" name="loginPwd" type="password" autocomplete="current-password" placeholder="비밀번호를 입력해 주세요">
-        </div>
-        <div class="oc-support-auth-row">
-          <!-- 고도몰 로그인 폼의 아이디 저장(saveId). 운영 사이트에 '로그인 상태 유지'는 없다 -->
-          <label class="oc-check"><input type="checkbox" name="saveId" id="saveId"><span>아이디 저장</span></label>
-        </div>
-        <div class="oc-form-act">
-          <button type="submit" class="oc-btn oc-btn-d oc-btn-block">로그인</button>
-          <a href="join.html" class="oc-btn oc-btn-o oc-btn-block">회원가입</a>
-        </div>
-      </form>
-
-      <ul class="oc-support-auth-links" aria-label="계정 찾기">
-        <li><a href="login.html">아이디 찾기</a></li>
-        <li><a href="login.html">비밀번호 찾기</a></li>
-      </ul>
-
-      <div class="oc-support-auth-sub">
-        <p>견적을 요청한 적이 있나요?</p>
-        <a href="estimate-list.html" class="oc-more">비회원 견적 조회</a>
+    <!-- 회원 로그인 / 비회원 조회 탭. 고도몰은 두 폼을 그대로 두고 탭(보이기·숨기기)만 스킨 js 로 붙인다. 주소 끝 #guest 면 비회원 조회 탭으로 연다 -->
+    <div class="oc-support-auth" data-auth-tabs>
+      <div class="oc-support-tabs" role="tablist" aria-label="로그인 방식">
+        <button type="button" role="tab" id="oc-lt-member" aria-selected="true" aria-controls="oc-lp-member">회원 로그인</button>
+        <button type="button" role="tab" id="oc-lt-guest" aria-selected="false" aria-controls="oc-lp-guest" tabindex="-1">비회원 조회</button>
       </div>
 
+      <section class="oc-support-tabpanel" role="tabpanel" id="oc-lp-member" aria-labelledby="oc-lt-member">
+        <form action="login.html" method="post" data-mock>
+          <div class="oc-field">
+            <label for="oc-login-id">아이디</label>
+            <input class="oc-input" id="oc-login-id" name="loginId" type="text" autocomplete="username" placeholder="아이디를 입력해 주세요">
+          </div>
+          <div class="oc-field">
+            <label for="oc-login-pw">비밀번호</label>
+            <input class="oc-input" id="oc-login-pw" name="loginPwd" type="password" autocomplete="current-password" placeholder="비밀번호를 입력해 주세요">
+          </div>
+          <div class="oc-support-auth-row">
+            <!-- 고도몰 로그인 폼의 아이디 저장(saveId). 운영 사이트에 '로그인 상태 유지'는 없다 -->
+            <label class="oc-check"><input type="checkbox" name="saveId" id="saveId"><span>아이디 저장</span></label>
+          </div>
+          <div class="oc-form-act">
+            <button type="submit" class="oc-btn oc-btn-d oc-btn-block">로그인</button>
+            <a href="join.html" class="oc-btn oc-btn-o oc-btn-block">회원가입</a>
+          </div>
+        </form>
+
+        <ul class="oc-support-auth-links" aria-label="계정 찾기">
+          <li><a href="login.html">아이디 찾기</a></li>
+          <li><a href="login.html">비밀번호 찾기</a></li>
+        </ul>
+      </section>
+
       <!-- 비회원 주문조회 (2026-10-26 결정: 가격 상품 바로 구매 유지에 따라). 고도몰 로그인 폼과 같은 name(orderNm·orderNo) -->
-      <form class="oc-support-guest" action="login.html" method="post" data-mock aria-labelledby="oc-guest-t">
-        <h2 id="oc-guest-t">비회원 주문조회</h2>
-        <div class="oc-field">
-          <label for="oc-guest-nm">주문자명</label>
-          <input class="oc-input" id="oc-guest-nm" name="orderNm" type="text" autocomplete="name" placeholder="주문할 때 적은 이름">
+      <section class="oc-support-tabpanel" role="tabpanel" id="oc-lp-guest" aria-labelledby="oc-lt-guest" hidden>
+        <form action="login.html" method="post" data-mock aria-labelledby="oc-guest-t">
+          <h2 id="oc-guest-t" class="oc-sr">비회원 주문조회</h2>
+          <div class="oc-field">
+            <label for="oc-guest-nm">주문자명</label>
+            <input class="oc-input" id="oc-guest-nm" name="orderNm" type="text" autocomplete="name" placeholder="주문할 때 적은 이름">
+          </div>
+          <div class="oc-field">
+            <label for="oc-guest-no">주문번호</label>
+            <input class="oc-input" id="oc-guest-no" name="orderNo" type="text" inputmode="numeric" placeholder="주문 완료 화면·문자의 주문번호">
+          </div>
+          <div class="oc-form-act">
+            <button type="submit" class="oc-btn oc-btn-d oc-btn-block">주문 조회</button>
+          </div>
+          <small class="oc-support-auth-note">주문번호를 잊으셨다면 고객센터(02-6949-1518)로 문의해 주세요.</small>
+        </form>
+
+        <div class="oc-support-auth-sub">
+          <p>견적을 요청한 적이 있나요?</p>
+          <a href="estimate-list.html" class="oc-more">비회원 견적 조회</a>
         </div>
-        <div class="oc-field">
-          <label for="oc-guest-no">주문번호</label>
-          <input class="oc-input" id="oc-guest-no" name="orderNo" type="text" inputmode="numeric" placeholder="주문 완료 화면·문자의 주문번호">
-        </div>
-        <button type="submit" class="oc-btn oc-btn-o oc-btn-block">주문 조회</button>
-        <small>주문번호를 잊으셨다면 고객센터(02-6949-1518)로 문의해 주세요.</small>
-      </form>
+      </section>
     </div>
   </div>
 </div>

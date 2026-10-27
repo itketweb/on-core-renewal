@@ -62,11 +62,15 @@
 .oc-support-auth-sub{margin-top:var(--oc-sp-40);padding-top:var(--oc-sp-24);border-top:1px solid var(--oc-line);text-align:center}
 .oc-support-auth-sub p{margin-bottom:var(--oc-sp-12);font-size:var(--oc-fs-14);color:var(--oc-ink-3)}
 /* 비회원 주문조회 — 회색 상자로 회원 로그인과 나눈다 */
-.oc-support-guest{margin-top:var(--oc-sp-32);padding:var(--oc-sp-24);border-radius:var(--oc-r);background:var(--oc-surface)}
-.oc-support-guest h2{margin-bottom:var(--oc-sp-16);font-size:var(--oc-fs-16)}
-.oc-support-guest .oc-input{background:#fff}
-.oc-support-guest .oc-btn{margin-top:var(--oc-sp-20);background:#fff}
-.oc-support-guest small{display:block;margin-top:var(--oc-sp-12);font-size:var(--oc-fs-12);color:var(--oc-ink-3);text-align:center}
+/* 로그인: 회원 로그인 / 비회원 조회 탭 — 반반 나눈 글자 탭 + 선택한 쪽 2px 밑줄 (상단 메뉴 밑줄과 같은 표현) */
+.oc-support-tabs{display:grid;grid-template-columns:1fr 1fr;margin-bottom:var(--oc-sp-32);border-bottom:1px solid var(--oc-line)}
+.oc-support-tabs [role="tab"]{position:relative;height:var(--oc-sp-48);border:0;background:none;font-size:var(--oc-fs-16);font-weight:600;color:var(--oc-ink-3);transition:color .15s}
+.oc-support-tabs [role="tab"]::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:2px;background:var(--oc-ink);transform:scaleX(0);transition:transform .2s}
+.oc-support-tabs [aria-selected="true"]{font-weight:700;color:var(--oc-ink)}
+.oc-support-tabs [aria-selected="true"]::after{transform:scaleX(1)}
+@media (hover:hover) and (pointer:fine) and (min-width:768px){.oc-support-tabs [role="tab"]:hover{color:var(--oc-ink)}}
+.oc-support-tabpanel[hidden]{display:none}
+.oc-support-auth-note{display:block;margin-top:var(--oc-sp-12);font-size:var(--oc-fs-12);color:var(--oc-ink-3);text-align:center}
 
 /* 회원가입 */
 .oc-support-join{max-width:48rem;margin:0 auto}
