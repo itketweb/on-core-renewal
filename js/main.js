@@ -158,26 +158,26 @@
     go(0);
   })();
 
-  /* ── 탭 (많이 찾는 제품: 진열 여러 개 중 하나만 보이기 / 업종별 추천: 정적 패널) ── */
-  function tabs(listSel, attr, panelOf) {
+  /* ── 탭 (카테고리별 추천 제품: 진열 여러 개 중 하나만 보이기) ── */
+  function tabs(listSel, attr, panelOf, onPick) {
     var list = $(listSel); if (!list) return;
     var btns = $$('[role=tab]', list);
     function pick(btn, focus) {
       btns.forEach(function (b) { var on = b === btn; b.setAttribute('aria-selected', String(on)); b.tabIndex = on ? 0 : -1; panelOf(b).hidden = !on; });
       if (focus) btn.focus();
+      if (onPick) onPick(btn);
     }
     list.addEventListener('click', function (e) { var b = e.target.closest('[role=tab]'); if (b) pick(b); });
     list.addEventListener('keydown', function (e) {
-      // 세로 목록(업종별 추천 PC)에서는 위·아래 화살표로도 이동
       var next = e.key === 'ArrowRight' || e.key === 'ArrowDown', prev = e.key === 'ArrowLeft' || e.key === 'ArrowUp';
       if (!next && !prev) return;
       var k = btns.indexOf(document.activeElement); if (k < 0) return;
       e.preventDefault();
       pick(btns[(k + (next ? 1 : -1) + btns.length) % btns.length], true);
     });
+    return pick;
   }
   tabs('.oc-ftabs', 'data-tab', function (b) { return $('[data-panel="' + b.getAttribute('data-tab') + '"]'); });
-  tabs('.oc-sol-tabs', 'aria-controls', function (b) { return document.getElementById(b.getAttribute('aria-controls')); });
 
   /* ── 선택 상자 (.oc-select) ──
      모든 기기: .oc-sel 로 감싸 선 화살표 아이콘을 붙인다.

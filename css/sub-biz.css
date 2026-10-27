@@ -1,4 +1,4 @@
-/* 서브 페이지 시안 — 기업 구매 묶음 (업종별 추천·구축사례·프로모션·구매 가이드·견적 조회). 목업 전용.
+/* 서브 페이지 시안 — 기업 구매 묶음 (구축사례·프로모션·구매 가이드·견적 조회). 목업 전용.
    공통 부품은 css/sub.css, 기준값은 css/main.css 의 :root. 이 파일은 oc-biz- 접두사만 쓴다. */
 
 .oc-biz-case[hidden],.oc-biz-promo>li[hidden],.oc-posts>.oc-post[hidden],[data-view][hidden]{display:none}

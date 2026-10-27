@@ -45,7 +45,7 @@
    고도몰: goods_view 스킨에만 넣는다. 공통 하단 바 숨김은 :has() 로 처리(아이폰 iOS 15.4+), 필요하면 body 에 클래스를 붙이는 방식으로 바꾼다 */
 .oc-gv-bar{display:none}
 
-/* 상세 아래 탭 — 업종별 추천·하위 이동 탭과 같은 가로 밑줄 */
+/* 상세 아래 탭 — 하위 이동 탭과 같은 가로 밑줄 */
 .oc-gv-tabs{margin-top:var(--oc-sp-80)}
 .oc-gv-tabs [role="tablist"]{display:flex;flex-wrap:wrap;column-gap:var(--oc-sp-24);border-bottom:1px solid var(--oc-line)} /* 가로 스크롤 없음 */
 .oc-gv-tabs [role="tab"]{position:relative;flex:none;padding:var(--oc-sp-16) 0;border:0;background:none;font-size:var(--oc-fs-16);font-weight:700;letter-spacing:-.01em;white-space:nowrap;color:var(--oc-ink-3);transition:color .15s}

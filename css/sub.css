@@ -4,7 +4,7 @@
 
    부품 목록
    페이지 머리  .oc-pg-hd (.oc-bc 경로 표시 + h1 + 설명)       본문 틀  .oc-pg-body · .oc-pg-grid(본문 + 오른쪽 열) · .oc-aside
-   하위 이동    .oc-subnav (알약 칩 링크)                       도구줄   .oc-toolbar (건수 + 정렬)  ·  .oc-filter (선택 칩)
+   하위 이동    .oc-subnav (글자 탭 + 밑줄)                     도구줄   .oc-toolbar (건수 + 정렬)  ·  .oc-filter (선택 칩)
    게시판       .oc-bl (글 목록) · .oc-pgn (쪽 번호)           글       .oc-art-hd · .oc-art-body · .oc-art-nav
    양식         .oc-field · .oc-input · .oc-select · .oc-textarea · .oc-check · .oc-form-row
    표·값        .oc-tbl · .oc-kv                                 안내    .oc-note · .oc-steps · details.oc-faq · .oc-tag
@@ -24,6 +24,7 @@
 .oc-pg-hd--bc .oc-bc{margin-bottom:0}
 .oc-pg-hd p{margin-top:var(--oc-sp-12);max-width:48rem;font-size:var(--oc-fs-18);color:var(--oc-ink-3)}
 .oc-pg-hd .oc-subnav{margin-top:var(--oc-sp-24)}
+.oc-pg-hd:has(.oc-subnav){padding-bottom:0} /* 하위 이동이 있으면 머리 맨 아래에 붙여, 현재 항목 밑줄이 머리 아래 선 위에 겹치게 한다 */
 
 /* ── 본문 틀 ── */
 .oc-pg-body{padding:var(--oc-sp-48) 0 var(--oc-sec)}
@@ -40,12 +41,15 @@
 .oc-pg-grid--toc>.oc-aside{padding:0 0 0 var(--oc-sp-24);border:0;border-left:1px solid var(--oc-line);border-radius:0}
 .oc-pg-grid--toc>.oc-aside h2{margin-bottom:var(--oc-sp-8);font-size:var(--oc-fs-14);color:var(--oc-ink-3)}
 
-/* ── 하위 이동: 알약 칩 링크 (규칙 9-5 — 탭은 알약. 선택 칩 .oc-filter 와 같은 모양, 선택된 칩만 검정) ──
-   밑줄 탭은 머리 아래 선에 붙어 잘린 듯 보이고, 아래 흰 상자·알약 버튼과 모양이 섞여 PC 에서도 칩으로 통일했다. 가로 스크롤 없이 줄바꿈 */
-.oc-subnav{display:flex;flex-wrap:wrap;gap:var(--oc-sp-8)}
-.oc-subnav a{display:inline-flex;align-items:center;flex:none;height:var(--oc-ctl-sm);padding:0 var(--oc-sp-20);border:1px solid var(--oc-line);border-radius:999px;background:#fff;font-size:var(--oc-fs-14);font-weight:600;white-space:nowrap;color:var(--oc-ink-2);transition:all .15s}
-@media (hover:hover) and (pointer:fine) and (min-width:768px){.oc-subnav a:hover{border-color:var(--oc-ink-2);color:var(--oc-ink)}}
-.oc-subnav a[aria-current="page"]{background:var(--oc-ink);border-color:var(--oc-ink);color:#fff}
+/* ── 하위 이동: 글자 탭 + 현재 항목 2px 밑줄 (규칙 9-5, 2026-10-27) ──
+   다른 페이지로 '이동'하는 링크라 같은 페이지 안을 '걸러 보는' 알약 칩(.oc-filter)과 모양을 나눈다. 상단 메뉴·로그인 탭과 같은 밑줄 표현.
+   머리 맨 아래에 두고 현재 항목 밑줄을 머리 아래 선(1px)에 겹친다 — 선에서 탭이 갈라져 나오는 일반적인 탭 모양. 가로 스크롤 없이 줄바꿈 */
+.oc-subnav{--pad:var(--oc-sp-12);display:flex;flex-wrap:wrap;margin-inline:calc(var(--pad) * -1)} /* 간격 대신 양쪽 안쪽 여백 — 사이 빈칸까지 누르는 면. 바깥 음수 여백으로 첫 글자는 제목과 줄을 맞춘다 (상단 메뉴 .oc-gnb-link 와 같은 방식) */
+.oc-subnav a{position:relative;display:inline-flex;align-items:center;flex:none;height:var(--oc-sp-48);padding:0 var(--pad);font-size:var(--oc-fs-16);font-weight:600;white-space:nowrap;color:var(--oc-ink-3);transition:color .15s}
+.oc-subnav a::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:2px;background:var(--oc-ink);transform:scaleX(0);transition:transform .2s var(--oc-ease)}
+@media (hover:hover) and (pointer:fine) and (min-width:768px){.oc-subnav a:hover{color:var(--oc-ink)}} /* 마우스 올림은 글자색만 — 밑줄은 현재 페이지 표시로만 쓴다 */
+.oc-subnav a[aria-current="page"]{font-weight:700;color:var(--oc-ink)}
+.oc-subnav a[aria-current="page"]::after{transform:scaleX(1)}
 
 /* ── 도구줄·선택 칩 ── */
 .oc-toolbar{display:flex;align-items:center;justify-content:space-between;gap:var(--oc-sp-16);flex-wrap:wrap;padding-bottom:var(--oc-sp-16);margin-bottom:var(--oc-sp-24);border-bottom:1px solid var(--oc-ink)}
@@ -55,7 +59,8 @@
 .oc-filter{display:flex;flex-wrap:wrap;gap:var(--oc-sp-8);margin-bottom:var(--oc-sp-24)}
 .oc-filter a,.oc-filter button{height:var(--oc-ctl-sm);padding:0 var(--oc-sp-20);display:inline-flex;align-items:center;border-radius:999px;border:1px solid var(--oc-line);background:#fff;font-size:var(--oc-fs-14);font-weight:600;color:var(--oc-ink-2);transition:all .15s}
 @media (hover:hover) and (pointer:fine) and (min-width:768px){.oc-filter a:hover,.oc-filter button:hover{border-color:var(--oc-ink-2)}} /* 터치에서는 누른 칩에 진한 테두리가 남아 선택된 것처럼 보인다 */
-.oc-filter a:active,.oc-filter button:active,.oc-subnav a:active{transform:scale(.97)}
+.oc-filter a:active,.oc-filter button:active{transform:scale(.97)}
+.oc-subnav a:active{color:var(--oc-ink)}
 .oc-filter [aria-pressed="true"],.oc-filter [aria-current="page"]{background:var(--oc-ink);border-color:var(--oc-ink);color:#fff}
 /* 모바일에서 칩이 2줄이 되면(sub-biz.js 가 판단) 칩 줄 대신 도구줄의 선택 상자 */
 .oc-filter.oc-is-compact,.oc-fsel{display:none}
@@ -70,13 +75,14 @@
 /* 행 전체가 링크인 목록의 hover = 행 뒤 연회색 바탕(9-3장). 행보다 좌우 12px 넓게 깐다.
    게시판 목록·이전/다음 글·사용 제품·관련 글·고객센터 바로가기가 함께 쓴다 (바로가기는 ::after 가 화살표라 ::before) */
 .oc-bl a,.oc-art-nav a,.oc-biz-prodlist a,.oc-biz-related a,.oc-support-go a{position:relative;isolation:isolate}
-.oc-bl a::after,.oc-art-nav a::after,.oc-biz-prodlist a::after,.oc-biz-related a::after,.oc-support-go a::before{content:"";position:absolute;inset:0 calc(var(--oc-sp-12)*-1);z-index:-1;border-radius:var(--oc-r-sm);background:var(--oc-surface);opacity:0;transition:opacity .2s}
+.oc-bl a::after,.oc-art-nav a::after,.oc-biz-prodlist a::after,.oc-biz-related a::after,.oc-support-go a::before{content:"";position:absolute;inset:0;z-index:-1;background:var(--oc-hover);opacity:0;transition:opacity .2s} /* 행 바탕은 위아래 선 사이에 꼭 맞게 (튀어나오거나 둥글면 선과 어긋나 보인다) */
 @media (hover:hover) and (pointer:fine) and (min-width:768px){.oc-bl a:hover::after,.oc-art-nav a:hover::after,.oc-biz-prodlist a:hover::after,.oc-biz-related a:hover::after,.oc-support-go a:hover::before{opacity:1}}
 .oc-bl-n{text-align:center;font-size:var(--oc-fs-14);color:var(--oc-ink-3)}
 .oc-bl-t{font-size:var(--oc-fs-18);font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;transition:color .15s}
 .oc-bl-t .oc-tag{margin-right:var(--oc-sp-8);vertical-align:middle}
 .oc-bl-d,.oc-bl-v{font-size:var(--oc-fs-14);color:var(--oc-ink-3);text-align:center}
 .oc-bl--pin li{background:var(--oc-surface)}
+.oc-bl--pin a::after{background:var(--oc-line-2)} /* 회색 고정 행은 한 단계 진하게 (옅은 바탕이면 오히려 밝아진다) */
 .oc-pgn{display:flex;flex-wrap:wrap;justify-content:center;gap:var(--oc-sp-4);margin-top:var(--oc-sp-40)}
 .oc-pgn a,.oc-pgn span{display:grid;place-items:center;min-width:var(--oc-ctl-sm);height:var(--oc-ctl-sm);padding:0 var(--oc-sp-8);border-radius:50%;font-size:var(--oc-fs-14);font-weight:600;color:var(--oc-ink-2)}
 @media (hover:hover) and (pointer:fine) and (min-width:768px){.oc-pgn a:hover{background:var(--oc-surface)}}
@@ -241,8 +247,8 @@ details.oc-faq>div{padding:0 0 var(--oc-sp-24);color:var(--oc-ink-2);line-height
   .oc-pg-hd{padding:var(--oc-sp-24) 0}
   .oc-pg-hd--bc{padding:var(--oc-sp-16) 0 0}
   .oc-pg-hd p{font-size:var(--oc-fs-16)}
-  .oc-pg-hd .oc-subnav{margin-top:var(--oc-sp-20)}
-  .oc-subnav a{padding:0 var(--oc-sp-16)}
+  .oc-pg-hd .oc-subnav{margin-top:var(--oc-sp-16)}
+  .oc-subnav{--pad:var(--oc-sp-8)} /* 360 폭에서 전체 제품 분류 6개가 한 줄에 들어가게 (두 줄이면 밑줄이 머리 선에서 뜬다) */
   .oc-pg-body{padding:var(--oc-sp-32) 0 var(--oc-sp-64)}
   .oc-toolbar .oc-select{font-size:var(--oc-fs-input)} /* 16px 미만이면 아이폰이 고를 때 화면을 확대한다 */
   .oc-pg-sec+.oc-pg-sec{margin-top:var(--oc-sp-64)}

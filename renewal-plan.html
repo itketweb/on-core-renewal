@@ -53,13 +53,13 @@
   <div class="oc-wrap oc-hd-in">
     <button type="button" class="oc-hd-burger" aria-label="메뉴 열기" data-open="oc-mnav"><span></span></button>
     <a href="renewal-plan.html" class="oc-hd-logo" aria-label="온코어 홈"><img src="img/oncore-logo.png" alt="온코어(주) ONCORE" width="208" height="66"></a>
+    <!-- 상단 메뉴: 제품 / 프로모션 / 구축사례 / 고객지원 / 견적 요청 (1차 컨펌 2026-10-27 확정. 업종별 추천은 없앰). 제품 메가메뉴·고객지원 드롭다운 항목은 그대로 -->
     <nav class="oc-gnb" aria-label="주 메뉴">
       <div class="oc-gnb-item oc-has-mega">
         <button type="button" class="oc-gnb-link" aria-expanded="false" aria-controls="oc-mega">제품 <svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 3.5 5 6.5 8 3.5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
       </div>
-      <a class="oc-gnb-link" href="renewal-plan.html#oc-solutions">업종별 추천</a>
-      <a class="oc-gnb-link" href="pages/cases.html">구축사례</a>
       <a class="oc-gnb-link" href="pages/promotion.html">프로모션</a>
+      <a class="oc-gnb-link" href="pages/cases.html">구축사례</a>
       <div class="oc-gnb-item oc-has-drop">
         <button type="button" class="oc-gnb-link" aria-expanded="false" aria-controls="oc-drop">고객지원 <svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 3.5 5 6.5 8 3.5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
         <div class="oc-drop" id="oc-drop" hidden>
@@ -227,53 +227,26 @@
   </div>
 </section>
 
-<!-- 업종별 추천 | 고도몰: 메인 스킨의 정적 HTML 5개 패널 + 탭 전환 JS.
-     가격은 바뀌어도 자동으로 반영되지 않으므로 적지 않고, 상품 상세로 연결한다 -->
-<section class="oc-sec" id="oc-solutions">
+<!-- 구매 진행 순서 | 고도몰: 정적 HTML. 1차 컨펌으로 업종별 추천을 없앤 자리(2026-10-27) — 흰·회색 섹션 순서를 지켜
+     아래 '카테고리별 추천 제품'의 흰 상품 카드가 회색 바탕 위에 놓이게 한다(9-2장). 단계 문구는 상품 상세 구매 안내(.oc-steps)와 같게 맞춘다 -->
+<section class="oc-sec" id="oc-flow">
   <div class="oc-wrap">
-    <div class="oc-sec-hd"><h2>업무에 맞춘 추천 구성</h2><p>용도를 고르면 시작하기 좋은 구성을 보여 드립니다. 그대로 견적을 받거나 사양을 바꿔 요청하세요.</p></div>
-    <div class="oc-sol-tabs" role="tablist" aria-label="업종">
-      <button type="button" role="tab" aria-selected="true" aria-controls="oc-sol-0" id="oc-sol-tab-0">설계·CAD</button>
-      <button type="button" role="tab" aria-selected="false" aria-controls="oc-sol-1" id="oc-sol-tab-1" tabindex="-1">영상·렌더링</button>
-      <button type="button" role="tab" aria-selected="false" aria-controls="oc-sol-2" id="oc-sol-tab-2" tabindex="-1">AI·데이터</button>
-      <button type="button" role="tab" aria-selected="false" aria-controls="oc-sol-3" id="oc-sol-tab-3" tabindex="-1">사무·업무용</button>
-      <button type="button" role="tab" aria-selected="false" aria-controls="oc-sol-4" id="oc-sol-tab-4" tabindex="-1">파일 공유·백업</button>
-    </div>
-    <div class="oc-sol">
-      <div class="oc-sol-panel" role="tabpanel" id="oc-sol-0" aria-labelledby="oc-sol-tab-0">
-        <div class="oc-sol-intro"><h3>도면이 무거워져도 <br>화면이 끊기지 않게.</h3><p>AutoCAD·Revit·SolidWorks처럼 CPU 단일 성능과 인증 그래픽카드가 중요한 작업에 맞춘 구성입니다.</p><ul><li>AutoCAD</li><li>Revit</li><li>SolidWorks</li><li>CATIA</li></ul></div>
-        <div class="oc-sol-spec"><h4>추천 구성</h4><dl><dt>CPU</dt><dd>Xeon w3-2425</dd><dt>GPU</dt><dd>RTX A1000 8GB</dd><dt>메모리</dt><dd>32GB DDR5</dd><dt>저장</dt><dd>512GB + 2TB</dd><dt>전원</dt><dd>1000W</dd></dl></div>
-        <div class="oc-sol-buy"><img src="img/p5.jpg" alt="" loading="lazy"><div class="oc-sb"><a href="pages/goods-view.html?no=1000000707"><b>ThinkStation P5 · RTX A1000</b><span>상품 보기 ›</span></a><button type="button" class="oc-btn oc-btn-d oc-btn-sm oc-btn-block" data-quote data-goodsno="1000000707" data-name="ThinkStation P5 · RTX A1000" data-img="img/p5.jpg" data-price="">이 구성으로 견적 받기</button></div></div>
-      </div>
-      <div class="oc-sol-panel" role="tabpanel" id="oc-sol-1" aria-labelledby="oc-sol-tab-1" hidden>
-        <div class="oc-sol-intro"><h3>렌더링은 기다리는 시간이 <br>곧 비용입니다.</h3><p>Premiere·DaVinci·3ds Max 렌더링처럼 GPU 메모리와 저장 공간을 많이 쓰는 작업용 구성입니다.</p><ul><li>Premiere Pro</li><li>DaVinci Resolve</li><li>3ds Max</li><li>V-Ray</li></ul></div>
-        <div class="oc-sol-spec"><h4>추천 구성</h4><dl><dt>CPU</dt><dd>Xeon w3-2425</dd><dt>GPU</dt><dd>RTX 2000 Ada 16GB</dd><dt>메모리</dt><dd>32GB DDR5</dd><dt>저장</dt><dd>512GB + 2TB</dd><dt>전원</dt><dd>1000W</dd></dl></div>
-        <div class="oc-sol-buy"><img src="img/p5.jpg" alt="" loading="lazy"><div class="oc-sb"><a href="pages/goods-view.html?no=1000000706"><b>ThinkStation P5 · RTX 2000 Ada</b><span>상품 보기 ›</span></a><button type="button" class="oc-btn oc-btn-d oc-btn-sm oc-btn-block" data-quote data-goodsno="1000000706" data-name="ThinkStation P5 · RTX 2000 Ada" data-img="img/p5.jpg" data-price="">이 구성으로 견적 받기</button></div></div>
-      </div>
-      <div class="oc-sol-panel" role="tabpanel" id="oc-sol-2" aria-labelledby="oc-sol-tab-2" hidden>
-        <div class="oc-sol-intro"><h3>학습과 추론을 <br>사내에서 바로.</h3><p>여러 장의 GPU를 꽂는 AI 서버는 용도·모델 크기에 따라 구성이 크게 달라 담당자가 직접 설계합니다.</p><ul><li>PyTorch</li><li>TensorFlow</li><li>CUDA</li><li>사내 LLM</li></ul></div>
-        <div class="oc-sol-spec"><h4>추천 구성</h4><dl><dt>형태</dt><dd>2U 랙 서버</dd><dt>CPU</dt><dd>Xeon 6 · 2소켓</dd><dt>GPU</dt><dd>용도별 구성</dd><dt>메모리</dt><dd>DDR5 고용량</dd><dt>저장</dt><dd>NVMe 구성</dd></dl></div>
-        <div class="oc-sol-buy"><img src="img/sr650.jpg" alt="" loading="lazy"><div class="oc-sb"><a href="pages/goods-view.html?no=1000000073"><b>ThinkSystem SR650 V4</b><span>상품 보기 ›</span></a><button type="button" class="oc-btn oc-btn-d oc-btn-sm oc-btn-block" data-quote data-goodsno="1000000073" data-name="ThinkSystem SR650 V4" data-img="img/sr650.jpg" data-price="구성에 따라 견적">이 구성으로 견적 받기</button></div></div>
-      </div>
-      <div class="oc-sol-panel" role="tabpanel" id="oc-sol-3" aria-labelledby="oc-sol-tab-3" hidden>
-        <div class="oc-sol-intro"><h3>사무실 PC 일괄 교체, <br>한 번에 맞춥니다.</h3><p>문서·ERP·화상회의 중심 업무에 맞춘 구성입니다. 운영체제 포함·미포함을 고를 수 있고 수량별 견적을 드립니다.</p><ul><li>Office</li><li>그룹웨어</li><li>ERP</li><li>화상회의</li></ul></div>
-        <div class="oc-sol-spec"><h4>추천 구성</h4><dl><dt>CPU</dt><dd>Core Ultra 5 225</dd><dt>메모리</dt><dd>32GB(16+16)</dd><dt>저장</dt><dd>512GB SSD</dd><dt>OS</dt><dd>FreeDOS / Win11 Pro</dd><dt>형태</dt><dd>미니타워 · SFF</dd></dl></div>
-        <div class="oc-sol-buy"><img src="img/asus-mt.jpg" alt="" loading="lazy"><div class="oc-sb"><a href="pages/goods-view.html?no=1000000057"><b>ExpertCenter D7 미니타워</b><span>상품 보기 ›</span></a><button type="button" class="oc-btn oc-btn-d oc-btn-sm oc-btn-block" data-quote data-goodsno="1000000057" data-name="ExpertCenter D7 미니타워" data-img="img/asus-mt.jpg" data-price="">이 구성으로 견적 받기</button></div></div>
-      </div>
-      <div class="oc-sol-panel" role="tabpanel" id="oc-sol-4" aria-labelledby="oc-sol-tab-4" hidden>
-        <div class="oc-sol-intro"><h3>흩어진 파일을 <br>한 곳에 안전하게.</h3><p>여러 팀이 같은 데이터를 빠르게 열고, 정기 백업까지 할 수 있는 All-Flash 스토리지 구성입니다.</p><ul><li>파일 공유</li><li>가상화</li><li>백업</li><li>스냅샷</li></ul></div>
-        <div class="oc-sol-spec"><h4>추천 구성</h4><dl><dt>방식</dt><dd>SAN + NAS</dd><dt>디스크</dt><dd>All-Flash</dd><dt>형태</dt><dd>2U 랙마운트</dd><dt>연결</dt><dd>용도별 구성</dd><dt>용량</dt><dd>요청 기준 설계</dd></dl></div>
-        <div class="oc-sol-buy"><img src="img/hcf-a5500.jpg" alt="" loading="lazy"><div class="oc-sb"><a href="pages/goods-view.html?no=1000000077"><b>HCF-A5500 All-Flash</b><span>상품 보기 ›</span></a><button type="button" class="oc-btn oc-btn-d oc-btn-sm oc-btn-block" data-quote data-goodsno="1000000077" data-name="HCF-A5500 All-Flash" data-img="img/hcf-a5500.jpg" data-price="구성에 따라 견적">이 구성으로 견적 받기</button></div></div>
-      </div>
-    </div>
+    <div class="oc-sec-hd"><h2>견적부터 납품까지 이렇게 진행됩니다.</h2><p>견적함에 담거나 요청서를 남기면 담당자가 구성과 금액을 확인해 직접 회신합니다.</p><a href="pages/usage.html" class="oc-more">이용 안내</a></div>
+    <ol class="oc-flow">
+      <li><b>견적 요청</b><p>견적함에 담거나 견적 요청서를 작성합니다.</p></li>
+      <li><b>담당자 배정</b><p>접수 후 담당자가 배정되고 문자로 알려 드립니다.</p></li>
+      <li><b>견적서 회신</b><p>구성과 금액을 확인해 견적서를 보내 드립니다.</p></li>
+      <li><b>주문·납품</b><p>조건을 확정하면 납품 일정을 안내합니다.</p></li>
+    </ol>
   </div>
 </section>
 
-<!-- 많이 찾는 제품 | 고도몰: 탭마다 메인 진열 1개씩 (전체·워크스테이션·서버·데스크탑·노트북·스토리지 = 진열 6개).
+<!-- 카테고리별 추천 제품 | 고도몰: 탭마다 메인 진열 1개씩 (전체·워크스테이션·서버·데스크탑·노트북·스토리지 = 진열 6개). 운영자가 관리자 상품 진열에서 카테고리별로 노출할 상품을 지정한다.
+     1차 컨펌(2026-10-27): 업종별 추천(고정 화면)을 없애고 이 관리자 진열 방식으로 대신한다.
      6개를 모두 출력해 두고 탭 JS 가 하나만 보여 준다 -->
 <section class="oc-sec oc-sec-alt" id="oc-best">
   <div class="oc-wrap">
-    <div class="oc-sec-hd"><h2>많이 찾는 제품</h2><a href="pages/goods-all.html" class="oc-more">전체 제품</a></div>
+    <div class="oc-sec-hd"><h2>카테고리별 추천 제품</h2><a href="pages/goods-all.html" class="oc-more">전체 제품</a></div>
     <div class="oc-ftabs" role="tablist" aria-label="제품 유형">
       <button type="button" role="tab" aria-selected="true" data-tab="all">전체</button>
       <button type="button" role="tab" aria-selected="false" data-tab="ws">워크스테이션</button>
@@ -452,7 +425,7 @@
     <h5>제품</h5>
     <div class="oc-mnav-grid"><a href="pages/goods-all.html">전체 제품</a><a href="pages/goods-server.html">서버</a><a href="pages/goods-workstation.html">워크스테이션</a><a href="pages/goods-desktop.html">데스크탑</a><a href="pages/goods-notebook.html">노트북</a><a href="pages/goods-storage.html">스토리지</a></div>
     <h5>기업 구매</h5>
-    <div class="oc-mnav-grid"><a href="renewal-plan.html#oc-solutions">업종별 추천</a><a href="pages/cases.html">구축사례</a><a href="pages/guide.html">구매 가이드</a><a href="pages/promotion.html">프로모션</a><a href="pages/estimate-list.html">견적 요청</a></div>
+    <div class="oc-mnav-grid"><a href="pages/promotion.html">프로모션</a><a href="pages/cases.html">구축사례</a><a href="pages/guide.html">구매 가이드</a><a href="pages/estimate-list.html">견적 요청</a></div>
     <h5>고객지원</h5>
     <div class="oc-mnav-grid"><a href="pages/notice.html">공지사항</a><a href="pages/inquiry.html">1:1 문의</a><a href="pages/cs.html">고객센터</a></div>
     <div class="oc-mnav-act"><a href="pages/login.html" class="oc-btn oc-btn-o">로그인</a><a href="pages/join.html" class="oc-btn oc-btn-d">회원가입</a></div>

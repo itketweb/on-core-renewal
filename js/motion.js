@@ -34,7 +34,6 @@
     }
     batch('.oc-trust li', 16);
     batch('.oc-types a', 24);
-    batch('.oc-sol-tabs, .oc-sol', 24);
     batch('.oc-ftabs, .oc-display--best:not([hidden]) .oc-card', 32);
     batch('.oc-posts .oc-post', 32);
 
@@ -44,15 +43,7 @@
       scrollTrigger: { trigger: '.oc-final', start: 'top 75%', once: true }
     });
 
-    /* ── 2. 업종별 추천 탭: 패널이 바뀔 때 소개 → 사양 → 제품 순서로 ── */
-    var solTabs = $('.oc-sol-tabs');
-    if (solTabs) solTabs.addEventListener('click', function (e) {
-      var b = e.target.closest('[role=tab]'); if (!b) return;
-      var panel = document.getElementById(b.getAttribute('aria-controls'));
-      if (panel) gsap.from(panel.children, { y: 16, autoAlpha: 0, duration: 0.5, ease: EASE, stagger: 0.07, overwrite: true });
-    });
-
-    /* ── 3. 견적함에 담기: 제품 사진이 견적함 버튼으로 날아간다 ──
+    /* ── 2. 견적함에 담기: 제품 사진이 견적함 버튼으로 날아간다 ──
        main.js 보다 먼저(캡처 단계) 상태를 읽어야 '새로 담는 클릭'인지 알 수 있다 (담긴 뒤 다시 누르면 견적함이 열림) */
     function onAdd(e) {
       var btn = e.target.closest('[data-add]'); if (!btn || btn.classList.contains('oc-is-on')) return;
