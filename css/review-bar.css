@@ -22,15 +22,15 @@
 /* 문서 이동: 제안서(index) · 실행 계획(project-plan) · 디자인 시안(renewal-plan) — 사이트의 알약 메뉴와 다르게 네모 탭 */
 .oc-rb-nav{display:flex;gap:2px;margin-left:auto}
 .oc-rb-nav a{display:inline-flex;align-items:center;gap:.3em;height:32px;padding:0 12px;border-radius:4px;color:var(--oc-rb-fg);font-weight:500;text-decoration:none;white-space:nowrap;transition:background .15s,color .15s}
-.oc-rb-nav a:hover{background:rgba(255,255,255,.08);color:#fff}
+@media (hover:hover) and (pointer:fine) and (min-width:768px){.oc-rb-nav a:hover{background:rgba(255,255,255,.08);color:#fff}}
 .oc-rb-nav a[aria-current="page"]{background:var(--oc-rb-line);color:#fff;font-weight:700}
 /* 접기 버튼 (막대 오른쪽 끝) */
 .oc-rb-fold{flex:none;display:inline-flex;align-items:center;gap:4px;height:32px;padding:0 10px;border:1px solid var(--oc-rb-line);border-radius:4px;background:none;color:var(--oc-rb-fg);font:inherit;font-size:12px;font-weight:600;cursor:pointer}
-.oc-rb-fold:hover{border-color:var(--oc-rb-tag);color:#fff}
+@media (hover:hover) and (pointer:fine) and (min-width:768px){.oc-rb-fold:hover{border-color:var(--oc-rb-tag);color:#fff}}
 /* 접힌 상태: 얇은 선 + 화면 오른쪽 모서리에 아래로 늘어진 '펼치기' 꼬리표.
    사이트 헤더 오른쪽 끝(견적함 버튼)을 덮지 않도록 콘텐츠 밖 모서리에 두고, 화살표만 보인다(글자는 aria-label 로). 1280 은 바깥 여백이 없어 글자를 넣으면 버튼과 겹침 */
 .oc-rb-open{display:none;position:absolute;top:100%;right:0;align-items:center;gap:4px;height:20px;padding:0 6px 2px;border:0;border-radius:0 0 0 6px;background:var(--oc-rb-bg);color:var(--oc-rb-fg);font:inherit;font-size:11px;font-weight:600;line-height:1;cursor:pointer}
-.oc-rb-open:hover{color:#fff}
+@media (hover:hover) and (pointer:fine) and (min-width:768px){.oc-rb-open:hover{color:#fff}}
 .oc-rb-open span{display:none}
 .oc-rb-off .oc-review-bar{border-bottom:0}
 .oc-rb-off .oc-rb-in{display:none}

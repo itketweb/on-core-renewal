@@ -5,7 +5,8 @@
   --primary:#E1251B; --primary-600:#BE1E15; --primary-50:#FDECEB; --primary-100:#F9D3D0;
   --ink:#16181D; --ink-2:#3D4048; --ink-3:#6B6F78; --asus:#00539B;
   --line:#DFE1E5; --line-2:#ECEDF0;
-  --bg:#FFFFFF; --surface:#F3F4F6; --img:#F4F4F4; --dark:#16181D;
+  --bg:#FFFFFF; --surface:#F3F4F6; --surface-2:#FAFAFB; --code:#F0F1F3; --img:#F4F4F4; --dark:#16181D;
+  --dot:#C9CCD3; --chrome:#E9EBEF; --chrome-dot:#C6C9D1; /* 흐린 점 · 화면 캡처 틀의 브라우저 막대 */
   --ok:#1E7F3C; --ok-50:#E7F4EA; --warn:#8A5300; --warn-50:#FFF4E0; --warn-100:#F3DDB0;
   --lift:0 18px 40px -24px rgba(22,24,29,.28);
   --sp-4:4px; --sp-8:8px; --sp-12:12px; --sp-16:16px; --sp-20:20px; --sp-24:24px; --sp-32:32px; --sp-40:40px; --sp-48:48px; --sp-64:64px; --sp-80:80px; --sp-96:96px; --sp-128:128px;
@@ -22,17 +23,14 @@ p,ul,ol,h1,h2,h3,h4{margin:0}
 ul,ol{padding:0;list-style:none}
 :focus-visible{outline:2px solid var(--primary);outline-offset:2px;border-radius:var(--r-sm)}
 .wrap{max-width:var(--wrap);margin:0 auto;padding:0 var(--gut)}
-.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 
 /* ── 버튼 (메인 시안과 같은 알약 버튼) ── */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:var(--sp-8);height:var(--sp-48);padding:0 var(--sp-24);border-radius:999px;font-size:var(--fs-16);font-weight:600;white-space:nowrap;transition:background .15s,border-color .15s,color .15s}
 .btn svg{width:18px;height:18px;transition:transform .2s var(--ease)}
-.btn:hover svg{transform:translateX(3px)}
-.btn-p{background:var(--primary);color:#fff}.btn-p:hover{background:var(--primary-600)}
-.btn-d{background:var(--ink);color:#fff}.btn-d:hover{background:var(--ink-2)}
-.btn-o{border:1px solid var(--line);color:var(--ink);background:#fff}.btn-o:hover{border-color:var(--ink)}
-.btn-ghost{border:1px solid rgba(255,255,255,.32);color:#fff}.btn-ghost:hover{border-color:#fff;background:rgba(255,255,255,.06)}
-.btn-sm{height:var(--sp-40);padding:0 var(--sp-16);font-size:var(--fs-14)}
+.btn-p{background:var(--primary);color:#fff}
+.btn-d{background:var(--ink);color:#fff}
+.btn-o{border:1px solid var(--line);color:var(--ink);background:#fff}
+@media (hover:hover) and (pointer:fine) and (min-width:768px){.btn:hover svg{transform:translateX(3px)}.btn-p:hover{background:var(--primary-600)}.btn-d:hover{background:var(--ink-2)}.btn-o:hover{border-color:var(--ink)}}
 
 /* ── 상단: 검토용 막대(css/review-bar.css, 메인 시안과 공용) + 읽은 만큼 진행 막대 ── */
 .progress{position:absolute;left:0;bottom:0;height:2px;width:100%;background:var(--primary);transform:scaleX(0);transform-origin:left}
@@ -43,7 +41,7 @@ html:has(.anchor-nav){scroll-padding-top:calc(var(--hd) + 49px + var(--sp-16))}
 .anchor-nav{position:sticky;top:calc(var(--hd) + 1px);z-index:29;display:flex;gap:2px;padding:var(--sp-8) var(--gut);overflow-x:auto;scrollbar-width:none;background:rgba(255,255,255,.9);backdrop-filter:saturate(180%) blur(18px);-webkit-backdrop-filter:saturate(180%) blur(18px);border-bottom:1px solid var(--line-2)}
 .anchor-nav::-webkit-scrollbar{display:none}
 .anchor-nav a{position:relative;flex:none;display:inline-flex;align-items:center;height:32px;padding:0 var(--sp-12);border-radius:999px;font-size:var(--fs-14);font-weight:500;color:var(--ink-3);transition:background .15s,color .15s}
-.anchor-nav a:hover{background:var(--surface);color:var(--ink)}
+@media (hover:hover) and (pointer:fine) and (min-width:768px){.anchor-nav a:hover{background:var(--surface);color:var(--ink)}}
 .anchor-nav a.on{background:var(--ink);color:#fff;font-weight:600}
 @media(min-width:1280px){
   :root:has(.anchor-nav){--rail:112px}
@@ -53,7 +51,7 @@ html:has(.anchor-nav){scroll-padding-top:calc(var(--hd) + 49px + var(--sp-16))}
   .anchor-nav::before{content:"목차";padding:0 var(--sp-8) var(--sp-4);font-size:var(--fs-12);font-weight:600;color:var(--ink-3)}
   .anchor-nav a{padding:0 var(--sp-8) 0 var(--sp-24);border-radius:var(--r-sm)}
   .anchor-nav a::before{content:"";position:absolute;left:var(--sp-8);top:50%;width:6px;height:6px;margin-top:-3px;border-radius:50%;background:var(--line);transition:background .15s}
-  .anchor-nav a:hover::before{background:var(--ink-3)}
+  @media (hover:hover) and (pointer:fine) and (min-width:768px){.anchor-nav a:hover::before{background:var(--ink-3)}}
   .anchor-nav a.on{background:var(--surface);color:var(--ink)}
   .anchor-nav a.on::before{background:var(--ink)}
 }
@@ -72,13 +70,13 @@ html:has(.anchor-nav){scroll-padding-top:calc(var(--hd) + 49px + var(--sp-16))}
 .hero-meta{display:flex;flex-wrap:wrap;gap:var(--sp-8) var(--sp-24);margin-top:var(--sp-32);padding-top:var(--sp-24);border-top:1px solid rgba(255,255,255,.12);font-size:var(--fs-14);color:rgba(255,255,255,.56)}
 .hero-meta b{color:#fff;font-weight:600;margin-left:6px}
 .shot{position:relative;display:block;border-radius:var(--r);background:#fff;box-shadow:0 40px 80px -30px rgba(0,0,0,.6),0 0 0 1px rgba(255,255,255,.1);overflow:hidden}
-.shot-bar{display:flex;align-items:center;gap:6px;height:32px;padding:0 var(--sp-16);background:#E9EBEF}
-.shot-bar i{width:10px;height:10px;border-radius:50%;background:#C6C9D1}
+.shot-bar{display:flex;align-items:center;gap:6px;height:32px;padding:0 var(--sp-16);background:var(--chrome)}
+.shot-bar i{width:10px;height:10px;border-radius:50%;background:var(--chrome-dot)}
 .shot-bar span{margin-left:var(--sp-12);font-size:var(--fs-12);color:var(--ink-3)}
 .shot-bar em{margin-left:auto;font-style:normal;font-size:var(--fs-12);font-weight:600;color:var(--ink-2)}
 .vp{position:relative;aspect-ratio:1440/860;overflow:hidden;background:#fff}
 .vp iframe{position:absolute;left:0;top:0;width:1440px;height:860px;border:0;transform-origin:0 0;transform:scale(var(--s,.42));pointer-events:none}
-.shot:hover .shot-bar em{color:var(--primary-600)}
+@media (hover:hover) and (pointer:fine) and (min-width:768px){.shot:hover .shot-bar em{color:var(--primary-600)}}
 @media(prefers-reduced-motion:no-preference){.shot{animation:rise .9s var(--ease) backwards}}
 @keyframes rise{from{opacity:0;transform:translateY(24px)}}
 
@@ -124,7 +122,7 @@ html:has(.anchor-nav){scroll-padding-top:calc(var(--hd) + 49px + var(--sp-16))}
 .note svg{flex:none;width:20px;height:20px;margin-top:3px;color:var(--ink-3)}
 .note.warn svg{color:var(--warn)}
 .note a{font-weight:600;color:var(--ink);text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--line)}
-.note a:hover{text-decoration-color:currentColor}
+@media (hover:hover) and (pointer:fine) and (min-width:768px){.note a:hover{text-decoration-color:currentColor}}
 
 /* ── 요약: 문제 → 해결 → 요청 ── */
 .sum{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--sp-16);counter-reset:sum}
@@ -178,10 +176,10 @@ html:has(.anchor-nav){scroll-padding-top:calc(var(--hd) + 49px + var(--sp-16))}
 .ref-cols li+li{margin-top:var(--sp-4)}
 .ref-cols li::before{content:"";position:absolute;left:2px;top:.75em;width:5px;height:5px;border-radius:50%;background:var(--ink-3)}
 .ref{display:flex;flex-direction:column;padding:var(--sp-24);transition:box-shadow .25s}
-.ref:hover{box-shadow:var(--lift)}
+@media (hover:hover) and (pointer:fine) and (min-width:768px){.ref:hover{box-shadow:var(--lift)}}
 .ref h4{display:flex;align-items:center;justify-content:space-between;font-size:var(--fs-18);margin-bottom:var(--sp-16)}
 .ref h4 svg{width:16px;height:16px;color:var(--ink-3)}
-.ref:hover h4 svg{color:var(--ink)}
+@media (hover:hover) and (pointer:fine) and (min-width:768px){.ref:hover h4 svg{color:var(--ink)}}
 .sc{display:flex;justify-content:space-between;align-items:center;font-size:var(--fs-14);color:var(--ink-3)}
 .sc+.sc{margin-top:var(--sp-4)}
 .score{display:inline-flex;gap:4px}
@@ -278,7 +276,7 @@ td small{color:var(--ink-3)}
 .wf .row+.row,.wf .row+.b,.wf .b+.row{margin-top:6px}
 .wf-link{display:inline-flex;align-items:center;gap:6px;margin-top:var(--sp-16);font-size:var(--fs-14);font-weight:600;color:var(--ink)}
 .wf-link svg{width:16px;height:16px;transition:transform .2s var(--ease)}
-.wf-link:hover svg{transform:translateX(3px)}
+@media (hover:hover) and (pointer:fine) and (min-width:768px){.wf-link:hover svg{transform:translateX(3px)}}
 
 /* ── 06 견적 흐름 ── */
 .steps{position:relative;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:var(--sp-12)}
@@ -352,7 +350,7 @@ td small{color:var(--ink-3)}
 .homebar i{width:104px;height:5px;border-radius:999px;background:var(--ink)}
 .fl{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-16)}
 .fi{position:relative;display:flex;flex-direction:column;padding:var(--sp-24);border-radius:var(--r-lg);background:linear-gradient(180deg,rgba(255,255,255,.075),rgba(255,255,255,.03));border:1px solid rgba(255,255,255,.1);transition:border-color .25s var(--ease),transform .25s var(--ease)}
-.fi:hover{border-color:rgba(255,255,255,.22);transform:translateY(-2px)}
+@media (hover:hover) and (pointer:fine) and (min-width:768px){.fi:hover{border-color:rgba(255,255,255,.22);transform:translateY(-2px)}}
 .fi-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:var(--sp-16)}
 .fi-ic{display:inline-flex;align-items:center;justify-content:center;width:var(--sp-40);height:var(--sp-40);border-radius:12px;background:color-mix(in srgb,var(--primary) 18%,transparent);color:#FF6B5F}
 .fi-ic svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}

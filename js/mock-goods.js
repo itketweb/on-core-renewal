@@ -87,7 +87,85 @@
     '</li>';
   }
 
-  window.OC_MOCK = { GOODS: GOODS, DISPLAYS: DISPLAYS, li: li, money: money };
+  // 상세 설명(goodsDescription) 이미지 — 운영 사이트 같은 상품의 상세 이미지 주소(2026-10-27 옮김). 고도몰은 관리자 상품 등록의 '상세 설명'을 그대로 출력하므로 필요 없다
+  var DESC = {
+    '1000000710': [
+      'https://itketweb.hgodo.com/data/img/%EC%98%A8%EC%BD%94%EC%96%B4/ONCORE-Partner-Banner.gif',
+      'https://itketweb.hgodo.com/data/img/%EC%98%A8%EC%BD%94%EC%96%B4/lenovo/%EC%9B%8C%ED%81%AC%EC%8A%A4%ED%85%8C%EC%9D%B4%EC%85%98/ThinkStation%20P5%20TWR%20Gen2/Tinkstation_P5_01.jpg',
+      'https://itketweb.hgodo.com/data/img/%EC%98%A8%EC%BD%94%EC%96%B4/lenovo/%EC%9B%8C%ED%81%AC%EC%8A%A4%ED%85%8C%EC%9D%B4%EC%85%98/ThinkStation%20P5%20TWR%20Gen2/Tinkstation_P5_02.jpg',
+      'https://itketweb.hgodo.com/data/img/%EC%98%A8%EC%BD%94%EC%96%B4/lenovo/%EC%9B%8C%ED%81%AC%EC%8A%A4%ED%85%8C%EC%9D%B4%EC%85%98/ThinkStation%20P5%20TWR%20Gen2/Tinkstation_P5_03.jpg',
+      'https://itketweb.hgodo.com/data/img/%EC%98%A8%EC%BD%94%EC%96%B4/lenovo/%EC%9B%8C%ED%81%AC%EC%8A%A4%ED%85%8C%EC%9D%B4%EC%85%98/ThinkStation%20P5%20TWR%20Gen2/Tinkstation_P5_04.jpg',
+      'https://itketweb.hgodo.com/data/img/%EC%98%A8%EC%BD%94%EC%96%B4/lenovo/%EC%9B%8C%ED%81%AC%EC%8A%A4%ED%85%8C%EC%9D%B4%EC%85%98/ThinkStation%20P5%20TWR%20Gen2/Tinkstation_P5_05.jpg',
+      'https://itketweb.hgodo.com/data/img/%EC%98%A8%EC%BD%94%EC%96%B4/lenovo/%EC%9B%8C%ED%81%AC%EC%8A%A4%ED%85%8C%EC%9D%B4%EC%85%98/ThinkStation%20P5%20TWR%20Gen2/Tinkstation_P5_06.jpg'
+    ],
+    '1000000367': [
+      'https://itketweb.hgodo.com/data/img/%EC%98%A8%EC%BD%94%EC%96%B4/lenovo/%EC%9B%8C%ED%81%AC%EC%8A%A4%ED%85%8C%EC%9D%B4%EC%85%98/ThinkStation%20P3%20TWR%20Gen2/p3_ultra_g2_%EC%83%81%EC%84%B8%ED%8E%98%EC%9D%B4%EC%A7%80.jpg',
+      'https://itketweb.hgodo.com/data/img/%EC%98%A8%EC%BD%94%EC%96%B4/lenovo/%EC%9B%8C%ED%81%AC%EC%8A%A4%ED%85%8C%EC%9D%B4%EC%85%98/ThinkStation%20P3%20TWR%20Gen2/P3-Ultra-Gen-2_%EC%83%81%EC%84%B8%ED%8E%98%EC%9D%B4%EC%A7%80_30J5S08M00.jpg'
+    ],
+    '1000000366': [
+      'https://itketweb.hgodo.com/data/img/%EC%98%A8%EC%BD%94%EC%96%B4/lenovo/%EC%9B%8C%ED%81%AC%EC%8A%A4%ED%85%8C%EC%9D%B4%EC%85%98/ThinkStation%20P3%20TWR%20Gen2/P3-Tiny-Gen-2_%EC%83%81%EC%84%B8%ED%8E%98%EC%9D%B4%EC%A7%80.jpg' // 운영 사이트의 두 번째 이미지(P3-Tiny-G2_spec_30K5S0BW00.jpg)는 404 — 빼 둠
+    ],
+    '1000000365': [
+      'https://itketweb.hgodo.com/data/img/%EC%98%A8%EC%BD%94%EC%96%B4/lenovo/%EC%9B%8C%ED%81%AC%EC%8A%A4%ED%85%8C%EC%9D%B4%EC%85%98/ThinkStation%20P2%20TWR%20Gen2/P2_tower_gen2_%EC%83%81%EC%84%B8%ED%8E%98%EC%9D%B4%EC%A7%80%5B%EC%98%A8%EC%BD%94%EC%96%B4%5D.jpg',
+      'https://itketweb.hgodo.com/data/img/%EC%98%A8%EC%BD%94%EC%96%B4/lenovo/%EC%9B%8C%ED%81%AC%EC%8A%A4%ED%85%8C%EC%9D%B4%EC%85%98/ThinkStation%20P2%20TWR%20Gen2/spec/P2-Tower-Gen2_spec_30JQS0B900.jpg'
+    ],
+    '1000000073': [
+      'https://itketweb.hgodo.com/data/img/%EC%95%84%EC%9D%B4%ED%8B%B0%EC%BC%93/%EC%84%9C%EB%B2%84/Lenovo/Lenovo-ThinkSystem-SR650-V4_6507P.jpg'
+    ],
+    '1000000072': [
+      'https://itketweb.hgodo.com/data/img/%EC%95%84%EC%9D%B4%ED%8B%B0%EC%BC%93/%EC%84%9C%EB%B2%84/Lenovo/Lenovo-ThinkSystem-SR630-V4_6507P.jpg'
+    ],
+    '1000000071': [
+      'https://itketweb.hgodo.com/data/img/%EC%95%84%EC%9D%B4%ED%8B%B0%EC%BC%93/%EC%84%9C%EB%B2%84/Lenovo/Lenovo-ThinkSystem-SR250-V3_6353P.jpg'
+    ],
+    '1000000057': [
+      'https://itketweb.hgodo.com/data/img/%EC%98%A8%EC%BD%94%EC%96%B4/asus_desktop/ExpertCenter%20D7%20MT/D700MF-005225237X/D700MF-005225237X_01.jpg',
+      'https://itketweb.hgodo.com/data/img/%EC%98%A8%EC%BD%94%EC%96%B4/asus_desktop/ExpertCenter%20D7%20MT/D700MF-005225237X/D700MF-005225237X_02.jpg',
+      'https://itketweb.hgodo.com/data/img/%EC%98%A8%EC%BD%94%EC%96%B4/asus_desktop/ExpertCenter%20D7%20MT/D700MF-005225237X/D700MF-005225237X_03.jpg',
+      'https://itketweb.hgodo.com/data/img/%EC%98%A8%EC%BD%94%EC%96%B4/asus_desktop/ExpertCenter%20D7%20MT/D700MF-005225237X/D700MF-005225237X_04.jpg',
+      'https://itketweb.hgodo.com/data/img/%EC%98%A8%EC%BD%94%EC%96%B4/asus_desktop/ExpertCenter%20D7%20MT/D700MF-005225237X/D700MF-005225237X_05.jpg',
+      'https://itketweb.hgodo.com/data/img/%EC%98%A8%EC%BD%94%EC%96%B4/asus_desktop/ExpertCenter%20D7%20MT/D700MF-005225237X/D700MF-005225237X_06.jpg',
+      'https://itketweb.hgodo.com/data/img/%EC%98%A8%EC%BD%94%EC%96%B4/asus_desktop/ExpertCenter%20D7%20MT/D700MF-005225237X/D700MF-005225237X_07.jpg',
+      'https://itketweb.hgodo.com/data/img/%EC%98%A8%EC%BD%94%EC%96%B4/asus_desktop/ExpertCenter%20D7%20MT/D700MF-005225237X/D700MF-005225237X_08.jpg',
+      'https://itketweb.hgodo.com/data/img/%EC%98%A8%EC%BD%94%EC%96%B4/asus_desktop/ExpertCenter%20D7%20MT/D700MF-005225237X/D700MF-005225237X_09.jpg'
+    ],
+    '1000000049': [
+      'https://itketweb.hgodo.com/data/img/%EC%98%A8%EC%BD%94%EC%96%B4/asus_desktop/ExpertCenter%20D7%20SFF/D700SF-0052250460/D700SF-0052250460.jpg'
+    ],
+    '1000000054': [
+      'https://itketweb.hgodo.com/data/img/%EC%98%A8%EC%BD%94%EC%96%B4/asus_desktop/ExpertCenter%20D7%20SFF/D700SF-005225209X/D700SF-005225209X.jpg'
+    ],
+    '1000000069': [
+      'https://itketweb.hgodo.com/data/img/%EC%95%84%EC%9D%B4%ED%8B%B0%EC%BC%93/LENOVO/ThinkPad%20X1%20%EC%B9%B4%EB%B3%B8%20Gen%2013/21NSS02M00.jpg'
+    ],
+    '1000000059': [
+      'https://itketweb.hgodo.com/data/img/%EC%98%A8%EC%BD%94%EC%96%B4/lenovo/%EB%85%B8%ED%8A%B8%EB%B6%81/X1%20%EC%B9%B4%EB%B3%B8%20G13%2021NSS02S00.jpg'
+    ],
+    '1000000062': [
+      'https://itketweb.hgodo.com/data/img/%EC%98%A8%EC%BD%94%EC%96%B4/lenovo/%EB%85%B8%ED%8A%B8%EB%B6%81/L16%20Gen1/ThinkPad%20L16%20Gen1%2021L3003WKR%2001.jpg',
+      'https://itketweb.hgodo.com/data/img/%EC%98%A8%EC%BD%94%EC%96%B4/lenovo/%EB%85%B8%ED%8A%B8%EB%B6%81/L16%20Gen1/ThinkPad%20L16%20Gen1%2021L3003WKR%2002.jpg',
+      'https://itketweb.hgodo.com/data/img/%EC%98%A8%EC%BD%94%EC%96%B4/lenovo/%EB%85%B8%ED%8A%B8%EB%B6%81/L16%20Gen1/ThinkPad%20L16%20Gen1%2021L3003WKR%2003.jpg',
+      'https://itketweb.hgodo.com/data/img/%EC%98%A8%EC%BD%94%EC%96%B4/lenovo/%EB%85%B8%ED%8A%B8%EB%B6%81/L16%20Gen1/ThinkPad%20L16%20Gen1%2021L3003WKR%2004.jpg',
+      'https://itketweb.hgodo.com/data/img/%EC%98%A8%EC%BD%94%EC%96%B4/lenovo/%EB%85%B8%ED%8A%B8%EB%B6%81/L16%20Gen1/ThinkPad%20L16%20Gen1%2021L3003WKR%2005.jpg',
+      'https://itketweb.hgodo.com/data/img/%EC%98%A8%EC%BD%94%EC%96%B4/lenovo/%EB%85%B8%ED%8A%B8%EB%B6%81/L16%20Gen1/ThinkPad%20L16%20Gen1%2021L3003WKR%2006.jpg',
+      'https://itketweb.hgodo.com/data/img/%EC%98%A8%EC%BD%94%EC%96%B4/lenovo/%EB%85%B8%ED%8A%B8%EB%B6%81/L16%20Gen1/ThinkPad%20L16%20Gen1%2021L3003WKR%2007.jpg',
+      'https://itketweb.hgodo.com/data/img/%EC%98%A8%EC%BD%94%EC%96%B4/lenovo/%EB%85%B8%ED%8A%B8%EB%B6%81/L16%20Gen1/ThinkPad%20L16%20Gen1%2021L3003WKR%2008.jpg'
+    ],
+    '1000000077': [
+      'https://gdadmin-oncore53.godomall.com/data/img/oncore/Storage/HC/detail/HCF-A5500.jpg'
+    ],
+    '1000000075': [
+      'https://gdadmin-oncore53.godomall.com/data/img/oncore/Storage/HC/detail/HCF-A2200.jpg'
+    ],
+    '1000000076': [
+      'https://gdadmin-oncore53.godomall.com/data/img/oncore/Storage/HC/detail/HCF-A5300.jpg'
+    ],
+    '1000000074': [
+      'https://gdadmin-oncore53.godomall.com/data/img/oncore/Storage/HC/detail/HCF-A2100.jpg'
+    ]
+  };
+
+  window.OC_MOCK = { GOODS: GOODS, DISPLAYS: DISPLAYS, DESC: DESC, li: li, money: money };
 
   Array.prototype.forEach.call(document.querySelectorAll('[data-display]'), function (box) {
     var list = DISPLAYS[box.getAttribute('data-display')] || [];

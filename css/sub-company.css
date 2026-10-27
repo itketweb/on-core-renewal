@@ -31,26 +31,25 @@
 .oc-company-map svg{width:var(--oc-sp-32);height:var(--oc-sp-32);color:var(--oc-ink-3)}
 
 /* 하단 상담 유도: 선 + 한 줄, 상자 없음 */
-.oc-company-cta{display:flex;align-items:center;justify-content:space-between;gap:var(--oc-sp-32);flex-wrap:wrap;margin-top:var(--oc-sp-80);padding:var(--oc-sp-40) 0 0;border-top:2px solid var(--oc-ink)} /* 위 섹션(오시는 길 지도)과 띄운다 — 구축사례·프로모션의 .oc-biz-cta 와 같은 간격 */
+.oc-company-cta{display:flex;align-items:center;justify-content:space-between;gap:var(--oc-sp-32);flex-wrap:wrap;margin-top:var(--oc-sp-80);padding:var(--oc-sp-40) 0 0;border-top:2px solid var(--oc-ink)} /* 위 섹션(오시는 길 지도)과 띄운다 */
 .oc-company-cta h2{font-size:clamp(var(--oc-fs-24),2.6vw,var(--oc-fs-32));line-height:1.25}
 .oc-company-cta p{margin-top:var(--oc-sp-8);color:var(--oc-ink-3)}
 .oc-company-cta-act{display:flex;gap:var(--oc-sp-12);flex-wrap:wrap}
 
 /* ── 약관·방침: 본문(왼쪽) + 목차(오른쪽 고정) ── */
 .oc-company-doc .oc-note{margin-bottom:var(--oc-sp-32)}
-.oc-company-doc .oc-art-body{padding:0}
+.oc-company-doc .oc-art-body{padding:0;font-size:var(--oc-fs-16);line-height:1.8}
 .oc-company-doc .oc-art-body h2{margin-top:var(--oc-sp-48);padding-top:var(--oc-sp-24);border-top:1px solid var(--oc-line);font-size:var(--oc-fs-20)}
 .oc-company-doc .oc-art-body h2:first-of-type{margin-top:0;padding-top:0;border-top:0}
 .oc-company-doc .oc-art-body h2 small{margin-left:var(--oc-sp-8);font-size:var(--oc-fs-14);font-weight:500;color:var(--oc-ink-3)}
-.oc-company-doc .oc-art-body {font-size:var(--oc-fs-16);line-height:1.8}
-.oc-company-doc .oc-aside h2{margin-bottom:var(--oc-sp-12);font-size:var(--oc-fs-18)}
 .oc-company-toc li+li{border-top:1px solid var(--oc-line-2)}
 .oc-company-toc a{display:block;padding:var(--oc-sp-8) 0;font-size:var(--oc-fs-14);color:var(--oc-ink-2);transition:color .15s}
-@media (hover:hover){.oc-company-toc a:hover{color:var(--oc-ink)}}
+@media (hover:hover) and (pointer:fine) and (min-width:768px){.oc-company-toc a:hover{color:var(--oc-ink)}}
+.oc-pg-grid--toc .oc-company-toc li+li{border-top:0}
+.oc-pg-grid--toc .oc-company-toc a{padding:var(--oc-sp-4) 0}
 .oc-company-ver{margin-top:var(--oc-sp-16);padding-top:var(--oc-sp-12);border-top:1px solid var(--oc-line);font-size:var(--oc-fs-12);color:var(--oc-ink-3)}
 .oc-company-tblwrap{overflow-x:auto;margin-top:var(--oc-sp-12)}
-.oc-company-tblwrap .oc-tbl th,.oc-company-tblwrap .oc-tbl td{overflow-wrap:anywhere} /* 최소 폭 없이 화면 폭에 맞춰 줄바꿈 (가로 스크롤 없음) */
-.oc-company-tblwrap .oc-tbl th,.oc-company-tblwrap .oc-tbl td{font-size:var(--oc-fs-14);line-height:1.6}
+.oc-company-tblwrap .oc-tbl th,.oc-company-tblwrap .oc-tbl td{overflow-wrap:anywhere;font-size:var(--oc-fs-14);line-height:1.6} /* 최소 폭 없이 화면 폭에 맞춰 줄바꿈 (가로 스크롤 없음) */
 .oc-company-tblwrap .oc-tbl tbody th{width:auto;background:none;color:var(--oc-ink);font-weight:600}
 
 /* ── 이용안내: 앵커 섹션 ── */
@@ -84,6 +83,9 @@
   .oc-company-brands li p{grid-column:1/-1;grid-row:2}
   .oc-company-loc{grid-template-columns:minmax(0,1fr);gap:var(--oc-sp-24)}
   .oc-company-doc .oc-aside{order:-1}
+  .oc-pg-grid--toc .oc-company-toc li+li{border-top:1px solid var(--oc-line-2)}
+  .oc-pg-grid--toc .oc-company-toc a{padding:var(--oc-sp-8) 0}
+  .oc-company-guide .oc-aside{display:none} /* 이용안내는 섹션 5개라 목차 없이 내려 본다 (위에 두면 본문을 밀어냄) */
 }
 @media (max-width:767px){
   .oc-company-lead p{font-size:var(--oc-fs-16)}

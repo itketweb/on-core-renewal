@@ -100,6 +100,9 @@
     var kv2 = $('[data-f-spec2]');
     if (kv2) kv2.innerHTML = '<dt>제조사</dt><dd>' + esc(g.brandNm) + '</dd><dt>상품명</dt><dd>' + esc(g.goodsNm) + '</dd><dt>제조사 품번</dt><dd>' + esc(g.goodsModelNo || '—') + '</dd><dt>상품코드</dt><dd>' + esc(no) + '</dd>' +
       rows.map(function (r) { return '<dt>' + esc(r[0] || '구성') + '</dt><dd>' + esc(r[1]) + '</dd>'; }).join('');
+    // 상세 설명: 상품마다 등록한 상세 이미지(고도몰 goodsDescription). 시안은 운영 사이트 이미지를 불러온다
+    var desc = $('[data-f-desc]'), du = (M.DESC || {})[no];
+    if (desc && du) desc.innerHTML = du.map(function (u, i) { return '<img src="' + esc(u) + '" alt="' + esc(g.goodsNm) + ' 상세 설명' + (du.length > 1 ? ' ' + (i + 1) : '') + '" loading="lazy" decoding="async">'; }).join('');
     // 바로 구매: 가격이 있는 상품만 보인다. 수량에 따라 합계를 바꾸고, 시안에서는 주문서 대신 안내만 띄운다
     var buy = $('[data-buy]');
     if (buy && !quote) {
@@ -112,7 +115,7 @@
         if (e.target.closest('[data-buy-go]')) {
           var t = $('#oc-toast'); if (!t) return;
           t.innerHTML = '<b>주문서로 이동합니다</b>'; // 고도몰에서는 실제 주문서로 이동한다
-          t.classList.add('oc-on'); setTimeout(function () { t.classList.remove('oc-on'); }, 2400);
+          t.classList.add('oc-is-on'); setTimeout(function () { t.classList.remove('oc-is-on'); }, 2400);
         }
       });
       qIn.addEventListener('change', sync);
@@ -122,10 +125,10 @@
       b.setAttribute('data-goodsno', no); b.setAttribute('data-name', g.goodsNm); b.setAttribute('data-img', imgSrc); b.setAttribute('data-price', quote ? g.goodsPriceString : M.money(g.goodsPrice) + '원');
     });
     document.title = g.goodsNm + ' | 온코어';
-    // 관련 상품: 같은 계열 → 부족하면 다른 계열로 채워 3개
+    // 관련 상품: 같은 계열 → 부족하면 다른 계열로 채워 4개 (PC 4열 한 줄 · 모바일 2×2 — 3개면 모바일 2열에 빈 칸이 생긴다. 3열 폭에서는 CSS 가 넷째를 숨김)
     var rel = Object.keys(G).filter(function (n) { return n !== no && family(G[n]) === family(g); });
-    Object.keys(G).forEach(function (n) { if (n !== no && rel.length < 3 && rel.indexOf(n) < 0) rel.push(n); });
-    var rb = $('[data-related]'); if (rb) rb.innerHTML = '<ul class="oc-cards">' + rel.slice(0, 3).map(M.li).join('') + '</ul>';
+    Object.keys(G).forEach(function (n) { if (n !== no && rel.length < 4 && rel.indexOf(n) < 0) rel.push(n); });
+    var rb = $('[data-related]'); if (rb) rb.innerHTML = '<ul class="oc-cards">' + rel.slice(0, 4).map(M.li).join('') + '</ul>';
 
     // 탭
     var tabs = $$('.oc-gv-tabs [role="tab"]');

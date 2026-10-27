@@ -14,11 +14,10 @@
 .pw-list li{position:relative;padding-left:var(--sp-16);font-size:var(--fs-14);font-weight:600;line-height:1.5;color:var(--ink)}
 .pw-list li::before{content:"";position:absolute;top:.6em;left:0;width:6px;height:6px;border-radius:50%;background:var(--ink)}
 .pw-list.soft li{font-weight:500;color:var(--ink-2)}
-.pw-list.soft li::before{background:#C9CCD3}
+.pw-list.soft li::before{background:var(--dot)}
 .pw-list small{display:block;font-size:var(--fs-12);font-weight:500;color:var(--ink-3)}
 .pw-gate{margin-top:auto;padding-top:var(--sp-16);border-top:1px solid var(--line-2)}
-.pw-gate span{display:block;font-size:var(--fs-12);font-weight:600;color:var(--ink-3)}
-.pw-gate b{display:flex;align-items:center;gap:var(--sp-8);margin-top:2px;font-size:var(--fs-16);color:var(--ink)}
+.pw-gate b{display:flex;align-items:center;gap:var(--sp-8);font-size:var(--fs-16);color:var(--ink)}
 .pw-gate b::before{content:"";flex:none;width:9px;height:9px;border-radius:1px;transform:rotate(45deg);background:var(--ink)}
 .pw-gate.goal b{color:var(--primary-600)}
 .pw-gate.goal b::before{background:var(--primary)}
@@ -28,15 +27,15 @@
 
 /* ── 데이터 표 ── 768 미만은 행마다 카드, 칸 이름은 data-label */
 .pt{width:100%;border-collapse:separate;border-spacing:0;background:#fff;border:1px solid var(--line-2);border-radius:var(--r-lg);overflow:hidden;font-size:var(--fs-14)} /* 흰 장·회색 장 모두 같은 흰 카드 */
-.pt th{padding:var(--sp-12) var(--sp-20);text-align:left;font-size:var(--fs-12);font-weight:600;color:var(--ink-3);background:#FAFAFB;border-bottom:1px solid var(--line-2);white-space:nowrap}
+.pt th{padding:var(--sp-12) var(--sp-20);text-align:left;font-size:var(--fs-12);font-weight:600;color:var(--ink-3);background:var(--surface-2);border-bottom:1px solid var(--line-2);white-space:nowrap}
 .pt td{padding:var(--sp-16) var(--sp-20);vertical-align:middle;color:var(--ink-2);border-top:1px solid var(--line-2);line-height:1.55}
 .pt tbody tr:first-child td{border-top:0}
-.pt tbody tr:hover td{background:#FAFAFB}
+@media (hover:hover) and (pointer:fine) and (min-width:768px){.pt tbody tr:hover td{background:var(--surface-2)}}
 .pt-num td:first-child{width:56px;font-weight:600;color:var(--ink-3);font-variant-numeric:tabular-nums}
 .pt td:first-child{font-weight:600;color:var(--ink)}
 .pt td.nw{white-space:nowrap}
 .pt code,.ck code,.card code,.note code{font:.92em ui-monospace,Consolas,monospace;padding:1px 5px;border-radius:4px;background:var(--surface);color:var(--ink)}
-.sec-alt .pt code{background:#F0F1F3}
+.sec-alt .pt code{background:var(--code)}
 .pt b{color:var(--ink)}
 .pt .rec{color:var(--ink);font-weight:600}
 .pt-opt{display:block;margin-top:2px;font-size:var(--fs-12);font-weight:500;color:var(--ink-3)} /* 결정 항목 아래 선택지 */
@@ -97,7 +96,7 @@
 .phero-in{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,440px);gap:var(--sp-64);align-items:center}
 .phero h1{font-size:clamp(var(--fs-32),4vw,var(--fs-48));line-height:1.2;letter-spacing:-.035em;font-weight:700;margin-bottom:var(--sp-20)}
 .phero h1 span{color:var(--primary)}
-.phero-sub{font-size:var(--fs-18);color:var(--ink-2)}
+.phero-sub{font-size:var(--fs-18);color:var(--ink-2);text-wrap:pretty} /* 좁은 화면에서 마지막 줄에 한 단어만 남지 않게 */
 .phero-meta{display:flex;flex-wrap:wrap;gap:var(--sp-8) var(--sp-24);margin-top:var(--sp-32);font-size:var(--fs-14);color:var(--ink-3)}
 .phero-meta b{color:var(--ink);font-weight:600;margin-left:6px}
 .pboard{background:var(--surface);border-radius:var(--r-lg);padding:var(--sp-32)}
@@ -135,18 +134,15 @@
   /* 표 → 카드 */
   .pt,.pt tbody,.pt tr,.pt td{display:block;width:auto;min-width:0;max-width:100%}
   .pt{width:100%;background:none;border:0;border-radius:0;overflow:visible}
-  .pt tbody tr:hover td{background:none}
-  .pt-num td:first-child{width:auto}
-  .pt td{overflow-wrap:anywhere} /* 긴 파일 경로·코드가 카드를 밀어내지 않게 (넘칠 때만 끊음) */
   .pt thead{display:none}
   .pt tr{background:#fff;border:1px solid var(--line-2);border-radius:var(--r);padding:var(--sp-12) var(--sp-16)}
   .pt tr+tr{margin-top:var(--sp-8)}
-  .pt td{padding:2px 0 2px 76px;border:0;position:relative;white-space:normal!important}
+  .pt td{padding:2px 0 2px 76px;border:0;position:relative;white-space:normal!important;overflow-wrap:anywhere} /* 긴 파일 경로·코드가 카드를 밀어내지 않게 (넘칠 때만 끊음) */
   .pt td::before{content:attr(data-label);position:absolute;left:0;top:4px;width:68px;font-size:var(--fs-12);font-weight:600;color:var(--ink-3)}
   .pt td:first-child{padding-left:0;margin-bottom:var(--sp-4);font-size:var(--fs-16)}
   .pt td:first-child::before{content:none}
   /* 번호 칸이 있는 표(.pt-num): 카드 제목을 '1. 항목명' 한 줄로 */
-  .pt-num td:first-child{float:left;margin:0 6px 0 0;color:var(--ink-3)}
+  .pt-num td:first-child{float:left;width:auto;margin:0 6px 0 0;color:var(--ink-3)}
   .pt-num td:first-child::after{content:"."}
   .pt-num td:nth-child(2){padding-left:0;margin-bottom:var(--sp-8);font-size:var(--fs-16);font-weight:700;color:var(--ink)}
   .pt-num td:nth-child(2)::before{content:none}

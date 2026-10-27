@@ -22,9 +22,9 @@
   function toast(html) {
     var t = $('#oc-toast');
     t.innerHTML = html;
-    t.classList.add('oc-on');
+    t.classList.add('oc-is-on');
     clearTimeout(toastTimer);
-    toastTimer = setTimeout(function () { t.classList.remove('oc-on'); }, 2400);
+    toastTimer = setTimeout(function () { t.classList.remove('oc-is-on'); }, 2400);
   }
 
   /* ── 상품 정보 읽기: 카드(.oc-card) 또는 data-* 를 가진 버튼에서 ── */
@@ -58,10 +58,12 @@
   onScroll();
 
   // 마우스: 올리면 열리고, 그 직후(0.6초 안)의 클릭은 닫지 않는다 — 올리자마자 누르면 열렸다 바로 닫혀 버리기 때문
+  // 마우스로 여는 동작은 CSS 마우스 효과와 같은 조건(마우스 기기 + 768 이상)에서만. 터치 기기는 눌러서 연다
+  var HOVER = '(hover:hover) and (pointer:fine) and (min-width:768px)';
   var megaBtn = $('.oc-has-mega .oc-gnb-link'), mega = $('#oc-mega'), megaTimer, megaHoverAt = 0;
   function megaOpen(v) { clearTimeout(megaTimer); mega.hidden = !v; megaBtn.setAttribute('aria-expanded', String(v)); }
   megaBtn.addEventListener('click', function () { if (!mega.hidden && Date.now() - megaHoverAt < 600) return; megaOpen(mega.hidden); });
-  if (window.matchMedia('(hover:hover)').matches) {
+  if (window.matchMedia(HOVER).matches) {
     [megaBtn, mega].forEach(function (el) {
       el.addEventListener('mouseenter', function () { if (mega.hidden) megaHoverAt = Date.now(); megaOpen(true); });
       el.addEventListener('mouseleave', function () { megaTimer = setTimeout(function () { megaOpen(false); }, 160); });
@@ -71,7 +73,7 @@
   var dropBtn = $('.oc-has-drop .oc-gnb-link'), drop = $('#oc-drop'), dropTimer, dropHoverAt = 0;
   function dropOpen(v) { clearTimeout(dropTimer); drop.hidden = !v; dropBtn.setAttribute('aria-expanded', String(v)); }
   dropBtn.addEventListener('click', function () { if (!drop.hidden && Date.now() - dropHoverAt < 600) return; dropOpen(drop.hidden); });
-  if (window.matchMedia('(hover:hover)').matches) {
+  if (window.matchMedia(HOVER).matches) {
     [dropBtn, drop].forEach(function (el) {
       el.addEventListener('mouseenter', function () { if (drop.hidden) dropHoverAt = Date.now(); dropOpen(true); });
       el.addEventListener('mouseleave', function () { dropTimer = setTimeout(function () { dropOpen(false); }, 160); });
@@ -90,6 +92,7 @@
     el.hidden = false;
     openPanel = el;
     if (el.classList.contains('oc-drawer')) { scrim.hidden = false; document.body.classList.add('oc-is-locked'); }
+    if (id === 'oc-search') { scrim.hidden = false; document.body.classList.add('oc-is-searching'); } // 패널이 어디서 끝나는지 보이게 아래 페이지를 어둡게 (스크롤은 잠그지 않음)
     var f = el.querySelector('input,button,a');
     if (f) setTimeout(function () { f.focus(); }, 50);
   }
@@ -98,7 +101,7 @@
     openPanel.hidden = true;
     openPanel = null;
     scrim.hidden = true;
-    document.body.classList.remove('oc-is-locked');
+    document.body.classList.remove('oc-is-locked', 'oc-is-searching');
     if (lastFocus) lastFocus.focus({ preventScroll: true });
   }
   document.addEventListener('click', function (e) {
@@ -298,7 +301,7 @@
     var item = findQ(g.no);
     if (item) item.qty += 1; else quote.push({ no: g.no, name: g.name, img: imgRoot(g.img), price: g.price, qty: 1 });
     saveQuote();
-    var qb = $('.oc-qbtn'); qb.classList.remove('oc-bump'); void qb.offsetWidth; qb.classList.add('oc-bump');
+    var qb = $('.oc-qbtn'); qb.classList.remove('oc-is-bump'); void qb.offsetWidth; qb.classList.add('oc-is-bump');
     if (!silent) toast('<b>' + esc(g.name) + '</b> 견적함에 담았습니다');
   }
   // 견적 요청서로 넘길 주소: 기존 폼이 goodsNm·spec 값을 '내용' 칸에 자동으로 넣는다 (dbk_estimate_form.html)
@@ -324,7 +327,7 @@
     $$('[data-quote-go]').forEach(function (b) { b.href = formUrl(); });
     $$('[data-add]').forEach(function (b) {
       var g = goodsOf(b), on = !!(g && findQ(g.no));
-      b.classList.toggle('oc-on', on);
+      b.classList.toggle('oc-is-on', on);
       b.textContent = on ? '담김 ✓' : '담기';
     });
   }

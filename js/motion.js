@@ -55,7 +55,7 @@
     /* ── 3. 견적함에 담기: 제품 사진이 견적함 버튼으로 날아간다 ──
        main.js 보다 먼저(캡처 단계) 상태를 읽어야 '새로 담는 클릭'인지 알 수 있다 (담긴 뒤 다시 누르면 견적함이 열림) */
     function onAdd(e) {
-      var btn = e.target.closest('[data-add]'); if (!btn || btn.classList.contains('oc-on')) return;
+      var btn = e.target.closest('[data-add]'); if (!btn || btn.classList.contains('oc-is-on')) return;
       var card = btn.closest('.oc-card'), img = card && $('.oc-card-img img', card);
       var target = $$('.oc-qbtn, .oc-mbar-q').filter(function (el) { return el.getClientRects().length; })[0];
       if (!img || !target) return;
