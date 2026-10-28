@@ -415,10 +415,13 @@
       return;
     }
     var specs = cmp.map(function (c) { return parseSpec(c.spec); }), labels = [];
-    specs.forEach(function (rows) { rows.forEach(function (r) { var l = r[0] || '사양'; if (labels.indexOf(l) < 0) labels.push(l); }); });
+    // 같은 값 판정은 대소문자·띄어쓰기를 무시한다(예: Power = POWER, Windows11 pro = Windows 11 pro). 항목 이름도 같은 규칙으로 한 줄로 합치고 표에는 처음 나온 이름을 쓴다
+    var norm = function (s) { return String(s || '').replace(/\s+/g, '').toLowerCase(); }, same = 0;
+    specs.forEach(function (rows) { rows.forEach(function (r) { var l = r[0] || '사양'; if (!labels.some(function (x) { return norm(x) === norm(l); })) labels.push(l); }); });
     var n = cmp.length, view = window.OC_VIEW || 'goods-view.html';
-    function differs(a) { return a.some(function (v) { return v !== a[0]; }); } // 값이 하나라도 다르면 강조·'다른 항목만 보기' 대상
+    function differs(a) { return a.some(function (v) { return norm(v) !== norm(a[0]); }); } // 값이 하나라도 다르면 강조·'다른 항목만 보기' 대상
     function row(label, cells, diff) {
+      if (!diff) same++; // '다른 항목만 보기'로 숨길 줄 수
       // 모바일은 왼쪽 항목 칸을 숨기고, 항목 이름을 값 줄 위에 한 줄로 따로 보여 준다 (좁은 화면에서 제품 칸을 넓게)
       return '<tr class="oc-cmpv-sub"' + (diff ? '' : ' data-same') + '><th colspan="' + (n + 1) + '" scope="colgroup">' + esc(label) + '</th></tr>' +
         '<tr' + (diff ? ' class="oc-is-diff"' : ' data-same') + '><th scope="row" class="oc-cmpv-lb">' + esc(label) + '</th>' + cells.join('') + '</tr>';
@@ -434,16 +437,19 @@
     var body = row('가격', cmp.map(function (c) { return '<td class="oc-cmpv-price">' + esc(c.price || '구성에 따라 견적') + '</td>'; }),
       differs(cmp.map(function (c) { return c.price; })));
     labels.forEach(function (l) {
-      var vals = specs.map(function (rows) { var r = rows.filter(function (x) { return (x[0] || '사양') === l; })[0]; return r ? r[1] : ''; });
+      var vals = specs.map(function (rows) { var r = rows.filter(function (x) { return norm(x[0] || '사양') === norm(l); })[0]; return r ? r[1] : ''; });
       body += row(l, vals.map(function (v) { return '<td>' + (v ? esc(v) : '<span class="oc-cmpv-none">—</span>') + '</td>'; }), differs(vals));
     });
     body += '<tr class="oc-cmpv-act"><th scope="row" class="oc-cmpv-lb"><span class="oc-sr">견적</span></th>' + cmp.map(function (c) {
       var d = ' data-goodsno="' + esc(c.no) + '" data-name="' + esc(c.name) + '" data-img="' + esc(c.img) + '" data-price="' + esc(c.price) + '"';
       return '<td><button type="button" class="oc-btn oc-btn-sm oc-btn-d" data-quote' + d + '>견적 요청</button><button type="button" class="oc-btn oc-btn-sm oc-btn-o oc-add" data-add' + d + '>담기</button></td>';
     }).join('') + '</tr>';
+    // 같은 줄이 하나도 없으면 체크해도 바뀌는 게 없다 — 체크 상자를 끄고 이유를 옆에 적는다 (2026-10-28)
+    if (!same) cmpView.classList.remove('oc-is-diffonly');
     var only = cmpView.classList.contains('oc-is-diffonly');
     cmpView.innerHTML = '<div class="oc-cmpv-bar"><p><b>' + n + '개</b> 제품 비교</p>' +
-      '<label class="oc-chk"><input type="checkbox" data-cmp-diff' + (only ? ' checked' : '') + '> 다른 항목만 보기</label></div>' +
+      '<div class="oc-cmpv-opt"><label class="oc-chk"><input type="checkbox" data-cmp-diff' + (only ? ' checked' : '') + (same ? '' : ' disabled aria-describedby="oc-cmpv-note"') + '> 다른 항목만 보기</label>' +
+      (same ? '' : '<small class="oc-cmpv-note" id="oc-cmpv-note">모든 항목의 값이 달라 숨길 줄이 없습니다</small>') + '</div></div>' +
       '<table class="oc-cmpv oc-cmpv--' + n + '"><thead><tr><th scope="col" class="oc-cmpv-lb"><span class="oc-sr">항목</span></th>' + head + '</tr></thead><tbody>' + body + '</tbody></table>';
     renderQuote(); // 새로 그린 '담기' 버튼에 담김 표시
   }
