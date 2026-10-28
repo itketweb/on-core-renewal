@@ -74,7 +74,7 @@ html{min-width:360px} /* 최소 폭 360 (8-1장) — 더 좁은 화면은 맞추
 @keyframes bump{40%{transform:scale(1.35)}}
 .oc-hd-burger{display:none;width:var(--oc-ctl-sm);height:var(--oc-ctl-sm);border-radius:50%;position:relative}
 .oc-hd-burger span,.oc-hd-burger span::before,.oc-hd-burger span::after{position:absolute;left:.6875rem;width:1.125rem;height:1.8px;border-radius:2px;background:var(--oc-ink);content:""}
-.oc-hd-burger span{top:1.1875rem}.oc-hd-burger span::before{left:0;top:-.375rem}.oc-hd-burger span::after{left:0;top:.375rem}
+.oc-hd-burger span{top:calc(50% - .9px);left:calc(50% - .5625rem)}.oc-hd-burger span::before{left:0;top:-.375rem}.oc-hd-burger span::after{left:0;top:.375rem} /* 가운데 선을 버튼 한가운데에 — rem 고정 위치는 모바일(기준 글자 14px)에서 버튼(40px)보다 덜 줄어 위·왼쪽으로 치우쳤다 (2026-10-28) */
 
 /* 메가메뉴 */
 .oc-mega{position:absolute;left:0;right:0;top:100%;background:#fff;border-top:1px solid var(--oc-line-2);border-bottom:1px solid var(--oc-line-2);box-shadow:0 24px 48px -24px rgba(22,24,29,.18);animation:drop .22s var(--oc-ease)}
