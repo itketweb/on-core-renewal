@@ -530,10 +530,7 @@ body.oc-is-locked .oc-toast{opacity:0} /* 서랍이 열리면 서랍 아래 버�
   .oc-search-grid>div:last-child{display:none}
 }
 @media (max-width:767px){
-  body:has(.oc-mbar) #cusChannel{display:none} /* 모바일: 하단 바 '채팅 상담'이 같은 상담 창을 연다 — 떠 있는 버튼과 겹치지 않게 숨기고, 안 읽은 수는 하단 바 버튼에 (main.js) */
-  .oc-mbar [data-channel]{position:relative}
-  .oc-mbar-badge{position:absolute;top:var(--oc-sp-8);left:calc(50% + var(--oc-sp-4));min-width:18px;height:18px;padding:0 5px;border-radius:999px;background:var(--oc-primary);font-size:11px;font-weight:700;font-style:normal;line-height:18px;color:#fff}
-  .oc-mbar-badge[hidden]{display:none}
+  body:has(.oc-mbar):not(:has(.oc-biz-form)) #cusChannel,body:has(.oc-gv-bar) #cusChannel{bottom:calc(var(--oc-sp-64) + var(--oc-safe-b) + var(--oc-sp-8))} /* 모바일: 떠 있는 채널톡 버튼을 하단 바(견적 요청)·상품 상세 구매 바 위로 — 바에서 채팅 상담을 빼고(2026-10-28) 이 버튼이 상담을 맡는다 */
   .oc-pcards{gap:var(--oc-sp-16)}
   .oc-pcard-body{padding:var(--oc-sp-16)}
   .oc-pcard-t{font-size:var(--oc-fs-16)}
@@ -604,12 +601,12 @@ body.oc-is-locked .oc-toast{opacity:0} /* 서랍이 열리면 서랍 아래 버�
   .oc-ft-cs{min-width:0}
   .oc-ft-info{font-size:var(--oc-fs-14)} /* html 14px 이라 fs-12 는 10.5px — 읽기 어려워 14 토큰(12.25px) */
   /* 홈 막대가 있는 아이폰은 바를 그만큼 키우고 버튼은 위쪽 64px 안에 둔다 */
-  .oc-mbar{display:grid;grid-template-columns:1fr 1.2fr 1fr;position:fixed;left:0;right:0;bottom:0;z-index:44;height:calc(var(--oc-sp-64) + var(--oc-safe-b));padding:0 var(--oc-safe-r) var(--oc-safe-b) var(--oc-safe-l);background:#fff;border-top:1px solid var(--oc-line-2);box-shadow:0 -8px 24px -16px rgba(22,24,29,.2)}
+  .oc-mbar{display:grid;grid-template-columns:minmax(0,1fr);position:fixed;left:0;right:0;bottom:0;z-index:44;height:calc(var(--oc-sp-64) + var(--oc-safe-b));padding:0 var(--oc-safe-r) var(--oc-safe-b) var(--oc-safe-l);background:#fff;border-top:1px solid var(--oc-line-2);box-shadow:0 -8px 24px -16px rgba(22,24,29,.2)}
   .oc-mbar-item,.oc-mbar-item{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:var(--oc-sp-4);font-size:var(--oc-fs-12);font-weight:600;color:var(--oc-ink-2)}
   .oc-mbar-ic{width:var(--oc-sp-24);height:var(--oc-sp-24)}
   .oc-mbar-item:active,.oc-mbar-item:not(.oc-mbar-q):active{color:var(--oc-ink);background:var(--oc-surface)} /* 누르는 동안 반응 (탭 강조색은 리셋이 꺼 둠) */
   .oc-mbar .oc-mbar-q:active{background:var(--oc-primary-600)}
-  .oc-mbar .oc-mbar-q{background:var(--oc-primary);color:#fff;flex-direction:row;gap:var(--oc-sp-8);font-size:var(--oc-fs-14);margin:var(--oc-sp-8) var(--oc-sp-4);border-radius:999px;white-space:nowrap} /* '견적 요청'이 두 줄로 꺾이지 않게 */
+  .oc-mbar .oc-mbar-q{background:var(--oc-primary);color:#fff;flex-direction:row;gap:var(--oc-sp-8);font-size:var(--oc-fs-14);margin:var(--oc-sp-8) var(--oc-sp-16);border-radius:999px;white-space:nowrap} /* '견적 요청'이 두 줄로 꺾이지 않게 */
   .oc-mbar .oc-mbar-q b{background:#fff;color:var(--oc-primary);min-width:var(--oc-sp-24);height:var(--oc-sp-24);border-radius:999px;font-size:var(--oc-fs-12);display:inline-flex;align-items:center;justify-content:center;padding:0 var(--oc-sp-8)}
   /* 상품 비교는 PC 전용 — 모바일은 비교 체크가 없으므로 PC 에서 담아 둔 비교 바도 숨긴다 */
   .oc-cmp{display:none}
