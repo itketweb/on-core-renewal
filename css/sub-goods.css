@@ -85,6 +85,31 @@
 .oc-cmpv .oc-cmpv-lb{width:var(--oc-sp-112);background:var(--oc-surface);font-size:var(--oc-fs-12);font-weight:600;color:var(--oc-ink-3)}
 @media (hover:hover) and (pointer:fine) and (min-width:768px){.oc-cmpv .oc-is-col{background:color-mix(in srgb,var(--oc-surface) 50%,#fff)}} /* 마우스를 올린 제품 열 (main.js '비교 표 열 강조') — 사진 상자(--oc-img)보다 옅게 */
 .oc-cmpv-sub{display:none} /* 모바일 전용 항목 이름 줄 */
+/* 비교 모바일 '항목별 목록'(.oc-cmpm, oncore.js cmpMobile) — PC 는 숨기고 표(.oc-cmpv)를 쓴다 */
+.oc-cmpm{display:none}
+.oc-cmpm-no{flex:none;min-width:1ch;font-size:var(--oc-fs-14);font-weight:700;color:var(--oc-ink)} /* 제품 번호 — 띠와 항목 줄을 잇는 표시(틀 없이 글자만) */
+.oc-cmpm-goods{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--oc-sp-8);margin-bottom:var(--oc-sp-24)}
+.oc-cmpm-g{position:relative;display:flex;align-items:flex-start;gap:var(--oc-sp-8);min-width:0;padding:var(--oc-sp-8);padding-right:var(--oc-sp-32);border:1px solid var(--oc-line-2);border-radius:var(--oc-r);background:#fff}
+.oc-cmpm-img{flex:none;width:var(--oc-sp-48);height:var(--oc-sp-48);border-radius:var(--oc-r-sm);background:var(--oc-img)}
+.oc-cmpm-img img{width:100%;height:100%;object-fit:contain}
+.oc-cmpm-gt{display:flex;flex-direction:column;gap:var(--oc-sp-4);min-width:0}
+.oc-cmpm-gt .oc-brand{font-size:var(--oc-fs-12)}
+.oc-cmpm-name{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;font-size:var(--oc-fs-14);font-weight:700;line-height:1.35;color:var(--oc-ink)}
+.oc-cmpm-g .oc-cmpv-del{top:var(--oc-sp-4);right:var(--oc-sp-4)}
+.oc-cmpm-sec{padding:var(--oc-sp-16) 0;border-top:1px solid var(--oc-line-2)}
+.oc-cmpm-t{margin-bottom:var(--oc-sp-8);font-size:var(--oc-fs-12);font-weight:600;color:var(--oc-ink-3)}
+.oc-cmpm-sec dl{display:flex;flex-direction:column;gap:var(--oc-sp-8)}
+.oc-cmpm-row{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,3fr);gap:var(--oc-sp-12);align-items:start}
+.oc-cmpm-row dt{display:flex;gap:var(--oc-sp-8);min-width:0;font-size:var(--oc-fs-12);line-height:1.5;color:var(--oc-ink-3)}
+.oc-cmpm-row dt .oc-cmpm-no{font-size:var(--oc-fs-12);line-height:1.5}
+.oc-cmpm-row dt span{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;overflow-wrap:anywhere} /* 세 줄까지 — 한 줄 말줄임은 '(2Way) Lenovo…'처럼 제품을 가르는 뒷부분(SR630·SR250)이 잘린다 */
+.oc-cmpm-row dd{min-width:0;font-size:var(--oc-fs-14);line-height:1.5;color:var(--oc-ink-2);overflow-wrap:anywhere}
+.oc-cmpm-sec.oc-is-diff dd{font-weight:700;color:var(--oc-ink)} /* 값이 다른 항목 — 표와 같은 강조 */
+.oc-cmpm-price dd{color:var(--oc-ink)}
+.oc-cmpm-act .oc-cmpm-row{align-items:center}
+.oc-cmpm-act dd{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--oc-sp-8)}
+.oc-cmpm-act .oc-btn{width:100%;padding:0 var(--oc-sp-8)}
+.oc-cmpm-act .oc-add.oc-is-on{background:var(--oc-primary-50);border-color:var(--oc-primary-100);color:var(--oc-primary-600)}
 .oc-cmpv tr.oc-is-diff td{font-weight:700;color:var(--oc-ink)} /* 값이 다른 항목 */
 .oc-is-diffonly [data-same]{display:none}
 .oc-cmpv-goods{position:relative;display:flex;flex-direction:column;gap:var(--oc-sp-4);font-weight:400}
@@ -150,4 +175,8 @@
   .oc-cmpv-del{top:var(--oc-sp-4);right:var(--oc-sp-4);width:var(--oc-sp-24);height:var(--oc-sp-24)}
   .oc-cmpv-del svg{width:var(--oc-sp-12);height:var(--oc-sp-12)}
   .oc-cmpv-bar{flex-wrap:wrap}
+  /* 비교: 모바일은 표 대신 '항목별 목록'(.oc-cmpm) — 위 표 규칙은 768 이상에서 표를 다시 쓸 때를 위해 남긴다 */
+  .oc-cmpv{display:none}
+  .oc-cmpm{display:block}
 }
+@media (max-width:479px){.oc-cmpm-goods{grid-template-columns:minmax(0,1fr)}} /* 좁은 폰: 제품 띠 한 줄에 하나 — 이름이 두 줄 안에 다 들어가게 */
