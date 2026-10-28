@@ -228,7 +228,7 @@ html{min-width:360px} /* 최소 폭 360 (8-1장) — 더 좁은 화면은 맞추
 
 /* 상품 카드 */
 /* 제품 유형 탭 = 분절형 (2026-10-28 사용자 결정) — 회색 틀 하나에 탭을 붙이고 고른 탭만 흰 바탕. 버튼(.oc-btn 알약)·필터 칩(모서리 8, 고르면 검정)과 구분. 마이페이지 하위 탭(.oc-my-subnav2)과 같은 값. 좁으면 줄바꿈 대신 틀 안에서 가로로 민다 */
-.oc-ftabs{display:flex;flex-wrap:nowrap;gap:var(--oc-sp-4);width:max-content;max-width:100%;margin-bottom:var(--oc-sp-24);padding:var(--oc-sp-4);border-radius:var(--oc-r-sm);background:var(--oc-divider);overflow-x:auto;scrollbar-width:none}
+.oc-ftabs{display:flex;flex-wrap:nowrap;gap:var(--oc-sp-4);width:max-content;max-width:100%;margin-bottom:var(--oc-sp-24);padding:var(--oc-sp-4);border-radius:var(--oc-r-sm);background:color-mix(in srgb,var(--oc-ink) 4%,transparent);overflow-x:auto;scrollbar-width:none}
 .oc-ftabs::-webkit-scrollbar{display:none}
 .oc-ftab{flex:none;height:var(--oc-sp-32);padding:0 var(--oc-sp-16);border:0;border-radius:var(--oc-sp-4);background:none;font-size:var(--oc-fs-14);font-weight:500;color:var(--oc-ink-3);transition:color .15s,background-color .15s}
 @media (hover:hover) and (pointer:fine) and (min-width:768px){.oc-ftab:hover{color:var(--oc-ink)}}
