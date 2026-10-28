@@ -25,9 +25,9 @@
 .oc-gv-price-note{display:block;margin-top:var(--oc-sp-4);font-size:var(--oc-fs-14);color:var(--oc-ink-3)}
 /* 사양 요약: 선은 위 1개(가는 선)와 행 구분선만. 라벨 칸을 좁히고 행 높이를 40 으로 — 큰 표(상세 탭)와 달리 요약이라 촘촘하게 */
 /* 사양: 카드처럼 위아래 선 사이에 줄선 없이 — 항목(회색 작게) · 값(보통 굵기) */
-.oc-gv-spec{margin:var(--oc-sp-24) 0;padding:var(--oc-sp-12) 0;--oc-kv-l:var(--oc-sp-64);border-top:1px solid var(--oc-line-2);border-bottom:1px solid var(--oc-line-2)}
+.oc-gv-spec{margin:var(--oc-sp-24) 0;padding:var(--oc-sp-12) 0;grid-template-columns:fit-content(var(--oc-sp-128)) minmax(0,1fr);column-gap:var(--oc-sp-24);border-top:1px solid var(--oc-line-2);border-bottom:1px solid var(--oc-line-2)} /* 라벨 칸 = 가장 긴 라벨 길이(최대 128) + 간격 24 — 운영 사양 라벨(CPU·Controller 등)이 데이터라 고정 폭(64)을 쓰지 않는다 (2026-10-28) */
 .oc-gv-spec dt,.oc-gv-spec dd{min-height:0;padding:var(--oc-sp-4) 0;border-bottom:0;line-height:1.6}
-.oc-gv-spec dt{font-size:var(--oc-fs-14)}
+.oc-gv-spec dt{padding-right:0;font-size:var(--oc-fs-14)}
 .oc-gv-spec dd{font-weight:400;color:var(--oc-ink-2)}
 .oc-gv-act{display:flex;gap:var(--oc-sp-8);margin-top:var(--oc-sp-24)}
 .oc-gv-act .oc-btn{flex:1}
@@ -52,7 +52,7 @@
 .oc-gv-tabs [aria-selected="true"]{color:var(--oc-ink)}@media (hover:hover) and (pointer:fine) and (min-width:768px){.oc-gv-tabs [role="tab"]:hover{color:var(--oc-ink)}}
 .oc-gv-tabs [role="tab"]::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:3px;background:var(--oc-ink);transform:scaleX(0);transform-origin:left;transition:transform .3s var(--oc-ease)}
 .oc-gv-tabs [aria-selected="true"]::after{transform:none}
-.oc-gv-panel{padding-top:var(--oc-sp-32);max-width:54rem}
+.oc-gv-panel{padding-top:var(--oc-sp-32)} /* 2026-10-28: 최대 폭(54rem) 없음 — 상세 설명·사양 탭이 본문 폭 전체를 쓴다 */
 .oc-gv-panel[hidden]{display:none}
 .oc-gv-panel--desc{max-width:none} /* 상세 설명: 상품마다 등록한 상세 이미지(고도몰 goodsDescription). 폭이 제각각이라 가운데 정렬, 화면보다 크면 줄인다 */
 .oc-gv-desc{text-align:center}
@@ -78,12 +78,38 @@
 /* ── 제품 비교 (compare.html) — 제품이 열, 항목이 행. 표는 화면 폭에 맞춰 줄을 바꾸고 옆으로 밀지 않는다 ── */
 .oc-cmpv-bar{display:flex;align-items:center;justify-content:space-between;gap:var(--oc-sp-16);margin-bottom:var(--oc-sp-16)}
 .oc-cmpv-bar p{font-size:var(--oc-fs-16);color:var(--oc-ink-2)}
-.oc-cmpv-bar .oc-chk{margin-top:0}
+.oc-cmpv-bar .oc-chk{margin-top:0;margin-bottom:0} /* 카드용 음수 아래 여백을 풀어 왼쪽 'N개 제품 비교'와 가운데를 맞춘다 */
 .oc-cmpv{width:100%;table-layout:fixed;border-collapse:collapse;background:#fff;border:1px solid var(--oc-line-2);border-radius:var(--oc-r-lg);overflow:hidden;font-size:var(--oc-fs-14);color:var(--oc-ink-2)}
 .oc-cmpv th,.oc-cmpv td{padding:var(--oc-sp-12) var(--oc-sp-16);border-top:1px solid var(--oc-line-2);text-align:left;vertical-align:top;overflow-wrap:break-word;word-break:keep-all}
 .oc-cmpv thead th{border-top:0;padding-top:var(--oc-sp-20);padding-bottom:var(--oc-sp-20)}
 .oc-cmpv .oc-cmpv-lb{width:var(--oc-sp-112);background:var(--oc-surface);font-size:var(--oc-fs-12);font-weight:600;color:var(--oc-ink-3)}
+@media (hover:hover) and (pointer:fine) and (min-width:768px){.oc-cmpv .oc-is-col{background:color-mix(in srgb,var(--oc-surface) 50%,#fff)}} /* 마우스를 올린 제품 열 (main.js '비교 표 열 강조') — 사진 상자(--oc-img)보다 옅게 */
 .oc-cmpv-sub{display:none} /* 모바일 전용 항목 이름 줄 */
+/* 비교 모바일 '항목별 목록'(.oc-cmpm, oncore.js cmpMobile) — PC 는 숨기고 표(.oc-cmpv)를 쓴다 */
+.oc-cmpm{display:none}
+.oc-cmpm-no{flex:none;min-width:1ch;font-size:var(--oc-fs-14);font-weight:700;color:var(--oc-ink)} /* 제품 번호 — 띠와 항목 줄을 잇는 표시(틀 없이 글자만) */
+.oc-cmpm-goods{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--oc-sp-8);margin-bottom:var(--oc-sp-24)}
+.oc-cmpm-g{position:relative;display:flex;align-items:flex-start;gap:var(--oc-sp-8);min-width:0;padding:var(--oc-sp-8);padding-right:var(--oc-sp-32);border:1px solid var(--oc-line-2);border-radius:var(--oc-r);background:#fff}
+.oc-cmpm-img{flex:none;width:var(--oc-sp-48);height:var(--oc-sp-48);border-radius:var(--oc-r-sm);background:var(--oc-img)}
+.oc-cmpm-img img{width:100%;height:100%;object-fit:contain}
+.oc-cmpm-gt{display:flex;flex-direction:column;gap:var(--oc-sp-4);min-width:0}
+.oc-cmpm-gt .oc-brand{font-size:var(--oc-fs-12)}
+.oc-cmpm-name{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;font-size:var(--oc-fs-14);font-weight:700;line-height:1.35;color:var(--oc-ink)}
+.oc-cmpm-g .oc-cmpv-del{top:var(--oc-sp-4);right:var(--oc-sp-4)}
+.oc-cmpm-sec{padding:var(--oc-sp-16) 0;border-top:1px solid var(--oc-line-2)}
+.oc-cmpm-t{margin-bottom:var(--oc-sp-8);font-size:var(--oc-fs-12);font-weight:600;color:var(--oc-ink-3)}
+.oc-cmpm-sec dl{display:flex;flex-direction:column;gap:var(--oc-sp-8)}
+.oc-cmpm-row{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,3fr);gap:var(--oc-sp-12);align-items:start}
+.oc-cmpm-row dt{display:flex;gap:var(--oc-sp-8);min-width:0;font-size:var(--oc-fs-12);line-height:1.5;color:var(--oc-ink-3)}
+.oc-cmpm-row dt .oc-cmpm-no{font-size:var(--oc-fs-12);line-height:1.5}
+.oc-cmpm-row dt span{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;overflow-wrap:anywhere} /* 세 줄까지 — 한 줄 말줄임은 '(2Way) Lenovo…'처럼 제품을 가르는 뒷부분(SR630·SR250)이 잘린다 */
+.oc-cmpm-row dd{min-width:0;font-size:var(--oc-fs-14);line-height:1.5;color:var(--oc-ink-2);overflow-wrap:anywhere}
+.oc-cmpm-sec.oc-is-diff dd{font-weight:700;color:var(--oc-ink)} /* 값이 다른 항목 — 표와 같은 강조 */
+.oc-cmpm-price dd{color:var(--oc-ink)}
+.oc-cmpm-act .oc-cmpm-row{align-items:center}
+.oc-cmpm-act dd{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--oc-sp-8)}
+.oc-cmpm-act .oc-btn{width:100%;padding:0 var(--oc-sp-8)}
+.oc-cmpm-act .oc-add.oc-is-on{background:var(--oc-primary-50);border-color:var(--oc-primary-100);color:var(--oc-primary-600)}
 .oc-cmpv tr.oc-is-diff td{font-weight:700;color:var(--oc-ink)} /* 값이 다른 항목 */
 .oc-is-diffonly [data-same]{display:none}
 .oc-cmpv-goods{position:relative;display:flex;flex-direction:column;gap:var(--oc-sp-4);font-weight:400}
@@ -91,15 +117,21 @@
 .oc-cmpv-img img{width:100%;height:100%;object-fit:contain}
 .oc-cmpv-name{font-size:var(--oc-fs-16);font-weight:700;color:var(--oc-ink);line-height:1.4}
 .oc-cmpv-goods small{font-size:var(--oc-fs-12);color:var(--oc-ink-3)}
-.oc-cmpv-del{position:absolute;top:0;right:0;z-index:1;width:var(--oc-sp-32);height:var(--oc-sp-32);border-radius:999px;background:#fff;border:1px solid var(--oc-line);color:var(--oc-ink-3);font-size:var(--oc-fs-18);line-height:1}
+.oc-cmpv-del{position:absolute;top:var(--oc-sp-8);right:var(--oc-sp-8);z-index:1;display:grid;place-items:center;width:var(--oc-sp-32);height:var(--oc-sp-32);border-radius:999px;background:#fff;border:0;box-shadow:0 1px 2px rgba(22,24,29,.12),0 4px 12px -4px rgba(22,24,29,.18);color:var(--oc-ink-2);cursor:pointer;transition:background .15s,color .15s} /* 사진 안쪽 모서리 — 회색 사진 배경 위에서 흰 원 + 옅은 그림자로 구분 */
+.oc-cmpv-del svg{width:var(--oc-sp-16);height:var(--oc-sp-16)}
+.oc-cmpv-del::before{content:"";position:absolute;inset:calc(var(--oc-sp-4) * -1)} /* 모바일 21px 원이라 누르는 면만 바깥으로 넓힌다 (13장) */
+.oc-cmpv-del:focus-visible{outline:2px solid var(--oc-ink);outline-offset:2px}
+@media (hover:hover) and (pointer:fine) and (min-width:768px){ .oc-cmpv-del:hover{background:var(--oc-ink);color:#fff} }
 .oc-cmpv td.oc-cmpv-price{font-size:var(--oc-fs-16);color:var(--oc-ink)}
 .oc-cmpv-none{color:var(--oc-ink-3)}
 .oc-cmpv-act .oc-btn{width:100%}
 .oc-cmpv-act .oc-btn + .oc-btn{margin-top:var(--oc-sp-8)}
 .oc-cmpv-act .oc-add.oc-is-on{background:var(--oc-primary-50);border-color:var(--oc-primary-100);color:var(--oc-primary-600)}
-.oc-cmpv-empty{padding:var(--oc-sp-64) var(--oc-sp-24);text-align:center;background:#fff;border:1px solid var(--oc-line-2);border-radius:var(--oc-r-lg)}
-.oc-cmpv-empty-t{font-size:var(--oc-fs-20);font-weight:700;color:var(--oc-ink)}
-.oc-cmpv-empty-d{display:block;margin:var(--oc-sp-8) 0 var(--oc-sp-24);color:var(--oc-ink-3)}
+.oc-cmpv-act .oc-cmpv-lb{vertical-align:middle} /* 견적 줄은 버튼 한 줄이라 항목 이름을 버튼 높이 가운데에 (다른 줄은 값이 여러 줄이라 위쪽) */
+@media (min-width:1024px){ /* 비교 화면 맨 아래 견적 요청·담기: PC 는 상품 카드처럼 가로 (2026-10-28). 4개일 때 칸이 약 216px 이상이라 반씩 나눠도 들어간다 — 1024 미만은 칸이 좁아(768·4개 ≈ 150px) 글자가 꺾이므로 세로 그대로 */
+  .oc-cmpv-act .oc-btn{width:calc(50% - var(--oc-sp-4));padding:0 var(--oc-sp-8)}
+  .oc-cmpv-act .oc-btn + .oc-btn{margin-top:0;margin-left:var(--oc-sp-8)}
+}
 
 /* ── 반응형 ── */
 @media (min-width:768px) and (max-width:1279px){[data-related] .oc-card:nth-child(4){display:none}} /* 상품 카드 3열 폭: 4개 중 넷째를 숨겨 줄을 채운다 */
@@ -142,9 +174,14 @@
   .oc-cmpv-sub{display:table-row}
   .oc-cmpv-sub th{padding:var(--oc-sp-8) var(--oc-sp-12) 0;border-top:1px solid var(--oc-line-2);font-size:var(--oc-fs-12);font-weight:600;color:var(--oc-ink-3)}
   .oc-cmpv-sub + tr td{border-top:0;padding-top:var(--oc-sp-4)}
-  .oc-cmpv th,.oc-cmpv td{padding-left:var(--oc-sp-8);padding-right:var(--oc-sp-8);font-size:var(--oc-fs-14)}
+  .oc-cmpv th,.oc-cmpv td{padding-left:var(--oc-sp-8);padding-right:var(--oc-sp-8);font-size:var(--oc-fs-14);overflow-wrap:anywhere} /* 긴 사양 값(예: 6507P/3.5Ghz/8C)이 줄바꿈 안 되면 auto 표가 화면을 넘어 3·4번째 제품이 잘린다 — 넘칠 때만 끊는다 (8-1, 2026-10-28) */
   .oc-cmpv-act .oc-btn{padding:0 var(--oc-sp-4)}
   .oc-cmpv-name,.oc-cmpv td.oc-cmpv-price{font-size:var(--oc-fs-14)}
-  .oc-cmpv-del{width:var(--oc-sp-24);height:var(--oc-sp-24);font-size:var(--oc-fs-16)}
+  .oc-cmpv-del{top:var(--oc-sp-4);right:var(--oc-sp-4);width:var(--oc-sp-24);height:var(--oc-sp-24)}
+  .oc-cmpv-del svg{width:var(--oc-sp-12);height:var(--oc-sp-12)}
   .oc-cmpv-bar{flex-wrap:wrap}
+  /* 비교: 모바일은 표 대신 '항목별 목록'(.oc-cmpm) — 위 표 규칙은 768 이상에서 표를 다시 쓸 때를 위해 남긴다 */
+  .oc-cmpv{display:none}
+  .oc-cmpm{display:block}
 }
+@media (max-width:479px){.oc-cmpm-goods{grid-template-columns:minmax(0,1fr)}} /* 좁은 폰: 제품 띠 한 줄에 하나 — 이름이 두 줄 안에 다 들어가게 */

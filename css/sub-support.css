@@ -4,7 +4,7 @@
 
 /* 공지 목록: 도구줄 안 검색 */
 .oc-support-search{display:flex;gap:var(--oc-sp-8);width:100%;max-width:26rem}
-.oc-support-search .oc-input{height:var(--oc-sp-40);padding:0 var(--oc-sp-20);border-radius:999px;font-size:var(--oc-fs-14)} /* 옆 '검색' 알약 버튼·다른 검색칸과 같은 알약 모양 */
+.oc-support-search .oc-input{padding:0 var(--oc-sp-16)} /* 높이·모서리·글자는 도구줄 규칙(sub.css '필터 폼 통일' — PC 40·모바일 손가락 크기, 모서리 8). 옆 '검색' 버튼도 도구줄 규칙(sub.css)으로 모서리 8 */
 .oc-support-search .oc-btn{flex:none}
 
 /* 공지 상세: 첨부파일 */
@@ -19,7 +19,6 @@
 /* 1:1 문의 */
 .oc-support-st{display:inline-block;padding:var(--oc-sp-4) var(--oc-sp-12);border-radius:999px;background:var(--oc-surface);font-size:var(--oc-fs-12);font-weight:600;color:var(--oc-ink-2);white-space:nowrap}
 .oc-support-st--done{background:var(--oc-ink);color:#fff}
-.oc-support-agree{padding:var(--oc-sp-16);border:1px solid var(--oc-line);border-radius:var(--oc-r-sm);background:var(--oc-surface)}
 .oc-support-aside-links{margin-top:var(--oc-sp-16);border-top:1px solid var(--oc-line)}
 .oc-support-aside-link{display:flex;justify-content:space-between;padding:var(--oc-sp-12) 0;border-bottom:1px solid var(--oc-line-2);font-size:var(--oc-fs-14);font-weight:600;color:var(--oc-ink-2)}
 .oc-support-aside-link::after{content:"›";color:var(--oc-ink-3)}
@@ -33,6 +32,7 @@
 .oc-support-contact h3{font-size:var(--oc-fs-14);font-weight:600;color:var(--oc-ink-3)}
 .oc-support-contact b{display:block;margin-top:var(--oc-sp-8);font-size:var(--oc-fs-24);font-weight:700;letter-spacing:-.02em;line-height:1.3;overflow-wrap:anywhere} /* 넘칠 때만 끊는다 (break-all 은 들어갈 자리가 있어도 끊는다) */
 @media (hover:hover) and (pointer:fine) and (min-width:768px){.oc-support-contact a:hover b{color:var(--oc-ink-2)}}
+.oc-support-contact a{display:block;padding:var(--oc-sp-4) 0;margin:calc(var(--oc-sp-4) * -1) 0} /* 모바일 18px 글자라 누르는 면만 넓힌다 (13장) */
 .oc-support-contact p{margin-top:var(--oc-sp-4);font-size:var(--oc-fs-14);color:var(--oc-ink-3)}
 .oc-support-faq{margin-top:var(--oc-sp-8);border-top:2px solid var(--oc-ink)} /* 걸러 보면 첫 줄이 바뀌므로 위쪽 굵은 선은 묶음에 둔다 */
 .oc-support-faq details.oc-faq:first-of-type{border-top:0}

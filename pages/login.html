@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="ko">
 <head>
+<meta name="robots" content="noindex, nofollow">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <script>/* oc-vp-min */(function(){var m=document.querySelector('meta[name=viewport]');if(!m)return;var d=m.getAttribute('content');function fit(){var s=screen,w=matchMedia('(orientation: landscape)').matches?Math.max(s.width,s.height):Math.min(s.width,s.height);m.setAttribute('content',w<360?'width=360, viewport-fit=cover':d);}fit();addEventListener('orientationchange',function(){setTimeout(fit,100);});})();</script>
@@ -85,7 +86,7 @@
       </div>
       <!-- 고도몰: 헤더 스킨의 정적 HTML (바꿀 때 디자인 편집) -->
       <a href="goods-workstation-p5.html" class="oc-mega-tile">
-        <span class="oc-mt-img"><img src="../img/p5.jpg" alt=""></span>
+        <span class="oc-mt-img"><img src="../img/p5.jpg" width="1000" height="1000" alt=""></span>
         <span class="oc-mt-txt"><em class="oc-mt-label">이달의 추천</em><b class="oc-mt-name">ThinkStation P5</b>설계·렌더링 작업용 Xeon 워크스테이션</span>
       </a>
     </div>
@@ -106,7 +107,7 @@
         <div class="oc-search-col"><h5 class="oc-search-t">추천 검색어</h5><div class="oc-chips"><a href="search.html?q=P5%20%EC%9B%8C%ED%81%AC%EC%8A%A4%ED%85%8C%EC%9D%B4%EC%85%98">P5 워크스테이션</a><a href="search.html?q=RTX%202000%20Ada">RTX 2000 Ada</a><a href="search.html?q=ThinkSystem%20SR250">ThinkSystem SR250</a><a href="search.html?q=All-Flash%20%EC%8A%A4%ED%86%A0%EB%A6%AC%EC%A7%80">All-Flash 스토리지</a><a href="search.html?q=ExpertCenter%20D7">ExpertCenter D7</a></div></div>
         <!-- 고도몰: 추천상품 위젯은 관리자에서 지정한 1개 상품만 출력 -->
         <div class="oc-search-col"><h5 class="oc-search-t">추천 상품</h5>
-          <a href="goods-view.html?no=1000000367" class="oc-mini"><img class="oc-mini-img" src="../img/p3-sff.jpg" alt=""><span><b class="oc-mini-name">ThinkStation P3 Ultra SFF</b>3,077,000원</span></a>
+          <a href="goods-view.html?no=1000000367" class="oc-mini"><img class="oc-mini-img" src="../img/p3-sff.jpg" width="1000" height="1000" alt=""><span><b class="oc-mini-name">ThinkStation P3 Ultra SFF</b>3,077,000원</span></a>
         </div>
       </div>
     </div>
@@ -269,13 +270,20 @@
 <aside class="oc-drawer oc-drawer-l" id="oc-mnav" aria-label="전체 메뉴" hidden>
   <div class="oc-dr-hd"><img src="../img/oncore-logo.png" alt="온코어" width="120" height="38"><button type="button" class="oc-ic-btn" data-close aria-label="닫기"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button></div>
   <div class="oc-dr-body oc-mnav">
-    <!-- 메뉴는 접지 않고 2열 칸으로 펼쳐 한 화면에 담는다 (홀수 마지막 칸은 전체 폭). 로그인·회원가입은 맨 아래 버튼 -->
-    <h5 class="oc-mnav-t">제품</h5>
-    <div class="oc-mnav-grid"><a class="oc-mnav-link" href="goods-all.html">전체 제품</a><a class="oc-mnav-link" href="goods-server.html">서버</a><a class="oc-mnav-link" href="goods-workstation.html">워크스테이션</a><a class="oc-mnav-link" href="goods-desktop.html">데스크탑</a><a class="oc-mnav-link" href="goods-notebook.html">노트북</a><a class="oc-mnav-link" href="goods-storage.html">스토리지</a></div>
-    <h5 class="oc-mnav-t">기업 구매</h5>
-    <div class="oc-mnav-grid"><a class="oc-mnav-link" href="promotion.html">프로모션</a><a class="oc-mnav-link" href="cases.html">기업소식</a><a class="oc-mnav-link" href="estimate-list.html">견적 요청</a></div>
-    <h5 class="oc-mnav-t">고객지원</h5>
-    <div class="oc-mnav-grid"><a class="oc-mnav-link" href="notice.html">공지사항</a><a class="oc-mnav-link" href="inquiry.html">1:1 문의</a><a class="oc-mnav-link" href="cs.html">고객센터</a></div>
+    <!-- 목록 + 아코디언: 하위가 있는 메뉴(제품·고객지원)는 눌러서 펼친다 (main.js .oc-mnav-acc). 로그인·회원가입은 맨 아래 버튼 -->
+    <nav class="oc-mnav-nav" aria-label="전체 메뉴">
+      <div class="oc-mnav-grp">
+        <button type="button" class="oc-mnav-row oc-mnav-acc" aria-expanded="false" aria-controls="oc-mnav-goods">제품<svg class="oc-mnav-ic" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="oc-mnav-sub" id="oc-mnav-goods" hidden><a class="oc-mnav-sublink" href="goods-all.html">전체 제품</a><a class="oc-mnav-sublink" href="goods-server.html">서버</a><a class="oc-mnav-sublink" href="goods-workstation.html">워크스테이션</a><a class="oc-mnav-sublink" href="goods-desktop.html">데스크탑</a><a class="oc-mnav-sublink" href="goods-notebook.html">노트북</a><a class="oc-mnav-sublink" href="goods-storage.html">스토리지</a></div>
+      </div>
+      <a class="oc-mnav-row" href="promotion.html">프로모션</a>
+      <a class="oc-mnav-row" href="cases.html">기업소식</a>
+      <a class="oc-mnav-row" href="estimate-list.html">견적 요청</a>
+      <div class="oc-mnav-grp">
+        <button type="button" class="oc-mnav-row oc-mnav-acc" aria-expanded="false" aria-controls="oc-mnav-cs">고객지원<svg class="oc-mnav-ic" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="oc-mnav-sub" id="oc-mnav-cs" hidden><a class="oc-mnav-sublink" href="notice.html">공지사항</a><a class="oc-mnav-sublink" href="inquiry.html">1:1 문의</a><a class="oc-mnav-sublink" href="cs.html">고객센터</a></div>
+      </div>
+    </nav>
     <div class="oc-mnav-act"><a href="login.html" class="oc-btn oc-btn-o">로그인</a><a href="join.html" class="oc-btn oc-btn-d">회원가입</a></div>
   </div>
 </aside>

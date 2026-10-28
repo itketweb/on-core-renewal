@@ -42,7 +42,7 @@
 .oc-pg-grid--toc>.oc-aside h2{margin-bottom:var(--oc-sp-8);font-size:var(--oc-fs-14);color:var(--oc-ink-3)}
 
 /* ── 하위 이동: 글자 탭 + 현재 항목 2px 밑줄 (규칙 9-5, 2026-10-27) ──
-   다른 페이지로 '이동'하는 링크라 같은 페이지 안을 '걸러 보는' 알약 칩(.oc-filter)과 모양을 나눈다. 상단 메뉴·로그인 탭과 같은 밑줄 표현.
+   다른 페이지로 '이동'하는 링크라 같은 페이지 안을 '걸러 보는' 칩(.oc-filter, 테두리 상자·모서리 8)과 모양을 나눈다. 상단 메뉴·로그인 탭과 같은 밑줄 표현.
    머리 맨 아래에 두고 현재 항목 밑줄을 머리 아래 선(1px)에 겹친다 — 선에서 탭이 갈라져 나오는 일반적인 탭 모양. 가로 스크롤 없이 줄바꿈 */
 .oc-subnav{--pad:var(--oc-sp-12);display:flex;flex-wrap:wrap;margin-inline:calc(var(--pad) * -1)} /* 간격 대신 양쪽 안쪽 여백 — 사이 빈칸까지 누르는 면. 바깥 음수 여백으로 첫 글자는 제목과 줄을 맞춘다 (상단 메뉴 .oc-gnb-link 와 같은 방식) */
 .oc-subnav-link{position:relative;display:inline-flex;align-items:center;flex:none;height:var(--oc-sp-48);padding:0 var(--pad);font-size:var(--oc-fs-16);font-weight:600;white-space:nowrap;color:var(--oc-ink-3);transition:color .15s}
@@ -57,7 +57,7 @@
 .oc-toolbar:has(+.oc-tbl-wrap){padding-bottom:0;border-bottom:0} /* 바로 아래 표의 위 2px 선과 겹치지 않게 */
 .oc-toolbar .oc-select{width:auto;min-width:var(--oc-sp-160);height:var(--oc-ctl-sm);font-size:var(--oc-fs-14)}
 .oc-filter{display:flex;flex-wrap:wrap;gap:var(--oc-sp-8);margin-bottom:var(--oc-sp-24)}
-.oc-filter a,.oc-filter-btn{height:var(--oc-ctl-sm);padding:0 var(--oc-sp-20);display:inline-flex;align-items:center;border-radius:999px;border:1px solid var(--oc-line);background:#fff;font-size:var(--oc-fs-14);font-weight:600;color:var(--oc-ink-2);transition:all .15s}
+.oc-filter a,.oc-filter-btn{height:var(--oc-ctl-sm);padding:0 var(--oc-sp-20);display:inline-flex;align-items:center;border-radius:var(--oc-r-sm);border:1px solid var(--oc-line);background:#fff;font-size:var(--oc-fs-14);font-weight:600;color:var(--oc-ink-2);transition:all .15s}
 @media (hover:hover) and (pointer:fine) and (min-width:768px){.oc-filter a:hover,.oc-filter-btn:hover{border-color:var(--oc-ink-2)}} /* 터치에서는 누른 칩에 진한 테두리가 남아 선택된 것처럼 보인다 */
 .oc-filter a:active,.oc-filter-btn:active{transform:scale(.97)}
 .oc-subnav-link:active{color:var(--oc-ink)}
@@ -80,6 +80,8 @@
 @media (hover:hover) and (pointer:fine) and (min-width:768px){.oc-pgn a:hover{background:var(--oc-surface)}}
 .oc-pgn a:active{background:var(--oc-surface)}
 .oc-pgn [aria-current="page"]{background:var(--oc-ink);color:#fff}
+.oc-pgn svg{display:block;width:var(--oc-sp-20);height:var(--oc-sp-20)} /* 이전·다음 화살표는 글자(‹ › 14px — 너무 작다) 대신 20px 선 아이콘 (2026-10-28, 고도몰 스킨과 같다) */
+.oc-pgn span[aria-disabled]{color:var(--oc-line);cursor:default} /* 첫 쪽의 이전·마지막 쪽의 다음: 흐린 아이콘, 누를 수 없음 */
 
 /* ── 글 상세 ── */
 .oc-art-hd{padding-bottom:var(--oc-sp-24);border-bottom:1px solid var(--oc-ink)}
@@ -135,7 +137,18 @@ select.oc-select.oc-is-ph option{color:var(--oc-ink)} /* 펼친 목록의 항목
 .oc-sel-list{position:absolute;left:0;top:calc(100% + var(--oc-sp-4));z-index:30;min-width:100%;overflow-y:auto;overscroll-behavior:contain;padding:var(--oc-sp-4);border:1px solid var(--oc-line-2);border-radius:var(--oc-sp-12);background:#fff;box-shadow:0 12px 32px -8px rgba(22,24,29,.16);font-size:var(--oc-fs-16);outline:none;animation:drop .18s var(--oc-ease)}
 .oc-sel-list[hidden]{display:none}
 .oc-sel.oc-is-up .oc-sel-list{top:auto;bottom:calc(100% + var(--oc-sp-4))}
-.oc-toolbar .oc-sel-list{left:auto;right:0;font-size:var(--oc-fs-14)}
+.oc-toolbar .oc-sel-list{left:0;right:auto;width:100%;min-width:0;border-radius:var(--oc-r-sm);font-size:var(--oc-fs-14)} /* 펼친 목록은 상자와 같은 폭 (필터 폼 통일) */
+/* 필터 폼 통일 (2026-10-28): 도구줄의 검색칸·선택 상자·버튼은 견적 조회 검색줄(.oc-est-search)과 같은 모양 — 모서리 8(알약 아님), PC 높이 40·글자 14,
+   모바일은 손가락 크기(--oc-ctl)·입력 글자 16(아이폰 확대 방지). 기간·분류 칩(.oc-filter)도 모서리 8. 고도몰 스킨의 기간 조회·검색 줄도 같은 값 */
+.oc-toolbar :is(.oc-input,.oc-select,.oc-sel-btn,.oc-btn){border-radius:var(--oc-r-sm)}
+.oc-toolbar .oc-sel-opt{justify-content:flex-start;min-height:var(--oc-sp-32);padding:var(--oc-sp-4) var(--oc-sp-8);border-radius:var(--oc-sp-4)}
+.oc-toolbar .oc-sel-opt svg{display:none}
+@media (min-width:768px){
+  .oc-toolbar :is(.oc-input,.oc-select,.oc-sel-btn,.oc-btn){height:var(--oc-ctl-sm);font-size:var(--oc-fs-14)}
+  .oc-toolbar .oc-sel-btn{padding-left:var(--oc-sp-12);padding-right:var(--oc-sp-32)}
+  .oc-toolbar .oc-sel-ic{right:var(--oc-sp-12)}
+}
+@media (max-width:767px){.oc-toolbar :is(.oc-input,.oc-select,.oc-sel-btn,.oc-btn){height:var(--oc-ctl)}}
 .oc-sel-opt{display:flex;align-items:center;justify-content:space-between;gap:var(--oc-sp-12);min-height:var(--oc-sp-40);padding:var(--oc-sp-8) var(--oc-sp-12);border-radius:var(--oc-sp-8);color:var(--oc-ink-2);cursor:pointer;white-space:nowrap}
 .oc-sel-opt.oc-is-active{background:var(--oc-surface);color:var(--oc-ink)}
 .oc-sel-opt[aria-selected="true"]{font-weight:600;color:var(--oc-ink)}
@@ -149,6 +162,10 @@ select.oc-select.oc-is-ph option{color:var(--oc-ink)} /* 펼친 목록의 항목
 .oc-check input{width:var(--oc-sp-24);height:var(--oc-sp-24);margin-top:0;flex:none;accent-color:var(--oc-ink)}
 .oc-check>span{line-height:var(--oc-sp-24)} /* 글자 첫 줄 높이 = 체크박스 24 → 두 줄이 되어도 첫 줄이 체크박스 가운데에 맞는다 */
 .oc-check a{display:inline-block;padding:var(--oc-sp-4) 0;margin:calc(var(--oc-sp-4) * -1) 0} /* '내용 보기'를 누르다 체크박스가 잘못 눌리지 않게 누르는 면을 넓히되, 음수 바깥 여백으로 줄 높이는 그대로 (안 그러면 글자만 아래로 처짐) */
+/* 동의 체크 묶음 (9-4-1-2): 회색 바탕 상자 하나 — 견적 요청서(.oc-biz-agree)·1:1 문의(.oc-support-agree)·광고·제휴(.oc-agree)가 같은 모양. 앞의 두 이름은 고도몰 스킨이 쓰고 있어 그대로 묶는다 (2026-10-28) */
+.oc-agree,.oc-biz-agree,.oc-support-agree{display:flex;flex-direction:column;gap:var(--oc-sp-12);padding:var(--oc-sp-24);border-radius:var(--oc-r);background:var(--oc-surface)}
+.oc-agree,.oc-biz-agree{margin-top:var(--oc-sp-32)} /* 1:1 문의는 .oc-field 안에 있어 칸 사이 여백을 그대로 쓴다 */
+.oc-check-all{padding-bottom:var(--oc-sp-12);border-bottom:1px solid var(--oc-line);font-weight:600;color:var(--oc-ink)} /* 전체 동의는 맨 위 (회원가입과 같은 위치) */
 /* 파일 첨부칸 (견적 요청서·1:1 문의·제휴 문의 공통): 다른 입력칸과 같은 테두리 상자(높이 48·모서리 8) + 안쪽 작은 알약 버튼(32).
    버튼을 상자 높이만큼 키우면 둥근 버튼이 각진 상자 모서리와 겹쳐 어색하므로 안쪽에 띄운다 */
 :is(.oc-input,.oc-support-file)[type="file"]{width:100%;min-width:0;height:var(--oc-sp-48);padding:0 var(--oc-sp-8);border:1px solid var(--oc-line);border-radius:var(--oc-r-sm);background:#fff;font-size:var(--oc-fs-14);line-height:calc(var(--oc-sp-48) - 2px);color:var(--oc-ink-3);cursor:pointer}
@@ -180,7 +197,7 @@ select.oc-select.oc-is-ph option{color:var(--oc-ink)} /* 펼친 목록의 항목
   .oc-file.oc-has-file:hover .oc-file-ic{background:var(--oc-ink-2);color:#fff}
   .oc-file-del:hover{background:var(--oc-surface);color:var(--oc-ink)}
 }
-@media (hover:none){.oc-file-drop{display:none}} /* 휴대폰에는 끌어 놓기가 없다 */
+@media (pointer:coarse){.oc-file-drop{display:none}} /* 휴대폰에는 끌어 놓기가 없다 */
 /* 안내 상자 바로 뒤에 양식·내용이 오면 붙지 않게 띄운다 */
 .oc-note+form,.oc-note+.oc-field,.oc-note+.oc-form-row{margin-top:var(--oc-sp-32)}
 /* 양식 오류 (main.js '양식 오류 표시'): 칸 테두리 빨강 + 칸 아래 한 줄. 초점이 있어도 빨강을 유지한다 */
@@ -206,6 +223,7 @@ select.oc-select.oc-is-ph option{color:var(--oc-ink)} /* 펼친 목록의 항목
 .oc-kv dt,.oc-kv dd{display:flex;align-items:center;min-height:var(--oc-sp-48);padding:var(--oc-sp-8) 0;border-bottom:1px solid var(--oc-line-2)}
 .oc-kv dt{padding-right:var(--oc-sp-16);color:var(--oc-ink-3);overflow-wrap:anywhere}
 .oc-kv dd{font-weight:600}
+.oc-kv dd a{display:inline-block;padding:var(--oc-sp-4) 0;margin:calc(var(--oc-sp-4) * -1) 0} /* 전화·이메일 링크: 누르는 면 24px 이상, 음수 바깥 여백으로 줄 높이는 그대로 (13장) */
 /* 라벨 칸 폭은 두 가지뿐(2026-10-27): 기본 128(가장 긴 '사업자등록번호'가 한 줄) · 좁은 칸 64(오른쪽 요약 칸·상품 상세 사양 요약 — 라벨 세 글자 이내). 화면 폭별로 따로 바꾸지 않는다(768 미만은 토큰이 함께 줄어 112·56) */
 
 /* ── 안내 상자·절차·자주 묻는 질문 ── */
@@ -275,5 +293,9 @@ details.oc-faq>div{padding:0 0 var(--oc-sp-24);color:var(--oc-ink-2);line-height
   .oc-tbl td{display:flex;justify-content:space-between;align-items:center;gap:var(--oc-sp-16);text-align:right}
   .oc-tbl td::before{content:attr(data-label);flex:none;color:var(--oc-ink-3);font-size:var(--oc-fs-14);font-weight:400;text-align:left}
   .oc-tbl tbody th,.oc-tbl td:has(a){font-size:var(--oc-fs-16);font-weight:600}
+  /* 링크 칸(글 제목)은 카드 맨 위 제목 줄 — 칸 이름 없이 왼쪽 정렬. 오른쪽 정렬 두 줄 제목이 번호 아래 묻히지 않게 (2026-10-28) */
+  .oc-tbl tbody tr:has(td a){display:flex;flex-direction:column}
+  .oc-tbl td:has(a){order:-1;display:block;padding-bottom:var(--oc-sp-8);text-align:left}
+  .oc-tbl td:has(a)::before{content:none}
   details.oc-faq summary{font-size:var(--oc-fs-16)}
 }

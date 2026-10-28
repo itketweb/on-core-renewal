@@ -35,8 +35,26 @@
     var card = el.closest('[data-goodsno]');
     if (!card) return null;
     var img = $('.oc-card-img img', card), price = $('.oc-card-price b', card), name = $('.oc-card-name', card);
-    return { no: card.getAttribute('data-goodsno'), name: name ? name.textContent.trim() : '', img: img ? img.getAttribute('src') : '', price: price ? price.textContent.trim() : '' };
+    var full = name && name.getAttribute('data-oc-fullname'); // 카드엔 괄호 사양을 뺀 이름이 보여도 견적함·비교엔 전체 이름
+    return { no: card.getAttribute('data-goodsno'), name: full || (name ? name.textContent.trim() : ''), img: img ? img.getAttribute('src') : '', price: price ? price.textContent.trim() : '' };
   }
+
+  /* ── 카드 상품명: 이름 뒤에 붙은 괄호(사양) 숨기기 (2026-10-28 사용자 결정, 화면에서만) ──
+     예: 'LENOVO P3 Ultra SFF (Ultra7-265/16GB/512GB/230W/FreeDos)' → 'LENOVO P3 Ultra SFF'. 이름 앞 괄호('(2Way) Lenovo …')는 그대로.
+     사양은 카드 사양 줄에 따로 나온다. 전체 이름은 data-oc-fullname·title(마우스를 올리면 보임)에 남기고, 견적함·비교는 전체 이름을 쓴다(goodsOf). 고도몰 스킨 oncore.js 와 같은 코드 */
+  function trimCardNames(root) {
+    $$('.oc-card-name', root).forEach(function (h) {
+      if (h.hasAttribute('data-oc-fullname')) return;
+      var el = $('a', h) || h, full = el.textContent.replace(/\s+/g, ' ').trim();
+      // 끝의 괄호 묶음 중 '/'가 든 사양 목록만 (여러 개면 모두). '(SAN)'·'(NAS)'·'(SAN+NAS)' 같은 제품 종류 표시는 남긴다 (2026-10-28 사용자 결정)
+      var short = full.replace(/(\s*[(（][^()（）]*\/[^()（）]*[)）])+\s*$/, '').trim();
+      h.setAttribute('data-oc-fullname', full);
+      if (!short || short === full) return;
+      el.textContent = short;
+      el.setAttribute('title', full);
+    });
+  }
+  trimCardNames();
 
   /* ── 스펙: 짧은 설명(shortDescription) "항목: 값 / 항목: 값" → 목록 ── */
   function parseSpec(s) { // 비교 화면도 같은 규칙으로 읽는다
@@ -93,6 +111,14 @@
     });
   }
 
+  /* ── 모바일 전체 메뉴 아코디언: 하위가 있는 메뉴(.oc-mnav-acc)를 누르면 하위 목록을 펼치고 접는다 ── */
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest && e.target.closest('.oc-mnav-acc'); if (!b) return;
+    var p = document.getElementById(b.getAttribute('aria-controls')), on = b.getAttribute('aria-expanded') !== 'true';
+    b.setAttribute('aria-expanded', on ? 'true' : 'false');
+    if (p) p.hidden = !on;
+  });
+
   /* ── 패널 열기·닫기 (검색, 견적함, 모바일 메뉴) ── */
   var scrim = $('#oc-scrim'), openPanel = null, lastFocus = null;
   function open(id) {
@@ -126,6 +152,12 @@
     if (!drop.hidden && !e.target.closest('.oc-has-drop')) dropOpen(false);
   });
   scrim.addEventListener('click', close);
+  // 모바일 전체 메뉴는 768 미만 전용(햄버거 버튼도 그때만 보임) — 창을 넓혀 768 이상이 되면 열려 있던 메뉴를 닫는다
+  var mqWide = window.matchMedia && window.matchMedia('(min-width:768px)');
+  if (mqWide) {
+    var onWide = function () { if (mqWide.matches && openPanel && openPanel.id === 'oc-mnav') close(); };
+    if (mqWide.addEventListener) mqWide.addEventListener('change', onWide); else if (mqWide.addListener) mqWide.addListener(onWide);
+  }
   document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape') { close(); megaOpen(false); dropOpen(false); }
   });
@@ -394,24 +426,63 @@
     if (cmpView) renderCmpView();
   }
   // 비교 화면: 제품이 열, 항목이 행. 사양 항목은 담은 제품들의 짧은 설명 라벨을 나온 순서대로 모은다
+  /* ── 제품 비교 모바일(767 이하): 표 대신 '항목별 목록' (2026-10-28 사용자 결정) ──
+     좁은 화면에 제품 4개를 칸으로 나누면 칸이 80px 남짓이라 이름·사양이 글자 중간에서 끊긴다.
+     맨 위 제품 띠(번호·사진·이름·빼기) → 항목마다 제품 번호·이름과 값을 한 줄씩 → 맨 아래 제품별 견적 버튼.
+     같은 항목의 값이 위아래로 붙어 있어 옆으로 밀거나 펼치지 않고 바로 비교된다. '다른 항목만 보기'(data-same)·값 다름 강조(oc-is-diff)는 표와 같다.
+     PC(768 이상)는 CSS 가 이 목록을 숨기고 표를 보인다 */
+  function cmpShort(nm) { return String(nm || '').replace(/(\s*[(（][^()（）]*\/[^()（）]*[)）])+\s*$/, '').trim() || String(nm || ''); } // 카드와 같은 규칙: 끝의 '/' 든 사양 괄호만 뺀다
+  function cmpMobile(n, specs, labels, norm, differs) {
+    var who = function (i) { return '<dt><b class="oc-cmpm-no">' + (i + 1) + '</b><span>' + esc(cmpShort(cmp[i].name)) + '</span></dt>'; };
+    var sec = function (label, vals, cls) {
+      var diff = differs(vals.map(function (v) { return v.raw; }));
+      return '<section class="oc-cmpm-sec' + (diff ? ' oc-is-diff' : '') + (cls ? ' ' + cls : '') + '"' + (diff ? '' : ' data-same') + '><h3 class="oc-cmpm-t">' + esc(label) + '</h3><dl>' +
+        vals.map(function (v, i) { return '<div class="oc-cmpm-row">' + who(i) + '<dd>' + v.html + '</dd></div>'; }).join('') + '</dl></section>';
+    };
+    var view = window.OC_VIEW || 'goods-view.html';
+    var goods = cmp.map(function (c, i) {
+      var url = esc(view + '?no=' + c.no);
+      return '<li class="oc-cmpm-g"><b class="oc-cmpm-no">' + (i + 1) + '</b>' +
+        '<a href="' + url + '" class="oc-cmpm-img"><img src="' + esc(imgSrc(c.img)) + '" alt=""></a>' +
+        '<div class="oc-cmpm-gt">' + (c.brand ? '<em class="oc-brand">' + esc(c.brand) + '</em>' : '') +
+        '<a href="' + url + '" class="oc-cmpm-name" title="' + esc(c.name) + '">' + esc(cmpShort(c.name)) + '</a></div>' +
+        '<button type="button" class="oc-cmpv-del" data-cmp-del="' + esc(c.no) + '" aria-label="' + esc(c.name) + ' 비교에서 빼기"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button></li>';
+    }).join('');
+    var out = sec('가격', cmp.map(function (c) { return { raw: c.price, html: esc(c.price || '구성에 따라 견적') }; }), 'oc-cmpm-price');
+    labels.forEach(function (l) {
+      out += sec(l, specs.map(function (rows) {
+        var r = rows.filter(function (x) { return norm(x[0] || '사양') === norm(l); })[0], v = r ? r[1] : '';
+        return { raw: v, html: v ? esc(v) : '<span class="oc-cmpv-none">—</span>' };
+      }));
+    });
+    var act = cmp.map(function (c, i) {
+      var d = ' data-goodsno="' + esc(c.no) + '" data-name="' + esc(c.name) + '" data-img="' + esc(c.img) + '" data-price="' + esc(c.price) + '"';
+      return '<div class="oc-cmpm-row">' + who(i) + '<dd><button type="button" class="oc-btn oc-btn-sm oc-btn-d" data-quote' + d + '>견적 요청</button><button type="button" class="oc-btn oc-btn-sm oc-btn-o oc-add" data-add' + d + '>담기</button></dd></div>';
+    }).join('');
+    return '<div class="oc-cmpm oc-cmpm--' + n + '"><ol class="oc-cmpm-goods" aria-label="비교 중인 제품">' + goods + '</ol>' + out +
+      '<section class="oc-cmpm-sec oc-cmpm-act"><h3 class="oc-cmpm-t">견적</h3><dl>' + act + '</dl></section></div>';
+  }
   function renderCmpView() {
     if (cmp.length < 2) {
-      cmpView.innerHTML = '<div class="oc-cmpv-empty"><p class="oc-cmpv-empty-t">비교할 제품을 2개 이상 골라 주세요.</p><span class="oc-cmpv-empty-d">제품 목록에서 카드 아래 \'비교\'를 체크하면 최대 4개까지 나란히 볼 수 있습니다.</span>' +
-        '<a href="' + esc((window.OC_ROOT || '') + 'pages/goods-all.html') + '" class="oc-btn oc-btn-d">제품 보러 가기</a></div>';
+      cmpView.innerHTML = '<div class="oc-empty"><b class="oc-empty-t">비교할 제품을 2개 이상 골라 주세요.</b><p class="oc-empty-d">제품 목록에서 카드 아래 \'비교\'를 체크하면 최대 4개까지 나란히 볼 수 있습니다.</p>' +
+        '<a href="' + esc((window.OC_ROOT || '') + 'pages/goods-all.html') + '" class="oc-btn oc-btn-o">제품 보러 가기</a></div>';
       return;
     }
     var specs = cmp.map(function (c) { return parseSpec(c.spec); }), labels = [];
-    specs.forEach(function (rows) { rows.forEach(function (r) { var l = r[0] || '사양'; if (labels.indexOf(l) < 0) labels.push(l); }); });
+    // 같은 값 판정은 대소문자·띄어쓰기를 무시한다(예: Power = POWER, Windows11 pro = Windows 11 pro). 항목 이름도 같은 규칙으로 한 줄로 합치고 표에는 처음 나온 이름을 쓴다
+    var norm = function (s) { return String(s || '').replace(/\s+/g, '').toLowerCase(); }, same = 0;
+    specs.forEach(function (rows) { rows.forEach(function (r) { var l = r[0] || '사양'; if (!labels.some(function (x) { return norm(x) === norm(l); })) labels.push(l); }); });
     var n = cmp.length, view = window.OC_VIEW || 'goods-view.html';
-    function differs(a) { return a.some(function (v) { return v !== a[0]; }); } // 값이 하나라도 다르면 강조·'다른 항목만 보기' 대상
+    function differs(a) { return a.some(function (v) { return norm(v) !== norm(a[0]); }); } // 값이 하나라도 다르면 강조·'다른 항목만 보기' 대상
     function row(label, cells, diff) {
+      if (!diff) same++; // '다른 항목만 보기'로 숨길 줄 수
       // 모바일은 왼쪽 항목 칸을 숨기고, 항목 이름을 값 줄 위에 한 줄로 따로 보여 준다 (좁은 화면에서 제품 칸을 넓게)
       return '<tr class="oc-cmpv-sub"' + (diff ? '' : ' data-same') + '><th colspan="' + (n + 1) + '" scope="colgroup">' + esc(label) + '</th></tr>' +
         '<tr' + (diff ? ' class="oc-is-diff"' : ' data-same') + '><th scope="row" class="oc-cmpv-lb">' + esc(label) + '</th>' + cells.join('') + '</tr>';
     }
     var head = cmp.map(function (c) {
       return '<th scope="col"><div class="oc-cmpv-goods">' +
-        '<button type="button" class="oc-cmpv-del" data-cmp-del="' + esc(c.no) + '" aria-label="' + esc(c.name) + ' 비교에서 빼기">×</button>' +
+        '<button type="button" class="oc-cmpv-del" data-cmp-del="' + esc(c.no) + '" aria-label="' + esc(c.name) + ' 비교에서 빼기"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>' +
         '<a href="' + esc(view + '?no=' + c.no) + '" class="oc-cmpv-img"><img src="' + esc(imgSrc(c.img)) + '" alt=""></a>' +
         (c.brand ? '<em class="oc-brand">' + esc(c.brand) + '</em>' : '') +
         '<a href="' + esc(view + '?no=' + c.no) + '" class="oc-cmpv-name">' + esc(c.name) + '</a>' +
@@ -420,18 +491,32 @@
     var body = row('가격', cmp.map(function (c) { return '<td class="oc-cmpv-price">' + esc(c.price || '구성에 따라 견적') + '</td>'; }),
       differs(cmp.map(function (c) { return c.price; })));
     labels.forEach(function (l) {
-      var vals = specs.map(function (rows) { var r = rows.filter(function (x) { return (x[0] || '사양') === l; })[0]; return r ? r[1] : ''; });
+      var vals = specs.map(function (rows) { var r = rows.filter(function (x) { return norm(x[0] || '사양') === norm(l); })[0]; return r ? r[1] : ''; });
       body += row(l, vals.map(function (v) { return '<td>' + (v ? esc(v) : '<span class="oc-cmpv-none">—</span>') + '</td>'; }), differs(vals));
     });
-    body += '<tr class="oc-cmpv-act"><th scope="row" class="oc-cmpv-lb"><span class="oc-sr">견적</span></th>' + cmp.map(function (c) {
+    body += '<tr class="oc-cmpv-act"><th scope="row" class="oc-cmpv-lb">견적</th>' + cmp.map(function (c) {
       var d = ' data-goodsno="' + esc(c.no) + '" data-name="' + esc(c.name) + '" data-img="' + esc(c.img) + '" data-price="' + esc(c.price) + '"';
       return '<td><button type="button" class="oc-btn oc-btn-sm oc-btn-d" data-quote' + d + '>견적 요청</button><button type="button" class="oc-btn oc-btn-sm oc-btn-o oc-add" data-add' + d + '>담기</button></td>';
     }).join('') + '</tr>';
+    // 같은 줄이 하나도 없으면 체크해도 바뀌는 게 없다 — '다른 항목만 보기'를 아예 보여 주지 않는다 (2026-10-28)
+    if (!same) cmpView.classList.remove('oc-is-diffonly');
     var only = cmpView.classList.contains('oc-is-diffonly');
     cmpView.innerHTML = '<div class="oc-cmpv-bar"><p><b>' + n + '개</b> 제품 비교</p>' +
-      '<label class="oc-chk"><input type="checkbox" data-cmp-diff' + (only ? ' checked' : '') + '> 다른 항목만 보기</label></div>' +
-      '<table class="oc-cmpv oc-cmpv--' + n + '"><thead><tr><th scope="col" class="oc-cmpv-lb"><span class="oc-sr">항목</span></th>' + head + '</tr></thead><tbody>' + body + '</tbody></table>';
+      (same ? '<label class="oc-chk"><input type="checkbox" data-cmp-diff' + (only ? ' checked' : '') + '> 다른 항목만 보기</label>' : '') + '</div>' +
+      '<table class="oc-cmpv oc-cmpv--' + n + '"><thead><tr><th scope="col" class="oc-cmpv-lb"><span aria-hidden="true">제품</span><span class="oc-sr">항목</span></th>' + head + '</tr></thead><tbody>' + body + '</tbody></table>' +
+      cmpMobile(n, specs, labels, norm, differs);
     renderQuote(); // 새로 그린 '담기' 버튼에 담김 표시
+  }
+  // 비교 표 열 강조: 마우스를 올린 제품 열만 옅은 바탕 — 여러 줄을 세로로 읽을 때 보던 제품을 놓치지 않게 (세로 구분선 대신, 2026-10-28).
+  // 모양(바탕색)은 CSS 가 마우스 기기 + 768 이상에서만 입힌다. 모바일은 항목 이름 줄(.oc-cmpv-sub, 칸 1개)이 있어 칸 수가 1개인 줄은 건너뛴다
+  if (cmpView) {
+    var paintCol = function (i) {
+      $$('.oc-is-col', cmpView).forEach(function (c) { c.classList.remove('oc-is-col'); });
+      if (i < 1) return;
+      $$('.oc-cmpv tr', cmpView).forEach(function (tr) { if (tr.cells.length > 1 && tr.cells[i]) tr.cells[i].classList.add('oc-is-col'); });
+    };
+    cmpView.addEventListener('mouseover', function (e) { var c = e.target.closest('.oc-cmpv td, .oc-cmpv thead th'); paintCol(c ? c.cellIndex : -1); });
+    cmpView.addEventListener('mouseleave', function () { paintCol(-1); });
   }
   document.addEventListener('change', function (e) {
     if (e.target.closest('[data-cmp-diff]')) { cmpView.classList.toggle('oc-is-diffonly', e.target.checked); return; }
