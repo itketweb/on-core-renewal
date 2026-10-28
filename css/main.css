@@ -572,8 +572,8 @@ body.oc-is-locked .oc-toast{opacity:0} /* 서랍이 열리면 서랍 아래 버�
   .oc-types b{font-size:var(--oc-fs-16)}
   .oc-cards{grid-template-columns:1fr 1fr;gap:var(--oc-sp-8)}
   .oc-display--best .oc-card:nth-child(n+3){display:none} /* 추천 제품 한 줄: 2개 */
-  .oc-card-img{margin:var(--oc-sp-4) var(--oc-sp-4) 0;border-radius:calc(var(--oc-r) - var(--oc-sp-4))}
-  .oc-card-body{padding:var(--oc-sp-12) var(--oc-sp-12) var(--oc-sp-16)} /* 360 폭 2열에서 사양 값이 두 줄로 꺾이지 않게 안쪽 여백을 줄인다 */
+  .oc-card-img{margin:var(--oc-sp-12) var(--oc-sp-12) 0;border-radius:var(--oc-r-sm)} /* 사진 가장자리 = 본문 글자 가장자리(12), 모서리 8 = PC 와 같은 규칙(안쪽으로 들어간 사진은 카드보다 덜 둥글게) — 2026-10-28 사용자 결정 */
+  .oc-card-body{padding:var(--oc-sp-12)} /* 360 폭 2열에서 사양 값이 두 줄로 꺾이지 않게 안쪽 여백을 줄인다 — 사방 12(사진 여백과 같게) */
   .oc-card-name{font-size:var(--oc-fs-16)}
   .oc-card-spec{font-size:var(--oc-fs-12);margin:auto 0 var(--oc-sp-8);padding:var(--oc-sp-8) 0;line-height:1.6;letter-spacing:-.01em}
   .oc-card-spec-row{gap:var(--oc-sp-4)}
