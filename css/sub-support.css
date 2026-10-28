@@ -4,7 +4,7 @@
 
 /* 공지 목록: 도구줄 안 검색 */
 .oc-support-search{display:flex;gap:var(--oc-sp-8);width:100%;max-width:26rem}
-.oc-support-search .oc-input{height:var(--oc-sp-40);padding:0 var(--oc-sp-20);border-radius:999px;font-size:var(--oc-fs-14)} /* 옆 '검색' 알약 버튼·다른 검색칸과 같은 알약 모양 */
+.oc-support-search .oc-input{padding:0 var(--oc-sp-16)} /* 높이·모서리·글자는 도구줄 규칙(sub.css '필터 폼 통일' — PC 40·모바일 손가락 크기, 모서리 8). 옆 '검색' 버튼도 도구줄 규칙(sub.css)으로 모서리 8 */
 .oc-support-search .oc-btn{flex:none}
 
 /* 공지 상세: 첨부파일 */
