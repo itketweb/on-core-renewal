@@ -67,6 +67,8 @@
 .oc-company-form{padding-top:var(--oc-sp-32);border-top:2px solid var(--oc-ink)}
 .oc-company-form h2{margin-bottom:var(--oc-sp-24);font-size:var(--oc-fs-24)}
 .oc-company-form .oc-note{margin-top:var(--oc-sp-24)}
+.oc-company-consent{display:flex;align-items:center;justify-content:space-between;gap:var(--oc-sp-16);margin-top:var(--oc-sp-24);padding:var(--oc-sp-16) 0;border-top:1px solid var(--oc-line);border-bottom:1px solid var(--oc-line)}
+.oc-company-consent a{flex:none;padding:var(--oc-sp-4) 0;font-size:var(--oc-fs-14);color:var(--oc-ink-3);text-decoration:underline;text-underline-offset:3px}
 .oc-company-contact{margin-top:var(--oc-sp-16)}
 .oc-aside h2{margin-bottom:var(--oc-sp-12);font-size:var(--oc-fs-18)} /* 제목 순서(h1→h2) 때문에 사이드 제목을 h2 로 쓴다. 모양은 sub.css 의 .oc-aside h3 과 같게 */
 .oc-company-contact .oc-tel{display:block;font-size:var(--oc-fs-24);font-weight:700;letter-spacing:-.01em}
@@ -94,4 +96,5 @@
   .oc-company-cta{flex-direction:column;align-items:flex-start;margin-top:var(--oc-sp-48);padding-top:var(--oc-sp-24)}
   .oc-company-cta-act,.oc-company-cta-act .oc-btn{width:100%}
   .oc-company-line{grid-template-columns:minmax(0,1fr);gap:var(--oc-sp-4)}
+  .oc-company-consent{flex-direction:column;align-items:flex-start}
 }

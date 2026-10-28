@@ -28,7 +28,7 @@
   --oc-r-sm:var(--oc-sp-8); --oc-r:var(--oc-sp-16); --oc-r-lg:var(--oc-sp-24);
   --oc-wrap:80rem; --oc-gut:var(--oc-sp-24);
   --oc-sec:var(--oc-sp-96);
-  --oc-hd:var(--oc-sp-80); /* PC·태블릿 헤더 80px (2026-10-28, 64→80). 모바일은 아래 767 이하에서 64 */
+  --oc-hd:var(--oc-sp-64);
   --oc-stick:0px; /* 상단 고정 요소가 붙는 위치. 고도몰은 0 — 시안은 검토용 막대(review-bar.css)가 그 높이를 넣는다 */
   --oc-ease:cubic-bezier(.2,.7,.2,1);
   --oc-dur:6s;                  /* 히어로 자동 넘김 간격 (main.js가 읽음) */
@@ -41,7 +41,7 @@ html{min-width:360px} /* 최소 폭 360 (8-1장) — 더 좁은 화면은 맞추
 .oc{background:var(--oc-bg);color:var(--oc-ink);font:var(--oc-fs-16)/1.6 "Pretendard Variable",Pretendard,-apple-system,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;-webkit-font-smoothing:antialiased;word-break:keep-all;overflow-x:clip /* hidden 은 sticky 를 막는다 */}
 :where(.oc) a{font-weight:inherit} /* 색·밑줄은 리셋이 처리. 굵기는 고도몰 reset.css 의 a{font-weight:normal} 을 되돌리려고 남김 */
 :where(.oc) :focus-visible{outline:2px solid var(--oc-primary);outline-offset:2px;border-radius:var(--oc-sp-8)}
-.oc-wrap{max-width:calc(var(--oc-wrap) + var(--oc-gut) * 2);margin:0 auto;padding:0 max(var(--oc-gut),var(--oc-safe-r)) 0 max(var(--oc-gut),var(--oc-safe-l))} /* 내용 폭 = --oc-wrap(1280) — 좌우 여백(--oc-gut)은 최대 폭 바깥에 더한다. 가로로 돌린 아이폰에서 노치에 글자가 가리지 않게 */
+.oc-wrap{max-width:var(--oc-wrap);margin:0 auto;padding:0 max(var(--oc-gut),var(--oc-safe-r)) 0 max(var(--oc-gut),var(--oc-safe-l))} /* 가로로 돌린 아이폰에서 노치에 글자가 가리지 않게 */
 :where(.oc) :is(h1,h2,h3,h4,h5,h6){letter-spacing:-.02em;font-weight:700} /* 리셋이 굵기를 상속으로 바꾸므로 제목 기본 굵기를 명시 */
 .oc-sr{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0} /* 화면에는 숨기고 검색엔진·화면낭독기에만 */
 
@@ -52,8 +52,8 @@ html{min-width:360px} /* 최소 폭 360 (8-1장) — 더 좁은 화면은 맞추
 .oc-top.oc-is-stuck{border-bottom-color:var(--oc-line-2)}
 .oc-hd{position:relative} /* 메가메뉴·검색 패널 위치 기준 */
 .oc-hd-in{display:flex;align-items:center;height:var(--oc-hd);gap:var(--oc-sp-40)}
-.oc-hd-logo img{height:3rem;width:auto} /* 헤더 80px 에 맞춰 38→48px (64→80 과 같은 비율) */
-.oc-gnb{display:flex;align-items:center;gap:var(--oc-sp-4);flex:1;justify-content:center} /* 메뉴는 로고와 오른쪽 아이콘 사이 가운데 */
+.oc-hd-logo img{height:2.375rem;width:auto}
+.oc-gnb{display:flex;align-items:center;gap:var(--oc-sp-4);flex:1}
 /* 상단 메뉴: 회색 알약 배경 대신 글자색 + 헤더 아래 끝선의 밑줄(2px)로 표시. 밑줄은 글자 폭만큼(좌우 여백 --pad 안쪽), 가운데에서 펼쳐진다.
    마우스 올림·메뉴 열림 = 글자 검정 + 밑줄 / 현재 페이지 = 글자 검정·굵게 + 밑줄 */
 .oc-gnb-link{--pad:var(--oc-sp-16);position:relative;display:inline-flex;align-items:center;gap:var(--oc-sp-8);height:var(--oc-hd);padding:0 var(--pad);font-size:var(--oc-fs-16);font-weight:600;color:var(--oc-ink-2);transition:color .15s}
@@ -149,9 +149,9 @@ html{min-width:360px} /* 최소 폭 360 (8-1장) — 더 좁은 화면은 맞추
 
 /* ── 히어로 ── */
 /* 슬라이드 = 통이미지 배너 1장. 글자·가격·버튼은 이미지 안에 있다 (배너 관리에서 이미지만 바꾸면 끝).
-   PC 2560×960(화면 1280×480, 8:3) / 모바일 720×900(4:5 세로형, 별도 이미지) — 비율이 바뀌면 아래 aspect-ratio 두 곳만 고친다 */
+   PC 2464×960 / 모바일 720×900 — 비율이 바뀌면 아래 aspect-ratio 두 곳만 고친다 */
 .oc-hero{padding:var(--oc-sp-24) 0 var(--oc-sp-40)}
-.oc-hero-track{position:relative;display:grid;border-radius:var(--oc-r-lg);overflow:hidden;background:var(--oc-img);aspect-ratio:2560/960;touch-action:pan-y} /* 가로 밀기는 main.js 가 슬라이드 넘김으로, 세로는 페이지 스크롤로 */
+.oc-hero-track{position:relative;display:grid;border-radius:var(--oc-r-lg);overflow:hidden;background:var(--oc-img);aspect-ratio:2464/960;touch-action:pan-y} /* 가로 밀기는 main.js 가 슬라이드 넘김으로, 세로는 페이지 스크롤로 */
 .oc-slide{grid-area:1/1;display:block;opacity:0;visibility:hidden;transition:opacity .5s var(--oc-ease),visibility 0s .5s}
 .oc-slide.oc-is-on{opacity:1;visibility:visible;transition:opacity .5s var(--oc-ease),visibility 0s}
 .oc-slide img{display:block;width:100%;height:100%;object-fit:cover}
@@ -188,7 +188,6 @@ html{min-width:360px} /* 최소 폭 360 (8-1장) — 더 좁은 화면은 맞추
 .oc-more{font-size:var(--oc-fs-16);font-weight:600;color:var(--oc-primary);display:inline-flex;align-items:center;gap:var(--oc-sp-4)}
 .oc-more::after{content:"›";font-size:var(--oc-fs-20);line-height:1;transform:translateY(-1px);transition:transform .2s var(--oc-ease)}
 .oc-more{transition:color .15s}
-.oc-more{position:relative}.oc-more::before{content:"";position:absolute;inset:calc(var(--oc-sp-4) * -1) 0} /* 모바일에서 글자 높이가 22px 이라 누르는 면만 위아래로 넓힌다 — 줄 높이·배치는 그대로 (13장) */
 @media (hover:hover) and (pointer:fine) and (min-width:768px){.oc-more:hover{color:var(--oc-primary-600)}}
 @media (hover:hover) and (pointer:fine) and (min-width:768px){.oc-more:hover::after{transform:translate(3px,-1px)}}
 
@@ -225,18 +224,15 @@ html{min-width:360px} /* 최소 폭 360 (8-1장) — 더 좁은 화면은 맞추
 @keyframes fade{from{opacity:0}}
 
 /* 상품 카드 */
-/* 제품 유형 탭 = 분절형 (2026-10-28 사용자 결정) — 회색 틀 하나에 탭을 붙이고 고른 탭만 흰 바탕. 버튼(.oc-btn 알약)·필터 칩(모서리 8, 고르면 검정)과 구분. 마이페이지 하위 탭(.oc-my-subnav2)과 같은 값. 좁으면 줄바꿈 대신 틀 안에서 가로로 민다 */
-.oc-ftabs{display:flex;flex-wrap:nowrap;gap:var(--oc-sp-4);width:max-content;max-width:100%;margin-bottom:var(--oc-sp-24);padding:var(--oc-sp-4);border-radius:var(--oc-r-sm);background:var(--oc-divider);overflow-x:auto;scrollbar-width:none}
-.oc-ftabs::-webkit-scrollbar{display:none}
-.oc-ftab{flex:none;height:var(--oc-sp-32);padding:0 var(--oc-sp-16);border:0;border-radius:var(--oc-sp-4);background:none;font-size:var(--oc-fs-14);font-weight:500;color:var(--oc-ink-3);transition:color .15s,background-color .15s}
-@media (hover:hover) and (pointer:fine) and (min-width:768px){.oc-ftab:hover{color:var(--oc-ink)}}
-.oc-ftabs [aria-selected="true"]{background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.08),0 0 0 1px var(--oc-line);font-weight:600;color:var(--oc-ink)}
+.oc-ftabs{display:flex;flex-wrap:wrap;gap:var(--oc-sp-8);margin-bottom:var(--oc-sp-24)} /* 가로 스크롤 없이 줄을 바꾼다 */
+.oc-ftab{flex:none;height:var(--oc-ctl-sm);padding:0 var(--oc-sp-16);border-radius:999px;font-size:var(--oc-fs-14);font-weight:600;color:var(--oc-ink-2);background:#fff;border:1px solid var(--oc-line);transition:all .15s}
+@media (hover:hover) and (pointer:fine) and (min-width:768px){.oc-ftab:hover{border-color:var(--oc-ink-2)}}
+.oc-ftabs [aria-selected="true"]{background:var(--oc-ink);border-color:var(--oc-ink);color:#fff}
 .oc-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--oc-sp-16)}
-.oc-display--best .oc-card:nth-child(n+5){display:none} /* 카테고리별 추천 제품은 한 줄만 (2026-10-28) — 줄 개수(1280 이상 4·768~1279 3·480~767 2)를 넘는 카드는 숨긴다 */
 .oc-card{background:#fff;border-radius:var(--oc-r);display:flex;flex-direction:column;overflow:hidden;animation:fade .35s var(--oc-ease) both;transition:box-shadow .25s}
 .oc-card:nth-child(2){animation-delay:40ms}.oc-card:nth-child(3){animation-delay:80ms}.oc-card:nth-child(4){animation-delay:120ms}
 .oc-card:nth-child(5){animation-delay:160ms}.oc-card:nth-child(6){animation-delay:200ms}.oc-card:nth-child(7){animation-delay:240ms}.oc-card:nth-child(8){animation-delay:280ms}
-.oc-card-img{display:block;aspect-ratio:4/3;margin:var(--oc-sp-16) var(--oc-sp-16) 0;border-radius:var(--oc-r-sm);background:var(--oc-img);overflow:hidden;position:relative}
+.oc-card-img{display:block;aspect-ratio:4/3;margin:var(--oc-sp-8) var(--oc-sp-8) 0;border-radius:calc(var(--oc-r) - var(--oc-sp-8));background:var(--oc-img);overflow:hidden;position:relative}
 .oc-card-img img{width:100%;height:100%;object-fit:contain;transition:transform .5s var(--oc-ease)} /* 확대하지 않는다 — 운영 상품 사진은 정사각형에 왼쪽 위 브랜드 로고가 들어 있어 키우면 로고가 잘린다 */
 @media (hover:hover) and (pointer:fine) and (min-width:768px){ /* 마우스에서만 — 터치 화면은 누른 뒤 그림자·확대가 남는다. 상품명 색은 바꾸지 않는다(빨강은 버튼·브랜드 강조용, 효과는 그림자 + 사진 확대 둘로 충분) */
   .oc-card:hover{box-shadow:var(--oc-lift)}
@@ -247,7 +243,7 @@ html{min-width:360px} /* 최소 폭 360 (8-1장) — 더 좁은 화면은 맞추
 .oc-card-meta{display:flex;align-items:center;justify-content:space-between;gap:var(--oc-sp-8);min-height:calc(var(--oc-fs-12) * 1.5 + var(--oc-sp-4) * 2)}
 .oc-badge{flex:none;font-size:var(--oc-fs-12);font-weight:700;line-height:1.5;padding:var(--oc-sp-4) var(--oc-sp-8);border-radius:var(--oc-sp-8);background:#fff;color:var(--oc-ink-2)}
 .oc-badge.oc-q{background:var(--oc-primary-50);color:var(--oc-primary-600)}
-.oc-card-body{padding:var(--oc-sp-16);display:flex;flex-direction:column;flex:1}
+.oc-card-body{padding:var(--oc-sp-16) var(--oc-sp-20) var(--oc-sp-20);display:flex;flex-direction:column;flex:1}
 .oc-card-name{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;font-size:var(--oc-fs-18);font-weight:700;letter-spacing:-.02em;line-height:1.35;margin:var(--oc-sp-4) 0 2px} /* 제목은 최대 2줄(넘치면 …). 높이는 잡지 않는다 — 한 줄 카드끼리의 정렬은 사양 표를 아래로 붙여 맞춘다(.oc-card-spec margin-top:auto) */
 /* 카드 어디를 눌러도 상세로: 상품명 링크의 누르는 면을 카드 전체로 넓히고, 버튼·비교 체크만 그 위로 올린다 */
 .oc-card{position:relative}
@@ -378,7 +374,7 @@ html{min-width:360px} /* 최소 폭 360 (8-1장) — 더 좁은 화면은 맞추
 .oc-ft-badges{display:flex;align-items:center;gap:var(--oc-sp-12)}
 .oc-ft-badges span{display:inline-flex;align-items:center;height:var(--oc-sp-24)}
 .oc-ft-badges svg{display:block;width:auto;fill:currentColor}
-.oc-ft-badges .oc-lenovo svg{height:1rem}.oc-ft-badges .oc-asus svg{height:.6875rem} /* 두 로고의 글자 높이가 맞아 보이는 비율 */
+.oc-ft-badges .oc-lenovo svg{height:16px}.oc-ft-badges .oc-asus svg{height:11px}
 .oc-ft-badges .oc-lenovo{color:var(--oc-lenovo)}.oc-ft-badges .oc-asus{color:var(--oc-asus)}
 .oc-ft-info{grid-area:info;font-size:var(--oc-fs-12);line-height:1.8} /* 사업자 정보는 법정 표시용 — 12. 모바일은 아래에서 14 토큰(실제 12.25px) */
 .oc-ft-info-row{display:flex;flex-wrap:wrap;column-gap:var(--oc-sp-16);overflow:hidden} /* 줄은 항목 사이에서만 바뀐다. 줄 첫머리로 간 구분선은 왼쪽 밖으로 나가 가려진다 */
@@ -403,7 +399,7 @@ html{min-width:360px} /* 최소 폭 360 (8-1장) — 더 좁은 화면은 맞추
    설정·모양은 건드리지 않고 리뉴얼 바와 겹치지 않게 위치만 맞춘다 (2026-10-27, GODOMALL-APPLY 3-1) */
 body.oc-has-cmp #cusChannel{bottom:calc(var(--oc-sp-80) + var(--oc-sp-20) + var(--oc-safe-b))} /* PC: 비교 바가 떠 있으면 그 위로 */
 .oc-cmp-list{display:flex;gap:var(--oc-sp-8);flex:1;min-width:0}
-.oc-cmp-item,.oc-cmp-slot{flex:1 1 0;min-width:0;max-width:14rem} /* 담은 제품 칸과 빈 칸은 같은 높이(48) — 사진 32 + 위아래 여백 8 */
+.oc-cmp-item,.oc-cmp-slot{flex:1 1 0;min-width:0;max-width:224px} /* 담은 제품 칸과 빈 칸은 같은 높이(48) — 사진 32 + 위아래 여백 8 */
 .oc-cmp-item{display:flex;align-items:center;gap:var(--oc-sp-8);height:var(--oc-sp-48);padding:0 var(--oc-sp-8);border-radius:var(--oc-sp-12);background:var(--oc-surface);font-size:var(--oc-fs-14);font-weight:600}
 .oc-cmp-item img{flex:none;width:var(--oc-sp-32);height:var(--oc-sp-32);border-radius:var(--oc-sp-8);object-fit:contain;background:var(--oc-img)}
 .oc-cmp-item span{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
@@ -452,19 +448,13 @@ body.oc-is-searching .oc-top{z-index:62} /* 검색 패널이 열리면 헤더(�
 .oc-qempty-ic{width:var(--oc-sp-48);height:var(--oc-sp-48);color:var(--oc-line);margin:0 auto var(--oc-sp-8)}
 .oc-qempty-t{display:block;color:var(--oc-ink);font-size:var(--oc-fs-16);margin-bottom:var(--oc-sp-4)}
 .oc-mnav{padding-left:var(--oc-sp-20);padding-right:var(--oc-sp-20)}
-/* 목록 + 아코디언 — 한 줄에 메뉴 하나, 줄 사이는 얇은 선. 하위가 있는 메뉴는 눌러서 펼친다 */
-.oc-mnav-nav{display:flex;flex-direction:column;border-top:1px solid var(--oc-line-2)}
-.oc-mnav-row{display:flex;align-items:center;justify-content:space-between;gap:var(--oc-sp-12);width:100%;min-height:var(--oc-sp-48);padding:var(--oc-sp-12) var(--oc-sp-4);border:0;border-bottom:1px solid var(--oc-line-2);background:none;font:inherit;font-size:var(--oc-fs-16);font-weight:600;color:var(--oc-ink);text-align:left;cursor:pointer}
-.oc-mnav-grp{border-bottom:1px solid var(--oc-line-2)}
-.oc-mnav-grp>.oc-mnav-row{border-bottom:0}
-.oc-mnav-ic{flex:none;width:var(--oc-sp-16);height:var(--oc-sp-16);color:var(--oc-ink-3);transition:transform .2s var(--oc-ease)}
-.oc-mnav-acc[aria-expanded="true"]{color:var(--oc-ink)}
-.oc-mnav-acc[aria-expanded="true"] .oc-mnav-ic{transform:rotate(180deg);color:var(--oc-ink)}
-.oc-mnav-sub{display:flex;flex-direction:column;padding:0 var(--oc-sp-4) var(--oc-sp-12) var(--oc-sp-16)}
-.oc-mnav-sub[hidden]{display:none}
-.oc-mnav-sublink{display:flex;align-items:center;min-height:var(--oc-sp-40);font-size:var(--oc-fs-16);font-weight:400;color:var(--oc-ink-2)}
-.oc-mnav-row:active,.oc-mnav-sublink:active{color:var(--oc-primary)}
-@media (hover:hover) and (pointer:fine) and (min-width:768px){.oc-mnav-row:hover,.oc-mnav-sublink:hover{color:var(--oc-primary)}}
+.oc-mnav-t{font-size:var(--oc-fs-12);color:var(--oc-ink-3);font-weight:600;margin:var(--oc-sp-20) 0 var(--oc-sp-8)}
+.oc-mnav-t:first-child{margin-top:0}
+.oc-mnav-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--oc-sp-8)} /* 목록 16줄 대신 2열 칸: 접지 않고도 한 화면에 들어간다 */
+.oc-mnav-link{display:flex;align-items:center;min-height:var(--oc-sp-48);padding:0 var(--oc-sp-12);border-radius:var(--oc-r-sm);background:var(--oc-surface);font-size:var(--oc-fs-16);font-weight:600;color:var(--oc-ink);white-space:nowrap;transition:background .15s}
+.oc-mnav-link:last-child:nth-child(odd){grid-column:1/-1}
+.oc-mnav-link:active{background:var(--oc-line-2)}
+@media (hover:hover) and (pointer:fine) and (min-width:768px){.oc-mnav-link:hover{background:var(--oc-line-2)}}
 .oc-mnav-act{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--oc-sp-8);margin-top:var(--oc-sp-24)}
 .oc-mnav-act .oc-btn{min-width:0;padding:0 var(--oc-sp-12)}
 .oc-mnav small{font-size:var(--oc-fs-14);color:var(--oc-ink-3);font-weight:500}
@@ -491,7 +481,6 @@ body.oc-is-locked .oc-toast{opacity:0} /* 서랍이 열리면 서랍 아래 버�
   .oc-hd-in{gap:var(--oc-sp-24)}
   .oc-gnb-link{--pad:var(--oc-sp-8);font-size:var(--oc-fs-16)}
   .oc-cards{grid-template-columns:repeat(3,1fr)}
-  .oc-display--best .oc-card:nth-child(n+4){display:none} /* 추천 제품 한 줄: 3개 */
   .oc-mega-in{grid-template-columns:1fr}
   .oc-mega-tile{display:none}
 }
@@ -560,7 +549,6 @@ body.oc-is-locked .oc-toast{opacity:0} /* 서랍이 열리면 서랍 아래 버�
   .oc-types svg{width:var(--oc-sp-40);height:var(--oc-sp-40);margin-bottom:var(--oc-sp-8)}
   .oc-types b{font-size:var(--oc-fs-16)}
   .oc-cards{grid-template-columns:1fr 1fr;gap:var(--oc-sp-8)}
-  .oc-display--best .oc-card:nth-child(n+3){display:none} /* 추천 제품 한 줄: 2개 */
   .oc-card-img{margin:var(--oc-sp-4) var(--oc-sp-4) 0;border-radius:calc(var(--oc-r) - var(--oc-sp-4))}
   .oc-card-body{padding:var(--oc-sp-12) var(--oc-sp-12) var(--oc-sp-16)} /* 360 폭 2열에서 사양 값이 두 줄로 꺾이지 않게 안쪽 여백을 줄인다 */
   .oc-card-name{font-size:var(--oc-fs-16)}
@@ -613,7 +601,6 @@ body.oc-is-locked .oc-toast{opacity:0} /* 서랍이 열리면 서랍 아래 버�
   /* 카테고리별 추천 제품: 1열 가로 카드(사진 왼쪽 + 정보 오른쪽). 2열은 칸이 좁아 사양이 꺾이고, 세로 카드 1열은 카드 하나가 화면 높이에 가까워진다 */
   .oc-display--best .oc-cards{grid-template-columns:minmax(0,1fr);gap:var(--oc-sp-12)}
   .oc-display--best .oc-card{display:grid;grid-template-columns:7rem minmax(0,1fr);column-gap:var(--oc-sp-16);align-items:start;padding:var(--oc-sp-12)}
-  .oc-display--best .oc-card:nth-child(-n+4){display:grid} /* 479 이하: 가로 카드가 위아래로 쌓이므로 4개 (한 줄 규칙의 예외) */
   .oc-display--best .oc-card-img{margin:0;aspect-ratio:1;border-radius:var(--oc-r-sm)}
   .oc-display--best .oc-card-body{padding:0}
   .oc-display--best .oc-card-act{flex-direction:row;margin-top:var(--oc-sp-12)}
