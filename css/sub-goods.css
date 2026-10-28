@@ -93,6 +93,7 @@
 .oc-cmpv-goods small{font-size:var(--oc-fs-12);color:var(--oc-ink-3)}
 .oc-cmpv-del{position:absolute;top:var(--oc-sp-8);right:var(--oc-sp-8);z-index:1;display:grid;place-items:center;width:var(--oc-sp-32);height:var(--oc-sp-32);border-radius:999px;background:#fff;border:0;box-shadow:0 1px 2px rgba(22,24,29,.12),0 4px 12px -4px rgba(22,24,29,.18);color:var(--oc-ink-2);cursor:pointer;transition:background .15s,color .15s} /* 사진 안쪽 모서리 — 회색 사진 배경 위에서 흰 원 + 옅은 그림자로 구분 */
 .oc-cmpv-del svg{width:var(--oc-sp-16);height:var(--oc-sp-16)}
+.oc-cmpv-del::before{content:"";position:absolute;inset:calc(var(--oc-sp-4) * -1)} /* 모바일 21px 원이라 누르는 면만 바깥으로 넓힌다 (13장) */
 .oc-cmpv-del:focus-visible{outline:2px solid var(--oc-ink);outline-offset:2px}
 @media (hover:hover) and (pointer:fine) and (min-width:768px){ .oc-cmpv-del:hover{background:var(--oc-ink);color:#fff} }
 .oc-cmpv td.oc-cmpv-price{font-size:var(--oc-fs-16);color:var(--oc-ink)}
@@ -100,9 +101,6 @@
 .oc-cmpv-act .oc-btn{width:100%}
 .oc-cmpv-act .oc-btn + .oc-btn{margin-top:var(--oc-sp-8)}
 .oc-cmpv-act .oc-add.oc-is-on{background:var(--oc-primary-50);border-color:var(--oc-primary-100);color:var(--oc-primary-600)}
-.oc-cmpv-empty{padding:var(--oc-sp-64) var(--oc-sp-24);text-align:center;background:#fff;border:1px solid var(--oc-line-2);border-radius:var(--oc-r-lg)}
-.oc-cmpv-empty-t{font-size:var(--oc-fs-20);font-weight:700;color:var(--oc-ink)}
-.oc-cmpv-empty-d{display:block;margin:var(--oc-sp-8) 0 var(--oc-sp-24);color:var(--oc-ink-3)}
 
 /* ── 반응형 ── */
 @media (min-width:768px) and (max-width:1279px){[data-related] .oc-card:nth-child(4){display:none}} /* 상품 카드 3열 폭: 4개 중 넷째를 숨겨 줄을 채운다 */

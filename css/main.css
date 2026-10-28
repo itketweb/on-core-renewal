@@ -188,6 +188,7 @@ html{min-width:360px} /* 최소 폭 360 (8-1장) — 더 좁은 화면은 맞추
 .oc-more{font-size:var(--oc-fs-16);font-weight:600;color:var(--oc-primary);display:inline-flex;align-items:center;gap:var(--oc-sp-4)}
 .oc-more::after{content:"›";font-size:var(--oc-fs-20);line-height:1;transform:translateY(-1px);transition:transform .2s var(--oc-ease)}
 .oc-more{transition:color .15s}
+.oc-more{position:relative}.oc-more::before{content:"";position:absolute;inset:calc(var(--oc-sp-4) * -1) 0} /* 모바일에서 글자 높이가 22px 이라 누르는 면만 위아래로 넓힌다 — 줄 높이·배치는 그대로 (13장) */
 @media (hover:hover) and (pointer:fine) and (min-width:768px){.oc-more:hover{color:var(--oc-primary-600)}}
 @media (hover:hover) and (pointer:fine) and (min-width:768px){.oc-more:hover::after{transform:translate(3px,-1px)}}
 
@@ -233,7 +234,7 @@ html{min-width:360px} /* 최소 폭 360 (8-1장) — 더 좁은 화면은 맞추
 .oc-card{background:#fff;border-radius:var(--oc-r);display:flex;flex-direction:column;overflow:hidden;animation:fade .35s var(--oc-ease) both;transition:box-shadow .25s}
 .oc-card:nth-child(2){animation-delay:40ms}.oc-card:nth-child(3){animation-delay:80ms}.oc-card:nth-child(4){animation-delay:120ms}
 .oc-card:nth-child(5){animation-delay:160ms}.oc-card:nth-child(6){animation-delay:200ms}.oc-card:nth-child(7){animation-delay:240ms}.oc-card:nth-child(8){animation-delay:280ms}
-.oc-card-img{display:block;aspect-ratio:4/3;margin:var(--oc-sp-8) var(--oc-sp-8) 0;border-radius:calc(var(--oc-r) - var(--oc-sp-8));background:var(--oc-img);overflow:hidden;position:relative}
+.oc-card-img{display:block;aspect-ratio:4/3;margin:var(--oc-sp-16) var(--oc-sp-16) 0;border-radius:var(--oc-r-sm);background:var(--oc-img);overflow:hidden;position:relative}
 .oc-card-img img{width:100%;height:100%;object-fit:contain;transition:transform .5s var(--oc-ease)} /* 확대하지 않는다 — 운영 상품 사진은 정사각형에 왼쪽 위 브랜드 로고가 들어 있어 키우면 로고가 잘린다 */
 @media (hover:hover) and (pointer:fine) and (min-width:768px){ /* 마우스에서만 — 터치 화면은 누른 뒤 그림자·확대가 남는다. 상품명 색은 바꾸지 않는다(빨강은 버튼·브랜드 강조용, 효과는 그림자 + 사진 확대 둘로 충분) */
   .oc-card:hover{box-shadow:var(--oc-lift)}
@@ -244,7 +245,7 @@ html{min-width:360px} /* 최소 폭 360 (8-1장) — 더 좁은 화면은 맞추
 .oc-card-meta{display:flex;align-items:center;justify-content:space-between;gap:var(--oc-sp-8);min-height:calc(var(--oc-fs-12) * 1.5 + var(--oc-sp-4) * 2)}
 .oc-badge{flex:none;font-size:var(--oc-fs-12);font-weight:700;line-height:1.5;padding:var(--oc-sp-4) var(--oc-sp-8);border-radius:var(--oc-sp-8);background:#fff;color:var(--oc-ink-2)}
 .oc-badge.oc-q{background:var(--oc-primary-50);color:var(--oc-primary-600)}
-.oc-card-body{padding:var(--oc-sp-16) var(--oc-sp-20) var(--oc-sp-20);display:flex;flex-direction:column;flex:1}
+.oc-card-body{padding:var(--oc-sp-16);display:flex;flex-direction:column;flex:1}
 .oc-card-name{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;font-size:var(--oc-fs-18);font-weight:700;letter-spacing:-.02em;line-height:1.35;margin:var(--oc-sp-4) 0 2px} /* 제목은 최대 2줄(넘치면 …). 높이는 잡지 않는다 — 한 줄 카드끼리의 정렬은 사양 표를 아래로 붙여 맞춘다(.oc-card-spec margin-top:auto) */
 /* 카드 어디를 눌러도 상세로: 상품명 링크의 누르는 면을 카드 전체로 넓히고, 버튼·비교 체크만 그 위로 올린다 */
 .oc-card{position:relative}
@@ -375,7 +376,7 @@ html{min-width:360px} /* 최소 폭 360 (8-1장) — 더 좁은 화면은 맞추
 .oc-ft-badges{display:flex;align-items:center;gap:var(--oc-sp-12)}
 .oc-ft-badges span{display:inline-flex;align-items:center;height:var(--oc-sp-24)}
 .oc-ft-badges svg{display:block;width:auto;fill:currentColor}
-.oc-ft-badges .oc-lenovo svg{height:16px}.oc-ft-badges .oc-asus svg{height:11px}
+.oc-ft-badges .oc-lenovo svg{height:1rem}.oc-ft-badges .oc-asus svg{height:.6875rem} /* 두 로고의 글자 높이가 맞아 보이는 비율 */
 .oc-ft-badges .oc-lenovo{color:var(--oc-lenovo)}.oc-ft-badges .oc-asus{color:var(--oc-asus)}
 .oc-ft-info{grid-area:info;font-size:var(--oc-fs-12);line-height:1.8} /* 사업자 정보는 법정 표시용 — 12. 모바일은 아래에서 14 토큰(실제 12.25px) */
 .oc-ft-info-row{display:flex;flex-wrap:wrap;column-gap:var(--oc-sp-16);overflow:hidden} /* 줄은 항목 사이에서만 바뀐다. 줄 첫머리로 간 구분선은 왼쪽 밖으로 나가 가려진다 */
@@ -400,7 +401,7 @@ html{min-width:360px} /* 최소 폭 360 (8-1장) — 더 좁은 화면은 맞추
    설정·모양은 건드리지 않고 리뉴얼 바와 겹치지 않게 위치만 맞춘다 (2026-10-27, GODOMALL-APPLY 3-1) */
 body.oc-has-cmp #cusChannel{bottom:calc(var(--oc-sp-80) + var(--oc-sp-20) + var(--oc-safe-b))} /* PC: 비교 바가 떠 있으면 그 위로 */
 .oc-cmp-list{display:flex;gap:var(--oc-sp-8);flex:1;min-width:0}
-.oc-cmp-item,.oc-cmp-slot{flex:1 1 0;min-width:0;max-width:224px} /* 담은 제품 칸과 빈 칸은 같은 높이(48) — 사진 32 + 위아래 여백 8 */
+.oc-cmp-item,.oc-cmp-slot{flex:1 1 0;min-width:0;max-width:14rem} /* 담은 제품 칸과 빈 칸은 같은 높이(48) — 사진 32 + 위아래 여백 8 */
 .oc-cmp-item{display:flex;align-items:center;gap:var(--oc-sp-8);height:var(--oc-sp-48);padding:0 var(--oc-sp-8);border-radius:var(--oc-sp-12);background:var(--oc-surface);font-size:var(--oc-fs-14);font-weight:600}
 .oc-cmp-item img{flex:none;width:var(--oc-sp-32);height:var(--oc-sp-32);border-radius:var(--oc-sp-8);object-fit:contain;background:var(--oc-img)}
 .oc-cmp-item span{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}

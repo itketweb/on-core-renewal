@@ -56,8 +56,6 @@
 .oc-biz-form fieldset+fieldset{margin-top:var(--oc-sp-40);padding-top:var(--oc-sp-40);border-top:1px solid var(--oc-line)}
 .oc-legend{display:block;float:left;width:100%;padding:0;margin-bottom:var(--oc-sp-20);font-size:var(--oc-fs-16);font-weight:700;color:var(--oc-ink)}
 .oc-legend+*{clear:both} /* legend 는 그대로 두면 fieldset 위 선에 걸쳐 그려지고 아래 여백이 먹지 않는다 — float 로 일반 블록처럼 놓는다 */
-.oc-biz-agree{display:flex;flex-direction:column;gap:var(--oc-sp-12);margin-top:var(--oc-sp-32);padding:var(--oc-sp-24);border-radius:var(--oc-r);background:var(--oc-surface)}
-.oc-check-all{padding-bottom:var(--oc-sp-12);border-bottom:1px solid var(--oc-line);font-weight:600;color:var(--oc-ink)} /* 전체 동의는 맨 위 (회원가입과 같은 위치) */
 
 /* ── 견적 조회 ── */
 /* 한 줄 조회 막대 (표 바로 위): 이름·연락처 + 상태 + 조회. 상자 없이 공지사항·검색과 같은 알약 칸 */
@@ -135,6 +133,9 @@
 @media (max-width:1023px){
   .oc-est-search .oc-biz-lookup{flex-wrap:wrap}
   .oc-est-search .oc-biz-lookup .oc-input{flex:1 1 12rem}
+  /* 한 단으로 쌓이면 오른쪽 칸이 본문·'목록으로' 아래로 내려간다 (2026-10-28) */
+  .oc-biz-side-act{display:none} /* 바로 아래 마무리 영역(.oc-final)에 같은 견적·전화 버튼이 있어 두 번 나오지 않게 */
+  .oc-biz-promo-sum{order:-1} /* 프로모션 요약(기간·대상·혜택)은 본문 위 — 조건을 먼저 보고 내려 읽게 */
 }
 @media (max-width:767px){
   .oc-est-search .oc-biz-lookup .oc-sel{width:100%}

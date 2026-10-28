@@ -410,8 +410,8 @@
   // 비교 화면: 제품이 열, 항목이 행. 사양 항목은 담은 제품들의 짧은 설명 라벨을 나온 순서대로 모은다
   function renderCmpView() {
     if (cmp.length < 2) {
-      cmpView.innerHTML = '<div class="oc-cmpv-empty"><p class="oc-cmpv-empty-t">비교할 제품을 2개 이상 골라 주세요.</p><span class="oc-cmpv-empty-d">제품 목록에서 카드 아래 \'비교\'를 체크하면 최대 4개까지 나란히 볼 수 있습니다.</span>' +
-        '<a href="' + esc((window.OC_ROOT || '') + 'pages/goods-all.html') + '" class="oc-btn oc-btn-d">제품 보러 가기</a></div>';
+      cmpView.innerHTML = '<div class="oc-empty"><b class="oc-empty-t">비교할 제품을 2개 이상 골라 주세요.</b><p class="oc-empty-d">제품 목록에서 카드 아래 \'비교\'를 체크하면 최대 4개까지 나란히 볼 수 있습니다.</p>' +
+        '<a href="' + esc((window.OC_ROOT || '') + 'pages/goods-all.html') + '" class="oc-btn oc-btn-o">제품 보러 가기</a></div>';
       return;
     }
     var specs = cmp.map(function (c) { return parseSpec(c.spec); }), labels = [];
