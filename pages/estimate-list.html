@@ -123,7 +123,7 @@
   <div class="oc-wrap">
     <ol class="oc-bc" aria-label="현재 위치"><li><a href="../renewal-plan.html">홈</a></li><li aria-current="page">견적 조회</li></ol>
     <h1 class="oc-pg-t">견적 조회</h1>
-    <p class="oc-pg-d">견적 요청 때 적은 이름과 연락처로 내 견적을 찾고, 견적을 누르면 견적 비밀번호로 내용을 확인할 수 있습니다.</p>
+    <p class="oc-pg-d">접수한 견적의 진행 상태를 확인하고, 견적을 누르면 견적 비밀번호로 내용을 확인할 수 있습니다.</p>
   </div>
 </div>
 
@@ -143,13 +143,27 @@
 
     <section class="oc-pg-sec" aria-labelledby="est-result">
       <h2 class="oc-pg-sec-t" id="est-result">내 견적 찾기</h2>
-      <!-- 한 줄 조회 막대: 768 이상 한 줄, 768 미만 세로로 쌓음. 칸 이름은 화면낭독기용 label(oc-sr) + placeholder.
-           견적 비밀번호는 여기서 받지 않는다 — 목록에서 견적을 누르면 비밀번호 확인 화면(estimate-pw.html)에서 입력 -->
-      <form class="oc-biz-lookup" action="estimate-list.html" method="post" data-mock>
-        <label class="oc-sr" for="est-name">접수자 이름</label><input class="oc-input" id="est-name" name="name" type="text" placeholder="접수자 이름" autocomplete="name" required>
-        <label class="oc-sr" for="est-tel">연락처 또는 접수번호</label><input class="oc-input" id="est-tel" name="tel" type="text" placeholder="연락처 또는 접수번호" required>
-        <label class="oc-sr" for="est-st">진행 상태</label><select class="oc-select" id="est-st" name="st"><option>전체 상태</option><option>접수중</option><option>처리중</option><option>발송완료</option></select>
-        <button type="submit" class="oc-btn oc-btn-d">조회</button>
+      <!-- 조회 막대 = 고도몰 견적 게시판의 실제 검색 조건 그대로(2026-10-28 테스트 스킨에 맞춤): 검색 항목 + 검색어 + 진행 상태 + 조회 / 기간(부터·까지) + 목록 개수.
+           768 이상: 기간 묶음과 검색 묶음을 한 줄로(폭이 모자라면 기간이 위 줄로), 1280 이상은 두 묶음 사이 세로 구분선. 768 미만: 세로로 쌓음.
+           칸 이름은 화면낭독기용 label(oc-sr) + placeholder. 견적 비밀번호는 여기서 받지 않는다 — 목록에서 견적을 누르면 비밀번호 확인 화면(estimate-pw.html)에서 입력.
+           연도 선택지는 최근 3년 (운영 견적 모듈의 연도 목록은 2021·2022 만 나와 고칠 대상 — 서버 PHP) -->
+      <form class="oc-est-search" id="frmSearch" name="frmSearch" action="estimate-list.html" method="get" data-mock>
+        <div class="oc-biz-lookup">
+          <label class="oc-sr" for="key">검색 항목</label><select class="oc-select" id="key" name="key"><option value="">선택</option><option value="subject">제목</option><option value="name">작성자</option><option value="phone">연락처</option><option value="email">이메일</option></select>
+          <label class="oc-sr" for="oc-est-keyword">검색어</label><input type="text" id="oc-est-keyword" name="keyword" class="oc-input" placeholder="검색어를 입력해 주세요">
+          <label class="oc-sr" for="dbkState">진행 상태</label><select class="oc-select" id="dbkState" name="dbkState"><option value="">전체</option><option value="a">접수중</option><option value="p">처리중</option><option value="c">발송완료</option></select>
+          <button type="submit" class="oc-btn oc-btn-d">조회</button>
+        </div>
+        <div class="oc-est-lookup-sub">
+          <span class="oc-est-lookup-lb">기간</span>
+          <label class="oc-sr" for="sy">시작 연도</label><select class="oc-select" id="sy" name="sy"><option value="">년</option><option value="2026">2026</option><option value="2025">2025</option><option value="2024">2024</option></select>
+          <label class="oc-sr" for="sm">시작 월</label><select class="oc-select" id="sm" name="sm"><option value="">월</option><option value="01">01</option><option value="02">02</option><option value="03">03</option><option value="04">04</option><option value="05">05</option><option value="06">06</option><option value="07">07</option><option value="08">08</option><option value="09">09</option><option value="10">10</option><option value="11">11</option><option value="12">12</option></select>
+          <span>부터</span>
+          <label class="oc-sr" for="ey">끝 연도</label><select class="oc-select" id="ey" name="ey"><option value="">년</option><option value="2026">2026</option><option value="2025">2025</option><option value="2024">2024</option></select>
+          <label class="oc-sr" for="em">끝 월</label><select class="oc-select" id="em" name="em"><option value="">월</option><option value="01">01</option><option value="02">02</option><option value="03">03</option><option value="04">04</option><option value="05">05</option><option value="06">06</option><option value="07">07</option><option value="08">08</option><option value="09">09</option><option value="10">10</option><option value="11">11</option><option value="12">12</option></select>
+          <span>까지</span>
+          <label class="oc-sr" for="pageNum">목록 개수</label><select class="oc-select" id="pageNum" name="pageNum"><option value="10">10개</option><option value="20" selected>20개</option><option value="30">30개</option><option value="40">40개</option><option value="50">50개</option><option value="60">60개</option><option value="70">70개</option><option value="80">80개</option><option value="90">90개</option><option value="100">100개</option><option value="200">200개</option><option value="300">300개</option><option value="500">500개</option></select>
+        </div>
       </form>
       <!-- 운영 견적 게시판(/dbk/dbk_estimate_list.php) 목록 17건, 2026-10-27 기준. 작성자는 운영 화면과 같이 첫 글자만 보이고 나머지는 * (운영은 스크립트로 가림 — 고도몰 적용 때도 같은 처리 유지)
            data-label: 모바일(768 미만)에서 행을 카드로 쌓을 때 항목명으로 보인다. 고도몰 목록 템플릿에도 그대로 둔다 -->

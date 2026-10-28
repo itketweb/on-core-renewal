@@ -149,9 +149,9 @@ html{min-width:360px} /* 최소 폭 360 (8-1장) — 더 좁은 화면은 맞추
 
 /* ── 히어로 ── */
 /* 슬라이드 = 통이미지 배너 1장. 글자·가격·버튼은 이미지 안에 있다 (배너 관리에서 이미지만 바꾸면 끝).
-   PC 2464×960 / 모바일 720×900 — 비율이 바뀌면 아래 aspect-ratio 두 곳만 고친다 */
+   PC 2560×960(화면 1280×480, 8:3) / 모바일 720×900(4:5 세로형, 별도 이미지) — 비율이 바뀌면 아래 aspect-ratio 두 곳만 고친다 */
 .oc-hero{padding:var(--oc-sp-24) 0 var(--oc-sp-40)}
-.oc-hero-track{position:relative;display:grid;border-radius:var(--oc-r-lg);overflow:hidden;background:var(--oc-img);aspect-ratio:2464/960;touch-action:pan-y} /* 가로 밀기는 main.js 가 슬라이드 넘김으로, 세로는 페이지 스크롤로 */
+.oc-hero-track{position:relative;display:grid;border-radius:var(--oc-r-lg);overflow:hidden;background:var(--oc-img);aspect-ratio:2560/960;touch-action:pan-y} /* 가로 밀기는 main.js 가 슬라이드 넘김으로, 세로는 페이지 스크롤로 */
 .oc-slide{grid-area:1/1;display:block;opacity:0;visibility:hidden;transition:opacity .5s var(--oc-ease),visibility 0s .5s}
 .oc-slide.oc-is-on{opacity:1;visibility:visible;transition:opacity .5s var(--oc-ease),visibility 0s}
 .oc-slide img{display:block;width:100%;height:100%;object-fit:cover}

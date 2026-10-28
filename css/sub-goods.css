@@ -91,7 +91,10 @@
 .oc-cmpv-img img{width:100%;height:100%;object-fit:contain}
 .oc-cmpv-name{font-size:var(--oc-fs-16);font-weight:700;color:var(--oc-ink);line-height:1.4}
 .oc-cmpv-goods small{font-size:var(--oc-fs-12);color:var(--oc-ink-3)}
-.oc-cmpv-del{position:absolute;top:0;right:0;z-index:1;width:var(--oc-sp-32);height:var(--oc-sp-32);border-radius:999px;background:#fff;border:1px solid var(--oc-line);color:var(--oc-ink-3);font-size:var(--oc-fs-18);line-height:1}
+.oc-cmpv-del{position:absolute;top:var(--oc-sp-8);right:var(--oc-sp-8);z-index:1;display:grid;place-items:center;width:var(--oc-sp-32);height:var(--oc-sp-32);border-radius:999px;background:#fff;border:0;box-shadow:0 1px 2px rgba(22,24,29,.12),0 4px 12px -4px rgba(22,24,29,.18);color:var(--oc-ink-2);cursor:pointer;transition:background .15s,color .15s} /* 사진 안쪽 모서리 — 회색 사진 배경 위에서 흰 원 + 옅은 그림자로 구분 */
+.oc-cmpv-del svg{width:var(--oc-sp-16);height:var(--oc-sp-16)}
+.oc-cmpv-del:focus-visible{outline:2px solid var(--oc-ink);outline-offset:2px}
+@media (hover:hover) and (pointer:fine) and (min-width:768px){ .oc-cmpv-del:hover{background:var(--oc-ink);color:#fff} }
 .oc-cmpv td.oc-cmpv-price{font-size:var(--oc-fs-16);color:var(--oc-ink)}
 .oc-cmpv-none{color:var(--oc-ink-3)}
 .oc-cmpv-act .oc-btn{width:100%}
@@ -145,6 +148,7 @@
   .oc-cmpv th,.oc-cmpv td{padding-left:var(--oc-sp-8);padding-right:var(--oc-sp-8);font-size:var(--oc-fs-14)}
   .oc-cmpv-act .oc-btn{padding:0 var(--oc-sp-4)}
   .oc-cmpv-name,.oc-cmpv td.oc-cmpv-price{font-size:var(--oc-fs-14)}
-  .oc-cmpv-del{width:var(--oc-sp-24);height:var(--oc-sp-24);font-size:var(--oc-fs-16)}
+  .oc-cmpv-del{top:var(--oc-sp-4);right:var(--oc-sp-4);width:var(--oc-sp-24);height:var(--oc-sp-24)}
+  .oc-cmpv-del svg{width:var(--oc-sp-12);height:var(--oc-sp-12)}
   .oc-cmpv-bar{flex-wrap:wrap}
 }

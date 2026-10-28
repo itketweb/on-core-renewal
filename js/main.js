@@ -411,7 +411,7 @@
     }
     var head = cmp.map(function (c) {
       return '<th scope="col"><div class="oc-cmpv-goods">' +
-        '<button type="button" class="oc-cmpv-del" data-cmp-del="' + esc(c.no) + '" aria-label="' + esc(c.name) + ' 비교에서 빼기">×</button>' +
+        '<button type="button" class="oc-cmpv-del" data-cmp-del="' + esc(c.no) + '" aria-label="' + esc(c.name) + ' 비교에서 빼기"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>' +
         '<a href="' + esc(view + '?no=' + c.no) + '" class="oc-cmpv-img"><img src="' + esc(imgSrc(c.img)) + '" alt=""></a>' +
         (c.brand ? '<em class="oc-brand">' + esc(c.brand) + '</em>' : '') +
         '<a href="' + esc(view + '?no=' + c.no) + '" class="oc-cmpv-name">' + esc(c.name) + '</a>' +
