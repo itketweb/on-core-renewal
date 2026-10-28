@@ -258,7 +258,7 @@ html{min-width:360px} /* 최소 폭 360 (8-1장) — 더 좁은 화면은 맞추
 .oc-badge{flex:none;display:inline-flex;align-items:center;justify-content:center;height:24px;padding:0 var(--oc-sp-8);font-size:var(--oc-fs-12);font-weight:700;line-height:1;border-radius:var(--oc-sp-8);background:#fff;color:var(--oc-ink-2)} /* 높이 24 고정(2026-10-28 사용자 지정) — 글자는 가로·세로 가운데 */
 .oc-badge.oc-q{background:var(--oc-surface);color:var(--oc-ink-2)} /* '견적 전용' = 무채색(2026-10-28) — 빨강은 Lenovo·파랑은 ASUS 브랜드 표시라 겹치지 않게 */
 .oc-card-body{padding:var(--oc-sp-16);display:flex;flex-direction:column;flex:1}
-.oc-card-name{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;font-size:var(--oc-fs-18);font-weight:700;letter-spacing:-.02em;line-height:1.35;margin:var(--oc-sp-4) 0 2px} /* 제목은 최대 2줄(넘치면 …). 높이는 잡지 않는다 — 한 줄 카드끼리의 정렬은 사양 표를 아래로 붙여 맞춘다(.oc-card-spec margin-top:auto) */
+.oc-card-name{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;font-size:var(--oc-fs-18);font-weight:700;letter-spacing:-.02em;line-height:1.35;margin:var(--oc-sp-8) 0} /* 제목은 최대 2줄(넘치면 …). 높이는 잡지 않는다 — 한 줄 카드끼리의 정렬은 사양 표를 아래로 붙여 맞춘다(.oc-card-spec margin-top:auto) */
 /* 카드 어디를 눌러도 상세로: 상품명 링크의 누르는 면을 카드 전체로 넓히고, 버튼·비교 체크만 그 위로 올린다 */
 .oc-card{position:relative}
 .oc-card-link::after{content:"";position:absolute;inset:0;z-index:1}
@@ -575,7 +575,6 @@ body.oc-is-locked .oc-toast{opacity:0} /* 서랍이 열리면 서랍 아래 버�
   .oc-card-img{margin:var(--oc-sp-4) var(--oc-sp-4) 0;border-radius:calc(var(--oc-r) - var(--oc-sp-4))}
   .oc-card-body{padding:var(--oc-sp-12) var(--oc-sp-12) var(--oc-sp-16)} /* 360 폭 2열에서 사양 값이 두 줄로 꺾이지 않게 안쪽 여백을 줄인다 */
   .oc-card-name{font-size:var(--oc-fs-16)}
-  .oc-card-body>.oc-card-name{margin-bottom:var(--oc-sp-8)} /* 모바일은 품번 줄을 숨기므로 이름 아래에 최소 간격 */
   .oc-card-spec{font-size:var(--oc-fs-12);margin:auto 0 var(--oc-sp-8);padding:var(--oc-sp-8) 0;line-height:1.6;letter-spacing:-.01em}
   .oc-card-spec-row{gap:var(--oc-sp-4)}
   .oc-card-spec-row .oc-card-spec-k{flex:none;min-width:0;width:calc(var(--oc-fs-12) * 3)} /* 모바일도 라벨을 보인다 — 메모리·저장을 나눠 쓰므로 라벨 없이는 '16GB' 가 무엇인지 모른다. 폭은 가장 긴 '메모리' 기준 */

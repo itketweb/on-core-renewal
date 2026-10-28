@@ -43,7 +43,8 @@
      예: 'LENOVO P3 Ultra SFF (Ultra7-265/16GB/512GB/230W/FreeDos)' → 'LENOVO P3 Ultra SFF'. 이름 앞 괄호('(2Way) Lenovo …')는 그대로.
      사양은 카드 사양 줄에 따로 나온다. 전체 이름은 data-oc-fullname·title(마우스를 올리면 보임)에 남기고, 견적함·비교는 전체 이름을 쓴다(goodsOf). 고도몰 스킨 oncore.js 와 같은 코드 */
   // 끝의 괄호 묶음 중 '/'가 든 사양 목록만 뺀 이름 (여러 개면 모두). '(SAN)'·'(NAS)'·'(SAN+NAS)' 같은 제품 종류 표시는 남긴다 (2026-10-28 사용자 결정)
-  function shortName(nm) { var s = String(nm || '').replace(/(\s*[(（][^()（）]*\/[^()（）]*[)）])+\s*$/, '').trim(); return s || String(nm || ''); }
+  // + 이름 뒤 대괄호부터 끝까지(예: 'ThinkPad L16 Gen1 21L3003WKR [U7-155H] 16GB 512GB 16형 Win11Home' → 'ThinkPad L16 Gen1 21L3003WKR'). 이름 맨 앞의 대괄호('[특가] …')는 남긴다
+  function shortName(nm) { var s = String(nm || '').replace(/(\s*[(（][^()（）]*\/[^()（）]*[)）])+\s*$/, '').replace(/\s+\[[^\]]*\].*$/, '').trim(); return s || String(nm || ''); }
   // 모든 화면의 제품명(2026-10-28 사용자 결정, 카드 밖으로 넓힘): 카드 이름 · 상품 상세 제목 · 헤더 검색 추천 상품 · 상품 상세로 가는 링크
   var NAME_SEL = '.oc-card-name, .oc-gv-name, .oc-mini-name, a[href*="goods-view.html"]';
   function trimCardNames(root) {
