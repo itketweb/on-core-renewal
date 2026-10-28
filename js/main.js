@@ -35,8 +35,26 @@
     var card = el.closest('[data-goodsno]');
     if (!card) return null;
     var img = $('.oc-card-img img', card), price = $('.oc-card-price b', card), name = $('.oc-card-name', card);
-    return { no: card.getAttribute('data-goodsno'), name: name ? name.textContent.trim() : '', img: img ? img.getAttribute('src') : '', price: price ? price.textContent.trim() : '' };
+    var full = name && name.getAttribute('data-oc-fullname'); // 카드엔 괄호 사양을 뺀 이름이 보여도 견적함·비교엔 전체 이름
+    return { no: card.getAttribute('data-goodsno'), name: full || (name ? name.textContent.trim() : ''), img: img ? img.getAttribute('src') : '', price: price ? price.textContent.trim() : '' };
   }
+
+  /* ── 카드 상품명: 이름 뒤에 붙은 괄호(사양) 숨기기 (2026-10-28 사용자 결정, 화면에서만) ──
+     예: 'LENOVO P3 Ultra SFF (Ultra7-265/16GB/512GB/230W/FreeDos)' → 'LENOVO P3 Ultra SFF'. 이름 앞 괄호('(2Way) Lenovo …')는 그대로.
+     사양은 카드 사양 줄에 따로 나온다. 전체 이름은 data-oc-fullname·title(마우스를 올리면 보임)에 남기고, 견적함·비교는 전체 이름을 쓴다(goodsOf). 고도몰 스킨 oncore.js 와 같은 코드 */
+  function trimCardNames(root) {
+    $$('.oc-card-name', root).forEach(function (h) {
+      if (h.hasAttribute('data-oc-fullname')) return;
+      var el = $('a', h) || h, full = el.textContent.replace(/\s+/g, ' ').trim();
+      // 끝의 괄호 묶음 중 '/'가 든 사양 목록만 (여러 개면 모두). '(SAN)'·'(NAS)'·'(SAN+NAS)' 같은 제품 종류 표시는 남긴다 (2026-10-28 사용자 결정)
+      var short = full.replace(/(\s*[(（][^()（）]*\/[^()（）]*[)）])+\s*$/, '').trim();
+      h.setAttribute('data-oc-fullname', full);
+      if (!short || short === full) return;
+      el.textContent = short;
+      el.setAttribute('title', full);
+    });
+  }
+  trimCardNames();
 
   /* ── 스펙: 짧은 설명(shortDescription) "항목: 값 / 항목: 값" → 목록 ── */
   function parseSpec(s) { // 비교 화면도 같은 규칙으로 읽는다
