@@ -64,8 +64,9 @@ html{min-width:360px} /* 최소 폭 360 (8-1장) — 더 좁은 화면은 맞추
 @media (hover:hover) and (pointer:fine) and (min-width:768px){.oc-gnb-link:hover{color:var(--oc-ink)}.oc-gnb-link:hover::after{transform:scaleX(1)}}
 .oc-gnb-caret{transition:transform .2s}
 .oc-gnb-link[aria-expanded="true"] .oc-gnb-caret{transform:rotate(180deg)}
-.oc-hd-act{display:flex;align-items:center;gap:var(--oc-sp-4)}
-.oc-ic-btn{width:var(--oc-ctl-sm);height:var(--oc-ctl-sm);border-radius:50%;display:inline-flex;align-items:center;justify-content:center;color:var(--oc-ink-2)}
+.oc-hd-act{display:flex;align-items:center;gap:var(--oc-sp-12)} /* 아이콘 원 32 + 간격 12 = 아이콘 자리는 그대로(예전 40 + 4), 누르는 면(40)끼리 겹치지 않게 */
+.oc-ic-btn{position:relative;width:var(--oc-sp-32);height:var(--oc-sp-32);border-radius:50%;display:inline-flex;align-items:center;justify-content:center;color:var(--oc-ink-2)} /* 보이는 원 32(2026-10-28 사용자 결정) — 아이콘 둘레 회색 원을 작게 */
+.oc-ic-btn::before{content:"";position:absolute;left:50%;top:50%;width:var(--oc-ctl-sm);height:var(--oc-ctl-sm);transform:translate(-50%,-50%)} /* 누르는 면은 40 그대로(--oc-ctl-sm, 모바일도 40 고정) — 자주 누르는 헤더·닫기 버튼이라 규칙 '주요 버튼 40 이상' */
 .oc-ic-btn:active{background:var(--oc-surface);color:var(--oc-ink)}
 .oc-qbtn{display:inline-flex;align-items:center;gap:var(--oc-sp-8);height:var(--oc-sp-40);padding:0 var(--oc-sp-8) 0 var(--oc-sp-16);margin-left:var(--oc-sp-8);border-radius:999px;background:var(--oc-primary);color:#fff;font-size:var(--oc-fs-14);font-weight:600;transition:background .15s}
 @media (hover:hover) and (pointer:fine) and (min-width:768px){.oc-qbtn:hover{background:var(--oc-primary-600)}}
