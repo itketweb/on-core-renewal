@@ -444,12 +444,11 @@
       var d = ' data-goodsno="' + esc(c.no) + '" data-name="' + esc(c.name) + '" data-img="' + esc(c.img) + '" data-price="' + esc(c.price) + '"';
       return '<td><button type="button" class="oc-btn oc-btn-sm oc-btn-d" data-quote' + d + '>견적 요청</button><button type="button" class="oc-btn oc-btn-sm oc-btn-o oc-add" data-add' + d + '>담기</button></td>';
     }).join('') + '</tr>';
-    // 같은 줄이 하나도 없으면 체크해도 바뀌는 게 없다 — 체크 상자를 끄고 이유를 옆에 적는다 (2026-10-28)
+    // 같은 줄이 하나도 없으면 체크해도 바뀌는 게 없다 — '다른 항목만 보기'를 아예 보여 주지 않는다 (2026-10-28)
     if (!same) cmpView.classList.remove('oc-is-diffonly');
     var only = cmpView.classList.contains('oc-is-diffonly');
     cmpView.innerHTML = '<div class="oc-cmpv-bar"><p><b>' + n + '개</b> 제품 비교</p>' +
-      '<div class="oc-cmpv-opt"><label class="oc-chk"><input type="checkbox" data-cmp-diff' + (only ? ' checked' : '') + (same ? '' : ' disabled aria-describedby="oc-cmpv-note"') + '> 다른 항목만 보기</label>' +
-      (same ? '' : '<small class="oc-cmpv-note" id="oc-cmpv-note">모든 항목의 값이 달라 숨길 줄이 없습니다</small>') + '</div></div>' +
+      (same ? '<label class="oc-chk"><input type="checkbox" data-cmp-diff' + (only ? ' checked' : '') + '> 다른 항목만 보기</label>' : '') + '</div>' +
       '<table class="oc-cmpv oc-cmpv--' + n + '"><thead><tr><th scope="col" class="oc-cmpv-lb"><span class="oc-sr">항목</span></th>' + head + '</tr></thead><tbody>' + body + '</tbody></table>';
     renderQuote(); // 새로 그린 '담기' 버튼에 담김 표시
   }
