@@ -83,6 +83,7 @@
 .oc-cmpv th,.oc-cmpv td{padding:var(--oc-sp-12) var(--oc-sp-16);border-top:1px solid var(--oc-line-2);text-align:left;vertical-align:top;overflow-wrap:break-word;word-break:keep-all}
 .oc-cmpv thead th{border-top:0;padding-top:var(--oc-sp-20);padding-bottom:var(--oc-sp-20)}
 .oc-cmpv .oc-cmpv-lb{width:var(--oc-sp-112);background:var(--oc-surface);font-size:var(--oc-fs-12);font-weight:600;color:var(--oc-ink-3)}
+@media (hover:hover) and (pointer:fine) and (min-width:768px){.oc-cmpv .oc-is-col{background:color-mix(in srgb,var(--oc-surface) 50%,#fff)}} /* 마우스를 올린 제품 열 (main.js '비교 표 열 강조') — 사진 상자(--oc-img)보다 옅게 */
 .oc-cmpv-sub{display:none} /* 모바일 전용 항목 이름 줄 */
 .oc-cmpv tr.oc-is-diff td{font-weight:700;color:var(--oc-ink)} /* 값이 다른 항목 */
 .oc-is-diffonly [data-same]{display:none}

@@ -452,6 +452,17 @@
       '<table class="oc-cmpv oc-cmpv--' + n + '"><thead><tr><th scope="col" class="oc-cmpv-lb"><span class="oc-sr">항목</span></th>' + head + '</tr></thead><tbody>' + body + '</tbody></table>';
     renderQuote(); // 새로 그린 '담기' 버튼에 담김 표시
   }
+  // 비교 표 열 강조: 마우스를 올린 제품 열만 옅은 바탕 — 여러 줄을 세로로 읽을 때 보던 제품을 놓치지 않게 (세로 구분선 대신, 2026-10-28).
+  // 모양(바탕색)은 CSS 가 마우스 기기 + 768 이상에서만 입힌다. 모바일은 항목 이름 줄(.oc-cmpv-sub, 칸 1개)이 있어 칸 수가 1개인 줄은 건너뛴다
+  if (cmpView) {
+    var paintCol = function (i) {
+      $$('.oc-is-col', cmpView).forEach(function (c) { c.classList.remove('oc-is-col'); });
+      if (i < 1) return;
+      $$('.oc-cmpv tr', cmpView).forEach(function (tr) { if (tr.cells.length > 1 && tr.cells[i]) tr.cells[i].classList.add('oc-is-col'); });
+    };
+    cmpView.addEventListener('mouseover', function (e) { var c = e.target.closest('.oc-cmpv td, .oc-cmpv thead th'); paintCol(c ? c.cellIndex : -1); });
+    cmpView.addEventListener('mouseleave', function () { paintCol(-1); });
+  }
   document.addEventListener('change', function (e) {
     if (e.target.closest('[data-cmp-diff]')) { cmpView.classList.toggle('oc-is-diffonly', e.target.checked); return; }
     var c = e.target.closest('[data-cmp]');
