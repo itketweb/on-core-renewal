@@ -42,16 +42,23 @@
   /* ── 카드 상품명: 이름 뒤에 붙은 괄호(사양) 숨기기 (2026-10-28 사용자 결정, 화면에서만) ──
      예: 'LENOVO P3 Ultra SFF (Ultra7-265/16GB/512GB/230W/FreeDos)' → 'LENOVO P3 Ultra SFF'. 이름 앞 괄호('(2Way) Lenovo …')는 그대로.
      사양은 카드 사양 줄에 따로 나온다. 전체 이름은 data-oc-fullname·title(마우스를 올리면 보임)에 남기고, 견적함·비교는 전체 이름을 쓴다(goodsOf). 고도몰 스킨 oncore.js 와 같은 코드 */
+  // 끝의 괄호 묶음 중 '/'가 든 사양 목록만 뺀 이름 (여러 개면 모두). '(SAN)'·'(NAS)'·'(SAN+NAS)' 같은 제품 종류 표시는 남긴다 (2026-10-28 사용자 결정)
+  function shortName(nm) { var s = String(nm || '').replace(/(\s*[(（][^()（）]*\/[^()（）]*[)）])+\s*$/, '').trim(); return s || String(nm || ''); }
+  // 모든 화면의 제품명(2026-10-28 사용자 결정, 카드 밖으로 넓힘): 카드 이름 · 상품 상세 제목 · 헤더 검색 추천 상품 · 상품 상세로 가는 링크
+  var NAME_SEL = '.oc-card-name, .oc-gv-name, .oc-mini-name, a[href*="goods-view.html"]';
   function trimCardNames(root) {
-    $$('.oc-card-name', root).forEach(function (h) {
+    $$(NAME_SEL, root).forEach(function (h) {
       if (h.hasAttribute('data-oc-fullname')) return;
-      var el = $('a', h) || h, full = el.textContent.replace(/\s+/g, ' ').trim();
-      // 끝의 괄호 묶음 중 '/'가 든 사양 목록만 (여러 개면 모두). '(SAN)'·'(NAS)'·'(SAN+NAS)' 같은 제품 종류 표시는 남긴다 (2026-10-28 사용자 결정)
-      var short = full.replace(/(\s*[(（][^()（）]*\/[^()（）]*[)）])+\s*$/, '').trim();
+      var el = h.matches('.oc-card-name') ? ($('a', h) || h) : h, full = el.textContent.replace(/\s+/g, ' ').trim();
       h.setAttribute('data-oc-fullname', full);
-      if (!short || short === full) return;
-      el.textContent = short;
-      el.setAttribute('title', full);
+      // 글자만 바꾼다 — 링크 안의 사진·아이콘 같은 다른 요소는 그대로 두려고, 사양 괄호가 든 마지막 글자 덩어리만 줄인다
+      var w = document.createTreeWalker(el, NodeFilter.SHOW_TEXT), t, last = null;
+      while ((t = w.nextNode())) if (t.nodeValue.trim()) last = t;
+      if (!last) return;
+      var s = shortName(last.nodeValue.replace(/\s+/g, ' ').trim());
+      if (s === last.nodeValue.replace(/\s+/g, ' ').trim()) return;
+      last.nodeValue = s;
+      if (!el.getAttribute('title')) el.setAttribute('title', full);
     });
   }
   trimCardNames();
@@ -360,7 +367,7 @@
     if (item) item.qty += 1; else quote.push({ no: g.no, name: g.name, img: imgRoot(g.img), price: g.price, qty: 1 });
     saveQuote();
     var qb = $('.oc-qbtn'); qb.classList.remove('oc-is-bump'); void qb.offsetWidth; qb.classList.add('oc-is-bump');
-    if (!silent) toast('<b>' + esc(g.name) + '</b> 견적함에 담았습니다');
+    if (!silent) toast('<b>' + esc(shortName(g.name)) + '</b> 견적함에 담았습니다');
   }
   // 견적 요청서로 넘길 주소: 기존 폼이 goodsNm·spec 값을 '내용' 칸에 자동으로 넣는다 (dbk_estimate_form.html)
   function formUrl() {
@@ -375,7 +382,7 @@
     var total = quote.reduce(function (a, q) { return a + q.qty; }, 0);
     $$('[data-qcount]').forEach(function (el) { el.textContent = total; el.classList.toggle('oc-is-zero', total === 0); });
     $('#oc-qlist').innerHTML = quote.map(function (q) {
-      return '<li class="oc-qitem" data-no="' + esc(q.no) + '"><img src="' + esc(imgSrc(q.img)) + '" alt=""><div><b>' + esc(q.name) + '</b><small>' + esc(q.price || '견적 문의') + '</small>' +
+      return '<li class="oc-qitem" data-no="' + esc(q.no) + '"><img src="' + esc(imgSrc(q.img)) + '" alt=""><div><b title="' + esc(q.name) + '">' + esc(shortName(q.name)) + '</b><small>' + esc(q.price || '견적 문의') + '</small>' +
         '<div class="oc-qty"><button type="button" data-q="-1" aria-label="수량 줄이기">−</button><input type="number" min="1" value="' + q.qty + '" aria-label="수량"><button type="button" data-q="1" aria-label="수량 늘리기">+</button></div></div>' +
         '<button type="button" class="oc-qdel">삭제</button></li>';
     }).join('');
@@ -430,7 +437,7 @@
     cmpBar.hidden = !show;
     document.body.classList.toggle('oc-has-cmp', show);
     var html = cmp.map(function (c) {
-      return '<div class="oc-cmp-item"><img src="' + esc(imgSrc(c.img)) + '" alt=""><span>' + esc(c.name) + '</span><button type="button" data-cmp-del="' + esc(c.no) + '" aria-label="' + esc(c.name) + ' 비교에서 빼기">×</button></div>';
+      return '<div class="oc-cmp-item"><img src="' + esc(imgSrc(c.img)) + '" alt=""><span title="' + esc(c.name) + '">' + esc(shortName(c.name)) + '</span><button type="button" data-cmp-del="' + esc(c.no) + '" aria-label="' + esc(c.name) + ' 비교에서 빼기">×</button></div>';
     }).join('');
     for (var i = cmp.length; i < 4; i++) html += '<div class="oc-cmp-slot">제품 추가</div>';
     $('#oc-cmpList').innerHTML = html;
@@ -444,7 +451,7 @@
      맨 위 제품 띠(번호·사진·이름·빼기) → 항목마다 제품 번호·이름과 값을 한 줄씩 → 맨 아래 제품별 견적 버튼.
      같은 항목의 값이 위아래로 붙어 있어 옆으로 밀거나 펼치지 않고 바로 비교된다. '다른 항목만 보기'(data-same)·값 다름 강조(oc-is-diff)는 표와 같다.
      PC(768 이상)는 CSS 가 이 목록을 숨기고 표를 보인다 */
-  function cmpShort(nm) { return String(nm || '').replace(/(\s*[(（][^()（）]*\/[^()（）]*[)）])+\s*$/, '').trim() || String(nm || ''); } // 카드와 같은 규칙: 끝의 '/' 든 사양 괄호만 뺀다
+  var cmpShort = shortName; // 카드·상세·견적함과 같은 규칙 (shortName, 위 '카드 상품명')
   function cmpMobile(n, specs, labels, norm, differs) {
     var who = function (i) { return '<dt><b class="oc-cmpm-no">' + (i + 1) + '</b><span>' + esc(cmpShort(cmp[i].name)) + '</span></dt>'; };
     var sec = function (label, vals, cls) {
@@ -498,7 +505,7 @@
         '<button type="button" class="oc-cmpv-del" data-cmp-del="' + esc(c.no) + '" aria-label="' + esc(c.name) + ' 비교에서 빼기"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>' +
         '<a href="' + esc(view + '?no=' + c.no) + '" class="oc-cmpv-img"><img src="' + esc(imgSrc(c.img)) + '" alt=""></a>' +
         (c.brand ? '<em class="oc-brand">' + esc(c.brand) + '</em>' : '') +
-        '<a href="' + esc(view + '?no=' + c.no) + '" class="oc-cmpv-name">' + esc(c.name) + '</a>' +
+        '<a href="' + esc(view + '?no=' + c.no) + '" class="oc-cmpv-name" title="' + esc(c.name) + '">' + esc(shortName(c.name)) + '</a>' +
         (c.mfg && c.mfg !== '—' ? '<small>' + esc(c.mfg) + '</small>' : '') + '</div></th>';
     }).join('');
     var body = row('가격', cmp.map(function (c) { return '<td class="oc-cmpv-price">' + esc(c.price || '구성에 따라 견적') + '</td>'; }),
