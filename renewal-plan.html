@@ -75,7 +75,7 @@
       <button type="button" class="oc-ic-btn" aria-label="검색" data-open="oc-search">
         <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="m16 16 4.5 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
       </button>
-      <a href="pages/login.html" class="oc-ic-btn oc-hide-sm" aria-label="로그인">
+      <a href="pages/login.html" class="oc-ic-btn" aria-label="로그인">
         <!-- 아이콘: Lucide/Feather user (ISC·MIT) — 아래가 열린 일반 프로필 모양, 선 굵기는 돋보기와 같은 1.8 --><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></g></svg>
       </a>
       <button type="button" class="oc-qbtn" data-open="oc-quote">
@@ -143,37 +143,37 @@
     <div class="oc-hero-track">
       <a class="oc-slide oc-is-on" href="pages/goods-view.html?no=1000000710" aria-roledescription="slide" aria-label="1 / 6">
         <picture>
-          <source media="(max-width:767px)" srcset="img/hero/hero-1-m.jpg" width="720" height="900">
+          <source media="(max-width:767px)" srcset="img/hero/hero-1-m.jpg" width="720" height="720">
           <img src="img/hero/hero-1.jpg" width="2464" height="960" fetchpriority="high" alt="ThinkStation P5 Tower Gen2 신규 입고 — 설계와 렌더링을 멈추지 않게. Xeon W3와 RTX 그래픽 워크스테이션">
         </picture>
       </a>
       <a class="oc-slide" href="pages/goods-view.html?no=1000000073" aria-roledescription="slide" aria-label="2 / 6">
         <picture>
-          <source media="(max-width:767px)" srcset="img/hero/hero-2-m.jpg" width="720" height="900">
+          <source media="(max-width:767px)" srcset="img/hero/hero-2-m.jpg" width="720" height="720">
           <img src="img/hero/hero-2.jpg" width="2464" height="960" loading="lazy" alt="ThinkSystem SR650 V4 — 서버는 구성부터 함께. CPU·메모리·디스크·RAID 맞춤 구성 견적">
         </picture>
       </a>
       <a class="oc-slide" href="pages/goods-view.html?no=1000000069" aria-roledescription="slide" aria-label="3 / 6">
         <picture>
-          <source media="(max-width:767px)" srcset="img/hero/hero-3-m.jpg" width="720" height="900">
+          <source media="(max-width:767px)" srcset="img/hero/hero-3-m.jpg" width="720" height="720">
           <img src="img/hero/hero-3.jpg" width="2464" height="960" loading="lazy" alt="ThinkPad X1 Carbon Gen 13 — 가볍게 들고, 오래 쓰는 업무 노트북. 법인 구매 견적">
         </picture>
       </a>
       <a class="oc-slide" href="pages/goods-view.html?no=1000000367" aria-roledescription="slide" aria-label="4 / 6">
         <picture>
-          <source media="(max-width:767px)" srcset="img/hero/hero-4-m.jpg" width="720" height="900">
+          <source media="(max-width:767px)" srcset="img/hero/hero-4-m.jpg" width="720" height="720">
           <img src="img/hero/hero-4.jpg" width="2464" height="960" loading="lazy" alt="ThinkStation P3 Ultra SFF 신규 입고 — 책상 위는 작게, 성능은 그대로. Core Ultra 7 소형 워크스테이션">
         </picture>
       </a>
       <a class="oc-slide" href="pages/goods-view.html?no=1000000057" aria-roledescription="slide" aria-label="5 / 6">
         <picture>
-          <source media="(max-width:767px)" srcset="img/hero/hero-5-m.jpg" width="720" height="900">
+          <source media="(max-width:767px)" srcset="img/hero/hero-5-m.jpg" width="720" height="720">
           <img src="img/hero/hero-5.jpg" width="2464" height="960" loading="lazy" alt="ASUS ExpertCenter D7 미니타워 — 사무실 PC 교체, 한 번에 맞춥니다. 수량별 견적">
         </picture>
       </a>
       <a class="oc-slide" href="pages/goods-view.html?no=1000000077" aria-roledescription="slide" aria-label="6 / 6">
         <picture>
-          <source media="(max-width:767px)" srcset="img/hero/hero-6-m.jpg" width="720" height="900">
+          <source media="(max-width:767px)" srcset="img/hero/hero-6-m.jpg" width="720" height="720">
           <img src="img/hero/hero-6.jpg" width="2464" height="960" loading="lazy" alt="HCF-A5500 All-Flash 스토리지 — 흩어진 파일을 한 곳에 안전하게. SAN·NAS 구성 견적">
         </picture>
       </a>
@@ -382,6 +382,7 @@
   </div>
   <div class="oc-dr-ft">
     <a class="oc-btn oc-btn-p oc-btn-block" id="oc-qsubmit" href="https://www.on-core.co.kr/dbk/dbk_estimate_form.php?ptype=e" target="_blank" rel="noopener">견적 요청서 작성</a>
+    <button type="button" class="oc-btn oc-btn-o oc-btn-block" data-quote-cmp hidden>비교하기</button><!-- 견적함 '비교하기' (2026-10-28): 2개 이상이면 보인다 — 앞 4개로 비교 화면 -->
     <button type="button" class="oc-btn oc-btn-o oc-btn-block" data-qclear>견적함 비우기</button>
   </div>
 </aside>
@@ -404,7 +405,7 @@
         <div class="oc-mnav-sub" id="oc-mnav-cs" hidden><a class="oc-mnav-sublink" href="pages/notice.html">공지사항</a><a class="oc-mnav-sublink" href="pages/inquiry.html">1:1 문의</a><a class="oc-mnav-sublink" href="pages/cs.html">고객센터</a></div>
       </div>
     </nav>
-    <div class="oc-mnav-act"><a href="pages/login.html" class="oc-btn oc-btn-o">로그인</a><a href="pages/join.html" class="oc-btn oc-btn-d">회원가입</a></div>
+    <!-- 맨 아래 로그인·회원가입 버튼 줄은 없앴다(2026-10-28) — 헤더 프로필 아이콘이 모바일에서도 보인다 -->
   </div>
 </aside>
 

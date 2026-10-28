@@ -62,7 +62,7 @@
       <button type="button" class="oc-ic-btn" aria-label="검색" data-open="oc-search">
         <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="m16 16 4.5 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
       </button>
-      <a href="login.html" class="oc-ic-btn oc-hide-sm" aria-label="로그인">
+      <a href="login.html" class="oc-ic-btn" aria-label="로그인">
         <!-- 아이콘: Lucide/Feather user (ISC·MIT) — 아래가 열린 일반 프로필 모양, 선 굵기는 돋보기와 같은 1.8 --><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></g></svg>
       </a>
       <button type="button" class="oc-qbtn" data-open="oc-quote">
@@ -266,6 +266,7 @@
   </div>
   <div class="oc-dr-ft">
     <a class="oc-btn oc-btn-p oc-btn-block" id="oc-qsubmit" href="https://www.on-core.co.kr/dbk/dbk_estimate_form.php?ptype=e" target="_blank" rel="noopener">견적 요청서 작성</a>
+    <button type="button" class="oc-btn oc-btn-o oc-btn-block" data-quote-cmp hidden>비교하기</button><!-- 견적함 '비교하기' (2026-10-28): 2개 이상이면 보인다 — 앞 4개로 비교 화면 -->
     <button type="button" class="oc-btn oc-btn-o oc-btn-block" data-qclear>견적함 비우기</button>
   </div>
 </aside>
@@ -288,7 +289,7 @@
         <div class="oc-mnav-sub" id="oc-mnav-cs" hidden><a class="oc-mnav-sublink" href="notice.html">공지사항</a><a class="oc-mnav-sublink" href="inquiry.html">1:1 문의</a><a class="oc-mnav-sublink" href="cs.html">고객센터</a></div>
       </div>
     </nav>
-    <div class="oc-mnav-act"><a href="login.html" class="oc-btn oc-btn-o">로그인</a><a href="join.html" class="oc-btn oc-btn-d">회원가입</a></div>
+    <!-- 맨 아래 로그인·회원가입 버튼 줄은 없앴다(2026-10-28) — 헤더 프로필 아이콘이 모바일에서도 보인다 -->
   </div>
 </aside>
 

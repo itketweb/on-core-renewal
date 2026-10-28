@@ -13,7 +13,7 @@
   --oc-line:#DFE1E5; --oc-line-2:#ECEDF0;
   --oc-lift:0 18px 40px -24px rgba(22,24,29,.28);
   --oc-bg:#FFFFFF; --oc-surface:#F3F4F6; --oc-hover:#F8F9FA; --oc-divider:rgba(22,24,29,.07); --oc-img:#F4F4F4;
-  --oc-lenovo:var(--oc-primary); --oc-asus:#00539B;
+  --oc-lenovo:var(--oc-primary); --oc-asus:#00539B; --oc-g2b:#003764; /* 조달안내 마우스 강조 — 정부 상징(조달청) 청색 GOK Blue RGB 0·55·100 */
 
   /* 크기 규칙 — 단위는 rem(1rem = 16px, 고도몰 html 기본값 그대로. 모바일 768 미만은 html 14px 이라 1rem = 14px). 여백·radius·너비·높이는 --oc-sp-*, 글자 크기는 --oc-fs-* 만 쓴다
      토큰 이름의 숫자는 px 기준 크기다(--oc-sp-24 = 1.5rem = 24px). 아래 규칙에 px 숫자를 직접 쓰지 않는다
@@ -150,7 +150,7 @@ html{min-width:360px} /* 최소 폭 360 (8-1장) — 더 좁은 화면은 맞추
 
 /* ── 히어로 ── */
 /* 슬라이드 = 통이미지 배너 1장. 글자·가격·버튼은 이미지 안에 있다 (배너 관리에서 이미지만 바꾸면 끝).
-   PC 2560×960(화면 1280×480, 8:3) / 모바일 720×900(4:5 세로형, 별도 이미지) — 비율이 바뀌면 아래 aspect-ratio 두 곳만 고친다 */
+   PC 2560×960(화면 1280×480, 8:3) / 모바일 720×720(1:1, 별도 이미지 — 2026-10-28 4:5 에서 바꿈) — 비율이 바뀌면 아래 aspect-ratio 두 곳만 고친다 */
 .oc-hero{padding:var(--oc-sp-24) 0 var(--oc-sp-40)}
 .oc-hero-track{position:relative;display:grid;border-radius:var(--oc-r-lg);overflow:hidden;background:var(--oc-img);aspect-ratio:2560/960;touch-action:pan-y} /* 가로 밀기는 main.js 가 슬라이드 넘김으로, 세로는 페이지 스크롤로 */
 .oc-slide{grid-area:1/1;display:block;opacity:0;visibility:hidden;transition:opacity .5s var(--oc-ease),visibility 0s .5s}
@@ -214,10 +214,10 @@ html{min-width:360px} /* 최소 폭 360 (8-1장) — 더 좁은 화면은 맞추
 .oc-display--g2b .oc-card{border:1px solid var(--oc-line-2)} /* 조달안내는 흰 바탕 섹션이라(위아래가 회색 섹션) 흰 카드에 옅은 테두리로 모양을 잡는다 */
 .oc-g2b-item{display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-rows:auto auto 1fr;align-items:start;column-gap:var(--oc-sp-16);padding-top:var(--oc-sp-20);border-top:1px solid var(--oc-line);transition:border-color .15s,box-shadow .15s}
 .oc-g2b em{grid-column:1;margin-bottom:var(--oc-sp-12);font-style:normal;font-size:var(--oc-fs-14);font-weight:700;color:var(--oc-ink-3);transition:color .15s}
-.oc-g2b b{grid-column:1;font-size:var(--oc-fs-20)}
+.oc-g2b b{grid-column:1;font-size:var(--oc-fs-20);transition:color .15s}
 .oc-g2b span{grid-column:1;margin-top:var(--oc-sp-8);font-size:var(--oc-fs-16);color:var(--oc-ink-3)}
 .oc-g2b svg{grid-column:2;grid-row:1/4;align-self:end;width:var(--oc-sp-24);height:var(--oc-sp-24);color:var(--oc-ink-3);transition:transform .2s var(--oc-ease),color .15s} /* 아이콘: 카탈로그 = 내려받기, 나라장터 = 새 창 */
-@media (hover:hover) and (pointer:fine) and (min-width:768px){.oc-g2b-item:hover{border-top-color:var(--oc-ink);box-shadow:inset 0 1px 0 var(--oc-ink)}.oc-g2b-item:hover .oc-g2b-label{color:var(--oc-ink)}.oc-g2b-item:hover .oc-g2b-ic{color:var(--oc-ink)}.oc-g2b-dl:hover svg{transform:translateY(3px)}.oc-g2b-web:hover svg{transform:translate(2px,-2px)}} /* 위 선 검정 2px(안쪽 그림자로 1px 더해 높이 변화 없음) + 라벨·→ 진하게 + → 이동. 빨강은 쓰지 않는다(8장) */
+@media (hover:hover) and (pointer:fine) and (min-width:768px){.oc-g2b-item:hover{border-top-color:var(--oc-g2b);box-shadow:inset 0 1px 0 var(--oc-g2b)}.oc-g2b-item:hover :is(.oc-g2b-label,.oc-g2b-name,.oc-g2b-ic){color:var(--oc-g2b)}.oc-g2b-dl:hover svg{transform:translateY(3px)}.oc-g2b-web:hover svg{transform:translate(2px,-2px)}} /* 위 선 2px(안쪽 그림자로 1px 더해 높이 변화 없음) + 라벨·제목·아이콘을 조달청 상징 남색(--oc-g2b)으로 + 아이콘 이동 (2026-10-28, 그전 검정). 빨강은 쓰지 않는다(8장) */
 .oc-types span{font-size:var(--oc-fs-14);color:var(--oc-ink-3);margin-top:2px}
 
 
@@ -247,7 +247,8 @@ html{min-width:360px} /* 최소 폭 360 (8-1장) — 더 좁은 화면은 맞추
 .oc-card{background:#fff;border-radius:var(--oc-r);display:flex;flex-direction:column;overflow:hidden;animation:fade .35s var(--oc-ease) both;transition:box-shadow .25s}
 .oc-card:nth-child(2){animation-delay:40ms}.oc-card:nth-child(3){animation-delay:80ms}.oc-card:nth-child(4){animation-delay:120ms}
 .oc-card:nth-child(5){animation-delay:160ms}.oc-card:nth-child(6){animation-delay:200ms}.oc-card:nth-child(7){animation-delay:240ms}.oc-card:nth-child(8){animation-delay:280ms}
-.oc-card-img{display:block;aspect-ratio:4/3;margin:var(--oc-sp-16) var(--oc-sp-16) 0;border-radius:var(--oc-r-sm);background:var(--oc-img);overflow:hidden;position:relative}
+/* 사진 틀 1:1 (2026-10-28, 4:3 → 1:1) — 운영 상품 사진이 정사각(1000×1000)이라 4:3 이면 좌우 회색 여백이 남고 사진이 작아졌다 */
+.oc-card-img{display:block;aspect-ratio:1;margin:var(--oc-sp-16) var(--oc-sp-16) 0;border-radius:var(--oc-r-sm);background:var(--oc-img);overflow:hidden;position:relative}
 .oc-card-img img{width:100%;height:100%;object-fit:contain;transition:transform .5s var(--oc-ease)} /* 확대하지 않는다 — 운영 상품 사진은 정사각형에 왼쪽 위 브랜드 로고가 들어 있어 키우면 로고가 잘린다 */
 @media (hover:hover) and (pointer:fine) and (min-width:768px){ /* 마우스에서만 — 터치 화면은 누른 뒤 그림자·확대가 남는다. 상품명 색은 바꾸지 않는다(빨강은 버튼·브랜드 강조용, 효과는 그림자 + 사진 확대 둘로 충분) */
   .oc-card:hover{box-shadow:var(--oc-lift)}
@@ -476,8 +477,6 @@ body.oc-is-searching .oc-top{z-index:62} /* 검색 패널이 열리면 헤더(�
 .oc-mnav-sublink{display:flex;align-items:center;min-height:var(--oc-sp-40);font-size:var(--oc-fs-16);font-weight:400;color:var(--oc-ink-2)}
 .oc-mnav-row:active,.oc-mnav-sublink:active{color:var(--oc-primary)}
 @media (hover:hover) and (pointer:fine) and (min-width:768px){.oc-mnav-row:hover,.oc-mnav-sublink:hover{color:var(--oc-primary)}}
-.oc-mnav-act{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--oc-sp-8);margin-top:var(--oc-sp-24)}
-.oc-mnav-act .oc-btn{min-width:0;padding:0 var(--oc-sp-12)}
 .oc-mnav small{font-size:var(--oc-fs-14);color:var(--oc-ink-3);font-weight:500}
 
 
@@ -547,13 +546,14 @@ body.oc-is-locked .oc-toast{opacity:0} /* 서랍이 열리면 서랍 아래 버�
   :root{--oc-fs-12:12px;--oc-ctl:44px;--oc-ctl-sm:40px}
   .oc-ft{padding-bottom:calc(var(--oc-sp-32) + var(--oc-sp-64) + var(--oc-safe-b))} /* 푸터 자체 여백 32 + 하단 고정 바(64) 높이만큼 — 페이지(.oc)가 아니라 푸터에 줘야 푸터 아래에 흰 띠가 생기지 않는다 */
   .oc-gnb,.oc-hide-sm{display:none} /* 햄버거 메뉴는 모바일(768 미만)에서만 */
+  .oc-hd-act{gap:var(--oc-sp-16)} /* 모바일은 rem 이 87.5% 라 간격 12 가 10.5px — 검색·프로필 아이콘(28)의 누르는 면 40 이 겹치지 않게 14px (2026-10-28, 프로필 아이콘 모바일 표시) */
   .oc-hd-burger{display:inline-block}
   .oc-hd-in{gap:var(--oc-sp-8)}
   .oc-hd-logo{margin-right:auto}
   .oc-hd-logo img{height:2rem}
   .oc-qbtn{display:none}
   .oc-hero{padding:var(--oc-sp-16) 0 var(--oc-sp-24)}
-  .oc-hero-track{aspect-ratio:720/900;border-radius:var(--oc-r)} /* 모바일 배너 비율 */
+  .oc-hero-track{aspect-ratio:720/720;border-radius:var(--oc-r)} /* 모바일 배너 1:1 (2026-10-28, 4:5 → 1:1) — 360 폭에서 높이 410 → 328, 첫 화면에 신뢰 줄까지 보이게 */
   .oc-hero-ctrl{margin-top:var(--oc-sp-16)}
   /* 신뢰 줄: 모바일에서도 2×2 로 남긴다 — 첫 화면에서 온코어를 믿을 이유가 보이게 */
   .oc-trust-item{gap:var(--oc-sp-8);padding:var(--oc-sp-12);font-size:var(--oc-fs-12);line-height:1.4}
@@ -578,8 +578,8 @@ body.oc-is-locked .oc-toast{opacity:0} /* 서랍이 열리면 서랍 아래 버�
   .oc-card-spec-row .oc-card-spec-k{flex:none;min-width:0;width:calc(var(--oc-fs-12) * 3)} /* 모바일도 라벨을 보인다 — 메모리·저장을 나눠 쓰므로 라벨 없이는 '16GB' 가 무엇인지 모른다. 폭은 가장 긴 '메모리' 기준 */
   .oc-card-mfg,.oc-card .oc-chk,.oc-card-price .oc-more-note{display:none}
   .oc-card-amt{font-size:var(--oc-fs-18)}
-  .oc-card-act{flex-direction:column}
-  .oc-card-act .oc-btn{height:var(--oc-ctl-sm);flex:none;width:100%}
+  /* 모바일 2열 카드도 버튼 가로 (2026-10-28, 그전 세로) — 카드가 48px 짧아져 한 화면에 상품이 더 보인다. 480~767 은 카드가 넓어 반씩 나눈다 (479 이하는 아래) */
+  .oc-card-act .oc-btn{height:var(--oc-ctl-sm);flex:1 1 0;min-width:0;padding:0 var(--oc-sp-8)}
   .oc-posts--list .oc-post{grid-template-columns:var(--oc-sp-40) minmax(0,1fr);column-gap:var(--oc-sp-12);padding:var(--oc-sp-24) var(--oc-sp-12)}
   .oc-posts--list .oc-post::before{font-size:var(--oc-fs-20)}
   .oc-posts--list h3{font-size:var(--oc-fs-18)}
@@ -625,6 +625,9 @@ body.oc-is-locked .oc-toast{opacity:0} /* 서랍이 열리면 서랍 아래 버�
   .oc-display--g2b .oc-card:nth-child(n+3){display:none} /* 조달 제품은 479 이하에서도 2개 — 사용자 결정(2026-10-28): 카드는 한 줄만, 가로 카드 2장 이상 쌓지 않음 */
   .oc-display--best .oc-card-img{margin:0;aspect-ratio:1;border-radius:var(--oc-r-sm)}
   .oc-display--best .oc-card-body{padding:0}
+  /* 360~479 2열 카드: 반씩 나누면 '견적 요청'(약 66px)이 넘치므로 견적 요청은 남는 폭을 모두, 담기는 '담김 ✓' 이 들어가는 폭으로 고정 — 담을 때 폭이 흔들리지 않게 (360 에서 견적 요청 79 · 담기 56) */
+  .oc-card-act .oc-btn{flex:1 1 auto}
+  .oc-card-act .oc-add{flex:none;min-width:calc(var(--oc-sp-64) + var(--oc-sp-8))} /* '견적 담기'·'담김 ✓' 바뀌어도 폭 고정 (스킨 87fecfc 와 같은 값) */
   .oc-display--best .oc-card-act{flex-direction:row;margin-top:var(--oc-sp-12)}
   .oc-display--best .oc-card-act .oc-btn{flex:1;width:auto}
 }

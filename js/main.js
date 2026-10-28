@@ -390,6 +390,7 @@
     $('#oc-qempty').hidden = quote.length > 0;
     $('[data-qclear]').hidden = quote.length === 0;
     $('#oc-qsubmit').href = formUrl();
+    $$('[data-quote-cmp]').forEach(function (b) { b.hidden = quote.length < 2; }); // 견적함 '비교하기' — 2개 이상일 때만
     $$('[data-quote-go]').forEach(function (b) { b.href = formUrl(); });
     $$('[data-add]').forEach(function (b) {
       var g = goodsOf(b), on = !!(g && findQ(g.no));
@@ -452,37 +453,6 @@
      맨 위 제품 띠(번호·사진·이름·빼기) → 항목마다 제품 번호·이름과 값을 한 줄씩 → 맨 아래 제품별 견적 버튼.
      같은 항목의 값이 위아래로 붙어 있어 옆으로 밀거나 펼치지 않고 바로 비교된다. '다른 항목만 보기'(data-same)·값 다름 강조(oc-is-diff)는 표와 같다.
      PC(768 이상)는 CSS 가 이 목록을 숨기고 표를 보인다 */
-  var cmpShort = shortName; // 카드·상세·견적함과 같은 규칙 (shortName, 위 '카드 상품명')
-  function cmpMobile(n, specs, labels, norm, differs) {
-    var who = function (i) { return '<dt><b class="oc-cmpm-no">' + (i + 1) + '</b><span>' + esc(cmpShort(cmp[i].name)) + '</span></dt>'; };
-    var sec = function (label, vals, cls) {
-      var diff = differs(vals.map(function (v) { return v.raw; }));
-      return '<section class="oc-cmpm-sec' + (diff ? ' oc-is-diff' : '') + (cls ? ' ' + cls : '') + '"' + (diff ? '' : ' data-same') + '><h3 class="oc-cmpm-t">' + esc(label) + '</h3><dl>' +
-        vals.map(function (v, i) { return '<div class="oc-cmpm-row">' + who(i) + '<dd>' + v.html + '</dd></div>'; }).join('') + '</dl></section>';
-    };
-    var view = window.OC_VIEW || 'goods-view.html';
-    var goods = cmp.map(function (c, i) {
-      var url = esc(view + '?no=' + c.no);
-      return '<li class="oc-cmpm-g"><b class="oc-cmpm-no">' + (i + 1) + '</b>' +
-        '<a href="' + url + '" class="oc-cmpm-img"><img src="' + esc(imgSrc(c.img)) + '" alt=""></a>' +
-        '<div class="oc-cmpm-gt">' + (c.brand ? '<em class="oc-brand">' + esc(c.brand) + '</em>' : '') +
-        '<a href="' + url + '" class="oc-cmpm-name" title="' + esc(c.name) + '">' + esc(cmpShort(c.name)) + '</a></div>' +
-        '<button type="button" class="oc-cmpv-del" data-cmp-del="' + esc(c.no) + '" aria-label="' + esc(c.name) + ' 비교에서 빼기"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button></li>';
-    }).join('');
-    var out = sec('가격', cmp.map(function (c) { return { raw: c.price, html: esc(c.price || '구성에 따라 견적') }; }), 'oc-cmpm-price');
-    labels.forEach(function (l) {
-      out += sec(l, specs.map(function (rows) {
-        var r = rows.filter(function (x) { return norm(x[0] || '사양') === norm(l); })[0], v = r ? r[1] : '';
-        return { raw: v, html: v ? esc(v) : '<span class="oc-cmpv-none">—</span>' };
-      }));
-    });
-    var act = cmp.map(function (c, i) {
-      var d = ' data-goodsno="' + esc(c.no) + '" data-name="' + esc(c.name) + '" data-img="' + esc(c.img) + '" data-price="' + esc(c.price) + '"';
-      return '<div class="oc-cmpm-row">' + who(i) + '<dd><button type="button" class="oc-btn oc-btn-sm oc-btn-d" data-quote' + d + '>견적 요청</button><button type="button" class="oc-btn oc-btn-sm oc-btn-o oc-add" data-add' + d + '>견적 담기</button></dd></div>';
-    }).join('');
-    return '<div class="oc-cmpm oc-cmpm--' + n + '"><ol class="oc-cmpm-goods" aria-label="비교 중인 제품">' + goods + '</ol>' + out +
-      '<section class="oc-cmpm-sec oc-cmpm-act"><h3 class="oc-cmpm-t">견적</h3><dl>' + act + '</dl></section></div>';
-  }
   function renderCmpView() {
     if (cmp.length < 2) {
       cmpView.innerHTML = '<div class="oc-empty"><b class="oc-empty-t">비교할 제품을 2개 이상 골라 주세요.</b><p class="oc-empty-d">제품 목록에서 카드 아래 \'비교\'를 체크하면 최대 4개까지 나란히 볼 수 있습니다.</p>' +
@@ -498,7 +468,7 @@
     function row(label, cells, diff) {
       if (!diff) same++; // '다른 항목만 보기'로 숨길 줄 수
       // 모바일은 왼쪽 항목 칸을 숨기고, 항목 이름을 값 줄 위에 한 줄로 따로 보여 준다 (좁은 화면에서 제품 칸을 넓게)
-      return '<tr class="oc-cmpv-sub"' + (diff ? '' : ' data-same') + '><th colspan="' + (n + 1) + '" scope="colgroup">' + esc(label) + '</th></tr>' +
+      return '<tr class="oc-cmpv-sub"' + (diff ? '' : ' data-same') + '><th colspan="' + (n + 1) + '" scope="colgroup"><span>' + esc(label) + '</span></th></tr>' +
         '<tr' + (diff ? ' class="oc-is-diff"' : ' data-same') + '><th scope="row" class="oc-cmpv-lb">' + esc(label) + '</th>' + cells.join('') + '</tr>';
     }
     var head = cmp.map(function (c) {
@@ -524,8 +494,7 @@
     var only = cmpView.classList.contains('oc-is-diffonly');
     cmpView.innerHTML = '<div class="oc-cmpv-bar"><p><b>' + n + '개</b> 제품 비교</p>' +
       (same ? '<label class="oc-chk"><input type="checkbox" data-cmp-diff' + (only ? ' checked' : '') + '> 다른 항목만 보기</label>' : '') + '</div>' +
-      '<table class="oc-cmpv oc-cmpv--' + n + '"><thead><tr><th scope="col" class="oc-cmpv-lb"><span aria-hidden="true">제품</span><span class="oc-sr">항목</span></th>' + head + '</tr></thead><tbody>' + body + '</tbody></table>' +
-      cmpMobile(n, specs, labels, norm, differs);
+      '<div class="oc-cmpv-scroll"><table class="oc-cmpv oc-cmpv--' + n + '"><thead><tr><th scope="col" class="oc-cmpv-lb"><span aria-hidden="true">제품</span><span class="oc-sr">항목</span></th>' + head + '</tr></thead><tbody>' + body + '</tbody></table></div>';
     renderQuote(); // 새로 그린 '견적 담기' 버튼에 담김 표시
   }
   // 비교 표 열 강조: 마우스를 올린 제품 열만 옅은 바탕 — 여러 줄을 세로로 읽을 때 보던 제품을 놓치지 않게 (세로 구분선 대신, 2026-10-28).
@@ -559,6 +528,20 @@
     if (e.target.closest('[data-cmp-go]') && cmp.length < 2) { e.preventDefault(); toast('비교할 제품을 2개 이상 골라 주세요'); }
   });
   renderCmp();
+
+  /* 견적함 '비교하기' (2026-10-28): 견적함 앞 4개로 비교 목록을 바꾸고 비교 화면으로. 견적함 저장값엔 사양·브랜드가 없어 상품 정보에서 채운다
+     (시안 = 목업 상품 데이터 OC_MOCK, 고도몰 = 화면 카드 사양 → 상세 스펙 읽기). 4개가 넘으면 비교 화면에서 '앞 4개' 안내. 모바일에도 보인다 */
+  document.addEventListener('click', function (e) {
+    if (!e.target.closest('[data-quote-cmp]')) return;
+    if (quote.length < 2) { toast('비교할 제품을 2개 이상 담아 주세요'); return; }
+    var G = (window.OC_MOCK || {}).GOODS || {};
+    cmp = quote.slice(0, 4).map(function (q) { var g = G[q.no] || {}; return { no: q.no, name: q.name, img: q.img, price: q.price, brand: g.brandNm || '', mfg: g.goodsModelNo || '', spec: g.shortDescription || '' }; });
+    store.set('oc-cmp', cmp);
+    try { if (quote.length > 4) sessionStorage.setItem('oc-cmp-note', '1'); } catch (er) { /* 안내만 빠짐 */ }
+    var go = $('[data-cmp-go]');
+    location.href = go ? go.href : (window.OC_ROOT || '') + 'pages/compare.html';
+  });
+  try { if (cmpView && sessionStorage.getItem('oc-cmp-note')) { sessionStorage.removeItem('oc-cmp-note'); setTimeout(function () { toast('견적함 앞 4개 제품을 비교합니다'); }, 300); } } catch (er) { /* 안내만 빠짐 */ }
 
   /* ── 양식 오류 표시: 필수 항목을 비우고 내면 그 칸을 빨강 테두리 + 아래 한 줄 안내. 고쳐 입력하면 바로 지운다 ── */
   document.addEventListener('invalid', function (e) { // invalid 는 거품이 일지 않아 잡기 단계에서 받는다

@@ -114,6 +114,15 @@
       });
       qIn.addEventListener('change', sync);
       sync();
+      // 모바일 구매 바: 가격이 있는 상품은 '견적 담기' 대신 장바구니·바로 구매 (시안은 안내만 — 고도몰은 장바구니·주문서로 이동)
+      $$('[data-gv-buy]').forEach(function (b) { b.hidden = false; });
+      $$('[data-gv-quoteonly]').forEach(function (b) { b.remove(); }); // 가격 상품 바 = 견적함 · 장바구니 · 바로 구매 (담기·견적 요청은 본문 버튼으로). 숨기지 않고 빼야 'body:has(.oc-gv-bar [data-quote])' 가 본문 버튼을 보인다 — 고도몰은 서버가 출력하지 않음
+      document.addEventListener('click', function (e) {
+        var b = e.target.closest('[data-gv-buy]'); if (!b) return;
+        var t = $('#oc-toast'); if (!t) return;
+        t.innerHTML = b.getAttribute('data-gv-buy') === 'cart' ? '<b>장바구니에 담았습니다</b>' : '<b>주문서로 이동합니다</b>';
+        t.classList.add('oc-is-on'); setTimeout(function () { t.classList.remove('oc-is-on'); }, 2400);
+      });
     }
     $$('[data-act]').forEach(function (b) {
       b.setAttribute('data-goodsno', no); b.setAttribute('data-name', g.goodsNm); b.setAttribute('data-img', imgSrc); b.setAttribute('data-price', quote ? g.goodsPriceString : M.money(g.goodsPrice) + '원');
