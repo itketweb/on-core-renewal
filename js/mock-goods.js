@@ -525,7 +525,7 @@
           ? '<b class="oc-q oc-card-amt">' + esc(g.goodsPriceString) + '</b><small class="oc-card-note">구성·수량에 따라 견적</small>' // 모든 분류에 맞는 공통 문구 — 상품마다 입력하지 않는다(2026-10-27)
           : '<b class="oc-card-amt">' + money(g.goodsPrice) + '원</b><small class="oc-card-note">부가세 포함<span class="oc-more-note"> · 수량 구매 시 별도 견적</span></small>') +
         '</div>' +
-        '<div class="oc-card-act"><button type="button" class="oc-btn oc-btn-d" data-quote>견적 요청</button><button type="button" class="oc-btn oc-btn-o oc-add" data-add>담기</button></div>' +
+        '<div class="oc-card-act"><button type="button" class="oc-btn oc-btn-d" data-quote>견적 요청</button><button type="button" class="oc-btn oc-btn-o oc-add" data-add>견적 담기</button></div>' +
         '<label class="oc-chk"><input type="checkbox" data-cmp> 비교</label>' +
       '</div>' +
     '</li>';

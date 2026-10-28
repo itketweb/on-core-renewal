@@ -141,7 +141,7 @@
         <!-- 버튼 속성(data-goodsno 등)은 JS 가 채운다. 견적함 담기는 main.js 가 처리 -->
         <div class="oc-gv-act">
           <button type="button" class="oc-btn oc-btn-d" data-quote data-act>견적 요청</button>
-          <button type="button" class="oc-btn oc-btn-o" data-add data-act>견적함에 담기</button>
+          <button type="button" class="oc-btn oc-btn-o" data-add data-act>견적 담기</button>
         </div>
         <!-- 바로 구매 (2026-10-26 결정: 가격이 있는 상품만. 견적 전용 상품은 JS 가 숨긴 채 둔다).
              고도몰: goods_view 의 수량(goodsCnt[])·바로구매(btn_add_order) 폼으로 주문서(order/order.php)에 넘긴다. 장바구니·주문서·주문 완료는 고도몰 기본 화면 -->
@@ -246,7 +246,7 @@
 <div class="oc-gv-bar" aria-label="구매 메뉴" role="group">
   <a href="tel:02-6949-1518" class="oc-gv-bar-ic" aria-label="전화 상담"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 3.5h3l1.5 4-2 1.5a11 11 0 0 0 6 6l1.5-2 4 1.5v3a2 2 0 0 1-2 2A16 16 0 0 1 4.5 5.5a2 2 0 0 1 2-2z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>전화</a>
   <button type="button" class="oc-gv-bar-ic" data-open="oc-quote" aria-label="견적함 열기"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3.5h7.5L19 8v12.5H7z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M14 3.5V8h5M10 12.5h6M10 16h6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>견적함<b data-qcount>0</b></button>
-  <button type="button" class="oc-btn oc-btn-o oc-add" data-add data-act>담기</button>
+  <button type="button" class="oc-btn oc-btn-o oc-add" data-add data-act>견적 담기</button>
   <button type="button" class="oc-btn oc-btn-p" data-quote data-act>견적 요청</button>
 </div>
 </main>

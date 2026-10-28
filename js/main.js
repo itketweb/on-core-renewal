@@ -394,7 +394,7 @@
     $$('[data-add]').forEach(function (b) {
       var g = goodsOf(b), on = !!(g && findQ(g.no));
       b.classList.toggle('oc-is-on', on);
-      b.textContent = on ? '담김 ✓' : '담기';
+      b.textContent = on ? '담김 ✓' : '견적 담기';
     });
   }
   $('#oc-qlist').addEventListener('click', function (e) {
@@ -478,7 +478,7 @@
     });
     var act = cmp.map(function (c, i) {
       var d = ' data-goodsno="' + esc(c.no) + '" data-name="' + esc(c.name) + '" data-img="' + esc(c.img) + '" data-price="' + esc(c.price) + '"';
-      return '<div class="oc-cmpm-row">' + who(i) + '<dd><button type="button" class="oc-btn oc-btn-sm oc-btn-d" data-quote' + d + '>견적 요청</button><button type="button" class="oc-btn oc-btn-sm oc-btn-o oc-add" data-add' + d + '>담기</button></dd></div>';
+      return '<div class="oc-cmpm-row">' + who(i) + '<dd><button type="button" class="oc-btn oc-btn-sm oc-btn-d" data-quote' + d + '>견적 요청</button><button type="button" class="oc-btn oc-btn-sm oc-btn-o oc-add" data-add' + d + '>견적 담기</button></dd></div>';
     }).join('');
     return '<div class="oc-cmpm oc-cmpm--' + n + '"><ol class="oc-cmpm-goods" aria-label="비교 중인 제품">' + goods + '</ol>' + out +
       '<section class="oc-cmpm-sec oc-cmpm-act"><h3 class="oc-cmpm-t">견적</h3><dl>' + act + '</dl></section></div>';
@@ -517,7 +517,7 @@
     });
     body += '<tr class="oc-cmpv-act"><th scope="row" class="oc-cmpv-lb">견적</th>' + cmp.map(function (c) {
       var d = ' data-goodsno="' + esc(c.no) + '" data-name="' + esc(c.name) + '" data-img="' + esc(c.img) + '" data-price="' + esc(c.price) + '"';
-      return '<td><button type="button" class="oc-btn oc-btn-sm oc-btn-d" data-quote' + d + '>견적 요청</button><button type="button" class="oc-btn oc-btn-sm oc-btn-o oc-add" data-add' + d + '>담기</button></td>';
+      return '<td><button type="button" class="oc-btn oc-btn-sm oc-btn-d" data-quote' + d + '>견적 요청</button><button type="button" class="oc-btn oc-btn-sm oc-btn-o oc-add" data-add' + d + '>견적 담기</button></td>';
     }).join('') + '</tr>';
     // 같은 줄이 하나도 없으면 체크해도 바뀌는 게 없다 — '다른 항목만 보기'를 아예 보여 주지 않는다 (2026-10-28)
     if (!same) cmpView.classList.remove('oc-is-diffonly');
@@ -526,7 +526,7 @@
       (same ? '<label class="oc-chk"><input type="checkbox" data-cmp-diff' + (only ? ' checked' : '') + '> 다른 항목만 보기</label>' : '') + '</div>' +
       '<table class="oc-cmpv oc-cmpv--' + n + '"><thead><tr><th scope="col" class="oc-cmpv-lb"><span aria-hidden="true">제품</span><span class="oc-sr">항목</span></th>' + head + '</tr></thead><tbody>' + body + '</tbody></table>' +
       cmpMobile(n, specs, labels, norm, differs);
-    renderQuote(); // 새로 그린 '담기' 버튼에 담김 표시
+    renderQuote(); // 새로 그린 '견적 담기' 버튼에 담김 표시
   }
   // 비교 표 열 강조: 마우스를 올린 제품 열만 옅은 바탕 — 여러 줄을 세로로 읽을 때 보던 제품을 놓치지 않게 (세로 구분선 대신, 2026-10-28).
   // 모양(바탕색)은 CSS 가 마우스 기기 + 768 이상에서만 입힌다. 모바일은 항목 이름 줄(.oc-cmpv-sub, 칸 1개)이 있어 칸 수가 1개인 줄은 건너뛴다
