@@ -225,10 +225,12 @@ html{min-width:360px} /* 최소 폭 360 (8-1장) — 더 좁은 화면은 맞추
 @keyframes fade{from{opacity:0}}
 
 /* 상품 카드 */
-.oc-ftabs{display:flex;flex-wrap:wrap;gap:var(--oc-sp-8);margin-bottom:var(--oc-sp-24)} /* 가로 스크롤 없이 줄을 바꾼다 */
-.oc-ftab{flex:none;height:var(--oc-ctl-sm);padding:0 var(--oc-sp-16);border-radius:999px;font-size:var(--oc-fs-14);font-weight:600;color:var(--oc-ink-2);background:#fff;border:1px solid var(--oc-line);transition:all .15s}
-@media (hover:hover) and (pointer:fine) and (min-width:768px){.oc-ftab:hover{border-color:var(--oc-ink-2)}}
-.oc-ftabs [aria-selected="true"]{background:var(--oc-ink);border-color:var(--oc-ink);color:#fff}
+/* 제품 유형 탭 = 분절형 (2026-10-28 사용자 결정) — 회색 틀 하나에 탭을 붙이고 고른 탭만 흰 바탕. 버튼(.oc-btn 알약)·필터 칩(모서리 8, 고르면 검정)과 구분. 마이페이지 하위 탭(.oc-my-subnav2)과 같은 값. 좁으면 줄바꿈 대신 틀 안에서 가로로 민다 */
+.oc-ftabs{display:flex;flex-wrap:nowrap;gap:var(--oc-sp-4);width:max-content;max-width:100%;margin-bottom:var(--oc-sp-24);padding:var(--oc-sp-4);border-radius:var(--oc-r-sm);background:var(--oc-divider);overflow-x:auto;scrollbar-width:none}
+.oc-ftabs::-webkit-scrollbar{display:none}
+.oc-ftab{flex:none;height:var(--oc-sp-32);padding:0 var(--oc-sp-16);border:0;border-radius:var(--oc-sp-4);background:none;font-size:var(--oc-fs-14);font-weight:500;color:var(--oc-ink-3);transition:color .15s,background-color .15s}
+@media (hover:hover) and (pointer:fine) and (min-width:768px){.oc-ftab:hover{color:var(--oc-ink)}}
+.oc-ftabs [aria-selected="true"]{background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.08),0 0 0 1px var(--oc-line);font-weight:600;color:var(--oc-ink)}
 .oc-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--oc-sp-16)}
 .oc-display--best .oc-card:nth-child(n+5){display:none} /* 카테고리별 추천 제품은 한 줄만 (2026-10-28) — 줄 개수(1280 이상 4·768~1279 3·480~767 2)를 넘는 카드는 숨긴다 */
 .oc-card{background:#fff;border-radius:var(--oc-r);display:flex;flex-direction:column;overflow:hidden;animation:fade .35s var(--oc-ease) both;transition:box-shadow .25s}
