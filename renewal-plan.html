@@ -240,7 +240,7 @@
   </div>
 </section>
 
-<!-- 카테고리별 추천 제품 | 고도몰: 탭마다 메인 진열 1개씩 (전체·워크스테이션·서버·데스크탑·노트북·스토리지 = 진열 6개). 운영자가 관리자 상품 진열에서 카테고리별로 노출할 상품을 지정한다.
+<!-- 카테고리별 추천 제품 | 고도몰: 탭마다 메인 진열 1개씩 (전체·서버·워크스테이션·데스크탑·노트북·HC = 탭 6개, 2026-10-28 사용자 결정. 고도몰: 전체·서버·워크스테이션은 메인 진열, 데스크탑·노트북·HC 는 분류 상품으로 채움). 운영자가 관리자 상품 진열에서 카테고리별로 노출할 상품을 지정한다.
      1차 컨펌(2026-10-27): 업종별 추천(고정 화면)을 없애고 이 관리자 진열 방식으로 대신한다.
      6개를 모두 출력해 두고 탭 JS 가 하나만 보여 준다 -->
 <section class="oc-sec oc-sec-alt" id="oc-best">
@@ -248,12 +248,18 @@
     <div class="oc-sec-hd"><h2 class="oc-sec-t">카테고리별 추천 제품</h2><p class="oc-sec-d">분류마다 많이 찾는 제품을 모았습니다. 가격이 없는 제품은 구성에 맞춰 견적을 드립니다.</p><a href="pages/goods-all.html" class="oc-more">전체 제품</a></div>
     <div class="oc-ftabs" role="tablist" aria-label="제품 유형">
       <button class="oc-ftab" type="button" role="tab" aria-selected="true" data-tab="all">전체</button>
-      <button class="oc-ftab" type="button" role="tab" aria-selected="false" data-tab="ws">워크스테이션</button>
       <button class="oc-ftab" type="button" role="tab" aria-selected="false" data-tab="server">서버</button>
+      <button class="oc-ftab" type="button" role="tab" aria-selected="false" data-tab="ws">워크스테이션</button>
+      <button class="oc-ftab" type="button" role="tab" aria-selected="false" data-tab="desktop">데스크탑</button>
+      <button class="oc-ftab" type="button" role="tab" aria-selected="false" data-tab="notebook">노트북</button>
+      <button class="oc-ftab" type="button" role="tab" aria-selected="false" data-tab="hc">HC</button>
     </div>
     <div class="oc-display oc-display--best" data-display="all" data-panel="all"></div>
-    <div class="oc-display oc-display--best" data-display="ws" data-panel="ws" hidden></div>
     <div class="oc-display oc-display--best" data-display="server" data-panel="server" hidden></div>
+    <div class="oc-display oc-display--best" data-display="ws" data-panel="ws" hidden></div>
+    <div class="oc-display oc-display--best" data-display="desktop" data-panel="desktop" hidden></div>
+    <div class="oc-display oc-display--best" data-display="notebook" data-panel="notebook" hidden></div>
+    <div class="oc-display oc-display--best" data-display="hc" data-panel="hc" hidden></div>
   </div>
 </section>
 
