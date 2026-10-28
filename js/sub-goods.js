@@ -26,7 +26,8 @@
      고도몰에서는 select 가 바뀌면 ?sort=값 으로 목록을 다시 불러온다(서버 정렬). 시안은 화면에서 순서만 바꾼다.
      상품 필터 칩(브랜드·신규·가격 표시)은 고도몰 기본 목록에 없고, 스크립트로 거르면 현재 쪽의 상품만 걸러져 쪽 넘김과 어긋나서 쓰지 않는다 → 하위 분류(.oc-subnav)로 좁힌다 */
   function initList(box, ids, scope) {
-    box.innerHTML = '<ul class="oc-cards">' + ids.map(M.li).join('') + '</ul>';
+    var where = /(search|goods-all)\.html$/.test(location.pathname) ? 'search' : 'cate'; // 자리 이름표 — 스킨: goods_search.php = search, goods_list.php = cate
+    box.innerHTML = '<ul class="oc-cards oc-cards--' + where + '">' + ids.map(M.li).join('') + '</ul>';
     var ul = $('.oc-cards', box), items = $$('.oc-card', ul);
     var by = {}; items.forEach(function (li) { by[li.getAttribute('data-goodsno')] = li; });
     var sel = $('[data-goods-sort]', scope), cnt = $$('[data-goods-count]', scope);
@@ -121,7 +122,7 @@
     // 관련 상품: 같은 계열 → 부족하면 다른 계열로 채워 4개 (PC 4열 한 줄 · 모바일 2×2 — 3개면 모바일 2열에 빈 칸이 생긴다. 3열 폭에서는 CSS 가 넷째를 숨김)
     var rel = Object.keys(G).filter(function (n) { return n !== no && family(G[n]) === family(g); });
     Object.keys(G).forEach(function (n) { if (n !== no && rel.length < 4 && rel.indexOf(n) < 0) rel.push(n); });
-    var rb = $('[data-related]'); if (rb) rb.innerHTML = '<ul class="oc-cards">' + rel.slice(0, 4).map(M.li).join('') + '</ul>';
+    var rb = $('[data-related]'); if (rb) rb.innerHTML = '<ul class="oc-cards oc-cards--related">' + rel.slice(0, 4).map(M.li).join('') + '</ul>';
 
     // 탭
     var tabs = $$('.oc-gv-tabs [role="tab"]');

@@ -1363,6 +1363,8 @@
 
   Array.prototype.forEach.call(document.querySelectorAll('[data-display]'), function (box) {
     var list = DISPLAYS[box.getAttribute('data-display')] || [];
-    box.innerHTML = '<ul class="oc-cards">' + list.map(li).join('') + '</ul>';
+    // 자리 이름표(스킨 oncore.js labelCardLists 와 같은 이름): 추천 제품 탭 = best-{탭}, 조달안내 = g2b, 그 밖 진열 = display
+    var sec = box.closest('section[id]'), where = sec && sec.id === 'oc-best' ? 'best-' + box.getAttribute('data-panel') : sec && sec.id === 'oc-g2b' ? 'g2b' : 'display';
+    box.innerHTML = '<ul class="oc-cards oc-cards--' + where + '">' + list.map(li).join('') + '</ul>';
   });
 })();

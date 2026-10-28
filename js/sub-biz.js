@@ -10,7 +10,7 @@
   /* 1) 상품 카드 */
   $$('[data-goods]').forEach(function (box) {
     var M = window.OC_MOCK; if (!M) return;
-    box.innerHTML = '<ul class="oc-cards oc-biz-cards">' + box.getAttribute('data-goods').split(',').map(function (n) { return n.trim(); }).filter(function (n) { return M.GOODS[n]; }).map(function (n) { return M.li(n); }).join('') + '</ul>';
+    box.innerHTML = '<ul class="oc-cards oc-biz-cards oc-cards--etc">' + box.getAttribute('data-goods').split(',').map(function (n) { return n.trim(); }).filter(function (n) { return M.GOODS[n]; }).map(function (n) { return M.li(n); }).join('') + '</ul>';
   });
 
   /* 2) 필터
