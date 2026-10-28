@@ -209,6 +209,8 @@ html{min-width:360px} /* 최소 폭 360 (8-1장) — 더 좁은 화면은 맞추
 }
 /* 조달안내 (.oc-g2b): 섹션 머리 아래 링크 칸 3개 — 상자 없이 위 가는 선 + 작은 회색 라벨 + 제목 20 + 설명 + → (고객센터 바로가기처럼 마우스를 올리면 → 이동) */
 .oc-g2b{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--oc-sp-24)}
+.oc-display ~ .oc-g2b{margin-top:var(--oc-sp-40)} /* 조달 제품 카드 한 줄 아래 카탈로그·나라장터 링크 줄 (2026-10-28) */
+.oc-display--g2b .oc-card{border:1px solid var(--oc-line-2)} /* 조달안내는 흰 바탕 섹션이라(위아래가 회색 섹션) 흰 카드에 옅은 테두리로 모양을 잡는다 */
 .oc-g2b-item{display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-rows:auto auto 1fr;align-items:start;column-gap:var(--oc-sp-16);padding-top:var(--oc-sp-20);border-top:1px solid var(--oc-line);transition:border-color .15s,box-shadow .15s}
 .oc-g2b em{grid-column:1;margin-bottom:var(--oc-sp-12);font-style:normal;font-size:var(--oc-fs-14);font-weight:700;color:var(--oc-ink-3);transition:color .15s}
 .oc-g2b b{grid-column:1;font-size:var(--oc-fs-20)}
@@ -232,6 +234,12 @@ html{min-width:360px} /* 최소 폭 360 (8-1장) — 더 좁은 화면은 맞추
 @media (hover:hover) and (pointer:fine) and (min-width:768px){.oc-ftab:hover{color:var(--oc-ink)}}
 .oc-ftabs [aria-selected="true"]{background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.08),0 0 0 1px var(--oc-line);font-weight:600;color:var(--oc-ink)}
 @media (max-width:479px){.oc-ftab{padding:0 var(--oc-sp-8)}} /* 탭 6개(전체·서버·워크스테이션·데스크탑·노트북·HC)가 360 폭에서도 틀 안에 다 보이게 */
+.oc-best-more{margin-top:var(--oc-sp-32)} /* 추천 제품 카드 아래 '더보기' = 카드 줄 폭 전체 버튼(2026-10-28 사용자 결정) — 고른 탭의 전체 목록으로, 글자에 분류 이름 (oncore-main.js) */
+.oc-best-more-btn{display:flex;align-items:center;justify-content:center;gap:var(--oc-sp-8);width:100%;height:var(--oc-sp-48);border:1px solid var(--oc-line);border-radius:var(--oc-r-sm);background:#fff;font-size:var(--oc-fs-16);font-weight:600;color:var(--oc-ink);transition:border-color .15s}
+.oc-best-more-btn::after{content:"";width:var(--oc-sp-8);height:var(--oc-sp-8);margin-left:var(--oc-sp-4);border-top:1.5px solid currentColor;border-right:1.5px solid currentColor;transform:rotate(45deg)}
+.oc-best-more-btn:active{background:var(--oc-hover)}
+.oc-best-more-btn:focus-visible{outline:2px solid var(--oc-ink);outline-offset:2px}
+@media (hover:hover) and (pointer:fine) and (min-width:768px){.oc-best-more-btn:hover{border-color:var(--oc-ink-2)}} /* '더보기' 오른쪽 작은 꺾쇠 */
 .oc-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--oc-sp-16)}
 .oc-display--best .oc-card:nth-child(n+5){display:none} /* 카테고리별 추천 제품은 한 줄만 (2026-10-28) — 줄 개수(1280 이상 4·768~1279 3·480~767 2)를 넘는 카드는 숨긴다 */
 .oc-card{background:#fff;border-radius:var(--oc-r);display:flex;flex-direction:column;overflow:hidden;animation:fade .35s var(--oc-ease) both;transition:box-shadow .25s}
@@ -615,6 +623,7 @@ body.oc-is-locked .oc-toast{opacity:0} /* 서랍이 열리면 서랍 아래 버�
   .oc-display--best .oc-cards{grid-template-columns:minmax(0,1fr);gap:var(--oc-sp-12)}
   .oc-display--best .oc-card{display:grid;grid-template-columns:7rem minmax(0,1fr);column-gap:var(--oc-sp-16);align-items:start;padding:var(--oc-sp-12)}
   .oc-display--best .oc-card:nth-child(-n+4){display:grid} /* 479 이하: 가로 카드가 위아래로 쌓이므로 4개 (한 줄 규칙의 예외) */
+  .oc-display--g2b .oc-card:nth-child(n+3){display:none} /* 조달 제품은 479 이하에서도 2개 — 사용자 결정(2026-10-28): 카드는 한 줄만, 가로 카드 2장 이상 쌓지 않음 */
   .oc-display--best .oc-card-img{margin:0;aspect-ratio:1;border-radius:var(--oc-r-sm)}
   .oc-display--best .oc-card-body{padding:0}
   .oc-display--best .oc-card-act{flex-direction:row;margin-top:var(--oc-sp-12)}

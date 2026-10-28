@@ -205,7 +205,7 @@
 
   /* ── 탭 (카테고리별 추천 제품: 진열 여러 개 중 하나만 보이기) ── */
   function tabs(listSel, attr, panelOf, onPick) {
-    var list = $(listSel); if (!list) return;
+    var list = typeof listSel === 'string' ? $(listSel) : listSel; if (!list) return;
     var btns = $$('[role=tab]', list);
     function pick(btn, focus) {
       btns.forEach(function (b) { var on = b === btn; b.setAttribute('aria-selected', String(on)); b.tabIndex = on ? 0 : -1; panelOf(b).hidden = !on; });
@@ -222,7 +222,20 @@
     });
     return pick;
   }
-  tabs('.oc-ftabs', 'data-tab', function (b) { return $('[data-panel="' + b.getAttribute('data-tab') + '"]'); });
+  // 카테고리별 추천 제품 '더보기': 지금 고른 탭의 전체 목록으로 (패널의 data-more — 고도몰은 패널 data-oc-cate 로 분류 목록 주소를 만든다, oncore-main.js)
+  var bestMore = $('[data-oc-best-more]');
+  function syncBestMore(b) {
+    var p = b && $('#oc-best [data-panel="' + b.getAttribute('data-tab') + '"]');
+    if (!bestMore || !p) return;
+    bestMore.setAttribute('href', p.getAttribute('data-more') || 'pages/goods-all.html');
+    bestMore.textContent = b.textContent.trim() + ' 제품 더보기'; // 버튼 글자에 분류 이름 — 어디로 가는지 바로 보이게
+  }
+  // 탭 묶음이 여러 개(#oc-best·#oc-g2b) — 패널 이름(all·server·ws)이 겹치므로 각 탭 묶음이 든 섹션 안에서만 찾는다
+  $$('.oc-ftabs').forEach(function (list) {
+    var sec = list.closest('section') || document;
+    tabs(list, 'data-tab', function (b) { return $('[data-panel="' + b.getAttribute('data-tab') + '"]', sec); }, sec.id === 'oc-best' ? syncBestMore : null);
+  });
+  syncBestMore($('#oc-best .oc-ftabs [aria-selected="true"]'));
 
   /* ── 선택 상자 (.oc-select) ──
      모든 기기: .oc-sel 로 감싸 선 화살표 아이콘을 붙인다.

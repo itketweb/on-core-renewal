@@ -232,6 +232,15 @@
 <section class="oc-sec" id="oc-g2b">
   <div class="oc-wrap">
     <div class="oc-sec-hd"><h2 class="oc-sec-t">조달안내</h2><p class="oc-sec-d">조달청 나라장터쇼핑몰 등록 제품과 구매 절차를 안내해 드리겠습니다.</p></div>
+    <!-- 조달 제품 (2026-10-28 사용자 결정): 카테고리별 추천 제품과 같은 분절형 탭 + 카드 한 줄. 고도몰: 관리자 메인 상품 진열 '조달 전체·서버·워크스테이션'(나라장터 등록 제품) — 진열 전에는 분류 앞쪽 상품 -->
+    <div class="oc-ftabs" role="tablist" aria-label="조달 제품 유형">
+      <button class="oc-ftab" type="button" role="tab" aria-selected="true" data-tab="all">전체</button>
+      <button class="oc-ftab" type="button" role="tab" aria-selected="false" data-tab="server">서버</button>
+      <button class="oc-ftab" type="button" role="tab" aria-selected="false" data-tab="ws">워크스테이션</button>
+    </div>
+    <div class="oc-display oc-display--best oc-display--g2b" data-display="g2b-all" data-panel="all"></div>
+    <div class="oc-display oc-display--best oc-display--g2b" data-display="g2b-server" data-panel="server" hidden></div>
+    <div class="oc-display oc-display--best oc-display--g2b" data-display="g2b-ws" data-panel="ws" hidden></div>
     <div class="oc-g2b">
       <a href="https://cdn.sixshop.io/public/19/stores/reputer/8ed6d3dc-c710-4968-aa7e-a8e4a9cda7bc/%EB%A6%AC%ED%93%A8%ED%84%B0_%EC%A0%9C%ED%92%88_%EC%B9%B4%ED%83%88%EB%A1%9C%EA%B7%B8_2026-01.pdf" target="_blank" rel="noopener" class="oc-g2b-dl oc-g2b-item"><em class="oc-g2b-label">직접생산</em><b class="oc-g2b-name">리퓨터 카탈로그 다운로드</b><span class="oc-g2b-desc">데스크톱 · 모니터 · 전자칠판</span><svg class="oc-g2b-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m-5-5 5 5 5-5M5 20h14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><i class="oc-sr">(PDF, 새 창)</i></a>
       <a href="https://cdn.sixshop.io/public/19/stores/reputer/26ceba71-fc73-4e9c-895f-b24ba46edfff/%EB%A0%88%EB%85%B8%EB%B2%84_%EA%B3%B5%EA%B3%B5%EC%A1%B0%EB%8B%AC_%EC%B9%B4%ED%83%88%EB%A1%9C%EA%B7%B8_2026.pdf" target="_blank" rel="noopener" class="oc-g2b-dl oc-g2b-item"><em class="oc-g2b-label">공급</em><b class="oc-g2b-name">레노버 카탈로그 다운로드</b><span class="oc-g2b-desc">Lenovo 노트북 · 크롬북 · 모니터</span><svg class="oc-g2b-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m-5-5 5 5 5-5M5 20h14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><i class="oc-sr">(PDF, 새 창)</i></a>
@@ -254,12 +263,13 @@
       <button class="oc-ftab" type="button" role="tab" aria-selected="false" data-tab="notebook">노트북</button>
       <button class="oc-ftab" type="button" role="tab" aria-selected="false" data-tab="hc">HC</button>
     </div>
-    <div class="oc-display oc-display--best" data-display="all" data-panel="all"></div>
-    <div class="oc-display oc-display--best" data-display="server" data-panel="server" hidden></div>
-    <div class="oc-display oc-display--best" data-display="ws" data-panel="ws" hidden></div>
-    <div class="oc-display oc-display--best" data-display="desktop" data-panel="desktop" hidden></div>
-    <div class="oc-display oc-display--best" data-display="notebook" data-panel="notebook" hidden></div>
-    <div class="oc-display oc-display--best" data-display="hc" data-panel="hc" hidden></div>
+    <div class="oc-display oc-display--best" data-display="all" data-panel="all" data-more="pages/goods-all.html"></div>
+    <div class="oc-display oc-display--best" data-display="server" data-panel="server" data-more="pages/goods-server.html" hidden></div>
+    <div class="oc-display oc-display--best" data-display="ws" data-panel="ws" data-more="pages/goods-workstation.html" hidden></div>
+    <div class="oc-display oc-display--best" data-display="desktop" data-panel="desktop" data-more="pages/goods-desktop.html" hidden></div>
+    <div class="oc-display oc-display--best" data-display="notebook" data-panel="notebook" data-more="pages/goods-notebook.html" hidden></div>
+    <div class="oc-display oc-display--best" data-display="hc" data-panel="hc" data-more="pages/goods-storage-hc.html" hidden></div>
+    <div class="oc-best-more"><a href="pages/goods-all.html" class="oc-best-more-btn" data-oc-best-more>전체 제품 더보기</a></div>
   </div>
 </section>
 
