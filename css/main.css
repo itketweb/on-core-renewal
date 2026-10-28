@@ -449,13 +449,19 @@ body.oc-is-searching .oc-top{z-index:62} /* 검색 패널이 열리면 헤더(�
 .oc-qempty-ic{width:var(--oc-sp-48);height:var(--oc-sp-48);color:var(--oc-line);margin:0 auto var(--oc-sp-8)}
 .oc-qempty-t{display:block;color:var(--oc-ink);font-size:var(--oc-fs-16);margin-bottom:var(--oc-sp-4)}
 .oc-mnav{padding-left:var(--oc-sp-20);padding-right:var(--oc-sp-20)}
-.oc-mnav-t{font-size:var(--oc-fs-12);color:var(--oc-ink-3);font-weight:600;margin:var(--oc-sp-20) 0 var(--oc-sp-8)}
-.oc-mnav-t:first-child{margin-top:0}
-.oc-mnav-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--oc-sp-8)} /* 목록 16줄 대신 2열 칸: 접지 않고도 한 화면에 들어간다 */
-.oc-mnav-link{display:flex;align-items:center;min-height:var(--oc-sp-48);padding:0 var(--oc-sp-12);border-radius:var(--oc-r-sm);background:var(--oc-surface);font-size:var(--oc-fs-16);font-weight:600;color:var(--oc-ink);white-space:nowrap;transition:background .15s}
-.oc-mnav-link:last-child:nth-child(odd){grid-column:1/-1}
-.oc-mnav-link:active{background:var(--oc-line-2)}
-@media (hover:hover) and (pointer:fine) and (min-width:768px){.oc-mnav-link:hover{background:var(--oc-line-2)}}
+/* 목록 + 아코디언 — 한 줄에 메뉴 하나, 줄 사이는 얇은 선. 하위가 있는 메뉴는 눌러서 펼친다 */
+.oc-mnav-nav{display:flex;flex-direction:column;border-top:1px solid var(--oc-line-2)}
+.oc-mnav-row{display:flex;align-items:center;justify-content:space-between;gap:var(--oc-sp-12);width:100%;min-height:var(--oc-sp-48);padding:var(--oc-sp-12) var(--oc-sp-4);border:0;border-bottom:1px solid var(--oc-line-2);background:none;font:inherit;font-size:var(--oc-fs-16);font-weight:600;color:var(--oc-ink);text-align:left;cursor:pointer}
+.oc-mnav-grp{border-bottom:1px solid var(--oc-line-2)}
+.oc-mnav-grp>.oc-mnav-row{border-bottom:0}
+.oc-mnav-ic{flex:none;width:var(--oc-sp-16);height:var(--oc-sp-16);color:var(--oc-ink-3);transition:transform .2s var(--oc-ease)}
+.oc-mnav-acc[aria-expanded="true"]{color:var(--oc-ink)}
+.oc-mnav-acc[aria-expanded="true"] .oc-mnav-ic{transform:rotate(180deg);color:var(--oc-ink)}
+.oc-mnav-sub{display:flex;flex-direction:column;padding:0 var(--oc-sp-4) var(--oc-sp-12) var(--oc-sp-16)}
+.oc-mnav-sub[hidden]{display:none}
+.oc-mnav-sublink{display:flex;align-items:center;min-height:var(--oc-sp-40);font-size:var(--oc-fs-16);font-weight:400;color:var(--oc-ink-2)}
+.oc-mnav-row:active,.oc-mnav-sublink:active{color:var(--oc-primary)}
+@media (hover:hover) and (pointer:fine) and (min-width:768px){.oc-mnav-row:hover,.oc-mnav-sublink:hover{color:var(--oc-primary)}}
 .oc-mnav-act{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--oc-sp-8);margin-top:var(--oc-sp-24)}
 .oc-mnav-act .oc-btn{min-width:0;padding:0 var(--oc-sp-12)}
 .oc-mnav small{font-size:var(--oc-fs-14);color:var(--oc-ink-3);font-weight:500}

@@ -93,6 +93,14 @@
     });
   }
 
+  /* ── 모바일 전체 메뉴 아코디언: 하위가 있는 메뉴(.oc-mnav-acc)를 누르면 하위 목록을 펼치고 접는다 ── */
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest && e.target.closest('.oc-mnav-acc'); if (!b) return;
+    var p = document.getElementById(b.getAttribute('aria-controls')), on = b.getAttribute('aria-expanded') !== 'true';
+    b.setAttribute('aria-expanded', on ? 'true' : 'false');
+    if (p) p.hidden = !on;
+  });
+
   /* ── 패널 열기·닫기 (검색, 견적함, 모바일 메뉴) ── */
   var scrim = $('#oc-scrim'), openPanel = null, lastFocus = null;
   function open(id) {
@@ -126,6 +134,12 @@
     if (!drop.hidden && !e.target.closest('.oc-has-drop')) dropOpen(false);
   });
   scrim.addEventListener('click', close);
+  // 모바일 전체 메뉴는 768 미만 전용(햄버거 버튼도 그때만 보임) — 창을 넓혀 768 이상이 되면 열려 있던 메뉴를 닫는다
+  var mqWide = window.matchMedia && window.matchMedia('(min-width:768px)');
+  if (mqWide) {
+    var onWide = function () { if (mqWide.matches && openPanel && openPanel.id === 'oc-mnav') close(); };
+    if (mqWide.addEventListener) mqWide.addEventListener('change', onWide); else if (mqWide.addListener) mqWide.addListener(onWide);
+  }
   document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape') { close(); megaOpen(false); dropOpen(false); }
   });

@@ -261,13 +261,20 @@
 <aside class="oc-drawer oc-drawer-l" id="oc-mnav" aria-label="전체 메뉴" hidden>
   <div class="oc-dr-hd"><img src="../img/oncore-logo.png" alt="온코어" width="120" height="38"><button type="button" class="oc-ic-btn" data-close aria-label="닫기"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button></div>
   <div class="oc-dr-body oc-mnav">
-    <!-- 메뉴는 접지 않고 2열 칸으로 펼쳐 한 화면에 담는다 (홀수 마지막 칸은 전체 폭). 로그인·회원가입은 맨 아래 버튼 -->
-    <h5 class="oc-mnav-t">제품</h5>
-    <div class="oc-mnav-grid"><a class="oc-mnav-link" href="goods-all.html">전체 제품</a><a class="oc-mnav-link" href="goods-server.html">서버</a><a class="oc-mnav-link" href="goods-workstation.html">워크스테이션</a><a class="oc-mnav-link" href="goods-desktop.html">데스크탑</a><a class="oc-mnav-link" href="goods-notebook.html">노트북</a><a class="oc-mnav-link" href="goods-storage.html">스토리지</a></div>
-    <h5 class="oc-mnav-t">기업 구매</h5>
-    <div class="oc-mnav-grid"><a class="oc-mnav-link" href="promotion.html">프로모션</a><a class="oc-mnav-link" href="cases.html">기업소식</a><a class="oc-mnav-link" href="estimate-list.html">견적 요청</a></div>
-    <h5 class="oc-mnav-t">고객지원</h5>
-    <div class="oc-mnav-grid"><a class="oc-mnav-link" href="notice.html">공지사항</a><a class="oc-mnav-link" href="inquiry.html">1:1 문의</a><a class="oc-mnav-link" href="cs.html">고객센터</a></div>
+    <!-- 목록 + 아코디언: 하위가 있는 메뉴(제품·고객지원)는 눌러서 펼친다 (main.js .oc-mnav-acc). 로그인·회원가입은 맨 아래 버튼 -->
+    <nav class="oc-mnav-nav" aria-label="전체 메뉴">
+      <div class="oc-mnav-grp">
+        <button type="button" class="oc-mnav-row oc-mnav-acc" aria-expanded="false" aria-controls="oc-mnav-goods">제품<svg class="oc-mnav-ic" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="oc-mnav-sub" id="oc-mnav-goods" hidden><a class="oc-mnav-sublink" href="goods-all.html">전체 제품</a><a class="oc-mnav-sublink" href="goods-server.html">서버</a><a class="oc-mnav-sublink" href="goods-workstation.html">워크스테이션</a><a class="oc-mnav-sublink" href="goods-desktop.html">데스크탑</a><a class="oc-mnav-sublink" href="goods-notebook.html">노트북</a><a class="oc-mnav-sublink" href="goods-storage.html">스토리지</a></div>
+      </div>
+      <a class="oc-mnav-row" href="promotion.html">프로모션</a>
+      <a class="oc-mnav-row" href="cases.html">기업소식</a>
+      <a class="oc-mnav-row" href="estimate-list.html">견적 요청</a>
+      <div class="oc-mnav-grp">
+        <button type="button" class="oc-mnav-row oc-mnav-acc" aria-expanded="false" aria-controls="oc-mnav-cs">고객지원<svg class="oc-mnav-ic" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="oc-mnav-sub" id="oc-mnav-cs" hidden><a class="oc-mnav-sublink" href="notice.html">공지사항</a><a class="oc-mnav-sublink" href="inquiry.html">1:1 문의</a><a class="oc-mnav-sublink" href="cs.html">고객센터</a></div>
+      </div>
+    </nav>
     <div class="oc-mnav-act"><a href="login.html" class="oc-btn oc-btn-o">로그인</a><a href="join.html" class="oc-btn oc-btn-d">회원가입</a></div>
   </div>
 </aside>

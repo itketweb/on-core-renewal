@@ -25,9 +25,9 @@
 .oc-gv-price-note{display:block;margin-top:var(--oc-sp-4);font-size:var(--oc-fs-14);color:var(--oc-ink-3)}
 /* 사양 요약: 선은 위 1개(가는 선)와 행 구분선만. 라벨 칸을 좁히고 행 높이를 40 으로 — 큰 표(상세 탭)와 달리 요약이라 촘촘하게 */
 /* 사양: 카드처럼 위아래 선 사이에 줄선 없이 — 항목(회색 작게) · 값(보통 굵기) */
-.oc-gv-spec{margin:var(--oc-sp-24) 0;padding:var(--oc-sp-12) 0;--oc-kv-l:var(--oc-sp-64);border-top:1px solid var(--oc-line-2);border-bottom:1px solid var(--oc-line-2)}
+.oc-gv-spec{margin:var(--oc-sp-24) 0;padding:var(--oc-sp-12) 0;grid-template-columns:fit-content(var(--oc-sp-128)) minmax(0,1fr);column-gap:var(--oc-sp-24);border-top:1px solid var(--oc-line-2);border-bottom:1px solid var(--oc-line-2)} /* 라벨 칸 = 가장 긴 라벨 길이(최대 128) + 간격 24 — 운영 사양 라벨(CPU·Controller 등)이 데이터라 고정 폭(64)을 쓰지 않는다 (2026-10-28) */
 .oc-gv-spec dt,.oc-gv-spec dd{min-height:0;padding:var(--oc-sp-4) 0;border-bottom:0;line-height:1.6}
-.oc-gv-spec dt{font-size:var(--oc-fs-14)}
+.oc-gv-spec dt{padding-right:0;font-size:var(--oc-fs-14)}
 .oc-gv-spec dd{font-weight:400;color:var(--oc-ink-2)}
 .oc-gv-act{display:flex;gap:var(--oc-sp-8);margin-top:var(--oc-sp-24)}
 .oc-gv-act .oc-btn{flex:1}
@@ -52,7 +52,7 @@
 .oc-gv-tabs [aria-selected="true"]{color:var(--oc-ink)}@media (hover:hover) and (pointer:fine) and (min-width:768px){.oc-gv-tabs [role="tab"]:hover{color:var(--oc-ink)}}
 .oc-gv-tabs [role="tab"]::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:3px;background:var(--oc-ink);transform:scaleX(0);transform-origin:left;transition:transform .3s var(--oc-ease)}
 .oc-gv-tabs [aria-selected="true"]::after{transform:none}
-.oc-gv-panel{padding-top:var(--oc-sp-32);max-width:54rem}
+.oc-gv-panel{padding-top:var(--oc-sp-32)} /* 2026-10-28: 최대 폭(54rem) 없음 — 상세 설명·사양 탭이 본문 폭 전체를 쓴다 */
 .oc-gv-panel[hidden]{display:none}
 .oc-gv-panel--desc{max-width:none} /* 상세 설명: 상품마다 등록한 상세 이미지(고도몰 goodsDescription). 폭이 제각각이라 가운데 정렬, 화면보다 크면 줄인다 */
 .oc-gv-desc{text-align:center}
