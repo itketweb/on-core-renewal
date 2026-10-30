@@ -14,7 +14,7 @@
   });
 
   /* 2) 필터
-     모바일(768 미만)에서 칩이 2줄 이상으로 꺾이면 칩 줄을 숨기고 도구줄('총 N건' 옆)의 선택 상자로 바꾼다(규칙 9-5).
+     모바일(768 미만)에서 필터 틀(분절형)이 화면 폭을 넘치면 필터 줄을 숨기고 도구줄('총 N건' 옆)의 선택 상자로 바꾼다(규칙 9-5).
      선택 상자는 칩에서 만들어 main.js 보다 먼저 넣어 두므로 main.js 가 다른 선택 상자처럼 꾸민다. 칩과 상자는 같은 값을 공유한다.
      고도몰: 같은 말머리 목록을 칩(링크)과 선택 상자 두 번 출력한다 */
   $$('[data-filter-for]').forEach(function (bar) {
@@ -42,12 +42,11 @@
     bar.addEventListener('click', function (e) {
       var b = e.target.closest('[data-filter]'); if (b) apply(b.getAttribute('data-filter'));
     });
-    // 칩이 몇 줄인지 재려면 칩이 보여야 하므로 잠깐 펼친 뒤 정한다
+    // 틀이 넘치는지 재려면 필터가 보여야 하므로 잠깐 펼친 뒤 정한다 (분절형이라 줄을 바꾸지 않고 틀 안에서 넘친다)
     function fit() {
       if (!box) return;
       bar.classList.remove('oc-is-compact');
-      var tops = {}; chips.forEach(function (c) { tops[Math.round(c.getBoundingClientRect().top)] = 1; });
-      var compact = window.innerWidth < 768 && Object.keys(tops).length > 1;
+      var compact = window.innerWidth < 768 && bar.scrollWidth > bar.clientWidth + 1;
       bar.classList.toggle('oc-is-compact', compact);
       box.classList.toggle('oc-is-on', compact);
     }

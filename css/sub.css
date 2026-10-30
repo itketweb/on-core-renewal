@@ -4,7 +4,7 @@
 
    부품 목록
    페이지 머리  .oc-pg-hd (.oc-bc 경로 표시 + h1 + 설명)       본문 틀  .oc-pg-body · .oc-pg-grid(본문 + 오른쪽 열) · .oc-aside
-   하위 이동    .oc-subnav (글자 탭 + 밑줄)                     도구줄   .oc-toolbar (건수 + 정렬)  ·  .oc-filter (선택 칩)
+   하위 이동    .oc-subnav (글자 탭 + 밑줄)                     도구줄   .oc-toolbar (건수 + 정렬)  ·  .oc-filter (분절형 필터, main.css)
    게시판       .oc-tbl (글 목록도 표) · .oc-pgn (쪽 번호)           글       .oc-art-hd · .oc-art-body · .oc-art-nav
    양식         .oc-field · .oc-input · .oc-select · .oc-textarea · .oc-check · .oc-form-row
    표·값        .oc-tbl · .oc-kv                                 안내    .oc-note · .oc-steps · details.oc-faq · .oc-tag
@@ -42,7 +42,7 @@
 .oc-pg-grid--toc>.oc-aside h2{margin-bottom:var(--oc-sp-8);font-size:var(--oc-fs-14);color:var(--oc-ink-3)}
 
 /* ── 하위 이동: 글자 탭 + 현재 항목 2px 밑줄 (규칙 9-5, 2026-10-27) ──
-   다른 페이지로 '이동'하는 링크라 같은 페이지 안을 '걸러 보는' 칩(.oc-filter, 테두리 상자·모서리 8)과 모양을 나눈다. 상단 메뉴·로그인 탭과 같은 밑줄 표현.
+   다른 페이지로 '이동'하는 링크라 같은 페이지 안을 '걸러 보는' 분절형 필터(.oc-filter)와 모양을 나눈다. 상단 메뉴·로그인 탭과 같은 밑줄 표현.
    머리 맨 아래에 두고 현재 항목 밑줄을 머리 아래 선(1px)에 겹친다 — 선에서 탭이 갈라져 나오는 일반적인 탭 모양. 가로 스크롤 없이 줄바꿈 */
 .oc-subnav{--pad:var(--oc-sp-12);display:flex;flex-wrap:wrap;margin-inline:calc(var(--pad) * -1)} /* 간격 대신 양쪽 안쪽 여백 — 사이 빈칸까지 누르는 면. 바깥 음수 여백으로 첫 글자는 제목과 줄을 맞춘다 (상단 메뉴 .oc-gnb-link 와 같은 방식) */
 .oc-subnav-link{position:relative;display:inline-flex;align-items:center;flex:none;height:var(--oc-sp-48);padding:0 var(--pad);font-size:var(--oc-fs-16);font-weight:600;white-space:nowrap;color:var(--oc-ink-3);transition:color .15s}
@@ -51,18 +51,16 @@
 .oc-subnav-link[aria-current="page"]{font-weight:700;color:var(--oc-ink)}
 .oc-subnav-link[aria-current="page"]::after{transform:scaleX(1)}
 
-/* ── 도구줄·선택 칩 ── */
+/* ── 도구줄·필터 ── */
 .oc-toolbar{display:flex;align-items:center;justify-content:space-between;gap:var(--oc-sp-16);flex-wrap:wrap;padding-bottom:var(--oc-sp-16);margin-bottom:var(--oc-sp-24);border-bottom:1px solid var(--oc-ink)}
 .oc-toolbar b{font-weight:700}
 .oc-toolbar:has(+.oc-tbl-wrap){padding-bottom:0;border-bottom:0} /* 바로 아래 표의 위 2px 선과 겹치지 않게 */
 .oc-toolbar .oc-select{width:auto;min-width:var(--oc-sp-160);height:var(--oc-ctl-sm);font-size:var(--oc-fs-14)}
-.oc-filter{display:flex;flex-wrap:wrap;gap:var(--oc-sp-8);margin-bottom:var(--oc-sp-24)}
-.oc-filter a,.oc-filter-btn{height:var(--oc-ctl-sm);padding:0 var(--oc-sp-20);display:inline-flex;align-items:center;border-radius:var(--oc-r-sm);border:1px solid var(--oc-line);background:#fff;font-size:var(--oc-fs-14);font-weight:600;color:var(--oc-ink-2);transition:all .15s}
-@media (hover:hover) and (pointer:fine) and (min-width:768px){.oc-filter a:hover,.oc-filter-btn:hover{border-color:var(--oc-ink-2)}} /* 터치에서는 누른 칩에 진한 테두리가 남아 선택된 것처럼 보인다 */
-.oc-filter a:active,.oc-filter-btn:active{transform:scale(.97)}
+/* 필터(.oc-filter) 모양은 제품 유형 탭과 같은 분절형 — main.css .oc-ftabs 에 함께 묶었다 (2026-10-29). 고도몰 말머리는 링크(a)라 글자를 세로 가운데로 */
+.oc-filter a{display:inline-flex;align-items:center}
+.oc-filter:has(> a:only-child){display:none} /* 고를 것이 '전체' 하나뿐(하위 분류·말머리 없음)이면 줄을 출력하지 않는다 */
 .oc-subnav-link:active{color:var(--oc-ink)}
-.oc-filter [aria-pressed="true"],.oc-filter [aria-current="page"]{background:var(--oc-ink);border-color:var(--oc-ink);color:#fff}
-/* 모바일에서 칩이 2줄이 되면(sub-biz.js 가 판단) 칩 줄 대신 도구줄의 선택 상자 */
+/* 모바일에서 필터 틀이 화면 폭을 넘치면(sub-biz.js 가 판단) 필터 대신 도구줄의 선택 상자 */
 .oc-filter.oc-is-compact,.oc-fsel{display:none}
 .oc-fsel.oc-is-on{display:inline-block}
 .oc-tag{display:inline-block;padding:var(--oc-sp-4) var(--oc-sp-12);border-radius:999px;background:var(--oc-surface);font-size:var(--oc-fs-12);font-weight:600;color:var(--oc-ink-2)}
@@ -139,7 +137,7 @@ select.oc-select.oc-is-ph option{color:var(--oc-ink)} /* 펼친 목록의 항목
 .oc-sel.oc-is-up .oc-sel-list{top:auto;bottom:calc(100% + var(--oc-sp-4))}
 .oc-toolbar .oc-sel-list{left:0;right:auto;width:100%;min-width:0;border-radius:var(--oc-r-sm);font-size:var(--oc-fs-14)} /* 펼친 목록은 상자와 같은 폭 (필터 폼 통일) */
 /* 필터 폼 통일 (2026-10-28): 도구줄의 검색칸·선택 상자·버튼은 견적 조회 검색줄(.oc-est-search)과 같은 모양 — 모서리 8(알약 아님), PC 높이 40·글자 14,
-   모바일은 손가락 크기(--oc-ctl)·입력 글자 16(아이폰 확대 방지). 기간·분류 칩(.oc-filter)도 모서리 8. 고도몰 스킨의 기간 조회·검색 줄도 같은 값 */
+   모바일은 손가락 크기(--oc-ctl)·입력 글자 16(아이폰 확대 방지). 기간·분류 필터(.oc-filter)는 분절형, 바깥 틀 높이 40. 고도몰 스킨의 기간 조회·검색 줄도 같은 값 */
 .oc-toolbar :is(.oc-input,.oc-select,.oc-sel-btn,.oc-btn){border-radius:var(--oc-r-sm)}
 .oc-toolbar .oc-sel-opt{justify-content:flex-start;min-height:var(--oc-sp-32);padding:var(--oc-sp-4) var(--oc-sp-8);border-radius:var(--oc-sp-4)}
 .oc-toolbar .oc-sel-opt svg{display:none}
